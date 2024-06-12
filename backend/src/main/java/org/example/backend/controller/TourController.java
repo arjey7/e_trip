@@ -24,14 +24,14 @@ public class TourController {
         Tour addedTour = tourService.addTour(tourDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(addedTour);
     }
-    @GetMapping
+    @GetMapping("/gettour")
     public HttpEntity<List<Tour>> getTours() {
         List<Tour> tours = tourService.getTours();
         return ResponseEntity.ok(tours);
     }
 
 
-    @GetMapping
+    @GetMapping("/getAll")
     public ResponseEntity<List<Tour>> getAllTours() {
         List<Tour> tours = tourService.getAllTours();
         return ResponseEntity.ok(tours);
