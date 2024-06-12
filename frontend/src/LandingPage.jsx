@@ -14,7 +14,7 @@ const LandingPage = () => {
     const [tours, setTours] = useState([]);
   const navigate = useNavigate()
     useEffect(() => {
-        fetch('http://localhost:8080/api/tour/getAll')
+        fetch('http://localhost:8082/api/tour/getAll')
             .then(response => response.json())
             .then(data => setTours(data))
             .catch(error => console.error('Error fetching tour data:', error));
@@ -53,7 +53,7 @@ const LandingPage = () => {
             <div className="tour-list">
                 {tours.map((tour, index) => (
                     <div key={index} className="tour-item">
-                        <img  src={`http://localhost:8080/files/img?name=${tour.photo}`} alt={tour.title}
+                        <img  src={`http://localhost:8082/files/img?name=${tour.photo}`} alt={tour.title}
                              className="tour-img"/>
                         <div className="tour-details">
                             <h2>{tour.title}</h2>

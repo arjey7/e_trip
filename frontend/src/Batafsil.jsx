@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from "axios";
+import './css/Batafsil.css';
 
 function Batafsil() {
     const { tourId } = useParams();
@@ -17,15 +18,17 @@ function Batafsil() {
     }, [tourId]);
 
     return (
-        <div>
+        <div className="batafsil-container">
             {batafsil.map((item, index) => (
-                <div key={index}>
-                    <img src={item.tour.photo} alt=""/>
-                    <h3>{item.tour.day}</h3>
-                    <h6>{item.tour.title}</h6>
-                    <p>{item.tour.description}</p>
-                    <p>{item.tour.description2}</p>
+                <div key={index} className="batafsil-item">
+                    <img src={`http://localhost:8082/files/img?name=${item.photo}`} alt={item.photo} className="batafsil-img" />
+                    <div className="batafsil-details">
+                        <h3 className="batafsil-title">Day: {item.tour.day}</h3>
+                        <h3 className="batafsil-subtitle">{item.title}</h3>
+                        <p className="batafsil-description">{item.description}</p>
+                        <p className="batafsil-description2">{item.tour.description2}</p>
 
+                    </div>
                 </div>
             ))}
         </div>
