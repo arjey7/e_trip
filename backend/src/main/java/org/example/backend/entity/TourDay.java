@@ -18,7 +18,12 @@ public class TourDay {
     private UUID id;
     private String title;
     private String description;
+    @Column(columnDefinition = "TEXT")
+    private String photo;
     @ManyToOne
     private Tour tour;
-    private String photo;
+
+
+    public void setTourId(UUID uuid) {
+    }
 }

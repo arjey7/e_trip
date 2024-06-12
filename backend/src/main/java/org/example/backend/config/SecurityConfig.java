@@ -22,16 +22,14 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
+        http
+                .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/enquiry").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/tour").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/files/img").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/enquiry").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/message").permitAll()
-                        .requestMatchers(HttpMethod.PATCH, "/api/enquiry/{id}/answer").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/files/img","/files/video").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/files/img","/files/video","/api/tour","/api/tourDay").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/tour","/api/tourDay").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();
@@ -44,11 +42,10 @@ public class SecurityConfig {
 
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-        return configuration.getAuthenticationManager();
-    }
-
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    return configuration.getAuthenticationManager();
+}
+@Bean
+    PasswordEncoder passwordEncoder(){
+    return new BCryptPasswordEncoder();
+}
 }

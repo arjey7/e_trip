@@ -27,11 +27,26 @@ public class FileController {
         fileOutputStream.close();
         return name;
     }
-
     @GetMapping("/img")
     public void getImg(HttpServletResponse response,@RequestParam String name) throws IOException {
         FileInputStream fileInputStream=new FileInputStream(
-                "backend/files/"+name);
+                "backend/resors/"+name);
+        ServletOutputStream outputStream = response.getOutputStream();
+        fileInputStream.transferTo(outputStream);
+        fileInputStream.close();
+        outputStream.close();
+    }
+    @PostMapping("/video")
+    public String saveProductVideo(@RequestParam MultipartFile file) throws IOException {
+        String name = UUID.randomUUID() + file.getOriginalFilename();
+        FileOutputStream fileOutputStream = new FileOutputStream("backend/resors/" + name);
+        fileOutputStream.write(file.getBytes());
+        fileOutputStream.close();
+        return name;
+    }
+    @GetMapping("/video")
+    public void getVideo(HttpServletResponse response, @RequestParam String name) throws IOException {
+        FileInputStream fileInputStream = new FileInputStream("backend/resors/" + name);
         ServletOutputStream outputStream = response.getOutputStream();
         fileInputStream.transferTo(outputStream);
         fileInputStream.close();

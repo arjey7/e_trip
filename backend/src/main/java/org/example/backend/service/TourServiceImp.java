@@ -11,6 +11,27 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+public class TourServiceImp implements TourService {
+
+    private final TourRepo tourRepo;
+
+    @Override
+    public Tour addTour(TourDto tourDto) {
+        Tour tour = new Tour();
+        tour.setTitle(tourDto.title());
+        tour.setDescription(tourDto.description());
+        tour.setDescription2(tourDto.description2());
+        tour.setPhoto(tourDto.photo());
+        tour.setVidio(tourDto.vidio());
+        tour.setDay(tourDto.day());
+        tour.setCost(tourDto.cost());
+        return tourRepo.save(tour);
+    }
+    @Override
+    public List<Tour> getTours() {
+        return tourRepo.findAll();
+    }
+
 public class TourServiceImp implements TourService{
     private final TourRepo tourRepo;
 
