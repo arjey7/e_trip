@@ -1,14 +1,14 @@
 package org.example.backend.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.backend.entity.Enquiry;
-import org.example.backend.entity.Tour;
-import org.example.backend.repository.EnquiryRepo;
-import org.example.backend.repository.TourRepo;
 import org.example.backend.dto.TourDto;
+import org.example.backend.entity.Tour;
+import org.example.backend.repository.TourRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -28,15 +28,41 @@ public class TourServiceImp implements TourService {
         tour.setCost(tourDto.cost());
         return tourRepo.save(tour);
     }
+
     @Override
     public List<Tour> getTours() {
         return tourRepo.findAll();
     }
-
 
     @Override
     public List<Tour> getAllTours() {
         return tourRepo.findAll();
     }
 
+    @Override
+    public Tour updateTour(UUID id, TourDto tourDto) {
+        Optional<Tour> existingTourOptional = tourRepo.findById(id);
+        if (existingTourOptional.isPresent()) {
+            Tour existingTour = existingTourOptional.get();
+            existingTour.setTitle(tourDto.title());
+            existingTour.setDescription(tourDto.description());
+            existingTour.setDescription2(tourDto.description2());
+            existingTour.setPhoto(tourDto.photo());
+            existingTour.setVidio(tourDto.vidio());
+            existingTour.setDay(tourDto.day());
+            existingTour.setCost(tourDto.cost());
+            return tourRepo.save(existingTour);
+        } else {
+            throw new RuntimeException("Tour not found");
+        }
+    }
+
+    @Override
+    public void deleteTour(UUID id) {
+        if (tourRepo.existsById(id)) {
+            tourRepo.deleteById(id);
+        } else {
+            throw new RuntimeException("Tour not found");
+        }
+    }
 }
