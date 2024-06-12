@@ -20,7 +20,12 @@ public class Tour {
     private String description;
     private Integer day;
     private Double cost;
+    @Column(columnDefinition = "TEXT")
     private String photo;
     private String description2;
+    @Column(columnDefinition = "TEXT")
     private String video;
+
+    public void setVidio(String vidio) {
+    }
 }
