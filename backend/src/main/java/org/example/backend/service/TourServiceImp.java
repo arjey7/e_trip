@@ -5,6 +5,7 @@ import org.example.backend.entity.Enquiry;
 import org.example.backend.entity.Tour;
 import org.example.backend.repository.EnquiryRepo;
 import org.example.backend.repository.TourRepo;
+import org.example.backend.dto.TourDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,8 +33,6 @@ public class TourServiceImp implements TourService {
         return tourRepo.findAll();
     }
 
-public class TourServiceImp implements TourService{
-    private final TourRepo tourRepo;
 
     @Override
     public List<Tour> getAllTours() {

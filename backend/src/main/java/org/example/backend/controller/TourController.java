@@ -30,7 +30,6 @@ public class TourController {
         return ResponseEntity.ok(tours);
     }
 
-    private final TourService tourService;
 
     @GetMapping
     public ResponseEntity<List<Tour>> getAllTours() {
