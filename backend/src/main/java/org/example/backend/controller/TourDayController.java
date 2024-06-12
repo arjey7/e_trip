@@ -43,4 +43,9 @@ public class TourDayController {
         tourDayService.deleteTourDay(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/{tourId}")
+    public List<TourDay> getTourDay(@PathVariable UUID tourId) {
+        List<TourDay> tourDays = tourDayService.getById(tourId);
+        return tourDays;
+    }
 }

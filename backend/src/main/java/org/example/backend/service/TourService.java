@@ -8,7 +8,6 @@ import java.util.UUID;
 
 public interface TourService {
     Tour addTour(TourDto tourDto);
-    List<Tour> getTours();
     List<Tour> getAllTours();
     Tour updateTour(UUID id, TourDto tourDto); // Existing method
     void deleteTour(UUID id); // Existing method

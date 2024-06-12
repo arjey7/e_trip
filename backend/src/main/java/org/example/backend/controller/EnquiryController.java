@@ -2,6 +2,7 @@ package org.example.backend.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.backend.entity.Enquiry;
+import org.example.backend.entity.TourDay;
 import org.example.backend.service.EnquiryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,4 +33,6 @@ public class EnquiryController {
         Enquiry updatedEnquiry = enquiryService.updateEnquiryAnswer(id, answer);
         return ResponseEntity.ok(updatedEnquiry);
     }
+
+
 }

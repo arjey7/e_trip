@@ -1,0 +1,99 @@
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import './styles/EnquiryForm.css';
+
+const EnquiryForm = () => {
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const [tours, setTours] = useState([]);
+
+    useEffect(() => {
+        const fetchTours = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/tour');
+                setTours(response.data);
+            } catch (error) {
+                console.error('There was an error fetching the tours:', error);
+            }
+        };
+
+        fetchTours();
+    }, []);
+
+    const onSubmit = async (data) => {
+        try {
+            const response = await axios.post('http://localhost:8080/api/enquiry', data);
+            console.log(response.data);
+            alert('Enquiry submitted successfully!');
+            reset();
+        } catch (error) {
+            console.error('There was an error submitting the enquiry:', error);
+            alert('Failed to submit enquiry');
+        }
+    };
+
+    return (
+        <form className="enquiry-form" onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-group">
+                <label>Full Name:</label>
+                <input
+                    placeholder={"Enter your full name..."}
+                    className={`form-control ${errors.fullName ? 'is-invalid' : ''}`}
+                    {...register('fullName', { required: 'Full name is required' })}
+                />
+                {errors.fullName && <p className="error-message">{errors.fullName.message}</p>}
+            </div>
+            <div className="form-group">
+                <label>Phone Number:</label>
+                <input
+                    placeholder={"Enter your phone number..."}
+                    className={`form-control ${errors.phoneNumber ? 'is-invalid' : ''}`}
+                    {...register('phoneNumber', { required: 'Phone number is required!' })}
+                />
+                {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
+            </div>
+            <div className="form-group">
+                <label>Email:</label>
+                <input
+                    placeholder={"Enter your email address..."}
+                    className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                    {...register('email', {
+                        required: 'Email must be entered',
+                        pattern: {
+                            value: /^[a-zA-Z0-9._%+-]+@gmail\.com$/,
+                            message: 'Invalid email format (must be a gmail address)',
+                        },
+                    })}
+                />
+                {errors.email && <p className="error-message">{errors.email.message}</p>}
+            </div>
+            <div className="form-group">
+                <label>Text:</label>
+                <textarea
+                    placeholder={"Enter your text..."}
+                    className={`form-control ${errors.text ? 'is-invalid' : ''}`}
+                    {...register('text', { required: 'Text must be entered' })}
+                />
+                {errors.text && <p className="error-message">{errors.text.message}</p>}
+            </div>
+            <div className="form-group">
+                <label>Tour Name:</label>
+                <select
+                    className={`form-control ${errors.tourName ? 'is-invalid' : ''}`}
+                    {...register('tourName', { required: 'Tour name must be selected' })}
+                >
+                    <option value="">Select a tour</option>
+                    {tours.map((tour) => (
+                        <option key={tour.id} value={tour.name}>
+                            {tour.title}
+                        </option>
+                    ))}
+                </select>
+                {errors.tourName && <p className="error-message">{errors.tourName.message}</p>}
+            </div>
+            <button className="submit-button" type="submit">Save</button>
+        </form>
+    );
+};
+
+export default EnquiryForm;

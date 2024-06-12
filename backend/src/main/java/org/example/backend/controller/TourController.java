@@ -26,11 +26,6 @@ public class  TourController {
         return ResponseEntity.status(HttpStatus.CREATED).body(addedTour);
     }
 
-    @GetMapping("/gettour")
-    public HttpEntity<List<Tour>> getTours() {
-        List<Tour> tours = tourService.getTours();
-        return ResponseEntity.ok(tours);
-    }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Tour>> getAllTours() {

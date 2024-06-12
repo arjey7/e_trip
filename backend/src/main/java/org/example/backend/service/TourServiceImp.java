@@ -29,10 +29,6 @@ public class TourServiceImp implements TourService {
         return tourRepo.save(tour);
     }
 
-    @Override
-    public List<Tour> getTours() {
-        return tourRepo.findAll();
-    }
 
     @Override
     public List<Tour> getAllTours() {
