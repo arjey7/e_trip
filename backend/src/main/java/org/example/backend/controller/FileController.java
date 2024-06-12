@@ -30,7 +30,7 @@ public class FileController {
     @GetMapping("/img")
     public void getImg(HttpServletResponse response,@RequestParam String name) throws IOException {
         FileInputStream fileInputStream=new FileInputStream(
-                "backend/resors/"+name);
+                "backend/files/"+name);
         ServletOutputStream outputStream = response.getOutputStream();
         fileInputStream.transferTo(outputStream);
         fileInputStream.close();

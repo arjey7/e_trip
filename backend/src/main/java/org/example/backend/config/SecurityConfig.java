@@ -30,7 +30,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/files/img","/files/video").permitAll()
                         .requestMatchers(HttpMethod.GET, "/files/img","/files/video","/api/tour","/api/tourDay").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/tour","/api/tourDay").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/api/tour/gettour","/api/tour/getAll").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/tour/getAll").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/comment").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/comment/all","/api/comment/approved").permitAll()
                         .requestMatchers(HttpMethod.PUT,"/api/comment/{id}/status","/api/comment/{id}/adminstatus").permitAll()
