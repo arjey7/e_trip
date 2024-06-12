@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './styles/LandingPage.css';
 import Logo from './files/tourlogo.jpg';
 import Facebook from './files/facebook2.jpg';
@@ -48,7 +48,7 @@ const LandingPage = () => {
             <div className="tour-list">
                 {tours.map((tour, index) => (
                     <div key={index} className="tour-item">
-                        <img  src={`http://localhost:8080/files/img?name=${tour.photo}`} alt={tour.title}
+                        <img src={`http://localhost:8080/files/img?name=${tour.photo}`} alt={tour.title}
                              className="tour-img"/>
                         <div className="tour-details">
                             <h2>{tour.title}</h2>
@@ -72,6 +72,3 @@ const LandingPage = () => {
 }
 
 export default LandingPage;
-
-
-

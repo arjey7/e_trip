@@ -35,6 +35,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET,"/api/comment/all","/api/comment/approved").permitAll()
                         .requestMatchers(HttpMethod.PUT,"/api/comment/{id}/status","/api/comment/{id}/adminstatus").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/comment/adminstatus/true").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/enquiry").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/enquiry").permitAll()
+                        .requestMatchers(HttpMethod.PATCH,"/api/enquiry/{id}/answer").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();

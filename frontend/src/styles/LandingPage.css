@@ -1,78 +1,78 @@
-.navbar{
+.navbar {
     width: 1400px;
     display: flex;
     gap: 70px;
-    margin-left: -260px;
+    margin-left: -330px;
+    margin-top: -20px;
 }
 
-
-.navbar2{
+.navbar2 {
     margin-left: 150px;
-    margin-top: 35px;
+    margin-top: 7px;
     display: flex;
     gap: 30px;
 }
 
-.img1{
+.img1 {
     width: 100px;
     height: 100px;
 }
 
-.img2{
+.img2 {
     width: 30px;
     height: 30px;
 }
 
-.img3{
+.img3 {
     width: 30px;
     height: 30px;
 }
 
-.img4{
+.img4 {
     width: 30px;
     height: 30px;
 }
 
-.img5{
+.img5 {
     width: 50px;
     height: 50px;
     margin-top: -15px;
 }
 
-.img6{
+.img6 {
     margin-left: 15px;
     width: 30px;
     height: 30px;
     margin-top: -2px;
 }
 
-.img7{
-    width: 1000px;
-    height: 500px;
-    margin-left: -150px;
-    margin-top: -400px;
+.img7 {
+    width: 1390px;
+    height: 550px;
+    margin-left: -310px;
+    margin-top: -450px;
     opacity: 0.1;
     border-radius: 20px;
 }
 
-.img8{
-    margin-bottom: -10px;
+.img8 {
+    margin-right: 15px;
     width: 30px;
     height: 30px;
 }
 
-.p{
-    margin-top: 35px;
+.p {
+    margin-top: 20px;
     color: #2ba2bf;
     font-size: 17px;
 }
 
-h5{
+h5 {
     margin-left: -25px;
     margin-top: -1px;
 }
 
-.tour-right{
+.tour-right {
     padding: 27px;
     border-left: 1px solid grey;
 }
@@ -99,15 +99,15 @@ h5{
     margin-right: 20px;
 }
 
-.tour-details  {
-    margin-left: -300px;
+.tour-details {
+    margin-left: 50px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
-.tour-details p{
-    margin-left: -20px;
+.tour-details p {
+    margin-top: 5px;
 }
 
 .tour-footer {
@@ -144,33 +144,30 @@ h5{
     color: white;
 }
 
-.text1{
-    margin-left: -690px;
+.text1 {
+    margin-left: -1000px;
+    margin-top: 50px;
     font-size: 70px;
 }
 
-.text2{
-    margin-left: -387px;
-    margin-top: -50px;
+.text2 {
+    margin-left: -715px;
+
     font-size: 150px;
 }
 
-.text3, .text4, .text5{
-    font-size: 12px;
+.text3, .text4, .text5 {
+    font-size: 13px;
 }
 
-.text3{
-    margin-left: -612px;
+.text3 {
+    margin-left: -290px;
 }
 
-.text4{
-    margin-left: -624px;
+.text4 {
+    margin-left: -289px;
 }
 
-.text5{
-    margin-left: -918px;
-}
-
-.div1{
-
+.text5 {
+    margin-left: -290px;
 }
