@@ -2,7 +2,9 @@ package org.example.backend.service;
 
 import lombok.RequiredArgsConstructor;
 import org.example.backend.entity.Enquiry;
+import org.example.backend.entity.TourDay;
 import org.example.backend.repository.EnquiryRepo;
+import org.example.backend.repository.TourDayRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class EnquiryServiceImp implements EnquiryService {
     private final EnquiryRepo enquiryRepo;
-
+   final TourDayRepo tourDayRepo;
     @Override
     public Enquiry saveEnquiry(Enquiry enquiry) {
         return enquiryRepo.save(enquiry);
@@ -29,4 +31,6 @@ public class EnquiryServiceImp implements EnquiryService {
         enquiry.setAnswer(answer);
         return enquiryRepo.save(enquiry);
     }
+
+
 }

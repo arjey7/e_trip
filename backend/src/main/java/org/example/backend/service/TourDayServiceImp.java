@@ -47,4 +47,8 @@ public class TourDayServiceImp implements TourDayService {
         }
         tourDayRepo.deleteById(id);
     }
+    @Override
+    public List<TourDay> getById(UUID tourId) {
+        return tourDayRepo.findTourDayByTourId(tourId);
+    }
 }
