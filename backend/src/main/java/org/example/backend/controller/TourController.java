@@ -15,7 +15,7 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/tour")
-public class TourController {
+public class  TourController {
 
     private final TourService tourService;
 

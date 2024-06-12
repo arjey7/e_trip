@@ -5,37 +5,37 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TourDay() {
     const [tourDays, setTourDays] = useState([]);
-    const [tours, setTours] = useState([]);
-    const { id } = useParams(); // Get the id from the URL
+    const { uuid } = useParams(); // Get the id from the URL
+
     const [formData, setFormData] = useState({
         title: '',
         description: '',
         photo: '',
-        tourId: id // Set the tourId to the id from the URL
+        tourId: uuid // Set the tourId to the id from the URL
     });
 
     useEffect(() => {
         fetchTourDays();
-        fetchTours();
+        // fetchTours();
     }, []);
 
     const fetchTourDays = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/tourDay');
+            const response = await axios.get(`http://localhost:8080/api/tourDay/${uuid}`);
             setTourDays(response.data);
         } catch (error) {
             console.error('Error fetching tour days:', error);
         }
     };
 
-    const fetchTours = async () => {
-        try {
-            const response = await axios.get('http://localhost:8080/api/tour');
-            setTours(response.data);
-        } catch (error) {
-            console.error('Error fetching tours:', error);
-        }
-    };
+    // const fetchTours = async () => {
+    //     try {
+    //         const response = await axios.get('http://localhost:8080/api/tour/gettour');
+    //         setTours(response.data);
+    //     } catch (error) {
+    //         console.error('Error fetching tours:', error);
+    //     }
+    // };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -67,7 +67,7 @@ function TourDay() {
                 title: '',
                 description: '',
                 photo: '',
-                tourId: id // Reset tourId to the id from the URL
+                tourId: uuid
             });
         } catch (error) {
             console.error('Error adding tour day:', error);
@@ -106,7 +106,7 @@ function TourDay() {
                     <tr key={index}>
                         <td>{tourDay.title}</td>
                         <td>{tourDay.description}</td>
-                        <td><img src={`http://localhost:8080/files/img?name=${tourDay.photo}`} style={{ width: '100px', height: '100px' }} alt={tourDay.title} /></td>
+                        <td><img src={`http://localhost:8080/files/img?name=${tourDay.photo}`} style={{ width: '100px', height: '100px' }} /></td>
                     </tr>
                 ))}
                 </tbody>

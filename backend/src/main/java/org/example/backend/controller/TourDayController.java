@@ -26,9 +26,9 @@ public class TourDayController {
         return ResponseEntity.status(HttpStatus.CREATED).body(addedTourDay);
     }
 
-    @GetMapping
-    public ResponseEntity<List<TourDay>> getAllTourDays() {
-        List<TourDay> tourDays = tourDayService.getAllTourDays();
+    @GetMapping("/{id}")
+    public ResponseEntity<List<TourDay>> getAllTourDays(@PathVariable UUID id) {
+        List<TourDay> tourDays = tourDayService.getTourDays(id);
         return ResponseEntity.ok(tourDays);
     }
 

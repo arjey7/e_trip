@@ -24,6 +24,5 @@ public class TourDay {
     private Tour tour;
 
 
-    public void setTourId(UUID uuid) {
-    }
+
 }

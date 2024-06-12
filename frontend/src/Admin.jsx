@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function Admin() {
     const [tours, setTours] = useState([]);
     const [formData, setFormData] = useState({
+        id: '',
         title: '',
         description: '',
         description2: '',
@@ -17,7 +18,7 @@ function Admin() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/tour')
+        axios.get('http://localhost:8080/api/tour/gettour')
             .then(response => {
                 setTours(response.data);
             })
@@ -58,19 +59,55 @@ function Admin() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (formData.id) {
+            // Update existing tour
+            try {
+                const response = await axios.put(`http://localhost:8080/api/tour/${formData.id}`, formData);
+                console.log('Response:', response.data);
+                setTours(prevTours => prevTours.map(tour => tour.id === formData.id ? response.data : tour));
+                setFormData({
+                    id: '',
+                    title: '',
+                    description: '',
+                    description2: '',
+                    photo: '',
+                    video: '',
+                    day: '',
+                    cost: ''
+                });
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        } else {
+            // Add new tour
+            try {
+                const response = await axios.post('http://localhost:8080/api/tour', formData);
+                console.log('Response:', response.data);
+                setTours(prevTours => [...prevTours, response.data]);
+                setFormData({
+                    id: '',
+                    title: '',
+                    description: '',
+                    description2: '',
+                    photo: '',
+                    video: '',
+                    day: '',
+                    cost: ''
+                });
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    };
+
+    const handleEdit = (tour) => {
+        setFormData(tour);
+    };
+
+    const handleDelete = async (id) => {
         try {
-            const response = await axios.post('http://localhost:8080/api/tour', formData);
-            console.log('Response:', response.data);
-            setTours(prevTours => [...prevTours, response.data]);
-            setFormData({
-                title: '',
-                description: '',
-                description2: '',
-                photo: '',
-                video: '',
-                day: '',
-                cost: ''
-            });
+            await axios.delete(`http://localhost:8080/api/tour/${id}`);
+            setTours(prevTours => prevTours.filter(tour => tour.id !== id));
         } catch (error) {
             console.error('Error:', error);
         }
@@ -79,7 +116,6 @@ function Admin() {
     const selectedTour = (uuid) => {
         navigate(`/tour/${uuid}`);
     };
-
 
     return (
         <div className="container mt-5">
@@ -113,7 +149,7 @@ function Admin() {
                     <label htmlFor="cost">Cost:</label>
                     <input type="number" className="form-control" id="cost" name="cost" value={formData.cost} onChange={handleChange} />
                 </div>
-                <button type="submit" className="btn btn-primary">Add</button>
+                <button type="submit" className="btn btn-primary">{formData.id ? 'Update' : 'Add'}</button>
             </form>
             <table className="table table-striped mt-4">
                 <thead className="thead-dark">
@@ -125,20 +161,23 @@ function Admin() {
                     <th>Video</th>
                     <th>Day</th>
                     <th>Cost</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 {tours.map((tour, index) => (
-                    <tr onClick={() => selectedTour(tour.id)} key={index}>
+                    <tr onClick={()=>selectedTour(tour.id)} key={index}>
                         <td>{tour.title}</td>
                         <td>{tour.description}</td>
                         <td>{tour.description2}</td>
-                        <td><img src={`http://localhost:8080/files/img?name=${tour.photo}`}
-                                 style={{width: '100px', height: '100px'}}/></td>
-                        <td><img src={`http://localhost:8080/files/video?name=${tour.video}`}
-                                 style={{width: '100px', height: '100px'}}/></td>
+                        <td><img src={`http://localhost:8080/files/img?name=${tour.photo}`} style={{ width: '100px', height: '100px' }} /></td>
+                        <td><img src={`http://localhost:8080/files/video?name=${tour.video}`} style={{ width: '100px', height: '100px' }} /></td>
                         <td>{tour.day}</td>
                         <td>{tour.cost}</td>
+                        <td>
+                            <button className="btn btn-warning mr-2" onClick={() => handleEdit(tour)}>Edit</button>
+                            <button className="btn btn-danger" onClick={() => handleDelete(tour.id)}>Delete</button>
+                        </td>
                     </tr>
                 ))}
                 </tbody>
