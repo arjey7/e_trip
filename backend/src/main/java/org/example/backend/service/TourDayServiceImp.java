@@ -7,6 +7,7 @@ import org.example.backend.repository.TourDayRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -27,5 +28,23 @@ public class TourDayServiceImp implements TourDayService {
     @Override
     public List<TourDay> getAllTourDays() {
         return tourDayRepo.findAll();
+    }
+
+    @Override
+    public TourDay updateTourDay(UUID id, TourDayDto tourDayDto) {
+        TourDay existingTourDay = tourDayRepo.findById(id).orElseThrow(() -> new RuntimeException("TourDay not found"));
+        existingTourDay.setTitle(tourDayDto.title());
+        existingTourDay.setDescription(tourDayDto.description());
+        existingTourDay.setPhoto(tourDayDto.photo());
+        existingTourDay.setTourId(tourDayDto.tourId());
+        return tourDayRepo.save(existingTourDay);
+    }
+
+    @Override
+    public void deleteTourDay(UUID id) {
+        if (!tourDayRepo.existsById(id)) {
+            throw new RuntimeException("TourDay not found");
+        }
+        tourDayRepo.deleteById(id);
     }
 }

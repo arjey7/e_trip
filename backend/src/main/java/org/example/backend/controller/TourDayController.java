@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,9 +25,22 @@ public class TourDayController {
         TourDay addedTourDay = tourDayService.addTourDay(tourDayDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(addedTourDay);
     }
+
     @GetMapping
     public ResponseEntity<List<TourDay>> getAllTourDays() {
         List<TourDay> tourDays = tourDayService.getAllTourDays();
         return ResponseEntity.ok(tourDays);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateTourDay(@PathVariable UUID id, @RequestBody TourDayDto tourDayDto) {
+        TourDay updatedTourDay = tourDayService.updateTourDay(id, tourDayDto);
+        return ResponseEntity.ok(updatedTourDay);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteTourDay(@PathVariable UUID id) {
+        tourDayService.deleteTourDay(id);
+        return ResponseEntity.noContent().build();
     }
 }

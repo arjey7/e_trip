@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,17 +25,22 @@ public class TourController {
         Tour addedTour = tourService.addTour(tourDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(addedTour);
     }
+
     @GetMapping
     public HttpEntity<List<Tour>> getTours() {
         List<Tour> tours = tourService.getTours();
         return ResponseEntity.ok(tours);
     }
 
-    private final TourService tourService;
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateTour(@PathVariable UUID id, @RequestBody TourDto tourDto) {
+        Tour updatedTour = tourService.updateTour(id, tourDto);
+        return ResponseEntity.ok(updatedTour);
+    }
 
-    @GetMapping
-    public ResponseEntity<List<Tour>> getAllTours() {
-        List<Tour> tours = tourService.getAllTours();
-        return ResponseEntity.ok(tours);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteTour(@PathVariable UUID id) {
+        tourService.deleteTour(id);
+        return ResponseEntity.noContent().build();
     }
 }
