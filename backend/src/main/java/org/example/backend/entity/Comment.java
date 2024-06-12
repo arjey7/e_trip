@@ -19,4 +19,6 @@ public class Comment {
     private String firstName;
     private String lastName;
     private String text;
+    private Boolean status;
+    private Boolean adminstatus;
 }

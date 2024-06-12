@@ -28,14 +28,13 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/files/img","/files/video").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/files/img","/files/video","/api/tour","/api/tour/get","/api/tourDay").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/files/img","/files/video","/api/tour","/api/tourDay").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/tour","/api/tourDay").permitAll()
-                        .requestMatchers(HttpMethod.DELETE,"/api/tourDay/{id}","/api/tour/{id}").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/enquiry").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/enquiry").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/message").permitAll()
-                        .requestMatchers(HttpMethod.PATCH, "/api/enquiry/{id}/answer").permitAll()
-                        .requestMatchers(HttpMethod.PUT,"/api/tourDay/{id}","/api/tour/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/tour/gettour","/api/tour/getAll").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/comment").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/comment/all","/api/comment/approved").permitAll()
+                        .requestMatchers(HttpMethod.PUT,"/api/comment/{id}/status","/api/comment/{id}/adminstatus").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/comment/adminstatus/true").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();
