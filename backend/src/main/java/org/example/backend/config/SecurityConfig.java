@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.backend.repository.UserRepo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -17,24 +18,37 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
-final UserRepo userRepo;
+    final UserRepo userRepo;
+
     @Bean
-SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.csrf(AbstractHttpConfigurer::disable).cors(Customizer.withDefaults()).authorizeHttpRequests(
-            auth-> auth.requestMatchers("/api/auth/login").permitAll().anyRequest().authenticated()
-    );
-    return http.build();
-}
-@Bean
-    UserDetailsService userDetailsService(){
-    return username -> userRepo.findByUsername(username).orElseThrow();
-}
-@Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf(AbstractHttpConfigurer::disable)
+                .cors(Customizer.withDefaults())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/enquiry").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/tour").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/files/img").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/enquiry").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/message").permitAll()
+                        .requestMatchers(HttpMethod.PATCH, "/api/enquiry/{id}/answer").permitAll()
+                        .anyRequest().authenticated()
+                );
+        return http.build();
+    }
+
+    @Bean
+    UserDetailsService userDetailsService() {
+        return username -> userRepo.findByUsername(username).orElseThrow();
+    }
+
+    @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-    return configuration.getAuthenticationManager();
-}
-@Bean
-    PasswordEncoder passwordEncoder(){
-    return new BCryptPasswordEncoder();
-}
+        return configuration.getAuthenticationManager();
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }
