@@ -25,6 +25,5 @@ public class TourDay {
     private Integer day;
 
 
-    public void setTourId(UUID uuid) {
-    }
+
 }

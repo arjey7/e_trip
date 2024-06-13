@@ -10,4 +10,5 @@ import java.util.UUID;
 public interface TourDayRepo extends JpaRepository<TourDay, UUID> {
     @Query(value = "SELECT * FROM tour_day WHERE tour_Id = :tourId", nativeQuery = true)
     List<TourDay> findTourDayByTourId(UUID tourId);
+    List<TourDay>getAllByTourId(UUID tourId);
 }

@@ -5,35 +5,28 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TourDay() {
     const [tourDays, setTourDays] = useState([]);
-    const [tours, setTours] = useState([]);
-    const { id } = useParams(); // Get the id from the URL
+    const { uuid } = useParams(); // Get the id from the URL
+
     const [formData, setFormData] = useState({
         title: '',
         description: '',
         photo: '',
-        tourId: id // Set the tourId to the id from the URL
+        tourId: uuid // Set the tourId to the id from the URL
     });
+
+    const [isEditing, setIsEditing] = useState(false);
+    const [currentId, setCurrentId] = useState(null);
 
     useEffect(() => {
         fetchTourDays();
-        fetchTours();
     }, []);
 
     const fetchTourDays = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/tourDay');
+            const response = await axios.get(`http://localhost:8080/api/tourDay/${uuid}`);
             setTourDays(response.data);
         } catch (error) {
             console.error('Error fetching tour days:', error);
-        }
-    };
-
-    const fetchTours = async () => {
-        try {
-            const response = await axios.get('http://localhost:8080/api/tour');
-            setTours(response.data);
-        } catch (error) {
-            console.error('Error fetching tours:', error);
         }
     };
 
@@ -59,18 +52,64 @@ function TourDay() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (isEditing) {
+            await handleUpdate();
+        } else {
+            await handleAdd();
+        }
+    };
+
+    const handleAdd = async () => {
         try {
             const response = await axios.post('http://localhost:8080/api/tourDay', formData);
-            console.log('Response:', response.data);
             setTourDays(prevTourDays => [...prevTourDays, response.data]);
             setFormData({
                 title: '',
                 description: '',
                 photo: '',
-                tourId: id // Reset tourId to the id from the URL
+                tourId: uuid
             });
         } catch (error) {
             console.error('Error adding tour day:', error);
+        }
+    };
+
+    const handleUpdate = async () => {
+        try {
+            const response = await axios.put(`http://localhost:8080/api/tourDay/${currentId}`, formData);
+            setTourDays(prevTourDays => prevTourDays.map(tourDay =>
+                tourDay.id === currentId ? response.data : tourDay
+            ));
+            setFormData({
+                title: '',
+                description: '',
+                photo: '',
+                tourId: uuid
+            });
+            setIsEditing(false);
+            setCurrentId(null);
+        } catch (error) {
+            console.error('Error updating tour day:', error);
+        }
+    };
+
+    const handleEdit = (tourDay) => {
+        setFormData({
+            title: tourDay.title,
+            description: tourDay.description,
+            photo: '',
+            tourId: uuid
+        });
+        setIsEditing(true);
+        setCurrentId(tourDay.id);
+    };
+
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://localhost:8080/api/tourDay/${id}`);
+            setTourDays(prevTourDays => prevTourDays.filter(tourDay => tourDay.id !== id));
+        } catch (error) {
+            console.error('Error deleting tour day:', error);
         }
     };
 
@@ -90,7 +129,7 @@ function TourDay() {
                     <label>Photo</label>
                     <input type="file" className="form-control" name="photo" onChange={handlePhotoChange} />
                 </div>
-                <button type="submit" className="btn btn-primary">Add Tour Day</button>
+                <button type="submit" className="btn btn-primary">{isEditing ? 'Update' : 'Add'} Tour Day</button>
             </form>
             <h2>Tour Days</h2>
             <table className="table table-striped">
@@ -99,6 +138,7 @@ function TourDay() {
                     <th>Title</th>
                     <th>Description</th>
                     <th>Photo</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -106,7 +146,11 @@ function TourDay() {
                     <tr key={index}>
                         <td>{tourDay.title}</td>
                         <td>{tourDay.description}</td>
-                        <td><img src={`http://localhost:8080/files/img?name=${tourDay.photo}`} style={{ width: '100px', height: '100px' }} alt={tourDay.title} /></td>
+                        <td><img src={`http://localhost:8080/files/img?name=${tourDay.photo}`} style={{ width: '100px', height: '100px' }} /></td>
+                        <td>
+                            <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>
+                            <button className="btn btn-danger" onClick={() => handleDelete(tourDay.id)}>Delete</button>
+                        </td>
                     </tr>
                 ))}
                 </tbody>

@@ -32,13 +32,14 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/tour","/api/tourDay").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/tour/getAll").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/comment").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/api/comment/all","/api/comment/approved").permitAll()
-                        .requestMatchers(HttpMethod.PUT,"/api/comment/{id}/status","/api/comment/{id}/adminstatus").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/comment/all","/api/comment/approved","/api/tour/gettour").permitAll()
+                        .requestMatchers(HttpMethod.PUT,"/api/comment/{id}/status","/api/comment/{id}/adminstatus","/api/tour/{id}","/api/tourDay/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/comment/adminstatus/true").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/api/tourDay/{tourId}").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/tourDay/{tourId}","api/tourDay/all/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/enquiry").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/enquiry").permitAll()
                         .requestMatchers(HttpMethod.PATCH,"/api/enquiry/{id}/answer").permitAll()
+                        .requestMatchers(HttpMethod.DELETE,"/api/tour/{id}","/api/tourDay/{id}").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();

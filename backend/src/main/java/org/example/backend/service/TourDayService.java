@@ -8,9 +8,8 @@ import java.util.UUID;
 
 public interface TourDayService {
     TourDay addTourDay(TourDayDto tourDayDto);
-    List<TourDay> getAllTourDays();
-    TourDay updateTourDay(UUID id, TourDayDto tourDayDto); // New method
-    void deleteTourDay(UUID id); // New method
-
+    List<TourDay> getTourDays(UUID tourId);
+    TourDay updateTourDay(UUID id, TourDayDto tourDayDto);
+    void deleteTourDay(UUID id);
     List<TourDay> getById(UUID tourId);
 }
