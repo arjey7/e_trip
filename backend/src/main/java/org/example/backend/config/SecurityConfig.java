@@ -37,6 +37,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET,"/api/comment/adminstatus/true").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/tourDay/{tourId}","api/tourDay/all/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/enquiry").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/message").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/enquiry").permitAll()
                         .requestMatchers(HttpMethod.PATCH,"/api/enquiry/{id}/answer").permitAll()
                         .requestMatchers(HttpMethod.DELETE,"/api/tour/{id}","/api/tourDay/{id}").permitAll()

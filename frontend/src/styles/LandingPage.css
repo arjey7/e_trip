@@ -6,6 +6,10 @@
     margin-top: -20px;
 }
 
+.container{
+    margin: 0 auto  ;
+}
+
 .navbar2 {
     margin-left: 150px;
     margin-top: 7px;
@@ -61,10 +65,50 @@
     height: 30px;
 }
 
+.img9{
+    margin-left: 340px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.img10, .img11, .img12{
+    display: block;
+    width: 60px;
+    height: 60px;
+}
+
 .p {
     margin-top: 20px;
     color: #2ba2bf;
-    font-size: 17px;
+    font-size: 19px;
+}
+
+.p2{
+    margin-top: 40px;
+    color: #2ba2bf;
+    font-size: 20px;
+    margin-left: 300px;
+}
+
+.p3{
+    margin-top: 200px;
+    color: #2ba2bf;
+    font-size: 20px;
+    margin-left: 300px;
+}
+
+.p4{
+    margin-top: 150px;
+    color: #2ba2bf;
+    font-size: 20px;
+    margin-left: 300px;
+}
+
+.p5{
+    margin-top: 50px;
+    color: #2ba2bf;
+    font-size: 20px;
+    margin-left: 450px;
 }
 
 h5 {
@@ -155,11 +199,13 @@ h5 {
     margin-left: -715px;
     color: white;
     font-size: 150px;
+    margin-top: -25px;
 }
 
 .text3, .text4, .text5 {
-    font-size: 13px;
-    color: white;
+    font-size: 17px;
+    color: #303030;
+    font-weight: bold;
 }
 
 .text3 {
@@ -174,6 +220,21 @@ h5 {
     margin-left: 20px;
 }
 
+.text6, .text7, .text8, .text9{
+    margin-left: -299px;
+    font-size: 17px;
+}
+
+.text6{
+    margin-top: 40px ;
+}
+
+.text10, .text11, .text12{
+    font-weight: bold;
+    font-size: 30px;
+    margin-left: 15px;
+}
+
 .div1 {
     background-image: url("src/files/nature-water-sea-travel-wallpaper-preview.jpg");
     background-repeat: no-repeat;
@@ -181,4 +242,38 @@ h5 {
     width: 1370px;
     height: 700px;
     margin-left: -300px;
+    padding-top: 120px;
+}
+
+.h4{
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: -350px;
+    margin-left: -300px;
+}
+
+.div2{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: -270px;
+    margin-left: -300px;
+}
+
+.div3{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: -300px;
+    margin-top: 40px;
+
+}
+
+.div4{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: -300px;
+    margin-top: 40px;
+
 }

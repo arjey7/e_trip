@@ -6,13 +6,35 @@ import Insta from './files/free-icon-instagram-174855.png';
 import YouTube from './files/free-icon-youtube-3820291.png';
 import Uzb from './files/free-icon-map-13651062.png';
 import Phone from './files/free-icon-phone-call-5585562.png';
-import Img from "./files/nature-water-sea-travel-wallpaper-preview.jpg";
+import Img from "./files/mansion-house-pool-interior-wallpaper-preview.jpg";
 import Time from "./files/free-icon-sand-timer-8330912.png";
 import {useNavigate} from "react-router-dom";
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import EnquiryForm from './EnquiryForm';
+import Email from "./files/free-icon-new-email-filled-envelope-60467.png"
+import Location from "./files/free-icon-location-pin-7302427.png"
 
 const LandingPage = () => {
     const [tours, setTours] = useState([]);
-  const navigate = useNavigate()
+    const bukharaCoordinates = [39.7748, 64.4286];
+
+    function scrollToGroupElement () {
+        const specificGroupArea = document.getElementById('specificGroupArea');
+        specificGroupArea.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    function scrollToAboutElement () {
+        const specificAboutArea = document.getElementById('specificAboutArea');
+        specificAboutArea.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    function scrollToContactElement () {
+        const specificContactArea = document.getElementById('specificContactArea');
+        specificContactArea.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    const navigate = useNavigate()
     useEffect(() => {
         fetch('http://localhost:8080/api/tour/getAll')
             .then(response => response.json())
@@ -28,9 +50,9 @@ const LandingPage = () => {
         <div className="container">
             <div className="navbar">
                 <img className="img1" src={Logo} alt="Logo" />
-                <p className={"p"}>Group Tours</p>
-                <p className={"p"}>About Us</p>
-                <p className={"p"}>Contact Us</p>
+                <p onClick={scrollToGroupElement} className={"p"}>Group Tours</p>
+                <p onClick={scrollToAboutElement} className={"p"}>About Us</p>
+                <p onClick={scrollToContactElement} className={"p"}>Contact Us</p>
                 <div className="navbar2">
                     <img className="img2" src={Facebook} alt="Facebook" />
                     <img className="img3" src={Insta} alt="Instagram" />
@@ -49,7 +71,8 @@ const LandingPage = () => {
                 <p className={"text5"}>them with me oh baby.</p>
             </div>
 
-            <div className="tour-list">
+            <div className="tour-list" id="specificGroupArea">
+                <p className={"p5"}>Group Tours</p>
                 {tours.map((tour, index) => (
                     <div key={index} className="tour-item">
                         <img  src={`http://localhost:8080/files/img?name=${tour.photo}`} alt={tour.title}
@@ -70,6 +93,53 @@ const LandingPage = () => {
                         </div>
                     </div>
                 ))}
+            </div>
+
+            <div id="specificAboutArea">
+                <p className={"p2"}>About Us</p>
+                <img className={"img9"} src={Img} alt=""/>
+                <h4 className={"h4"}>Bizning tour haqida</h4>
+                <p className={"text6"}>Biz yuqori darajadagi xizmat ko'rsatish va har bir mijozga individual</p>
+                <p className={"text7"}>yondashish bilan hamyonbop narxlarda keng doiradagi turlarni taklif qiluvchi</p>
+                <p className={"text8"}>professional sayyohlik kompaniyasimiz. Bizning kompaniyamiz sayohat</p>
+                <p className={"text9"}>hamma uchun ochiq bo'lish kerak degan g'oya asosida tashkil etilgan</p>
+            </div>
+
+            <div id="specificContactArea">
+                <p className={"p3"}>Contact Us</p>
+                <MapContainer
+                    center={bukharaCoordinates}
+                    zoom={13}
+                    style={{ height: '450px', width: '97%', left:'330px', top:'70px'}}
+                >
+                    <TileLayer
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    />
+                    <Marker position={bukharaCoordinates}>
+                        <Popup>
+                            This is Tashkent. <br /> Easily customizable.
+                        </Popup>
+                    </Marker>
+                </MapContainer>
+
+                <div className={"div2"}>
+                    <img className={"img10"} src={Phone} alt=""/>
+                    <p className={"text10"}>Telefon: +(998) 97777-77-77</p>
+                </div>
+                <div className={"div3"}>
+                    <img className={"img11"} src={Email} alt=""/>
+                    <p className={"text11"}>E-mail: info@nimadir.uz</p>
+                </div>
+                <div className={"div4"}>
+                    <img className={"img12"} src={Location} alt=""/>
+                    <p className={"text12"}>Manzil: Toshkent shahri...</p>
+                </div>
+            </div>
+
+            <div>
+                <p className={"p4"}>Enquiry</p>
+                <EnquiryForm/>
             </div>
         </div>
     );

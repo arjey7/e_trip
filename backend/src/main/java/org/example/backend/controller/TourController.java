@@ -26,14 +26,12 @@ public class  TourController {
         return ResponseEntity.status(HttpStatus.CREATED).body(addedTour);
     }
 
-
     @GetMapping("/getAll")
     public ResponseEntity<List<Tour>> getAllTours() {
         List<Tour> tours = tourService.getAllTours();
         return ResponseEntity.ok(tours);
     }
 
-    // New method for updating a tour
     @PutMapping("/{id}")
     public ResponseEntity<Tour> updateTour(@PathVariable UUID id, @RequestBody TourDto tourDto) {
         Tour updatedTour = tourService.updateTour(id, tourDto);
