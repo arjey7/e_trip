@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+    fetchTourDaysRequest,
+    addTourDayRequest,
+    updateTourDayRequest,
+    deleteTourDayRequest
+} from './redux/reducer/tourDayReducer';
 
 function TourDay() {
-    const [tourDays, setTourDays] = useState([]);
+    const dispatch = useDispatch();
     const { uuid } = useParams(); // Get the id from the URL
+
+    const tourDays = useSelector(state => state.tourDay.tourDays);
+    const loading = useSelector(state => state.tourDay.loading);
+    const error = useSelector(state => state.tourDay.error);
 
     const [formData, setFormData] = useState({
         title: '',
@@ -18,17 +28,8 @@ function TourDay() {
     const [currentId, setCurrentId] = useState(null);
 
     useEffect(() => {
-        fetchTourDays();
-    }, []);
-
-    const fetchTourDays = async () => {
-        try {
-            const response = await axios.get(`http://localhost:8080/api/tourDay/${uuid}`);
-            setTourDays(response.data);
-        } catch (error) {
-            console.error('Error fetching tour days:', error);
-        }
-    };
+        dispatch(fetchTourDaysRequest(uuid));
+    }, [dispatch, uuid]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -50,47 +51,21 @@ function TourDay() {
         };
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (isEditing) {
-            await handleUpdate();
+            dispatch(updateTourDayRequest({ ...formData, id: currentId }));
         } else {
-            await handleAdd();
+            dispatch(addTourDayRequest(formData));
         }
-    };
-
-    const handleAdd = async () => {
-        try {
-            const response = await axios.post('http://localhost:8080/api/tourDay', formData);
-            setTourDays(prevTourDays => [...prevTourDays, response.data]);
-            setFormData({
-                title: '',
-                description: '',
-                photo: '',
-                tourId: uuid
-            });
-        } catch (error) {
-            console.error('Error adding tour day:', error);
-        }
-    };
-
-    const handleUpdate = async () => {
-        try {
-            const response = await axios.put(`http://localhost:8080/api/tourDay/${currentId}`, formData);
-            setTourDays(prevTourDays => prevTourDays.map(tourDay =>
-                tourDay.id === currentId ? response.data : tourDay
-            ));
-            setFormData({
-                title: '',
-                description: '',
-                photo: '',
-                tourId: uuid
-            });
-            setIsEditing(false);
-            setCurrentId(null);
-        } catch (error) {
-            console.error('Error updating tour day:', error);
-        }
+        setFormData({
+            title: '',
+            description: '',
+            photo: '',
+            tourId: uuid
+        });
+        setIsEditing(false);
+        setCurrentId(null);
     };
 
     const handleEdit = (tourDay) => {
@@ -104,13 +79,8 @@ function TourDay() {
         setCurrentId(tourDay.id);
     };
 
-    const handleDelete = async (id) => {
-        try {
-            await axios.delete(`http://localhost:8080/api/tourDay/${id}`);
-            setTourDays(prevTourDays => prevTourDays.filter(tourDay => tourDay.id !== id));
-        } catch (error) {
-            console.error('Error deleting tour day:', error);
-        }
+    const handleDelete = (id) => {
+        dispatch(deleteTourDayRequest(id));
     };
 
     return (
@@ -131,6 +101,8 @@ function TourDay() {
                 </div>
                 <button type="submit" className="btn btn-primary">{isEditing ? 'Update' : 'Add'} Tour Day</button>
             </form>
+            {loading && <p>Loading...</p>}
+            {error && <p>Error: {error}</p>}
             <h2>Tour Days</h2>
             <table className="table table-striped">
                 <thead>

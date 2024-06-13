@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import "bootstrap/dist/css/bootstrap.css";
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.css";
+import {
+    fetchToursRequest,
+    addTourRequest,
+    updateTourRequest,
+    deleteTourRequest
+} from './redux/reducer/userReducer.js';
 
 function Admin() {
-    const [tours, setTours] = useState([]);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const tours = useSelector(state => state.user.tours);
+    const loading = useSelector(state => state.user.loading);
+    const error = useSelector(state => state.user.error);
+
     const [formData, setFormData] = useState({
         id: '',
         title: '',
@@ -15,15 +26,10 @@ function Admin() {
         day: '',
         cost: ''
     });
-    const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/tour/getAll')
-            .then(response => {
-                setTours(response.data);
-            })
-            .catch(error => console.error('Error:', error));
-    }, []);
+        dispatch(fetchToursRequest());
+    }, [dispatch]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -57,62 +63,33 @@ function Admin() {
         };
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (formData.id) {
-            // Update existing tour
-            try {
-                const response = await axios.put(`http://localhost:8080/api/tour/${formData.id}`, formData);
-                console.log('Response:', response.data);
-                setTours(prevTours => prevTours.map(tour => tour.id === formData.id ? response.data : tour));
-                setFormData({
-                    id: '',
-                    title: '',
-                    description: '',
-                    description2: '',
-                    photo: '',
-                    video: '',
-                    day: '',
-                    cost: ''
-                });
-            } catch (error) {
-                console.error('Error:', error);
-            }
+            dispatch(updateTourRequest(formData));
         } else {
-            // Add new tour
-            try {
-                const response = await axios.post('http://localhost:8080/api/tour', formData);
-                console.log('Response:', response.data);
-                setTours(prevTours => [...prevTours, response.data]);
-                setFormData({
-                    id: '',
-                    title: '',
-                    description: '',
-                    description2: '',
-                    photo: '',
-                    video: '',
-                    day: '',
-                    cost: ''
-                });
-            } catch (error) {
-                console.error('Error:', error);
-            }
+            dispatch(addTourRequest(formData));
         }
+        setFormData({
+            id: '',
+            title: '',
+            description: '',
+            description2: '',
+            photo: '',
+            video: '',
+            day: '',
+            cost: ''
+        });
     };
 
     const handleEdit = (tour, e) => {
-        e.stopPropagation(); // Prevent row click event
+        e.stopPropagation();
         setFormData(tour);
     };
 
-    const handleDelete = async (id, e) => {
-        e.stopPropagation(); // Prevent row click event
-        try {
-            await axios.delete(`http://localhost:8080/api/tour/${id}`);
-            setTours(prevTours => prevTours.filter(tour => tour.id !== id));
-        } catch (error) {
-            console.error('Error:', error);
-        }
+    const handleDelete = (id, e) => {
+        e.stopPropagation();
+        dispatch(deleteTourRequest(id));
     };
 
     const selectedTour = (uuid) => {
@@ -153,6 +130,8 @@ function Admin() {
                 </div>
                 <button type="submit" className="btn btn-primary">{formData.id ? 'Update' : 'Add'}</button>
             </form>
+            {loading && <p>Loading...</p>}
+            {error && <p>Error: {error}</p>}
             <table className="table table-striped mt-4">
                 <thead className="thead-dark">
                 <tr>
@@ -168,7 +147,7 @@ function Admin() {
                 </thead>
                 <tbody>
                 {tours.map((tour, index) => (
-                    <tr onClick={()=>selectedTour(tour.id)} key={index}>
+                    <tr onClick={() => selectedTour(tour.id)} key={index}>
                         <td>{tour.title}</td>
                         <td>{tour.description}</td>
                         <td>{tour.description2}</td>

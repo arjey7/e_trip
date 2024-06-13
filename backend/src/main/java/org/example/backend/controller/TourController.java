@@ -40,9 +40,11 @@ public class  TourController {
         return ResponseEntity.ok(updatedTour);
     }
 
+    
     // New method for deleting a tour
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTour(@PathVariable UUID id) {
+        System.out.println(id);
         tourService.deleteTour(id);
         return ResponseEntity.noContent().build();
     }

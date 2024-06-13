@@ -22,6 +22,7 @@ public class TourDay {
     private String photo;
     @ManyToOne
     private Tour tour;
+    private Integer day;
 
 
 
