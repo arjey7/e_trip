@@ -24,7 +24,6 @@ public class TourDayServiceImp implements TourDayService {
         tourDay.setTitle(tourDayDto.title());
         tourDay.setDescription(tourDayDto.description());
         tourDay.setPhoto(tourDayDto.photo());
-        System.out.println(tourDayDto.tourId());
         tourDay.setTour(tour);
         return tourDayRepo.save(tourDay);
     }
@@ -34,16 +33,14 @@ public class TourDayServiceImp implements TourDayService {
         return tourDayRepo.getAllByTourId(UUID.fromString(tourId.toString()));
     }
 
-
     @Override
     public TourDay updateTourDay(UUID id, TourDayDto tourDayDto) {
         Tour tour = tourRepo.findById(tourDayDto.tourId()).orElseThrow();
-        System.out.println(tourDayDto);
         TourDay existingTourDay = tourDayRepo.findById(id).orElseThrow(() -> new RuntimeException("TourDay not found"));
         existingTourDay.setTitle(tourDayDto.title());
         existingTourDay.setDescription(tourDayDto.description());
         existingTourDay.setPhoto(tourDayDto.photo());
-       existingTourDay.setTour(tour);
+        existingTourDay.setTour(tour);
         return tourDayRepo.save(existingTourDay);
     }
 
@@ -54,6 +51,7 @@ public class TourDayServiceImp implements TourDayService {
         }
         tourDayRepo.deleteById(id);
     }
+
     @Override
     public List<TourDay> getById(UUID tourId) {
         return tourDayRepo.findTourDayByTourId(tourId);

@@ -21,12 +21,11 @@ public class TourDayController {
 
     @PostMapping
     public HttpEntity<?> addTourDay(@RequestBody TourDayDto tourDayDto) {
-        System.out.println(tourDayDto);
         TourDay addedTourDay = tourDayService.addTourDay(tourDayDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(addedTourDay);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/all/{id}")
     public ResponseEntity<List<TourDay>> getAllTourDays(@PathVariable UUID id) {
         List<TourDay> tourDays = tourDayService.getTourDays(id);
         return ResponseEntity.ok(tourDays);
@@ -43,6 +42,7 @@ public class TourDayController {
         tourDayService.deleteTourDay(id);
         return ResponseEntity.noContent().build();
     }
+
     @GetMapping("/{tourId}")
     public List<TourDay> getTourDay(@PathVariable UUID tourId) {
         List<TourDay> tourDays = tourDayService.getById(tourId);

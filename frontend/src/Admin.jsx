@@ -18,7 +18,7 @@ function Admin() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/tour/gettour')
+        axios.get('http://localhost:8080/api/tour/getAll')
             .then(response => {
                 setTours(response.data);
             })
@@ -100,11 +100,13 @@ function Admin() {
         }
     };
 
-    const handleEdit = (tour) => {
+    const handleEdit = (tour, e) => {
+        e.stopPropagation(); // Prevent row click event
         setFormData(tour);
     };
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id, e) => {
+        e.stopPropagation(); // Prevent row click event
         try {
             await axios.delete(`http://localhost:8080/api/tour/${id}`);
             setTours(prevTours => prevTours.filter(tour => tour.id !== id));
@@ -175,8 +177,8 @@ function Admin() {
                         <td>{tour.day}</td>
                         <td>{tour.cost}</td>
                         <td>
-                            <button className="btn btn-warning mr-2" onClick={() => handleEdit(tour)}>Edit</button>
-                            <button className="btn btn-danger" onClick={() => handleDelete(tour.id)}>Delete</button>
+                            <button className="btn btn-warning mr-2" onClick={(e) => handleEdit(tour, e)}>Edit</button>
+                            <button className="btn btn-danger" onClick={(e) => handleDelete(tour.id, e)}>Delete</button>
                         </td>
                     </tr>
                 ))}
