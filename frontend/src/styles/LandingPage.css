@@ -146,28 +146,39 @@ h5 {
 
 .text1 {
     margin-left: -1000px;
-    margin-top: 50px;
+    margin-top: 20px;
+    color: white;
     font-size: 70px;
 }
 
 .text2 {
     margin-left: -715px;
-
+    color: white;
     font-size: 150px;
 }
 
 .text3, .text4, .text5 {
     font-size: 13px;
+    color: white;
 }
 
 .text3 {
-    margin-left: -290px;
+    margin-left: 20px;
 }
 
 .text4 {
-    margin-left: -289px;
+    margin-left: 20px;
 }
 
 .text5 {
-    margin-left: -290px;
+    margin-left: 20px;
+}
+
+.div1 {
+    background-image: url("src/files/nature-water-sea-travel-wallpaper-preview.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; /* or use 'contain' based on your requirement */
+    width: 1370px;
+    height: 700px;
+    margin-left: -300px;
 }

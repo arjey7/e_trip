@@ -6,7 +6,7 @@ import Insta from './files/free-icon-instagram-174855.png';
 import YouTube from './files/free-icon-youtube-3820291.png';
 import Uzb from './files/free-icon-map-13651062.png';
 import Phone from './files/free-icon-phone-call-5585562.png';
-import Img from "./files/Без названия (1).jpg";
+import Img from "./files/nature-water-sea-travel-wallpaper-preview.jpg";
 import Time from "./files/free-icon-sand-timer-8330912.png";
 import {useNavigate} from "react-router-dom";
 
@@ -14,7 +14,7 @@ const LandingPage = () => {
     const [tours, setTours] = useState([]);
   const navigate = useNavigate()
     useEffect(() => {
-        fetch('http://localhost:8082/api/tour/getAll')
+        fetch('http://localhost:8080/api/tour/getAll')
             .then(response => response.json())
             .then(data => setTours(data))
             .catch(error => console.error('Error fetching tour data:', error));
@@ -47,13 +47,12 @@ const LandingPage = () => {
                 <p className={"text3"}>Their house is a museum where people come to see `em. They really are a scream</p>
                 <p className={"text4"}>the Addams Family. These days are all Happy and Free. These days are all share</p>
                 <p className={"text5"}>them with me oh baby.</p>
-                <img className={"img7"} src={Img} alt=""/>
             </div>
 
             <div className="tour-list">
                 {tours.map((tour, index) => (
                     <div key={index} className="tour-item">
-                        <img  src={`http://localhost:8082/files/img?name=${tour.photo}`} alt={tour.title}
+                        <img  src={`http://localhost:8080/files/img?name=${tour.photo}`} alt={tour.title}
                              className="tour-img"/>
                         <div className="tour-details">
                             <h2>{tour.title}</h2>
