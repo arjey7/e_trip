@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-// import Comment from "./Comment";
+import Comment from "./Comment";
 import AdminComment from "./AdminComment";
 import TourDay from "./TourDay.jsx";
 import Admin from "./Admin.jsx";
