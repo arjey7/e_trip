@@ -14,6 +14,7 @@ import {
     deleteTourDaySuccess,
     deleteTourDayFailure
 } from "../reducer/tourDayReducer";
+import data from "bootstrap/js/src/dom/data.js";
 
 function* fetchTourDays(action) {
     try {
@@ -25,7 +26,13 @@ function* fetchTourDays(action) {
 }
 
 function* addTourDay(action) {
+   const formData=new FormData();
+   formData.append("file",action.payload.photo);
+
     try {
+        const res=yield call(()=>axios.post("http://localhost:8080/files/tourDay",formData))
+        action.payload.photo=res.data
+        console.log(res.data)
         const response = yield call(axios.post, 'http://localhost:8080/api/tourDay', action.payload);
         yield put(addTourDaySuccess(response.data));
     } catch (error) {
