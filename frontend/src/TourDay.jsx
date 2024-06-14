@@ -43,12 +43,14 @@ function TourDay() {
         const file = e.target.files[0];
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setFormData(prevState => ({
-                ...prevState,
-                photo: reader.result
-            }));
-        };
+        // reader.onloadend = () => {
+        //     setFormData(prevState => ({
+        //         ...prevState,
+        //         photo: reader.result
+        //     }));
+        // };
+        setFormData({...formData,photo: file})
+
     };
 
     const handleSubmit = (e) => {
@@ -118,7 +120,8 @@ function TourDay() {
                     <tr key={index}>
                         <td>{tourDay.title}</td>
                         <td>{tourDay.description}</td>
-                        <td><img src={`http://localhost:8080/files/img?name=${tourDay.photo}`} style={{ width: '100px', height: '100px' }} /></td>
+                        <td><img src={`http://localhost:8080/files/tourDay?name=${tourDay.photo}`} alt="Tour"
+                                 style={{width: '100px', height: '100px'}}/></td>
                         <td>
                             <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>
                             <button className="btn btn-danger" onClick={() => handleDelete(tourDay.id)}>Delete</button>

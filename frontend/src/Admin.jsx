@@ -40,36 +40,50 @@ function Admin() {
     };
 
     const handlePhotoChange = (e) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setFormData(prevState => ({
-                ...prevState,
-                photo: reader.result
-            }));
-        };
+        setFormData(prevState => ({
+            ...prevState,
+            photo: e.target.files[0]
+        }));
     };
 
     const handleVideoChange = (e) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setFormData(prevState => ({
-                ...prevState,
-                video: reader.result
-            }));
-        };
+        setFormData(prevState => ({
+            ...prevState,
+            video: e.target.files[0]
+        }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const photoData = new FormData();
+        const videoData = new FormData();
+
+        if (formData.photo) {
+            photoData.append('file', formData.photo);
+            const photoResponse = await fetch('http://localhost:8080/files/img', {
+                method: 'POST',
+                body: photoData
+            });
+            const photoName = await photoResponse.text();
+            formData.photo = photoName;
+        }
+
+        if (formData.video) {
+            videoData.append('file', formData.video);
+            const videoResponse = await fetch('http://localhost:8080/files/video', {
+                method: 'POST',
+                body: videoData
+            });
+            const videoName = await videoResponse.text();
+            formData.video = videoName;
+        }
+
         if (formData.id) {
             dispatch(updateTourRequest(formData));
         } else {
             dispatch(addTourRequest(formData));
         }
+
         setFormData({
             id: '',
             title: '',
@@ -151,8 +165,13 @@ function Admin() {
                         <td>{tour.title}</td>
                         <td>{tour.description}</td>
                         <td>{tour.description2}</td>
-                        <td><img src={`http://localhost:8080/files/img?name=${tour.photo}`} style={{ width: '100px', height: '100px' }} /></td>
-                        <td><img src={`http://localhost:8080/files/video?name=${tour.video}`} style={{ width: '100px', height: '100px' }} /></td>
+                        <td><img src={`http://localhost:8080/files/img?name=${tour.photo}`} alt="Tour" style={{ width: '100px', height: '100px' }} /></td>
+                        <td>
+                            <video width="320" height="240" controls>
+                                <source src={`http://localhost:8080/files/video?name=${tour.video}`} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </td>
                         <td>{tour.day}</td>
                         <td>{tour.cost}</td>
                         <td>
