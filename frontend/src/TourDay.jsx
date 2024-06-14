@@ -118,7 +118,10 @@ function TourDay() {
                     <tr key={index}>
                         <td>{tourDay.title}</td>
                         <td>{tourDay.description}</td>
-                        <td><img src={`http://localhost:8080/files/img?name=${tourDay.photo}`} style={{ width: '100px', height: '100px' }} /></td>
+                        <td>
+                            <img src={`http://localhost:8080/files/img?name=${tourDay.photo}`} style={{ width: '100px', height: '100px' }} />
+
+                        </td>
                         <td>
                             <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>
                             <button className="btn btn-danger" onClick={() => handleDelete(tourDay.id)}>Delete</button>

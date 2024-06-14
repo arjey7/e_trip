@@ -39,14 +39,14 @@ public class FileController {
     @PostMapping("/video")
     public String saveProductVideo(@RequestParam MultipartFile file) throws IOException {
         String name = UUID.randomUUID() + file.getOriginalFilename();
-        FileOutputStream fileOutputStream = new FileOutputStream("backend/resors/" + name);
+        FileOutputStream fileOutputStream = new FileOutputStream("backend/files/" + name);
         fileOutputStream.write(file.getBytes());
         fileOutputStream.close();
         return name;
     }
     @GetMapping("/video")
     public void getVideo(HttpServletResponse response, @RequestParam String name) throws IOException {
-        FileInputStream fileInputStream = new FileInputStream("backend/resors/" + name);
+        FileInputStream fileInputStream = new FileInputStream("backend/files/" + name);
         ServletOutputStream outputStream = response.getOutputStream();
         fileInputStream.transferTo(outputStream);
         fileInputStream.close();
