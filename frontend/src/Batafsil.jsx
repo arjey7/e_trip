@@ -64,13 +64,12 @@ function Batafsil() {
                 <p className={"number"}>+998901234567</p>
             </div>
             <p className={"tour"}>{tourTitle}ga sayohat</p>
-            <div className={"body"}>
                 <p className={"sayohat"}>Sayohat qiling mazza qilib</p>
                 <p className={"desc"}>{tourDescription}</p>
                 <p className={"day"}>Day: {day}</p>
                 <p className={"price"}>Price: {totalCost}</p>
                 <button onClick={toOrder} className={"order-batafsil"}>Order</button>
-            </div>
+
             <div className={"groups"}>
                 {videoSrc && <video src={videoSrc} controls={true} className="video"/>}
                 {imageSrc && <img src={imageSrc} className="image-batafsil" alt="Tour Image"/>}

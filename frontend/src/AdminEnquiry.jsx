@@ -14,7 +14,7 @@ function AdminEnquiry() {
     useEffect(() => {
         const fetchEnquiries = async () => {
             try {
-                const response = await axios.get('http://localhost:8082/api/enquiry');
+                const response = await axios.get('http://localhost:8080/api/enquiry');
                 setEnquiries(response.data);
             } catch (error) {
                 console.error('Error fetching enquiries:', error);
@@ -31,7 +31,7 @@ function AdminEnquiry() {
 
     const handleSendAnswer = async () => {
         try {
-            await axios.post('http://localhost:8082/api/message', {
+            await axios.post('http://localhost:8080/api/message', {
                 to: selectedEnquiry.email,
                 subject: `Answer to your enquiry about ${selectedEnquiry.tourName}`,
                 body: answerText
@@ -41,7 +41,7 @@ function AdminEnquiry() {
                 }
             });
 
-            await axios.patch(`http://localhost:8082/api/enquiry/${selectedEnquiry.id}/answer`, answerText, {
+            await axios.patch(`http://localhost:8080/api/enquiry/${selectedEnquiry.id}/answer`, answerText, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
