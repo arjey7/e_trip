@@ -66,6 +66,9 @@ function AdminEnquiry() {
 
     return (
         <div className="container">
+            <div className={"navbar"}>
+                <img src={User} alt="" />
+            </div>
             <table className={"table"}>
                 <thead className={"thead"}>
                 <tr>
