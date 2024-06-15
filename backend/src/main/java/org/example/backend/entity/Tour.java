@@ -26,6 +26,4 @@ public class Tour {
     @Column(columnDefinition = "TEXT")
     private String video;
 
-    public void setVidio(String vidio) {
-    }
 }

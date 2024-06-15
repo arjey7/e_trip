@@ -23,6 +23,7 @@ public class TourDay {
     @ManyToOne
     private Tour tour;
     private Integer day;
+    private String video;
 
 
 
