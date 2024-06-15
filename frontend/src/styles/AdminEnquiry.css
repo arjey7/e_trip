@@ -1,11 +1,9 @@
-/* AdminEnquiry.css */
 .container {
-    max-width: 800px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
 }
-
 
 .table {
     width: 100%;
@@ -20,37 +18,41 @@
 .th, .td {
     padding: 12px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
 }
 
 .th {
     background-color: #f8f8f8;
     color: #333;
+    font-weight: bold;
+}
+
+.tr {
+    border-bottom: 1px solid red; /* Red border at the bottom */
 }
 
 .tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
+.answer-row {
+    padding: 12px;
+    border-bottom: 1px solid red; /* Red border at the bottom */
+    background-color: #f8f8f8;
+}
+
 .button {
-    background-color: #007bff;
+    background-color: #28a745;
     color: white;
-    padding: 10px 20px;
+    padding: 8px 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
+    text-align: center;
+    width: 200px;
 }
 
 .button:hover {
-    background-color: #0056b3;
-}
-
-.rodal-dialog {
-    width: 100% !important;
-    max-width: 500px;
-    height: auto !important;
-    padding: 20px;
-    box-sizing: border-box;
+    background-color: #218838;
 }
 
 .modal-content {
@@ -85,46 +87,34 @@ textarea {
 
 /* Responsive styles */
 @media (max-width: 768px) {
-    th, td {
+    .th, .td {
         padding: 8px;
     }
 
-    button {
-        padding: 8px 16px;
-    }
-
-    .rodal-dialog {
-        padding: 10px;
-    }
-
-    textarea {
-        padding: 8px;
-    }
-
-    .modal-button {
+    .button {
         padding: 8px 16px;
     }
 }
 
 @media (max-width: 480px) {
-    th, td {
+    .th, .td {
         display: block;
         width: 100%;
         text-align: right;
     }
 
-    th::before, td::before {
+    .th::before, .td::before {
         content: attr(data-label);
         float: left;
         font-weight: bold;
     }
 
-    th, td {
+    .th, .td {
         padding: 8px 0;
         text-align: left;
     }
 
-    tr {
+    .tr {
         display: block;
         margin-bottom: 11px;
     }
