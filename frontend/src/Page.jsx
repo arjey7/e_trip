@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import './css/Page.css';
-
+import a from "./batafilimg/Group 1.png"
 function Page() {
     const [page, setPage] = useState([]);
 
@@ -23,7 +23,8 @@ function Page() {
         <div className="page-container">
             {page.map((comment, index) => (
                 <div key={index} className="comment-container">
-                    <h3 className="comment-name">{comment.firstName} {comment.lastName}</h3>
+                    <img width={59} height={22} src={a} alt=""/>
+                    <p className="comment-name">{comment.firstName} {comment.lastName}</p>
                     <p className="comment-text">{comment.text}</p>
                 </div>
             ))}

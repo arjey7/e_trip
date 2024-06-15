@@ -113,35 +113,40 @@ body {
     display: flex;
     align-items: center;
     margin: 20px auto;
+    width: 1091px;
+    height: 305px;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: calc(100% - 40px);
+
 }
 
 .image-batafsil2 {
-    width: 150px;
-    height: 150px;
+    width: 417px;
+    height: 305px;
     border-radius: 10px;
     object-fit: cover;
     margin-right: 20px;
 }
 
 .batafsil-details {
-    flex-grow: 1;
+    width: 600px;
+    height: 289px;
+    margin-left: 74px;
 }
 
 .batafsil-title {
-    font-size: 1.5rem;
-    color: #333;
-    margin: 0 0 10px 0;
+    margin-top: 1.84px;
+    margin-left: 0;
+     color: rgb(255, 113, 91);
 }
 
 .batafsil-subtitle {
     font-size: 1.25rem;
     color: #666;
-    margin: 0 0 10px 0;
+    margin-top: -41px;
+    margin-left: 70px;
 }
 
 .batafsil-description,

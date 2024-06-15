@@ -21,6 +21,7 @@ function App() {
                 <Route path="/batafsil/:tourId" element={<Batafsil />} />
                 <Route path="/enquiry/list" element={<AdminEnquiry />} />
                 <Route path="/" element={<LandingPage />} />
+
             </Routes>
         </div>
     );

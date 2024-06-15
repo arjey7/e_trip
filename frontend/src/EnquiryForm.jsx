@@ -10,7 +10,7 @@ const EnquiryForm = () => {
     useEffect(() => {
         const fetchTours = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/tour/getAll');
+                const response = await axios.get('http://localhost:8082/api/tour/getAll');
                 setTours(response.data);
             } catch (error) {
                 console.error('There was an error fetching the tours:', error);
@@ -23,7 +23,7 @@ const EnquiryForm = () => {
 
     const onSubmit = async (data) => {
         try {
-            const response = await axios.post('http://localhost:8080/api/enquiry', data);
+            const response = await axios.post('http://localhost:8082/api/enquiry', data);
             console.log(response.data);
             alert('Enquiry submitted successfully!');
             reset();

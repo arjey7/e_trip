@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import axios from "axios";
 import './css/Batafsil.css';
 import Comment from "./Comment.jsx";
@@ -24,7 +24,7 @@ function Batafsil() {
     const [day, setDay] = useState(0);
     const initialTop = 680;
     const increment = 200;
-
+    const navigate = useNavigate();
     useEffect(() => {
         axios.get(`http://localhost:8082/api/tourDay/${tourId}`)
             .then(res => {
@@ -44,7 +44,9 @@ function Batafsil() {
                 console.error("Error fetching tour details:", error);
             });
     }, [tourId]);
-
+    function toOrder() {
+        navigate("/enquiry")
+    }
     return (
         <div className={"all-2"}>
             <div className={"header-batafsil"}>
@@ -67,7 +69,7 @@ function Batafsil() {
                 <p className={"desc"}>{tourDescription}</p>
                 <p className={"day"}>Day: {day}</p>
                 <p className={"price"}>Price: {totalCost}</p>
-                <button className={"order-batafsil"}>Order</button>
+                <button onClick={toOrder} className={"order-batafsil"}>Order</button>
             </div>
             <div className={"groups"}>
                 {videoSrc && <video src={videoSrc} controls={true} className="video"/>}
@@ -82,7 +84,7 @@ function Batafsil() {
                 >
                     <img src={`http://localhost:8082/files/img?name=${item.photo}`} className="image-batafsil2"/>
                     <div className="batafsil-details">
-                        <h3 className="batafsil-title">Day: {item.day}</h3>
+                        <p className="batafsil-title">Day: {item.day}</p>
                         <h3 className="batafsil-subtitle">{item.title}</h3>
                         <p className="batafsil-description">{item.description}</p>
                         <p className="batafsil-description2">{item.tour.description2}</p>

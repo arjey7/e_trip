@@ -46,6 +46,10 @@ const LandingPage = () => {
         navigate(`/batafsil/${tourId}`);
     };
 
+    function toOrder() {
+        navigate("/enquiry")
+    }
+
     return (
         <div className="container">
             <div className="navbar">
@@ -88,7 +92,7 @@ const LandingPage = () => {
                             </div>
                             <div className="tour-buttons">
                                 <button className="details-btn" onClick={() => handleDetailsClick(tour.id)}>Batafsil</button>
-                                <button className="order-btn">Order</button>
+                                <button onClick={toOrder} className="order-btn">Order</button>
                             </div>
                         </div>
                     </div>
