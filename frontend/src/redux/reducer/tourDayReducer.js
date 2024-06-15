@@ -12,7 +12,6 @@ const slice = createSlice({
     initialState,
     reducers: {
         fetchTourDaysRequest: (state, action) => {
-
             state.loading = true;
             state.error = null;
         },

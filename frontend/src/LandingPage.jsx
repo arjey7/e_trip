@@ -14,10 +14,12 @@ import 'leaflet/dist/leaflet.css';
 import EnquiryForm from './EnquiryForm';
 import Email from "./files/free-icon-new-email-filled-envelope-60467.png"
 import Location from "./files/free-icon-location-pin-7302427.png"
+import {fetchTourRequest} from "./redux/reducer/tourReducer.js";
+import {useDispatch,  useSelector} from "react-redux";
 
 const LandingPage = () => {
-    const [tours, setTours] = useState([]);
     const bukharaCoordinates = [39.7748, 64.4286];
+    const dispatch = useDispatch();
 
     function scrollToGroupElement () {
         const specificGroupArea = document.getElementById('specificGroupArea');
@@ -35,16 +37,20 @@ const LandingPage = () => {
     };
 
     const navigate = useNavigate()
+
+    const { tours, loading, error } = useSelector(state => state.tour);
+
     useEffect(() => {
-        fetch('http://localhost:8082/api/tour/getAll')
-            .then(response => response.json())
-            .then(data => setTours(data))
-            .catch(error => console.error('Error fetching tour data:', error));
-    }, []);
+        dispatch(fetchTourRequest());
+    }, [dispatch]);
 
     const handleDetailsClick = (tourId) => {
         navigate(`/batafsil/${tourId}`);
     };
+
+    function toOrder() {
+        navigate("/enquiry")
+    }
 
     return (
         <div className="container">
@@ -75,7 +81,7 @@ const LandingPage = () => {
                 <p className={"p5"}>Group Tours</p>
                 {tours.map((tour, index) => (
                     <div key={index} className="tour-item">
-                        <img  src={`http://localhost:8082/files/img?name=${tour.photo}`} alt={tour.title}
+                        <img  src={`http://localhost:8080/files/img?name=${tour.photo}`} alt={tour.title}
                              className="tour-img"/>
                         <div className="tour-details">
                             <h2>{tour.title}</h2>
@@ -88,7 +94,7 @@ const LandingPage = () => {
                             </div>
                             <div className="tour-buttons">
                                 <button className="details-btn" onClick={() => handleDetailsClick(tour.id)}>Batafsil</button>
-                                <button className="order-btn">Order</button>
+                                <button onClick={toOrder} className="order-btn">Order</button>
                             </div>
                         </div>
                     </div>
@@ -102,7 +108,7 @@ const LandingPage = () => {
                 <p className={"text6"}>Biz yuqori darajadagi xizmat ko'rsatish va har bir mijozga individual</p>
                 <p className={"text7"}>yondashish bilan hamyonbop narxlarda keng doiradagi turlarni taklif qiluvchi</p>
                 <p className={"text8"}>professional sayyohlik kompaniyasimiz. Bizning kompaniyamiz sayohat</p>
-                <p className={"text9"}>hamma uchun ochiq bo'lish kerak degan g'oya asosida tashkil etilgan</p>
+                <p className={"text9"}>hamma uchun ochiq bo'lish kerak degan g'oya asosida tashkil etilgan.</p>
             </div>
 
             <div id="specificContactArea">
