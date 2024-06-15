@@ -189,14 +189,14 @@ h5 {
 }
 
 .text1 {
-    margin-left: -1000px;
+    margin-left: 20px;
     margin-top: 20px;
     color: white;
     font-size: 70px;
 }
 
 .text2 {
-    margin-left: -715px;
+    margin-left: 10px;
     color: white;
     font-size: 150px;
     margin-top: -25px;
@@ -204,7 +204,7 @@ h5 {
 
 .text3, .text4, .text5 {
     font-size: 17px;
-    color: #303030;
+    color: #ffffff;
     font-weight: bold;
 }
 

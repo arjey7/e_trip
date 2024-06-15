@@ -2,6 +2,7 @@ package org.example.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,21 +16,17 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "users")
+@Builder
 public class User implements UserDetails {
-@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-@Column(columnDefinition = "uuid DEFAULT gen_random_uuid()")
     private UUID id;
     private String username;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
-
-    public User(String username, String password, List<Role> roles) {
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
-    }
+    private boolean enabled;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -53,6 +50,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 }
