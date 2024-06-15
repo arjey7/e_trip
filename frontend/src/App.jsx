@@ -17,7 +17,6 @@ function App() {
                 <Route path="/comment/admin" element={<AdminComment />} />
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/tour/:uuid" element={<TourDay />} />
-                <Route path="/enquiry" element={<Enquiry />} />
                 <Route path="/batafsil/:tourId" element={<Batafsil />} />
                 <Route path="/enquiry/list" element={<AdminEnquiry />} />
                 <Route path="/" element={<LandingPage />} />

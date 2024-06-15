@@ -2,24 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import './styles/EnquiryForm.css';
+import {useDispatch, useSelector} from "react-redux";
+import {fetchTourRequest} from "./redux/reducer/tourReducer.js";
+
 
 const EnquiryForm = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const [tours, setTours] = useState([]);
+    const { tours, loading, error } = useSelector(state => state.tour);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const fetchTours = async () => {
-            try {
-                const response = await axios.get('http://localhost:8080/api/tour/getAll');
-                setTours(response.data);
-            } catch (error) {
-                console.error('There was an error fetching the tours:', error);
-            }
-            console.log(tours);
-        };
-
-        fetchTours();
-    }, []);
+        dispatch(fetchTourRequest());
+    }, [dispatch]);
 
     const onSubmit = async (data) => {
         try {
@@ -64,7 +58,7 @@ const EnquiryForm = () => {
             <div className="form-group">
                 <div>
                     <input
-                        placeholder="Enter your email address..."
+                        placeholder="Email address..."
                         className={`form-control ${errors.email ? 'is-invalid' : ''}`}
                         {...register('email', {
                             required: 'Email must be entered',
@@ -78,7 +72,7 @@ const EnquiryForm = () => {
                 </div>
                 <div>
                     <textarea
-                        placeholder="Enter your text..."
+                        placeholder="Text..."
                         className={`form-controls ${errors.text ? 'is-invalid' : ''}`}
                         {...register('text', { required: 'Text must be entered' })}
                     />

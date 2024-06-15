@@ -14,10 +14,12 @@ import 'leaflet/dist/leaflet.css';
 import EnquiryForm from './EnquiryForm';
 import Email from "./files/free-icon-new-email-filled-envelope-60467.png"
 import Location from "./files/free-icon-location-pin-7302427.png"
+import {fetchTourRequest} from "./redux/reducer/tourReducer.js";
+import {useDispatch,  useSelector} from "react-redux";
 
 const LandingPage = () => {
-    const [tours, setTours] = useState([]);
     const bukharaCoordinates = [39.7748, 64.4286];
+    const dispatch = useDispatch();
 
     function scrollToGroupElement () {
         const specificGroupArea = document.getElementById('specificGroupArea');
@@ -35,12 +37,12 @@ const LandingPage = () => {
     };
 
     const navigate = useNavigate()
+
+    const { tours, loading, error } = useSelector(state => state.tour);
+
     useEffect(() => {
-        fetch('http://localhost:8080/api/tour/getAll')
-            .then(response => response.json())
-            .then(data => setTours(data))
-            .catch(error => console.error('Error fetching tour data:', error));
-    }, []);
+        dispatch(fetchTourRequest());
+    }, [dispatch]);
 
     const handleDetailsClick = (tourId) => {
         navigate(`/batafsil/${tourId}`);
@@ -102,7 +104,7 @@ const LandingPage = () => {
                 <p className={"text6"}>Biz yuqori darajadagi xizmat ko'rsatish va har bir mijozga individual</p>
                 <p className={"text7"}>yondashish bilan hamyonbop narxlarda keng doiradagi turlarni taklif qiluvchi</p>
                 <p className={"text8"}>professional sayyohlik kompaniyasimiz. Bizning kompaniyamiz sayohat</p>
-                <p className={"text9"}>hamma uchun ochiq bo'lish kerak degan g'oya asosida tashkil etilgan</p>
+                <p className={"text9"}>hamma uchun ochiq bo'lish kerak degan g'oya asosida tashkil etilgan.</p>
             </div>
 
             <div id="specificContactArea">
