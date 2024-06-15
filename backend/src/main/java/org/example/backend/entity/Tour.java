@@ -16,6 +16,7 @@ public class Tour {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(columnDefinition = "uuid DEFAULT gen_random_uuid()")
     private UUID id;
+    private String text;
     private String title;
     private String description;
     private Integer day;

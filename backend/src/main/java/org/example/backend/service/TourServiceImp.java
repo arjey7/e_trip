@@ -22,6 +22,7 @@ public class TourServiceImp implements TourService {
         tour.setTitle(tourDto.title());
         tour.setDescription(tourDto.description());
         tour.setDescription2(tourDto.description2());
+        tour.setText(tourDto.text());
         tour.setPhoto(tourDto.photo());
         tour.setVideo(tourDto.video());
         tour.setDay(tourDto.day());
@@ -46,6 +47,7 @@ public class TourServiceImp implements TourService {
             existingTour.setPhoto(tourDto.photo());
             existingTour.setVideo(tourDto.video());
             existingTour.setDay(tourDto.day());
+            existingTour.setText(tourDto.text());
             existingTour.setCost(tourDto.cost());
             return tourRepo.save(existingTour);
         } else {
