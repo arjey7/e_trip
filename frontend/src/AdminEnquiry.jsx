@@ -10,6 +10,7 @@ function AdminEnquiry() {
     const [selectedEnquiry, setSelectedEnquiry] = useState(null);
     const [answerText, setAnswerText] = useState('');
 
+
     useEffect(() => {
         const fetchEnquiries = async () => {
             try {
@@ -64,31 +65,30 @@ function AdminEnquiry() {
 
     return (
         <div className="container">
-            <h1>Enquiries</h1>
-            <table>
-                <thead>
+            <table className={"table"}>
+                <thead className={"thead"}>
                 <tr>
-                    <th>ID</th>
-                    <th>Full Name</th>
-                    <th>Phone Number</th>
-                    <th>Email</th>
-                    <th>Tour Name</th>
-                    <th>Text</th>
-                    <th>Action</th>
+                    <th className={"th"}>ID</th>
+                    <th className={"th"}>Full Name</th>
+                    <th className={"th"}>Phone Number</th>
+                    <th className={"th"}>Email</th>
+                    <th className={"th"}>Tour Name</th>
+                    <th className={"th"}>Text</th>
+                    <th className={"th"}>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 {enquiries.map((enquiry, index) => (
                     <>
-                        <tr key={enquiry.id}>
-                            <td data-label="ID">{index + 1}</td>
-                            <td data-label="Full Name">{enquiry.fullName}</td>
-                            <td data-label="Phone Number">{enquiry.phoneNumber}</td>
-                            <td data-label="Email">{enquiry.email}</td>
-                            <td data-label="Tour Name">{enquiry.tourName}</td>
-                            <td data-label="Text">{enquiry.text}</td>
-                            <td data-label="Action">
-                                <button onClick={() => handleAnswerClick(enquiry)}>
+                        <tr className={"tr"} key={enquiry.id}>
+                            <td className={"td"} data-label="ID">{index + 1}</td>
+                            <td className={"td"} data-label="Full Name">{enquiry.fullName}</td>
+                            <td className={"td"} data-label="Phone Number">{enquiry.phoneNumber}</td>
+                            <td className={"td"} data-label="Email">{enquiry.email}</td>
+                            <td className={"td"} data-label="Tour Name">{enquiry.tourName}</td>
+                            <td className={"td"} data-label="Text">{enquiry.text}</td>
+                            <td className={"td"} data-label="Action">
+                                <button className={"button"} onClick={() => handleAnswerClick(enquiry)}>
                                     Write an answer
                                 </button>
                             </td>

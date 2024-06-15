@@ -26,7 +26,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/files/img","/files/video","/files/tourDay").permitAll()
                         .requestMatchers(HttpMethod.GET, "/files/img","/files/video","/api/tour","/api/tourDay","/files/tourDay").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/tour","/api/tourDay").permitAll()

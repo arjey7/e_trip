@@ -7,25 +7,30 @@ import org.example.backend.repository.RoleRepo;
 import org.example.backend.repository.UserRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
+import java.util.UUID;
 
 @Configuration
 @RequiredArgsConstructor
-
 public class CommandRunner implements CommandLineRunner {
-    final UserRepo userRepo;
     final RoleRepo roleRepo;
-    final PasswordEncoder passwordEncoder;
+    final UserRepo userRepo;
 
     @Override
     public void run(String... args) throws Exception {
-        List<User> all = userRepo.findAll();
-        if (all.isEmpty()) {
-            List<Role> roles = roleRepo.saveAll(List.of(new Role("ROLE_ADMIN")));
-            userRepo.save(new User("admin",passwordEncoder.encode("12345"),roles));
-
+        if (roleRepo.findAll().isEmpty()) {
+            List<Role> roles = List.of(new Role(UUID.randomUUID(), "ROLE_ADMIN"));
+            List<Role> savedRoles = roleRepo.saveAll(roles);
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            User user = User.builder()
+                    .username("Juraev")
+                    .password(encoder.encode("123"))
+                    .enabled(true)
+                    .roles(savedRoles)
+                    .build();
+            userRepo.save(user);
         }
     }
 }

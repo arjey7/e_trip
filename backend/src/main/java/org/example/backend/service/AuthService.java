@@ -1,7 +1,10 @@
 package org.example.backend.service;
 
-import org.springframework.http.HttpEntity;
+import org.example.backend.dto.LoginDto;
+import org.example.backend.entity.User;
+
+import java.util.Map;
 
 public interface AuthService {
-HttpEntity<?> login(String username, String password);
+    Map<String, String> check(LoginDto loginDto);
 }

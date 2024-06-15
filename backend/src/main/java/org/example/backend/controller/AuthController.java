@@ -1,20 +1,27 @@
 package org.example.backend.controller;
 
-import lombok.RequiredArgsConstructor;
+import org.example.backend.dto.LoginDto;
 import org.example.backend.service.AuthService;
-import org.springframework.http.HttpEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
-@RequiredArgsConstructor
 public class AuthController {
-final AuthService authService;
-    @GetMapping("/login")
-    public HttpEntity<?> loginUser(@RequestParam String username, @RequestParam String password) {
-     return authService.login(username, password);
-}
+
+    @Autowired
+    private AuthService authService;
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody LoginDto loginDto) {
+        try {
+            Map<String, String> tokens = authService.check(loginDto);
+            return ResponseEntity.ok(tokens);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Invalid credentials");
+        }
+    }
 }
