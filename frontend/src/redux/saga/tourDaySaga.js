@@ -12,7 +12,7 @@ import {
     updateTourDayFailure,
     deleteTourDayRequest,
     deleteTourDaySuccess,
-    deleteTourDayFailure
+    deleteTourDayFailure, getIdSuccess, getIdFailure, getIdRequest,
 } from "../reducer/tourDayReducer";
 import data from "bootstrap/js/src/dom/data.js";
 
@@ -24,6 +24,16 @@ function* fetchTourDays(action) {
         yield put(fetchTourDaysFailure(error.message));
     }
 }
+function* getAllId(action){
+    try {
+        const response = yield call(axios.get,`http://localhost:8080/api/tourDay/${action.payload}`)
+        yield put(getIdSuccess(response.data))
+    }catch (error){
+        yield put(getIdFailure(error.message))
+    }
+}
+
+
 
 function* addTourDay(action) {
    const formData=new FormData();
@@ -63,4 +73,5 @@ export function* tourDaySaga() {
     yield takeLatest(addTourDayRequest.type, addTourDay);
     yield takeLatest(updateTourDayRequest.type, updateTourDay);
     yield takeLatest(deleteTourDayRequest.type, deleteTourDay);
+    yield takeLatest(getIdRequest.type,getAllId())
 }

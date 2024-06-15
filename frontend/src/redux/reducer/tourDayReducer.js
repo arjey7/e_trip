@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     tourDays: [],
+    tours: [],
     loading: false,
     error: null
 };
@@ -22,6 +23,19 @@ const slice = createSlice({
         fetchTourDaysFailure: (state, action) => {
             state.loading = false;
             state.error = action.payload;
+        },
+        getIdRequest: (state, action) => {
+
+            state.loading = true;
+            state.error = null;
+        },
+        getIdSuccess:(state,action) =>{
+            state.loading = false;
+            state.tourDays = action.payload;
+        },
+        getIdFailure:(state,action) =>{
+            state.loading = false
+            state.error = action.payload
         },
         addTourDayRequest: (state) => {
             state.loading = true;
@@ -62,6 +76,7 @@ const slice = createSlice({
             state.loading = false;
             state.error = action.payload;
         }
+
     }
 });
 
@@ -77,7 +92,10 @@ export const {
     updateTourDayFailure,
     deleteTourDayRequest,
     deleteTourDaySuccess,
-    deleteTourDayFailure
+    deleteTourDayFailure,
+    getIdRequest,
+    getIdSuccess,
+    getIdFailure
 } = slice.actions;
 
 export default slice.reducer;
