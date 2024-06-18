@@ -17,6 +17,7 @@ function Admin() {
     const tours = useSelector(state => state.user.tours);
     const loading = useSelector(state => state.user.loading);
     const error = useSelector(state => state.user.error);
+    const username = localStorage.getItem('username'); // Retrieve the username
 
     const [formData, setFormData] = useState({
         id: '',
@@ -119,9 +120,11 @@ function Admin() {
             <div style={{display:"flex",justifyContent:"center",alignItems:"center",gap:"420px",marginTop:"50px"}}>
                 <div style={{display:"flex",alignItems:"center",gap:"20px"}}>
                     <img src={Account} alt=""/>
-                    <h1 className={"h0"} >Admin Page</h1>
+                    <div>
+                        <h1 className={"h0"}> {username}    </h1>
+                    </div>
                 </div>
-                <div style={{display:"flex",alignItems:"center",gap:"20px"}}>
+                <div style={{display:"flex",alignItems:"center",gap:" 40px", marginLeft:"-100px"}}>
                     <p className={"asd"}>Add Tour</p>
                     <p className={"asd"}>Enquiry</p>
                     <p className={"asd"}>Available Tours</p>
@@ -185,7 +188,7 @@ function Admin() {
             </form>
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
-            <table  style={{marginTop:"40px",width:"1540px",marginLeft:"179 px"}}>
+            <table  style={{marginTop:"40px",width:"1540px",marginLeft:"179px"}}>
                 <thead>
                 <tr className={"op"}>
                     <th>Title</th>
