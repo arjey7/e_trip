@@ -1,21 +1,18 @@
 /* General styling for the page container */
 .page-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 20px;
 }
-
 /* Styling for each comment container */
 .comment-container {
     padding: 20px;
-    border: 1px solid #e0e0e0;
     border-radius: 10px;
     background-color: #fff;
     width: 350px;
+    margin-top: 20px;
     height: 200px;
+    border: 1px solid rgb(255, 113, 91);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
@@ -45,26 +42,36 @@
 /* Styling for the comment form container */
 .comment-form {
      display: flex;
-    margin: 0 auto;
     padding: 20px;
 
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
+margin-left: 50px;
 }
 
 /* Styling for the form inputs */
 .comment-input {
-    width: 400px;
+    width: 256px;
     padding: 10px;
     margin: 10px 10px 20px 10px;
-    border: 1px solid ;
-    border-radius: 5px;
+    border: 1px solid rgb(96, 214, 106);
+    border-radius: 20px;
     font-size: 16px;
 
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: border 0.3s ease, box-shadow 0.3s ease;
 }
+.comment-input2 {
+     width: 472px;
+     padding: 10px;
+     margin: 10px 10px 20px 10px;
+     border: 1px solid rgb(96, 214, 106);
+     border-radius: 20px;
+     font-size: 16px;
+
+     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+     transition: border 0.3s ease, box-shadow 0.3s ease;
+ }
+
 
 /* Focus effect for the form inputs */
 .comment-input:focus {
@@ -78,10 +85,10 @@
  width: 200px;
     height: 60px;
     padding: 10px;
-    background-color: #007BFF;
+    background-color: rgb(96, 214, 106);
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
