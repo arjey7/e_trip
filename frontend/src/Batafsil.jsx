@@ -26,13 +26,13 @@ function Batafsil() {
     const increment = 200;
     const navigate = useNavigate();
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/tourDay/${tourId}`)
+        axios.get(`http://localhost:8082/api/tourDay/${tourId}`)
             .then(res => {
                 setBatafsil(res.data);
                 if(res.data.length > 0) {
                     setTourTitle(res.data[0].tour.title);
-                    setVideoSrc(`http://localhost:8080/files/video?name=${res.data[0].video}`);
-                    setImageSrc(`http://localhost:8080/files/img?name=${res.data[0].photo}`);
+                    setVideoSrc(`http://localhost:8082/files/video?name=${res.data[0].video}`);
+                    setImageSrc(`http://localhost:8082/files/img?name=${res.data[0].photo}`);
 
                     setTotalCost(res.data[0].tour.cost);
                     setTourDescription(res.data[0].tour.description);
@@ -64,11 +64,11 @@ function Batafsil() {
                 <p className={"number"}>+998901234567</p>
             </div>
             <p className={"tour"}>{tourTitle}ga sayohat</p>
-                <p className={"sayohat"}>Sayohat qiling mazza qilib</p>
-                <p className={"desc"}>{tourDescription}</p>
-                <p className={"day"}>Day: {day}</p>
-                <p className={"price"}>Price: {totalCost}</p>
-                <button onClick={toOrder} className={"order-batafsil"}>Order</button>
+            <p className={"sayohat"}>Sayohat qiling mazza qilib</p>
+            <p className={"desc"}>{tourDescription}</p>
+            <p className={"day"}>Day: {day}</p>
+            <p className={"price"}>Price: {totalCost}</p>
+            <button onClick={toOrder} className={"order-batafsil"}>Order</button>
 
             <div className={"groups"}>
                 {videoSrc && <video src={videoSrc} controls={true} className="video"/>}
@@ -81,7 +81,7 @@ function Batafsil() {
                     className="batafsil-item"
                     style={{top: `${initialTop + index * increment}px`}}
                 >
-                    <img src={`http://localhost:8080/files/img?name=${item.photo}`} className="image-batafsil2"/>
+                    <img src={`http://localhost:8082/files/img?name=${item.photo}`} className="image-batafsil2"/>
                     <div className="batafsil-details">
                         <p className="batafsil-title">Day: {item.day}</p>
                         <h3 className="batafsil-subtitle">{item.title}</h3>
@@ -101,38 +101,30 @@ function Batafsil() {
                 Nunc maximu </p>
             <p className={"comment-batafsil"}>Comment</p>
             <Comment/>
-            <footer className="footer-batafsil">
-                <div className="footer-container">
-                    <div className="contact-info">
-                        <div className="you">You can dream, create, design, and buildsa the most wonderful place.</div>
-                        <div className="footer-item">
-                            <img className="footer-img" src={u} alt="Phone Icon"/>
-                            <span className="num2">+0123 456 987, +0123 456 987</span>
-                        </div>
-                        <div className="footer-item">
-                            <img className="footer-img2" src={i} alt="Email Icon"/>
-                            <span className="email">info@example.com</span>
-                        </div>
-                        <div className="footer-item">
-                            <img className="footer-img3" src={o} alt="Web Icon"/>
-                            <span className="www">www.example.com</span>
-                        </div>
-                    </div>
-                    <div className="support-info">
-                        <div className="support">Support:</div>
-                        <div className="footer-group">Group Us</div>
-                        <div className="footer-group2">About Us</div>
-                        <div className="footer-group3">Connection</div>
-                        <div className="footer-group4">Comment</div>
-                    </div>
-                    <div className="social-media">
-                        <div className="social-icon teleg2"><img src={q} alt="Telegram"/></div>
-                        <div className="social-icon what2"><img src={w} alt="WhatsApp"/></div>
-                        <div className="social-icon face3"><img src={e} alt="Facebook"/></div>
-                        <div className="social-icon ins3"><img src={r} alt="Instagram"/></div>
-                    </div>
-                </div>
-            </footer>
+            <div className="footer-container">
+                <div className="you">You can dream, create, design, and buildsa the most <br/> wonderful place.</div>
+                <img className="footer-img" src={u} alt="Phone Icon"/>
+                <p className="num2">+0123 456 987, +0123 456 987</p>
+                <img className="footer-img2" src={i} alt="Email Icon"/>
+                <p className="email">info@example.com</p>
+                <img className="footer-img3" src={o} alt="Web Icon"/>
+                <p className="www">www.example.com</p>
+            </div>
+            <div className="footer-group">- Group Us</div>
+            <div className="footer-group2">- About Us</div>
+            <div className="footer-group3">- Connection</div>
+            <div className="footer-group4">- Comment</div>
+            <div className="support">Support:</div>
+            <img src={w} className={"teleg-3"} alt=""/>
+            <img src={q} className={"what-3"} alt=""/>
+            <p className={"teleg-comment"}>t.me/barlasvoyageAdmin</p>
+            <p className={"num3"}>+9988888888</p>
+            <div className={"img-icon"}>
+                <img className={"teleg-4"} src={q} alt="Telegram"/>
+                <img className={"what-4"} src={w} alt="WhatsApp"/>
+                <img src={e} alt="Facebook"/>
+                <img src={r} alt="Instagram"/>
+            </div>
 
         </div>
 
