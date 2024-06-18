@@ -11,7 +11,7 @@ function Comment(props) {
     const { handleSubmit, register, reset } = useForm();
 
     function mySubmit(data) {
-        axios.post("http://localhost:8080/api/comment", data).then(res => {
+        axios.post("http://localhost:8082/api/comment", data).then(res => {
             setComment(res.data);
             toast.success("Comment added successfully!");
         }).catch(error => {
@@ -26,12 +26,12 @@ function Comment(props) {
             <Page/>
             <ToastContainer />
 
-                <form className={"comment-form"} id="commentForm" onSubmit={handleSubmit(mySubmit)}>
+                <f0orm className={"comment-form"} id="commentForm" onSubmit={handleSubmit(mySubmit)}>
                     <input type="text" className="comment-input" placeholder="First Name" {...register("firstName")} />
                     <input type="text" className="comment-input" placeholder="Last Name" {...register("lastName")} />
-                    <input type="text" className="comment-input" placeholder="Text" {...register("text")} />
+                    <input type="text" className="comment-input2" placeholder="Text" {...register("text")} />
                     <button type="submit" form="commentForm" className="comment-button">Send</button>
-                </form>
+                </f0orm>
         </div>
     );
 }
