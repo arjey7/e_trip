@@ -114,6 +114,15 @@ function Admin() {
     const selectedTour = (uuid) => {
         navigate(`/tour/${uuid}`);
     };
+    function handleNavigate(){
+        navigate('/')
+    }
+    function handleNavigate1(){
+        navigate("/")
+    }
+    function handleNavigate2(){
+        navigate("/comment")
+    }
 
     return (
         <div className="">
@@ -125,10 +134,10 @@ function Admin() {
                     </div>
                 </div>
                 <div style={{display:"flex",alignItems:"center",gap:" 40px", marginLeft:"-100px"}}>
-                    <p className={"asd"}>Add Tour</p>
-                    <p className={"asd"}>Enquiry</p>
-                    <p className={"asd"}>Available Tours</p>
-                    <p className={"asd"}>Comments</p>
+                    <p  className={"asd"}>Add Tour</p>
+                    <p onClick={()=>handleNavigate()} className={"asd"}>Enquiry</p>
+                    <p onClick={()=>handleNavigate1()} className={"asd"}>Available Tours</p>
+                    <p onClick={()=>handleNavigate2()} className={"asd"}>Comments</p>
                 </div>
                 <div>
                     <button style={{backgroundColor:"red",width:"135px",height:"36",borderRadius:"20px"}}>Log out</button>
