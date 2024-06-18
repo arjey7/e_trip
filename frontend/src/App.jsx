@@ -11,20 +11,14 @@ import Batafsil from "./Batafsil.jsx";
 import Login from "./Login.jsx";
 
 function App() {
-    const isAuthenticated = !!localStorage.getItem('access_token');
 
     return (
         <div>
             <Routes>
                 <Route path="/comment" element={<Comment />} />
-                {isAuthenticated ? (
-                    <>
                         <Route path="/admin" element={<Admin />} />
                         <Route path="/admincomment" element={<AdminComment />} />
-                    </>
-                ) : (
                     <Route path="/login" element={<Login />} />
-                )}
                 <Route path="/tour/:uuid" element={<TourDay />} />
                 <Route path="/batafsil/:tourId" element={<Batafsil />} />
                 <Route path={"/enquiry"} element={<Enquiry />} />

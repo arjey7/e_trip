@@ -32,8 +32,14 @@ function Admin() {
     });
 
     useEffect(() => {
-        dispatch(fetchToursRequest());
-    }, [dispatch]);
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            navigate('/login');
+        } else {
+            dispatch(fetchToursRequest());
+        }
+    }, [dispatch, navigate]);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -121,6 +127,7 @@ function Admin() {
         localStorage.removeItem('username');
         navigate('/login');
     };
+
 
     function handleNavigate(){
         navigate('/')
