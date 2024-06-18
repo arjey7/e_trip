@@ -77,6 +77,7 @@ public class FileController {
         fileInputStream.close();
         outputStream.close();
     }
+
     @PostMapping("/tourDay")
     public String saveTourDayImg(@RequestParam MultipartFile file) throws IOException {
         System.out.println(file.getOriginalFilename());
