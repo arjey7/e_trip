@@ -178,14 +178,14 @@ function Admin() {
                     value={formData.text}
                     onChange={handleChange}
                     placeholder={"Text..."}
-                    style={{width:"1540px",marginLeft:"83px",marginTop:"50px"}}
+                    style={{width:"1540px",marginLeft:"179px",marginTop:"50px"}}
                     cols="30"
                     rows="10">
                 </textarea>
             </form>
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
-            <table  style={{marginTop:"40px",width:"1540px",marginLeft:"83px"}}>
+            <table  style={{marginTop:"40px",width:"1540px",marginLeft:"179px"}}>
                 <thead>
                 <tr className={"op"}>
                     <th>Title</th>
