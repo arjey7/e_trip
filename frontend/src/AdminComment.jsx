@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './css/AdminComment.css';
+import {useNavigate} from "react-router-dom";
 
 function AdminComment(props) {
     const [adminComment, setAdminComment] = useState([]);
-
+     const navigate = useNavigate()
     useEffect(() => {
-        getAll();
-    }, []);
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            navigate('/login');
+        } else {
+           getAll()
+        }
+    }, [navigate]);
+
+
 
     function getAll() {
         axios.get("http://localhost:8080/api/comment/adminstatus/true")

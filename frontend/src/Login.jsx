@@ -1,38 +1,27 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './styles/Login.css';
 
 function Login() {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
-    const location = useLocation();
 
     const onSubmit = (data) => {
-        axios
-            .post('http://localhost:8080/api/auth/login', data)
-            .then((response) => {
+        axios.post('http://localhost:8082/api/auth/login', data)
+            .then(response => {
                 localStorage.setItem('access_token', response.data.access_token);
                 localStorage.setItem('refresh_token', response.data.refresh_token);
                 localStorage.setItem('username', response.data.username);
-                console.log('Login successful');
-                console.log(response.data);
                 navigate('/admin');
             })
-            .catch((error) => {
+            .catch(error => {
                 alert('Invalid credentials');
                 console.error('Login error:', error);
             });
     };
 
-    useEffect(() => {
-        if (localStorage.getItem('access_token')) {
-            // Perform necessary data fetching here
-            console.log('Data fetching after login');
-            console.log('Location:', location.pathname);
-        }
-    }, [location.pathname]);
 
     return (
         <div className="body">
