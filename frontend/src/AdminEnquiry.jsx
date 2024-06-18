@@ -3,6 +3,7 @@ import axios from 'axios';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import './styles/AdminEnquiry.css';
+import User from "./files/Account.png"
 
 function AdminEnquiry() {
     const [enquiries, setEnquiries] = useState([]);
@@ -65,6 +66,9 @@ function AdminEnquiry() {
 
     return (
         <div className="container">
+            <div className={"navbar"}>
+                <img src={User} alt="" />
+            </div>
             <table className={"table"}>
                 <thead className={"thead"}>
                 <tr>
@@ -102,7 +106,6 @@ function AdminEnquiry() {
                 ))}
                 </tbody>
             </table>
-
             <Rodal customStyles={{ height: '40%' }} visible={showModal} onClose={() => setShowModal(false)}>
                 <div className="modal-content">
                     <h2>Write an Answer</h2>
