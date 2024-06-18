@@ -11,7 +11,7 @@ function Login() {
 
     const onSubmit = (data) => {
         axios
-            .post('http://localhost:8082/api/auth/login', data)
+            .post('http://localhost:8080/api/auth/login', data)
             .then((response) => {
                 localStorage.setItem('access_token', response.data.access_token);
                 localStorage.setItem('refresh_token', response.data.refresh_token);

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './css/Page.css';
 import a from './batafilimg/Group 1.png';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+// import Carousel from 'react-multi-carousel';
+// import 'react-multi-carousel/lib/styles.css';
 
 function Page() {
     const [page, setPage] = useState([]);
@@ -13,7 +13,7 @@ function Page() {
     }, []);
 
     function getAll() {
-        axios.get('http://localhost:8082/api/comment/approved')
+        axios.get('http://localhost:8080/api/comment/approved')
             .then(res => {
                 setPage(res.data);
             })
