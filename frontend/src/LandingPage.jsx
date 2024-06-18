@@ -36,6 +36,11 @@ const LandingPage = () => {
         specificContactArea.scrollIntoView({ behavior: 'smooth' });
     };
 
+    function scrollToEnquiryElement () {
+        const specificEnquiryArea = document.getElementById('specificEnquiryArea');
+        specificEnquiryArea.scrollIntoView({ behavior: 'smooth' });
+    };
+
     const navigate = useNavigate()
 
     const { tours, loading, error } = useSelector(state => state.tour);
@@ -59,6 +64,7 @@ const LandingPage = () => {
                 <p onClick={scrollToGroupElement} className={"p"}>Group Tours</p>
                 <p onClick={scrollToAboutElement} className={"p"}>About Us</p>
                 <p onClick={scrollToContactElement} className={"p"}>Contact Us</p>
+                <p onClick={scrollToEnquiryElement} className={"p"}>Enquiry</p>
                 <div className="navbar2">
                     <img className="img2" src={Facebook} alt="Facebook" />
                     <img className="img3" src={Insta} alt="Instagram" />
@@ -144,7 +150,7 @@ const LandingPage = () => {
                 </div>
             </div>
 
-            <div>
+            <div id="specificEnquiryArea">
                 <p className={"p4"}>Enquiry</p>
                 <EnquiryForm/>
             </div>

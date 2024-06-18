@@ -16,7 +16,7 @@ import {
 } from "../reducer/tourDayReducer";
 import data from "bootstrap/js/src/dom/data.js";
 
-function* fetchTourDays(action) {
+function* fetchTourDays(action)  {
     try {
         const response = yield call(axios.get, `http://localhost:8080/api/tourDay/${action.payload}`);
         yield put(fetchTourDaysSuccess(response.data));
