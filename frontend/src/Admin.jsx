@@ -185,7 +185,7 @@ function Admin() {
             </form>
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
-            <table  style={{marginTop:"40px",width:"1540px",marginLeft:"179px"}}>
+            <table  style={{marginTop:"40px",width:"1540px",marginLeft:"179 px"}}>
                 <thead>
                 <tr className={"op"}>
                     <th>Title</th>
