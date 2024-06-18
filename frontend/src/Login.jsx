@@ -1,12 +1,12 @@
 import React from 'react';
-import axios from "axios";
-import { useForm } from "react-hook-form";
-import "./styles/Login.css";
-import {useNavigate} from "react-router-dom";
+import axios from 'axios';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import './styles/Login.css';
 
 function Login(props) {
     const { register, handleSubmit, reset } = useForm();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         axios.post('http://localhost:8080/api/auth/login', data)
@@ -14,34 +14,39 @@ function Login(props) {
                 localStorage.setItem('access_token', response.data.access_token);
                 localStorage.setItem('refresh_token', response.data.refresh_token);
                 console.log("Login successful");
+                navigate('/admin');
             })
             .catch(error => {
                 alert('Invalid credentials');
                 console.error('Login error:', error);
             });
-        navigate("/")
     };
 
     return (
         <div className="body">
-            <div id="Container">
-                <form className="form" onSubmit={handleSubmit(onSubmit)}>
-                    <div id="login-lable">Login</div>
-                    <input
-                        className="form-content"
-                        type="text"
-                        placeholder="Username"
-                        {...register("username", { required: true })}
-                    />
-                    <input
-                        className="form-content"
-                        type="password"
-                        placeholder="Password"
-                        {...register("password", { required: true })}
-                    />
-                    <button type="submit">Continue</button>
-                </form>
-            </div>
+            <form className="form" onSubmit={handleSubmit(onSubmit)}>
+                <div className="form-title"><span>sign in to our</span></div>
+                <div className="title-2"><span>Website</span></div>
+                <div className="input-container">
+                    <input className="input-mail" type="text" placeholder="Enter username..." {...register("username", { required: true })} />
+                </div>
+                <section className="bg-stars">
+                    <span className="star"></span>
+                    <span className="star"></span>
+                    <span className="star"></span>
+                    <span className="star"></span>
+                </section>
+                <div className="input-container">
+                    <input className="input-pwd" type="password" placeholder="Enter password..." {...register("password", { required: true })} />
+                </div>
+                <button type="submit" className="submit">
+                    Sign in
+                </button>
+                <p className="signup-link">
+                    No account?
+                    <a href="" className="up">Sign up!</a>
+                </p>
+            </form>
         </div>
     );
 }

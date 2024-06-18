@@ -48,6 +48,10 @@ const LandingPage = () => {
         navigate(`/batafsil/${tourId}`);
     };
 
+    function toOrder() {
+        navigate("/enquiry")
+    }
+
     return (
         <div className="container">
             <div className="navbar">
@@ -73,12 +77,13 @@ const LandingPage = () => {
                 <p className={"text5"}>them with me oh baby.</p>
             </div>
 
+
             <div className="tour-list" id="specificGroupArea">
                 <p className={"p5"}>Group Tours</p>
                 {tours.map((tour, index) => (
                     <div key={index} className="tour-item">
                         <img  src={`http://localhost:8080/files/img?name=${tour.photo}`} alt={tour.title}
-                             className="tour-img"/>
+                              className="tour-img"/>
                         <div className="tour-details">
                             <h2>{tour.title}</h2>
                             <p>{tour.description}</p>
@@ -90,7 +95,7 @@ const LandingPage = () => {
                             </div>
                             <div className="tour-buttons">
                                 <button className="details-btn" onClick={() => handleDetailsClick(tour.id)}>Batafsil</button>
-                                <button className="order-btn">Order</button>
+                                <button onClick={toOrder} className="order-btn">Order</button>
                             </div>
                         </div>
                     </div>
@@ -112,7 +117,7 @@ const LandingPage = () => {
                 <MapContainer
                     center={bukharaCoordinates}
                     zoom={13}
-                    style={{ height: '450px', width: '97%', left:'330px', top:'70px'}}
+                    style={{ height: '550px', width: '50%', left:'690px', top:'70px'}}
                 >
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -148,6 +153,3 @@ const LandingPage = () => {
 }
 
 export default LandingPage;
-
-
-
