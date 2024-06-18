@@ -17,6 +17,7 @@ function Admin() {
     const tours = useSelector(state => state.user.tours);
     const loading = useSelector(state => state.user.loading);
     const error = useSelector(state => state.user.error);
+    const username = localStorage.getItem('username'); // Retrieve the username
 
     const [formData, setFormData] = useState({
         id: '',
@@ -119,9 +120,11 @@ function Admin() {
             <div style={{display:"flex",justifyContent:"center",alignItems:"center",gap:"420px",marginTop:"50px"}}>
                 <div style={{display:"flex",alignItems:"center",gap:"20px"}}>
                     <img src={Account} alt=""/>
-                    <h1 className={"h0"} >Admin Page</h1>
+                    <div>
+                        <h1 className={"h0"}> {username}    </h1>
+                    </div>
                 </div>
-                <div style={{display:"flex",alignItems:"center",gap:"20px"}}>
+                <div style={{display:"flex",alignItems:"center",gap:" 40px", marginLeft:"-100px"}}>
                     <p className={"asd"}>Add Tour</p>
                     <p className={"asd"}>Enquiry</p>
                     <p className={"asd"}>Available Tours</p>
@@ -178,52 +181,53 @@ function Admin() {
                     value={formData.text}
                     onChange={handleChange}
                     placeholder={"Text..."}
-                    style={{width:"1540px",marginLeft:"179px",marginTop:"50px"}}
+                    style={{width:"1500px",marginTop:"50px"}}
                     cols="30"
                     rows="10">
                 </textarea>
             </form>
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
-            <table  style={{marginTop:"40px",width:"1540px",marginLeft:"179px"}}>
-                <thead>
-                <tr className={"op"}>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Description2</th>
-                    <th>Text</th>
-                    <th>Photo</th>
-                    <th>Video</th>
-                    <th>Day</th>
-                    <th>Price</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {tours.map((tour, index) => (
-                    <tr className={"op"} onClick={() => selectedTour(tour.id)} key={index}>
-                        <td>{tour.title}</td>
-                        <td>{tour.description}</td>
-                        <td>{tour.description2}</td>
-                        <td>{tour.text}</td>
-                        <td><img src={`http://localhost:8080/files/img?name=${tour.photo}`} alt="Tour"
-                                 style={{width: '100px', height: '100px'}}/></td>
-                        <td>
-                            <video width="320" height="240" controls>
-                                <source src={`http://localhost:8080/files/video?name=${tour.video}`} type="video/mp4"/>
-                                Your browser does not support the video tag.
-                            </video>
-                        </td>
-                        <td>{tour.day}</td>
-                        <td>{tour.cost}</td>
-                        <td>
-                            <button  className="btn btn-warning w-50" onClick={(e) => handleEdit(tour, e)}>Edit</button>
-                            <button className="btn btn-danger" onClick={(e) => handleDelete(tour.id, e)}>Delete</button>
-                        </td>
+            <div className="table-container">
+                <table className="table">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Additional Description</th>
+                        <th>Text</th>
+                        <th>Photo</th>
+                        <th>Video</th>
+                        <th>Day</th>
+                        <th>Price</th>
+                        <th>Actions</th>
                     </tr>
-                ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {tours.map((tour, index) => (
+                        <tr key={index} onClick={() => selectedTour(tour.id)}>
+                            <td>{tour.title}</td>
+                            <td>{tour.description}</td>
+                            <td>{tour.description2}</td>
+                            <td>{tour.text}</td>
+                            <td><img src={`http://localhost:8080/files/img?name=${tour.photo}`} alt="Tour"/></td>
+                            <td>
+                                <video controls>
+                                    <source src={`http://localhost:8080/files/video?name=${tour.video}`} type="video/mp4"/>
+                                    Your browser does not support the video tag.
+                                </video>
+                            </td>
+                            <td>{tour.day}</td>
+                            <td>{tour.cost}</td>
+                            <td>
+                                <button className="btn btn-warning" onClick={(e) => handleEdit(tour, e)}>Edit</button>
+                                <button className="btn btn-danger" onClick={(e) => handleDelete(tour.id, e)}>Delete</button>
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

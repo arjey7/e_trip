@@ -43,6 +43,7 @@ public class AuthServiceImp implements AuthService {
             Map<String, String> tokens = new HashMap<>();
             tokens.put("access_token", accessToken);
             tokens.put("refresh_token", refreshToken);
+            tokens.put("username", user.getUsername());
 
             return tokens;
         } catch (Exception e) {

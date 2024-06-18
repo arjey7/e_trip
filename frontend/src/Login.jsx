@@ -13,7 +13,9 @@ function Login(props) {
             .then(response => {
                 localStorage.setItem('access_token', response.data.access_token);
                 localStorage.setItem('refresh_token', response.data.refresh_token);
+                localStorage.setItem('username', response.data.username); // Store the username
                 console.log("Login successful");
+                console.log(response.data)
                 navigate('/admin');
             })
             .catch(error => {
