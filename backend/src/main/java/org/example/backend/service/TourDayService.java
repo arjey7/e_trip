@@ -12,4 +12,5 @@ public interface TourDayService {
     TourDay updateTourDay(UUID id, TourDayDto tourDayDto);
     void deleteTourDay(UUID id);
     List<TourDay> getById(UUID tourId);
+    List<TourDay>getByIdd(UUID idd);
 }

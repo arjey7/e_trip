@@ -48,4 +48,9 @@ public class TourDayController {
         List<TourDay> tourDays = tourDayService.getById(tourId);
         return tourDays;
     }
+    @GetMapping("/idd")
+    public List<TourDay> getTourDays(@RequestParam UUID idd) {
+        List<TourDay>tourDays = tourDayService.getByIdd(idd);
+        return tourDays;
+    }
 }

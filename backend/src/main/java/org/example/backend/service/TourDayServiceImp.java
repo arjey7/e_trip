@@ -56,4 +56,9 @@ public class TourDayServiceImp implements TourDayService {
     public List<TourDay> getById(UUID tourId) {
         return tourDayRepo.findTourDayByTourId(tourId);
     }
+
+    @Override
+    public List<TourDay> getByIdd(UUID idd) {
+        return tourDayRepo.getAllById(UUID.fromString(idd.toString()));
+    }
 }
