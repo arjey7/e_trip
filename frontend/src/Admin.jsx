@@ -114,6 +114,14 @@ function Admin() {
     const selectedTour = (uuid) => {
         navigate(`/tour/${uuid}`);
     };
+
+    const handleLogout = () => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('username');
+        navigate('/login');
+    };
+
     function handleNavigate(){
         navigate('/')
     }
@@ -140,7 +148,7 @@ function Admin() {
                     <p onClick={()=>handleNavigate2()} className={"asd"}>Comments</p>
                 </div>
                 <div>
-                    <button style={{backgroundColor:"red",width:"135px",height:"36",borderRadius:"20px"}}>Log out</button>
+                    <button onClick={handleLogout} style={{backgroundColor:"red",width:"135px",height:"36",borderRadius:"20px",borderColor:"red"}}>Log out</button>
                 </div>
             </div>
             <form onSubmit={handleSubmit}>
@@ -181,8 +189,8 @@ function Admin() {
                         <input placeholder={"Price"} style={{width: "200px"}} type="number" className="form-control" id="cost" name="cost"
                                value={formData.cost} onChange={handleChange}/>
                     </div>
-                    <button style={{backgroundColor: "red"}} type="submit"
-                            className="">{formData.id ? 'Update' : 'Add'}</button>
+                    <button style={{backgroundColor:"red",width:"135px",borderRadius:"20px",borderColor:"red"}} type="submit"
+                    >{formData.id ? 'Update' : 'Add'}</button>
 
                 </div>
                 <textarea
@@ -221,7 +229,7 @@ function Admin() {
                         <td><img src={`http://localhost:8080/files/img?name=${tour.photo}`} alt="Tour"
                                  style={{width: '100px', height: '100px'}}/></td>
                         <td>
-                            <video width="320" height="240" controls>
+                            <video width="320" height="240" controls >
                                 <source src={`http://localhost:8080/files/video?name=${tour.video}`} type="video/mp4"/>
                                 Your browser does not support the video tag.
                             </video>

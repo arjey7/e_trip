@@ -19,6 +19,7 @@ function* fetchTours() {
     try {
         const response = yield call(axios.get, 'http://localhost:8080/api/tour/getAll');
         yield put(fetchToursSuccess(response.data));
+
     } catch (error) {
         yield put(fetchToursFailure(error.message));
     }
