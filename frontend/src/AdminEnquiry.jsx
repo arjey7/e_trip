@@ -4,12 +4,16 @@ import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import './styles/AdminEnquiry.css';
 import User from "./files/Account.png"
+import Account from "./files/Account.png";
+import {useNavigate} from "react-router-dom";
 
 function AdminEnquiry() {
     const [enquiries, setEnquiries] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedEnquiry, setSelectedEnquiry] = useState(null);
     const [answerText, setAnswerText] = useState('');
+    const username = localStorage.getItem('username');
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -64,16 +68,65 @@ function AdminEnquiry() {
         }
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('username');
+        navigate('/login');
+    };
+
+    function handleNavigate(){
+        navigate('/');
+    }
+
+    function handleNavigate1(){
+        navigate('/');
+    }
+
+    function handleNavigate2(){
+        navigate('/comment');
+    }
+
     return (
         <div className="container">
-            <div className={"navbar"}>
-                <img src={User} alt="" />
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "350px",
+                marginTop: "50px",
+                padding: "0px 50px 0px 50px"
+            }}>
+                <div style={{display: "flex", alignItems: "center", gap: "20px", marginTop: "-10px"}}>
+                    <img src={Account} alt=""/>
+                    <div>
+                        <h1 className={"h0"}> {username} </h1>
+                    </div>
+                </div>
+                <div style={{display: "flex", alignItems: "center", gap: " 40px", marginLeft: "-100px"}}>
+                    <p className={"asd"}>Add Tour</p>
+                    <p onClick={handleNavigate} className={"asd"}>Enquiry</p>
+                    <p onClick={handleNavigate1} className={"asd"}>Available Tours</p>
+                    <p onClick={handleNavigate2} className={"asd"}>Comments</p>
+                </div>
+                <div>
+                    <button onClick={handleLogout} style={{
+                        backgroundColor: "red",
+                        width: "135px",
+                        height: "36px",
+                        borderRadius: "20px",
+                        borderColor: "red",
+                        marginTop: "-15px"
+                    }}>Log out
+                    </button>
+                </div>
             </div>
             <table className={"table"}>
                 <thead className={"thead"}>
                 <tr>
                     <th className={"th"}>ID</th>
-                    <th className={"th"}>Full Name</th>
+                    <th className={"th"}>First Name</th>
+                    <th className={"th"}>Last Name</th>
                     <th className={"th"}>Phone Number</th>
                     <th className={"th"}>Email</th>
                     <th className={"th"}>Tour Name</th>
@@ -86,7 +139,8 @@ function AdminEnquiry() {
                     <>
                         <tr className={"tr"} key={enquiry.id}>
                             <td className={"td"} data-label="ID">{index + 1}</td>
-                            <td className={"td"} data-label="Full Name">{enquiry.fullName}</td>
+                            <td className={"td"} data-label="First Name">{enquiry.firstname}</td>
+                            <td className={"td"} data-label="Last Name">{enquiry.lastname}</td>
                             <td className={"td"} data-label="Phone Number">{enquiry.phoneNumber}</td>
                             <td className={"td"} data-label="Email">{enquiry.email}</td>
                             <td className={"td"} data-label="Tour Name">{enquiry.tourName}</td>
