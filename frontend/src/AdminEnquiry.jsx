@@ -92,7 +92,6 @@ function AdminEnquiry() {
         navigate('/comment');
     }
 
-    function handle
 
     return (
         <div className="container">
