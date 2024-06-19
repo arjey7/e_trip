@@ -1,25 +1,20 @@
 package org.example.backend.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.UUID;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity(name = "enquiries")
+@Entity
 public class Enquiry {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "uuid DEFAULT gen_random_uuid()")
     private UUID id;
-    private String fullName;
+
+    private String firstname;
+    private String lastname;
     private String phoneNumber;
-    @Pattern(regexp = "^[a-zW-Z0-9._%+-]+@gmail\\.com$")
     private String email;
     private String text;
     private String tourName;

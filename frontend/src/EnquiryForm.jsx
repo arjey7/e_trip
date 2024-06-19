@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import './styles/EnquiryForm.css';
-import {useDispatch, useSelector} from "react-redux";
-import {fetchTourRequest} from "./redux/reducer/tourReducer.js";
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTourRequest } from "./redux/reducer/tourReducer.js";
 
 const EnquiryForm = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { tours, loading, error } = useSelector(state => state.tour);
+    const { tours } = useSelector(state => state.tour);
     const dispatch = useDispatch();
+
 
     useEffect(() => {
         dispatch(fetchTourRequest());
@@ -17,6 +17,7 @@ const EnquiryForm = () => {
 
     const onSubmit = async (data) => {
         try {
+            console.log(data);
             const response = await axios.post('http://localhost:8082/api/enquiry', data);
             console.log(response.data);
             alert('Enquiry submitted successfully!');
@@ -27,6 +28,7 @@ const EnquiryForm = () => {
         }
     };
 
+
     return (
         <form className="enquiry-form" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group">
@@ -34,25 +36,25 @@ const EnquiryForm = () => {
                     <input
                         placeholder="Lastname..."
                         className={`form-control ${errors.lastname ? 'is-invalid' : ''}`}
-                        {...register('lastname', {required: 'Lastname is required'})}
+                        {...register('lastname', { required: 'Lastname is required' })}
                     />
                     {errors.lastname && <p className="error-message">{errors.lastname.message}</p>}
                 </div>
                 <div>
                     <input
-                        placeholder="Phone number..."
-                        className={`form-control ${errors.phoneNumber ? 'is-invalid' : ''}`}
-                        {...register('phoneNumber', {required: 'Phone number is required!'})}
+                        placeholder="Firstname..."
+                        className={`form-control ${errors.firstname ? 'is-invalid' : ''}`}
+                        {...register('firstname', { required: 'Firstname is required' })}
                     />
-                    {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
+                    {errors.firstname && <p className="error-message">{errors.firstname.message}</p>}
                 </div>
                 <div>
                     <input
-                        placeholder="Firstname..."
-                        className={`form-control ${errors.firstname ? 'is-invalid' : ''}`}
-                        {...register('firstname', {required: 'Firstname is required'})}
+                        placeholder="Phone number..."
+                        className={`form-control ${errors.phoneNumber ? 'is-invalid' : ''}`}
+                        {...register('phoneNumber', { required: 'Phone number is required!' })}
                     />
-                    {errors.firstname && <p className="error-message">{errors.firstname.message}</p>}
+                    {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
                 </div>
             </div>
             <div className="form-group">

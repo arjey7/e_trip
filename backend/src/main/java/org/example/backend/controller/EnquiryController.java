@@ -17,9 +17,11 @@ public class EnquiryController {
 
     @PostMapping
     public ResponseEntity<Enquiry> createEnquiry(@RequestBody Enquiry enquiry) {
+        System.out.println(enquiry);
         Enquiry savedEnquiry = enquiryService.saveEnquiry(enquiry);
         return ResponseEntity.ok(savedEnquiry);
     }
+
 
     @GetMapping
     public ResponseEntity<List<Enquiry>> getAllEnquiries() {
