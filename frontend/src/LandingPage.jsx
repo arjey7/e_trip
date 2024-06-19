@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './styles/LandingPage.css';
+import Rodal from 'rodal';
+import 'rodal/lib/rodal.css';
 import Logo from './files/tourlogo.jpg';
 import Facebook from './files/facebook2.jpg';
 import Insta from './files/free-icon-instagram-174855.png';
@@ -20,6 +22,9 @@ import {useDispatch,  useSelector} from "react-redux";
 const LandingPage = () => {
     const bukharaCoordinates = [39.7748, 64.4286];
     const dispatch = useDispatch();
+
+    const [modalVisible, setModalVisible] = useState(false);
+
 
     function scrollToGroupElement () {
         const specificGroupArea = document.getElementById('specificGroupArea');
@@ -54,9 +59,13 @@ const LandingPage = () => {
     };
 
     function toOrder() {
-        const specificEnquiryArea = document.getElementById('specificEnquiryArea');
-        specificEnquiryArea.scrollIntoView({ behavior: 'smooth' });
+        setModalVisible(true);
     }
+
+
+    const handleCloseModal = () => {
+        setModalVisible(false);
+    };
 
     return (
         <div className="container">
@@ -89,7 +98,7 @@ const LandingPage = () => {
                 <p className={"p5"}>Group Tours</p>
                 {tours.map((tour, index) => (
                     <div key={index} className="tour-item">
-                        <img  src={`http://localhost:8080/files/img?name=${tour.photo}`} alt={tour.title}
+                        <img  src={`http://localhost:8082/files/img?name=${tour.photo}`} alt={tour.title}
                               className="tour-img"/>
                         <div className="tour-details">
                             <h2>{tour.title}</h2>
@@ -155,6 +164,13 @@ const LandingPage = () => {
                 <p className={"p4"}>Enquiry</p>
                 <EnquiryForm/>
             </div>
+
+
+            <Rodal visible={modalVisible} onClose={handleCloseModal} height={400} width={700}>
+                <div className="rodal-content">
+                    <EnquiryForm/>
+                </div>
+            </Rodal>
         </div>
     );
 }

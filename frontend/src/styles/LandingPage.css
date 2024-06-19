@@ -277,3 +277,87 @@ h5 {
     margin-top: 40px;
 
 }
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .navbar2 {
+        margin-left: 0;
+    }
+
+    .p2, .p3, .p4, .p5 {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .img7 {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .tour-list {
+        width: 1300px;
+    }
+
+    .tour-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tour-img {
+        width: 100%;
+        height: auto;
+    }
+
+    .tour-details {
+        margin-left: 0;
+    }
+
+    .tour-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 320px) {
+    .text1 {
+        font-size: 50px;
+    }
+
+    .text2 {
+        font-size: 100px;
+    }
+}
+
+
+.Modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+}
