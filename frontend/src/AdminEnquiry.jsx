@@ -6,6 +6,7 @@ import './styles/AdminEnquiry.css';
 import User from "./files/Account.png"
 import Account from "./files/Account.png";
 import {useNavigate} from "react-router-dom";
+import {fetchToursRequest} from "./redux/reducer/userReducer.js";
 
 function AdminEnquiry() {
     const [enquiries, setEnquiries] = useState([]);
@@ -14,20 +15,24 @@ function AdminEnquiry() {
     const [answerText, setAnswerText] = useState('');
     const username = localStorage.getItem('username');
     const navigate = useNavigate()
-
-
     useEffect(() => {
-        const fetchEnquiries = async () => {
-            try {
-                const response = await axios.get('http://localhost:8082/api/enquiry');
-                setEnquiries(response.data);
-            } catch (error) {
-                console.error('Error fetching enquiries:', error);
-            }
-        };
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            navigate('/login');
+        } else {
+            const fetchEnquiries = async () => {
+                try {
+                    const response = await axios.get('http://localhost:8082/api/enquiry');
+                    setEnquiries(response.data);
+                } catch (error) {
+                    console.error('Error fetching enquiries:', error);
+                }
+            };
 
-        fetchEnquiries();
-    }, []);
+            fetchEnquiries();
+        }
+    }, [navigate]);
+
 
     const handleAnswerClick = (enquiry) => {
         setSelectedEnquiry(enquiry);
