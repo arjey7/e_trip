@@ -28,6 +28,7 @@
 .about,
 .contact {
     margin-left: 20px;
+    cursor: pointer;
     color: rgb(44, 44, 44);
 }
 
