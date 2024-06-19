@@ -39,7 +39,11 @@ public class TourDayServiceImp implements TourDayService {
         TourDay existingTourDay = tourDayRepo.findById(id).orElseThrow(() -> new RuntimeException("TourDay not found"));
         existingTourDay.setTitle(tourDayDto.title());
         existingTourDay.setDescription(tourDayDto.description());
-        existingTourDay.setPhoto(tourDayDto.photo());
+        if (tourDayDto.photo() == null || tourDayDto.photo().isEmpty()) {
+            existingTourDay.setPhoto(existingTourDay.getPhoto());
+        } else {
+            existingTourDay.setPhoto(tourDayDto.photo());
+        }
         existingTourDay.setTour(tour);
         return tourDayRepo.save(existingTourDay);
     }

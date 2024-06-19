@@ -44,8 +44,16 @@ public class TourServiceImp implements TourService {
             existingTour.setTitle(tourDto.title());
             existingTour.setDescription(tourDto.description());
             existingTour.setDescription2(tourDto.description2());
-            existingTour.setPhoto(tourDto.photo());
-            existingTour.setVideo(tourDto.video());
+            if (tourDto.photo() == null || tourDto.photo().isEmpty()) {
+                existingTour.setPhoto(existingTour.getPhoto());
+            } else {
+                existingTour.setPhoto(tourDto.photo());
+            }
+            if (tourDto.video() == null || tourDto.video().isEmpty()) {
+                existingTour.setVideo(existingTour.getVideo());
+            } else {
+                existingTour.setVideo(tourDto.video());
+            }
             existingTour.setDay(tourDto.day());
             existingTour.setText(tourDto.text());
             existingTour.setCost(tourDto.cost());

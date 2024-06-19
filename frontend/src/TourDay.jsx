@@ -198,7 +198,7 @@ function TourDay() {
                     <tr className={"op"} key={index}>
                         <td>{tourDay.title}</td>
                         <td>{tourDay.description}</td>
-                        <td><img src={`http://localhost:8080/files/tourDay?name=${tourDay.photo}`} alt="Tour"
+                        <td><img src={`http://localhost:8082/files/tourDay?name=${tourDay.photo}`} alt="Tour"
                                  style={{width: '100px', height: '100px'}}/></td>
                         <td>
                             <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>
