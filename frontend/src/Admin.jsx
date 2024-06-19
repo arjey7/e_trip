@@ -70,7 +70,7 @@ function Admin() {
 
         if (formData.photo) {
             photoData.append('file', formData.photo);
-            const photoResponse = await fetch('http://localhost:8080/files/img', {
+            const photoResponse = await fetch('http://localhost:8082/files/img', {
                 method: 'POST',
                 body: photoData
             });
@@ -80,7 +80,7 @@ function Admin() {
 
         if (formData.video) {
             videoData.append('file', formData.video);
-            const videoResponse = await fetch('http://localhost:8080/files/video', {
+            const videoResponse = await fetch('http://localhost:8082/files/video', {
                 method: 'POST',
                 body: videoData
             });
