@@ -14,6 +14,8 @@ import u from "./batafilimg/rasm.png";
 import i from "./batafilimg/Vector (1).png";
 import o from "./batafilimg/Union.png";
 import p from "./batafilimg/rasmcha.png"
+import Rodal from "rodal";
+import EnquiryForm from "./EnquiryForm.jsx";
 function Batafsil() {
     const { tourId } = useParams();
     const [batafsil, setBatafsil] = useState([]);
@@ -28,15 +30,17 @@ function Batafsil() {
     const videoRef = useRef(null);
     const navigate = useNavigate();
     const [playingVideo, setPlayingVideo] = useState(null);
+    const [modalVisible, setModalVisible] = useState(false);
+
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/tourDay/${tourId}`)
+        axios.get(`http://localhost:8082/api/tourDay/${tourId}`)
             .then(res => {
                 setBatafsil(res.data);
                 if (res.data.length > 0) {
                     const tourDetails = res.data[0].tour;
                     setTourTitle(tourDetails.title);
-                    setVideoSrc(`http://localhost:8080/files/video?name=${res.data[0].video}`);
-                    setImageSrc(`http://localhost:8080/files/img?name=${tourDetails.photo}`);
+                    setVideoSrc(`http://localhost:8082/files/video?name=${res.data[0].video}`);
+                    setImageSrc(`http://localhost:8082/files/img?name=${tourDetails.photo}`);
                     setTotalCost(tourDetails.cost);
                     setTourDescription(tourDetails.description);
                     setDay(tourDetails.day);
@@ -48,8 +52,13 @@ function Batafsil() {
     }, [tourId]);
 
     function toOrder() {
-        navigate("/enquiry");
+        setModalVisible(true);
     }
+
+
+    const handleCloseModal = () => {
+        setModalVisible(false);
+    };
     const handleVideoPlay = (videoSrc) => {
         if (playingVideo && playingVideo !== videoSrc) {
             document.getElementById(playingVideo).pause();
@@ -132,7 +141,7 @@ function Batafsil() {
                     className="batafsil-item"
                     style={{top: `${initialTop + index * increment}px`}}
                 >
-                    <img src={`http://localhost:8080/files/img?name=${item.photo}`} className="image-batafsil2"
+                    <img src={`http://localhost:8082/files/img?name=${item.photo}`} className="image-batafsil2"
                          alt={`Day ${item.day} Image`}/>
                     <div className="batafsil-details">
                         <p className="batafsil-title">Day: {item.day}</p>
@@ -178,6 +187,11 @@ function Batafsil() {
                 <img src={e} alt="Facebook"/>
                 <img src={r} alt="Instagram"/>
             </div>
+            <Rodal visible={modalVisible} onClose={handleCloseModal} height={400} width={700}>
+                <div className="rodal-content">
+                    <EnquiryForm/>
+                </div>
+            </Rodal>
         </div>
     );
 }
