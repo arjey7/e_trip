@@ -61,7 +61,7 @@ public class FileController {
 
     @GetMapping("/video")
     public void getVideo(@RequestParam String video, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        File videoFile = new File("madrasa_back/src/main/resources/picture/" + video);
+        File videoFile = new File("backend/e_video" + video);
         if (!videoFile.exists()) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;

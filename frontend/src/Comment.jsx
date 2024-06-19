@@ -26,12 +26,12 @@ function Comment(props) {
             <Page/>
             <ToastContainer />
 
-                <f0orm className={"comment-form"} id="commentForm" onSubmit={handleSubmit(mySubmit)}>
+                <form className={"comment-form"} id="commentForm" onSubmit={handleSubmit(mySubmit)}>
                     <input type="text" className="comment-input" placeholder="First Name" {...register("firstName")} />
                     <input type="text" className="comment-input" placeholder="Last Name" {...register("lastName")} />
                     <input type="text" className="comment-input2" placeholder="Text" {...register("text")} />
                     <button type="submit" form="commentForm" className="comment-button">Send</button>
-                </f0orm>
+                </form>
         </div>
     );
 }
