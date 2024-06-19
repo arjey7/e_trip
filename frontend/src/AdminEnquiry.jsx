@@ -81,17 +81,20 @@ function AdminEnquiry() {
     };
 
     function handleNavigate(){
-        navigate('/');
+        navigate('/enquiry/list');
     }
 
     function handleNavigate1(){
-        navigate('/');
+        navigate('/?scrollTo=groupTours');
     }
 
     function handleNavigate2(){
-        navigate('/comment');
+        navigate('/admincomment');
     }
 
+    function handleNavigate3(){
+        navigate("/admin")
+    }
 
     return (
         <div className="container">
