@@ -12,11 +12,10 @@ import {
     updateTourDayFailure,
     deleteTourDayRequest,
     deleteTourDaySuccess,
-    deleteTourDayFailure, getIdSuccess, getIdFailure, getIdRequest,
+    deleteTourDayFailure,
 } from "../reducer/tourDayReducer";
-import data from "bootstrap/js/src/dom/data.js";
 
-function* fetchTourDays(action)  {
+function* fetchTourDays(action) {
     try {
         const response = yield call(axios.get, `http://localhost:8082/api/tourDay/${action.payload}`);
         yield put(fetchTourDaysSuccess(response.data));
@@ -24,25 +23,14 @@ function* fetchTourDays(action)  {
         yield put(fetchTourDaysFailure(error.message));
     }
 }
-function* getAllId(action){
-    try {
-        const response = yield call(axios.get,`http://localhost:8082/api/tourDay/${action.payload}`)
-        yield put(getIdSuccess(response.data))
-    }catch (error){
-        yield put(getIdFailure(error.message))
-    }
-}
-
-
 
 function* addTourDay(action) {
-   const formData=new FormData();
-   formData.append("file",action.payload.photo);
+    const formData = new FormData();
+    formData.append("file", action.payload.photo);
 
     try {
-        const res=yield call(()=>axios.post("http://localhost:8082/files/tourDay",formData))
-        action.payload.photo=res.data
-        console.log(res.data)
+        const res = yield call(() => axios.post("http://localhost:8082/files/tourDay", formData));
+        action.payload.photo = res.data;
         const response = yield call(axios.post, 'http://localhost:8082/api/tourDay', action.payload);
         yield put(addTourDaySuccess(response.data));
     } catch (error) {
@@ -52,6 +40,12 @@ function* addTourDay(action) {
 
 function* updateTourDay(action) {
     try {
+        if (action.payload.photo && typeof action.payload.photo !== 'string') {
+            const formData = new FormData();
+            formData.append("file", action.payload.photo);
+            const res = yield call(() => axios.post("http://localhost:8082/files/tourDay", formData));
+            action.payload.photo = res.data;
+        }
         const response = yield call(axios.put, `http://localhost:8082/api/tourDay/${action.payload.id}`, action.payload);
         yield put(updateTourDaySuccess(response.data));
     } catch (error) {
@@ -73,5 +67,4 @@ export function* tourDaySaga() {
     yield takeLatest(addTourDayRequest.type, addTourDay);
     yield takeLatest(updateTourDayRequest.type, updateTourDay);
     yield takeLatest(deleteTourDayRequest.type, deleteTourDay);
-    yield takeLatest(getIdRequest.type,getAllId())
 }
