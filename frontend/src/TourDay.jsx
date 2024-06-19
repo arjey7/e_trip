@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
     fetchTourDaysRequest,
@@ -14,6 +14,8 @@ import {fetchToursRequest} from "./redux/reducer/userReducer.js";
 function TourDay() {
     const dispatch = useDispatch();
     const { uuid } = useParams(); // Get the id from the URL
+    const username = localStorage.getItem('username');
+    const navigate = useNavigate();
 
     const tourDays = useSelector(state => state.tourDay.tourDays);
     // const tours = useSelector(state => state.user.tours);
@@ -90,28 +92,49 @@ function TourDay() {
     const handleDelete = (id) => {
         dispatch(deleteTourDayRequest(id));
     };
+    const handleLogout = () => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('username');
+        navigate('/login');
+    };
+    function handleNavigate(){
+        navigate('/');
+    }
 
+    function handleNavigate1(){
+        navigate('/');
+    }
+
+    function handleNavigate2(){
+        navigate('/comment');
+    }
+
+    function handleNavigate3(){
+        navigate('/admin')
+    }
     return (
         <div className="">
             <div style={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                gap: "420px",
+                gap: "320px",
                 marginTop: "50px"
             }}>
                 <div style={{display: "flex", alignItems: "center", gap: "20px"}}>
                     <img src={Account} alt=""/>
-                    <h1 className={"h0"}>Admin Page</h1>
+                    <h1 className={"h0"}>{username}</h1>
                 </div>
                 <div style={{display: "flex", alignItems: "center", gap: "20px"}}>
-                    <p className={"asd"}>Add Tour</p>
-                    <p className={"asd"}>Enquiry</p>
-                    <p className={"asd"}>Available Tours</p>
-                    <p className={"asd"}>Comments</p>
+                    <p className={"asd"} onClick={handleNavigate3}>Add Tour</p>
+                    <p onClick={handleNavigate} className={"asd"}>Enquiry</p>
+                    <p onClick={handleNavigate1} className={"asd"}>Available Tours</p>
+                    <p onClick={handleNavigate2} className={"asd"}>Comments</p>
                 </div>
                 <div>
-                    <button style={{backgroundColor: "red", width: "135px", height: "36", borderRadius: "20px"}}>Log
+                    <button onClick={handleLogout}
+                            style={{backgroundColor: "red", width: "135px", height: "36", borderRadius: "20px"}}>Log
                         out
                     </button>
                 </div>
@@ -125,23 +148,50 @@ function TourDay() {
                     marginTop: "50px"
                 }}>
                     <div className="mb-3">
-                        <input placeholder={"Title"} style={{width: "460px"}} type="text" className="form-control"
+                        <input placeholder={"Title"} style={{width: "400px"}} type="text" className="form-control"
                                name="title"
                                value={formData.title} onChange={handleChange}/>
                     </div>
                     <div className="mb-3">
-                        <input placeholder={"Description"} style={{width: "460px"}} type="text" className="form-control"
+                        <input placeholder={"Description"} style={{width: "400px"}} type="text" className="form-control"
                                name="description"
                                value={formData.description} onChange={handleChange}/>
                     </div>
                     <div className="mb-3">
-                        <input style={{width: "460px"}} type="file" className="form-control" name="photo"
+                        <input style={{width: "400px"}} type="file" className="form-control" name="photo"
                                onChange={handlePhotoChange}/>
                     </div>
                     <button style={{backgroundColor: "red", borderColor: "red", marginTop: "-15px"}} type="submit"
                             className="btn btn-primary">{isEditing ? 'Update' : 'Add'} Tour Day
                     </button>
+
                 </div>
+                <table style={{marginTop: "40px", width: "1370px", marginLeft: "90px"}}
+                       className="table table-striped">
+                    <thead>
+                    <tr className={"op"}>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Photo</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {tourDays.map((tourDay, index) => (
+                        <tr className={"op"} key={index}>
+                            <td>{tourDay.title}</td>
+                            <td>{tourDay.description}</td>
+                            <td><img src={`http://localhost:8082/files/tourDay?name=${tourDay.photo}`} alt="Tour"
+                                     style={{width: '100px', height: '100px'}}/></td>
+                            <td>
+                                <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>
+                                <button className="btn btn-danger" onClick={() => handleDelete(tourDay.id)}>Delete
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
             </form>
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
@@ -184,30 +234,7 @@ function TourDay() {
             {/*    ))}*/}
             {/*    </tbody>*/}
             {/*</table>*/}
-            <table style={{marginTop: "40px", width: "1540px", marginLeft: "179 px"}} className="table table-striped">
-                <thead>
-                <tr className={"op"}>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Photo</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {tourDays.map((tourDay, index) => (
-                    <tr className={"op"} key={index}>
-                        <td>{tourDay.title}</td>
-                        <td>{tourDay.description}</td>
-                        <td><img src={`http://localhost:8080/files/tourDay?name=${tourDay.photo}`} alt="Tour"
-                                 style={{width: '100px', height: '100px'}}/></td>
-                        <td>
-                            <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>
-                            <button className="btn btn-danger" onClick={() => handleDelete(tourDay.id)}>Delete</button>
-                        </td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+
         </div>
     );
 }

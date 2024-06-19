@@ -25,6 +25,7 @@ function Comment(props) {
         <div>
             <Page/>
             <ToastContainer />
+
                 <form className={"comment-form"} id="commentForm" onSubmit={handleSubmit(mySubmit)}>
                     <input type="text" className="comment-input" placeholder="First Name" {...register("firstName")} />
                     <input type="text" className="comment-input" placeholder="Last Name" {...register("lastName")} />
