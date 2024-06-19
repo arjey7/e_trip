@@ -92,6 +92,8 @@ function AdminEnquiry() {
         navigate('/comment');
     }
 
+    function handle
+
     return (
         <div className="container">
             <div style={{
@@ -109,7 +111,7 @@ function AdminEnquiry() {
                     </div>
                 </div>
                 <div style={{display: "flex", alignItems: "center", gap: " 40px", marginLeft: "-100px"}}>
-                    <p className={"asd"}>Add Tour</p>
+                    <p className={"asd"} onClick={handleNavigate3}>Add Tour</p>
                     <p onClick={handleNavigate} className={"asd"}>Enquiry</p>
                     <p onClick={handleNavigate1} className={"asd"}>Available Tours</p>
                     <p onClick={handleNavigate2} className={"asd"}>Comments</p>

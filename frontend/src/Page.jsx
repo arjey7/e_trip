@@ -3,7 +3,7 @@ import axios from 'axios';
 import './css/Page.css';
 import a from './batafilimg/Group 1.png';
 import Carousel from 'react-multi-carousel';
-// import 'react-multi-carousel/lib/styles.css';
+import 'react-multi-carousel/lib/styles.css';
 
 function Page() {
     const [page, setPage] = useState([]);
