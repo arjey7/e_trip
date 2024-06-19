@@ -54,7 +54,8 @@ const LandingPage = () => {
     };
 
     function toOrder() {
-        navigate("/enquiry")
+        const specificEnquiryArea = document.getElementById('specificEnquiryArea');
+        specificEnquiryArea.scrollIntoView({ behavior: 'smooth' });
     }
 
     return (
