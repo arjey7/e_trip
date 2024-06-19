@@ -233,11 +233,11 @@ function Admin() {
                         <td>{tour.description}</td>
                         <td>{tour.description2}</td>
                         <td>{tour.text}</td>
-                        <td><img src={`http://localhost:8080/files/img?name=${tour.photo}`} alt="Tour"
+                        <td><img src={`http://localhost:8082/files/img?name=${tour.photo}`} alt="Tour"
                                  style={{width: '100px', height: '100px'}}/></td>
                         <td>
                             <video width="320" height="240" controls >
-                                <source src={`http://localhost:8080/files/video?name=${tour.video}`} type="video/mp4"/>
+                                <source src={`http://localhost:8082/files/video?name=${tour.video}`} type="video/mp4"/>
                                 Your browser does not support the video tag.
                             </video>
                         </td>

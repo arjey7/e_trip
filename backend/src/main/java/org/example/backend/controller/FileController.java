@@ -60,65 +60,21 @@ public class FileController {
     }
 
     @GetMapping("/video")
-    public void getVideo(@RequestParam String video, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        File videoFile = new File("madrasa_back/src/main/resources/picture/" + video);
+    public void getVideo(HttpServletResponse response, @RequestParam String name) throws IOException {
+        Path filePath = Paths.get(UPLOAD_DIR, name);
+        File videoFile = filePath.toFile();
+
         if (!videoFile.exists()) {
-            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            response.setStatus(HttpStatus.NOT_FOUND.value());
             return;
         }
 
-        String range = request.getHeader("Range");
-        if (range == null) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
-
-        long fileLength = videoFile.length();
-        long start = 0;
-        long end = fileLength - 1;
-
-        String[] ranges = range.split("=")[1].split("-");
-        try {
-            if (ranges.length > 0) {
-                start = Long.parseLong(ranges[0]);
-            }
-            if (ranges.length > 1) {
-                end = Long.parseLong(ranges[1]);
-            }
-        } catch (NumberFormatException e) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
-
-        if (start > end || start >= fileLength) {
-            response.setStatus(HttpServletResponse.SC_REQUESTED_RANGE_NOT_SATISFIABLE);
-            return;
-        }
-
-        long contentLength = end - start + 1;
-        response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
-        response.setContentType("video/mp4");
-        response.setHeader("Accept-Ranges", "bytes");
-        response.setHeader("Content-Range", "bytes " + start + "-" + end + "/" + fileLength);
-        response.setHeader("Content-Length", String.valueOf(contentLength));
-
-        try (RandomAccessFile raf = new RandomAccessFile(videoFile, "r")) {
-            raf.seek(start);
-            byte[] buffer = new byte[4096];
-            long bytesToRead = contentLength;
-            OutputStream os = response.getOutputStream();
-            while (bytesToRead > 0) {
-                int bytesRead = raf.read(buffer, 0, (int) Math.min(buffer.length, bytesToRead));
-                if (bytesRead == -1) {
-                    break;
-                }
-                os.write(buffer, 0, bytesRead);
-                bytesToRead -= bytesRead;
-            }
-            os.flush();
-        }
+        FileInputStream fileInputStream = new FileInputStream(videoFile);
+        ServletOutputStream outputStream = response.getOutputStream();
+        fileInputStream.transferTo(outputStream);
+        fileInputStream.close();
+        outputStream.close();
     }
-
     @PostMapping("/tourDay")
     public String saveTourDayImg(@RequestParam MultipartFile file) throws IOException {
         System.out.println(file.getOriginalFilename());
