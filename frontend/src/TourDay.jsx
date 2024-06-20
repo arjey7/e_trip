@@ -183,7 +183,7 @@ function TourDay() {
                 marginTop: "50px"
 
             }}>
-                <table style={{marginTop: "40px", width: "1370px", marginLeft: "1px"}}
+                <table style={{marginTop: "40px", width: "1370px", marginLeft: "1 px"}}
                        className="table table-striped">
                     <thead>
                     <tr className={"op"}>
