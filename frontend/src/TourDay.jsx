@@ -92,9 +92,7 @@ function TourDay() {
     };
 
     const handleDelete = (id) => {
-        if (window.confirm("Are you sure you want to delete this tour day?")) {
             dispatch(deleteTourDayRequest(id));
-        }
     };
 
     const handleLogout = () => {
