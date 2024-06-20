@@ -39,6 +39,7 @@ function* addTourDay(action) {
 }
 
 function* updateTourDay(action) {
+    console.log(action.payload)
     try {
         if (action.payload.photo && typeof action.payload.photo !== 'string') {
             const formData = new FormData();

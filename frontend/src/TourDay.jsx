@@ -6,10 +6,12 @@ import {
     fetchTourDaysRequest,
     addTourDayRequest,
     updateTourDayRequest,
-    deleteTourDayRequest, updateTourDaySuccess
+    deleteTourDayRequest
 } from './redux/reducer/tourDayReducer';
 import Account from "./files/Account.png";
 import { fetchToursRequest } from "./redux/reducer/userReducer.js";
+import axios from "axios";
+import logo from "./logo.svg"
 
 function TourDay() {
     const dispatch = useDispatch();
@@ -17,10 +19,12 @@ function TourDay() {
     const username = localStorage.getItem('username');
     const navigate = useNavigate();
 
+    // Redux state selectors
     const tourDays = useSelector(state => state.tourDay.tourDays);
     const loading = useSelector(state => state.tourDay.loading);
     const error = useSelector(state => state.tourDay.error);
 
+    // Form state
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -28,17 +32,18 @@ function TourDay() {
         tourId: uuid // Set the tourId to the id from the URL
     });
 
+    // Edit state
     const [isEditing, setIsEditing] = useState(false);
-    const [currentId, setCurrentId] = useState(null);
+    const [current, setCurrent] = useState(null);
+    const [displayImg, setDisplayImg] = useState("")
 
+    // Fetch initial data
     useEffect(() => {
         dispatch(fetchToursRequest());
-    }, [dispatch]);
-
-    useEffect(() => {
         dispatch(fetchTourDaysRequest(uuid));
     }, [dispatch, uuid]);
 
+    // Handle form input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -47,21 +52,39 @@ function TourDay() {
         }));
     };
 
+    // Handle photo file selection
     const handlePhotoChange = (e) => {
+        setCurrent(null);
         const file = e.target.files[0];
+        const img=new FileReader();
+        img.readAsDataURL(file)
+        img.onloadend=()=>{
+            setDisplayImg(img.result)
+        }
         setFormData(prevState => ({
             ...prevState,
             photo: file
         }));
     };
 
+    // Handle form submission
     const handleSubmit = (e) => {
+
         e.preventDefault();
-        if (isEditing) {
-            dispatch(updateTourDayRequest({ ...formData, id: currentId }));
+        console.log(formData)
+
+        e.preventDefault();
+        if (current!==null) {
+            dispatch(updateTourDayRequest({ ...formData, id: current.id }));
         } else {
             dispatch(addTourDayRequest(formData));
         }
+        resetForm();
+        setCurrent(null);
+    };
+
+    // Reset form fields after submission
+    const resetForm = () => {
         setFormData({
             title: '',
             description: '',
@@ -69,24 +92,43 @@ function TourDay() {
             tourId: uuid
         });
         setIsEditing(false);
-        setCurrentId(null);
+       setCurrent(null)
     };
 
+    // Handle editing a tour day entry
     const handleEdit = (tourDay) => {
-        setFormData({
-            title: tourDay.title,
-            description: tourDay.description,
-            photo: '',
-            tourId: uuid
-        });
-        setIsEditing(true);
-        setCurrentId(tourDay.id);
-    };
 
+
+        setCurrent(tourDay)
+       if (current!=null){
+           setFormData({
+               title: tourDay.title,
+               description: tourDay.description,
+               photo: current.photo, // Assuming you don't want to change the photo during editing
+               tourId: uuid
+           });
+       }else{
+           setFormData({
+               title: tourDay.title,
+               description: tourDay.description,
+               photo: formData.photo, // Assuming you don't want to change the photo during editing
+               tourId: uuid
+           });
+       }
+
+    };
+    function edittt(){
+        console.log("ssssss")
+    }
+
+    // Handle deleting a tour day entry
     const handleDelete = (id) => {
-        dispatch(deleteTourDayRequest(id));
+        if (window.confirm("Are you sure you want to delete this tour day?")) {
+            dispatch(deleteTourDayRequest(id));
+        }
     };
 
+    // Handle user logout
     const handleLogout = () => {
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
@@ -94,21 +136,22 @@ function TourDay() {
         navigate('/login');
     };
 
+    // Navigation handlers
     const handleNavigate = () => {
         navigate('/');
-    }
+    };
 
     const handleNavigate1 = () => {
         navigate('/');
-    }
+    };
 
     const handleNavigate2 = () => {
         navigate('/comment');
-    }
+    };
 
     const handleNavigate3 = () => {
         navigate('/admin');
-    }
+    };
 
     return (
         <div className="">
@@ -131,7 +174,7 @@ function TourDay() {
                 </div>
                 <div>
                     <button onClick={handleLogout}
-                            style={{ backgroundColor: "red", width: "135px", height: "36px", borderRadius: "20px",borderColor:"red" }}>Log
+                            style={{ backgroundColor: "red", width: "135px", height: "36px", borderRadius: "20px", borderColor: "red" }}>Log
                         out
                     </button>
                 </div>
@@ -155,13 +198,17 @@ function TourDay() {
                                value={formData.description} onChange={handleChange} />
                     </div>
                     <div className="mb-3">
-                        <input style={{ width: "400px" }} type="file" className="form-control" name="photo"
-                               onChange={handlePhotoChange} />
+                        <label>
+                            <img style={{width:"200px"}} src={current?`http://localhost:8082/files/tourDay?name=${current.photo}`:displayImg?displayImg:logo}/>
+                            <input style={{width: "400px"}} type="file" className="form-control" name="photo"
+                                   onChange={handlePhotoChange}/>
+                        </label>
                     </div>
-                    <button style={{ backgroundColor: "red", borderColor: "red", marginTop: "-15px" }} type="submit"
+                    <button style={{backgroundColor: "red", borderColor: "red", marginTop: "-15px"}} type="submit"
                             className="btn btn-primary">{isEditing ? 'Update' : 'Add'} Tour Day
                     </button>
                 </div>
+            </form>
                 <table style={{ marginTop: "40px", width: "1370px", marginLeft: "90px" }}
                        className="table table-striped">
                     <thead>
@@ -188,7 +235,7 @@ function TourDay() {
                     ))}
                     </tbody>
                 </table>
-            </form>
+
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
         </div>
