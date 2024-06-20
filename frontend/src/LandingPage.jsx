@@ -10,7 +10,7 @@ import Uzb from './files/free-icon-map-13651062.png';
 import Phone from './files/free-icon-phone-call-5585562.png';
 import Img from "./files/mansion-house-pool-interior-wallpaper-preview.jpg";
 import Time from "./files/free-icon-sand-timer-8330912.png";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import EnquiryForm from './EnquiryForm';
@@ -19,10 +19,11 @@ import Location from "./files/free-icon-location-pin-7302427.png"
 import {fetchTourRequest} from "./redux/reducer/tourReducer.js";
 import {useDispatch,  useSelector} from "react-redux";
 
+
 const LandingPage = () => {
     const bukharaCoordinates = [39.7748, 64.4286];
     const dispatch = useDispatch();
-
+    const location = useLocation();
     const [modalVisible, setModalVisible] = useState(false);
 
 
@@ -62,6 +63,12 @@ const LandingPage = () => {
         setModalVisible(true);
     }
 
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        if (params.get('scrollTo') === 'groupTours') {
+            scrollToGroupElement();
+        }
+    }, [location]);
 
     const handleCloseModal = () => {
         setModalVisible(false);

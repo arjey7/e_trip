@@ -81,15 +81,19 @@ function AdminEnquiry() {
     };
 
     function handleNavigate(){
-        navigate('/');
+        navigate('/enquiry/list');
     }
 
     function handleNavigate1(){
-        navigate('/');
+        navigate('/?scrollTo=groupTours');
     }
 
     function handleNavigate2(){
-        navigate('/comment');
+        navigate('/admincomment');
+    }
+
+    function handleNavigate3(){
+        navigate("/admin")
     }
 
     return (
@@ -109,7 +113,7 @@ function AdminEnquiry() {
                     </div>
                 </div>
                 <div style={{display: "flex", alignItems: "center", gap: " 40px", marginLeft: "-100px"}}>
-                    <p className={"asd"}>Add Tour</p>
+                    <p className={"asd"} onClick={handleNavigate3}>Add Tour</p>
                     <p onClick={handleNavigate} className={"asd"}>Enquiry</p>
                     <p onClick={handleNavigate1} className={"asd"}>Available Tours</p>
                     <p onClick={handleNavigate2} className={"asd"}>Comments</p>

@@ -15,13 +15,12 @@ function App() {
     return (
         <div>
             <Routes>
-                <Route path="/comment" element={<Comment />} />
                         <Route path="/admin" element={<Admin />} />
                         <Route path="/admincomment" element={<AdminComment />} />
                     <Route path="/login" element={<Login />} />
                 <Route path="/tour/:uuid" element={<TourDay />} />
                 <Route path="/batafsil/:tourId" element={<Batafsil />} />
-                {/*<Route path={"/enquiry"} element={<Enquiry />} />*/}
+              <Route path={"/enquiry"} element={<Enquiry />} />
                 <Route path="/enquiry/list" element={<AdminEnquiry />} />
                 <Route path="/" element={<LandingPage />} />
                 <Route path={"/login"} element={<Login />} />
