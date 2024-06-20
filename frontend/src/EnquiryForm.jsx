@@ -57,8 +57,8 @@ const EnquiryForm = () => {
                             {...register('phoneNumber', {
                                 required: 'Phone number is required!',
                                 pattern: {
-                                    value: /^\+998\d{8}$/,
-                                    message: 'Phone number must start with +998 and be followed by exactly 8 digits',
+                                    value: /^\+998\d{9}$/,
+                                    message: 'Phone number must start with +998 and be followed by exactly 9y digits',
                                 }
                             })}
                         />
