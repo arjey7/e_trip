@@ -7,7 +7,7 @@ import { fetchTourRequest } from "./redux/reducer/tourReducer.js";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const EnquiryForm = () => {
+const EnquiryForm = ({ selectedTourTitle }) => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { tours } = useSelector(state => state.tour);
     const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const EnquiryForm = () => {
                         <input
                             placeholder="Lastname..."
                             className={`form-control ${errors.lastname ? 'is-invalid' : ''}`}
-                            {...register('lastname', {required: 'Lastname is required'})}
+                            {...register('lastname', { required: 'Lastname is required' })}
                         />
                         {errors.lastname && <p className="error-message">{errors.lastname.message}</p>}
                     </div>
@@ -46,7 +46,7 @@ const EnquiryForm = () => {
                         <input
                             placeholder="Firstname..."
                             className={`form-control ${errors.firstname ? 'is-invalid' : ''}`}
-                            {...register('firstname', {required: 'Firstname is required'})}
+                            {...register('firstname', { required: 'Firstname is required' })}
                         />
                         {errors.firstname && <p className="error-message">{errors.firstname.message}</p>}
                     </div>
@@ -58,7 +58,7 @@ const EnquiryForm = () => {
                                 required: 'Phone number is required!',
                                 pattern: {
                                     value: /^\+998\d{9}$/,
-                                    message: 'Phone number must start with +998 and be followed by exactly 9y digits',
+                                    message: 'Phone number must start with +998 and be followed by exactly 9 digits',
                                 }
                             })}
                         />
@@ -92,10 +92,11 @@ const EnquiryForm = () => {
                         <select
                             className={`form-control ${errors.tourName ? 'is-invalid' : ''}`}
                             {...register('tourName', { required: 'Tour name must be selected' })}
+                            defaultValue={selectedTourTitle} // Set the initial value from prop
                         >
-                            <option value="">Select a tour</option>
+                            <option value="">{selectedTourTitle || 'Select a tour'}</option>
                             {tours.map((tour) => (
-                                <option key={tour.id} value={tour.name}>
+                                <option key={tour.id} value={tour.title}>
                                     {tour.title}
                                 </option>
                             ))}

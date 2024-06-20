@@ -10,40 +10,34 @@ import {
 } from './redux/reducer/tourDayReducer';
 import Account from "./files/Account.png";
 import { fetchToursRequest } from "./redux/reducer/userReducer.js";
-import axios from "axios";
-import logo from "./logo.svg"
+import logo from "./logo.svg";
 
 function TourDay() {
     const dispatch = useDispatch();
-    const { uuid } = useParams(); // Get the id from the URL
+    const { uuid } = useParams();
     const username = localStorage.getItem('username');
     const navigate = useNavigate();
 
-    // Redux state selectors
     const tourDays = useSelector(state => state.tourDay.tourDays);
     const loading = useSelector(state => state.tourDay.loading);
     const error = useSelector(state => state.tourDay.error);
 
-    // Form state
     const [formData, setFormData] = useState({
         title: '',
         description: '',
         photo: '',
-        tourId: uuid // Set the tourId to the id from the URL
+        tourId: uuid
     });
 
-    // Edit state
     const [isEditing, setIsEditing] = useState(false);
     const [current, setCurrent] = useState(null);
-    const [displayImg, setDisplayImg] = useState("")
+    const [displayImg, setDisplayImg] = useState("");
 
-    // Fetch initial data
     useEffect(() => {
         dispatch(fetchToursRequest());
         dispatch(fetchTourDaysRequest(uuid));
     }, [dispatch, uuid]);
 
-    // Handle form input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -52,38 +46,29 @@ function TourDay() {
         }));
     };
 
-    // Handle photo file selection
     const handlePhotoChange = (e) => {
-        setCurrent(null);
         const file = e.target.files[0];
-        const img=new FileReader();
-        img.readAsDataURL(file)
-        img.onloadend=()=>{
-            setDisplayImg(img.result)
-        }
+        const img = new FileReader();
+        img.readAsDataURL(file);
+        img.onloadend = () => {
+            setDisplayImg(img.result);
+        };
         setFormData(prevState => ({
             ...prevState,
             photo: file
         }));
     };
 
-    // Handle form submission
     const handleSubmit = (e) => {
-
         e.preventDefault();
-        console.log(formData)
-
-        e.preventDefault();
-        if (current!==null) {
+        if (current !== null) {
             dispatch(updateTourDayRequest({ ...formData, id: current.id }));
         } else {
             dispatch(addTourDayRequest(formData));
         }
         resetForm();
-        setCurrent(null);
     };
 
-    // Reset form fields after submission
     const resetForm = () => {
         setFormData({
             title: '',
@@ -92,43 +77,26 @@ function TourDay() {
             tourId: uuid
         });
         setIsEditing(false);
-       setCurrent(null)
+        setCurrent(null);
     };
 
-    // Handle editing a tour day entry
     const handleEdit = (tourDay) => {
-
-
-        setCurrent(tourDay)
-       if (current!=null){
-           setFormData({
-               title: tourDay.title,
-               description: tourDay.description,
-               photo: current.photo, // Assuming you don't want to change the photo during editing
-               tourId: uuid
-           });
-       }else{
-           setFormData({
-               title: tourDay.title,
-               description: tourDay.description,
-               photo: formData.photo, // Assuming you don't want to change the photo during editing
-               tourId: uuid
-           });
-       }
-
+        setCurrent(tourDay);
+        setFormData({
+            title: tourDay.title,
+            description: tourDay.description,
+            photo: '', // Clear the photo input for the new file
+            tourId: uuid
+        });
+        setDisplayImg(`http://localhost:8082/files/tourDay?name=${tourDay.photo}`); // Display current photo
     };
-    function edittt(){
-        console.log("ssssss")
-    }
 
-    // Handle deleting a tour day entry
     const handleDelete = (id) => {
         if (window.confirm("Are you sure you want to delete this tour day?")) {
             dispatch(deleteTourDayRequest(id));
         }
     };
 
-    // Handle user logout
     const handleLogout = () => {
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
@@ -136,7 +104,6 @@ function TourDay() {
         navigate('/login');
     };
 
-    // Navigation handlers
     const handleNavigate = () => {
         navigate('/');
     };
@@ -199,9 +166,9 @@ function TourDay() {
                     </div>
                     <div className="mb-3">
                         <label>
-                            {/*<img style={{width:"200px"}} src={current?`http://localhost:8082/files/tourDay?name=${current.photo}`:displayImg?displayImg:logo}/>*/}
                             <input style={{width: "400px"}} type="file" className="form-control" name="photo"
                                    onChange={handlePhotoChange}/>
+                            {/*{displayImg && <img src={displayImg} alt="Current" style={{ width: '100px', height: '100px' }} />}*/}
                         </label>
                     </div>
                     <button style={{backgroundColor: "red", borderColor: "red", marginTop: "-15px"}} type="submit"
@@ -209,32 +176,32 @@ function TourDay() {
                     </button>
                 </div>
             </form>
-                <table style={{ marginTop: "40px", width: "1370px", marginLeft: "90px" }}
-                       className="table table-striped">
-                    <thead>
-                    <tr className={"op"}>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Photo</th>
-                        <th>Actions</th>
+            <table style={{ marginTop: "40px", width: "1370px", marginLeft: "90px" }}
+                   className="table table-striped">
+                <thead>
+                <tr className={"op"}>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Photo</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {tourDays.map((tourDay, index) => (
+                    <tr className={"op"} key={index}>
+                        <td>{tourDay.title}</td>
+                        <td>{tourDay.description}</td>
+                        <td><img src={`http://localhost:8082/files/tourDay?name=${tourDay.photo}`} alt="Tour"
+                                 style={{ width: '100px', height: '100px' }} /></td>
+                        <td>
+                            <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>
+                            <button className="btn btn-danger" onClick={() => handleDelete(tourDay.id)}>Delete
+                            </button>
+                        </td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    {tourDays.map((tourDay, index) => (
-                        <tr className={"op"} key={index}>
-                            <td>{tourDay.title}</td>
-                            <td>{tourDay.description}</td>
-                            <td><img src={`http://localhost:8082/files/tourDay?name=${tourDay.photo}`} alt="Tour"
-                                     style={{ width: '100px', height: '100px' }} /></td>
-                            <td>
-                                <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>
-                                <button className="btn btn-danger" onClick={() => handleDelete(tourDay.id)}>Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
+                ))}
+                </tbody>
+            </table>
 
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}

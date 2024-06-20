@@ -19,13 +19,12 @@ import Location from "./files/free-icon-location-pin-7302427.png"
 import {fetchTourRequest} from "./redux/reducer/tourReducer.js";
 import {useDispatch,  useSelector} from "react-redux";
 
-
 const LandingPage = () => {
     const bukharaCoordinates = [39.7748, 64.4286];
     const dispatch = useDispatch();
     const location = useLocation();
     const [modalVisible, setModalVisible] = useState(false);
-
+    const [selectedTourTitle, setSelectedTourTitle] = useState('');
 
     function scrollToGroupElement () {
         const specificGroupArea = document.getElementById('specificGroupArea');
@@ -59,9 +58,10 @@ const LandingPage = () => {
         navigate(`/batafsil/${tourId}`);
     };
 
-    function toOrder() {
+    const handleOrderClick = (tourTitle) => {
+        setSelectedTourTitle(tourTitle);
         setModalVisible(true);
-    }
+    };
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);
@@ -100,7 +100,6 @@ const LandingPage = () => {
                 <p className={"text5"}>them with me oh baby.</p>
             </div>
 
-
             <div className="tour-list" id="specificGroupArea">
                 <p className={"p5"}>Group Tours</p>
                 {tours.map((tour, index) => (
@@ -118,7 +117,7 @@ const LandingPage = () => {
                             </div>
                             <div className="tour-buttons">
                                 <button className="details-btn" onClick={() => handleDetailsClick(tour.id)}>Batafsil</button>
-                                <button onClick={toOrder} className="order-btn">Order</button>
+                                <button onClick={() => handleOrderClick(tour.title)} className="order-btn">Order</button>
                             </div>
                         </div>
                     </div>
@@ -169,13 +168,12 @@ const LandingPage = () => {
 
             <div id="specificEnquiryArea">
                 <p className={"p4"}>Enquiry</p>
-                <EnquiryForm/>
+                <EnquiryForm />
             </div>
-
 
             <Rodal visible={modalVisible} onClose={handleCloseModal} height={400} width={700}>
                 <div className="rodal-content">
-                    <EnquiryForm/>
+                    <EnquiryForm selectedTourTitle={selectedTourTitle} />
                 </div>
             </Rodal>
         </div>
