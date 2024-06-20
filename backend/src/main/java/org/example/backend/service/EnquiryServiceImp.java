@@ -19,8 +19,8 @@ public class EnquiryServiceImp implements EnquiryService {
     }
 
     @Override
-    public List<Enquiry> getAllEnquiries() {
-        return enquiryRepo.findAll();
+    public List<Enquiry> getAllEnquiries(UUID idd) {
+        return enquiryRepo.getAllById(UUID.fromString(idd.toString()));
     }
 
     @Override

@@ -11,5 +11,5 @@ import java.util.UUID;
 
 @Repository
 public interface EnquiryRepo extends JpaRepository<Enquiry, UUID> {
-
+    List<Enquiry>getAllById(UUID idd);
 }

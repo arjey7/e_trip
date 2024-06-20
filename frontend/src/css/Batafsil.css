@@ -3,7 +3,27 @@
 
     margin: 0 auto;
 }
-
+.what{
+    width: 35px;
+    height: 35px;
+}
+.teleg{
+    width: 30px;
+    height: 30px;
+}
+.face{
+    width: 30px;
+    height: 30px;
+}
+.chiziq {
+    height: 1px;
+    background-color: #FF715B;
+    margin: 10px 0;
+}
+.ins{
+    width: 30px;
+    height: 30px;
+}
 .header-batafsil {
     width: 1440px;
     height: 70px;
@@ -132,9 +152,7 @@
     align-items: center;
     margin: 20px auto;
     padding: 20px;
-    background-color: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: calc(100% - 40px);
 }
 

@@ -23,9 +23,9 @@ public class EnquiryController {
     }
 
 
-    @GetMapping
-    public ResponseEntity<List<Enquiry>> getAllEnquiries() {
-        List<Enquiry> enquiries = enquiryService.getAllEnquiries();
+    @GetMapping("/{idd}")
+    public ResponseEntity<List<Enquiry>> getAllEnquiries(@PathVariable UUID idd) {
+        List<Enquiry> enquiries = enquiryService.getAllEnquiries(idd);
         return ResponseEntity.ok(enquiries);
     }
 
