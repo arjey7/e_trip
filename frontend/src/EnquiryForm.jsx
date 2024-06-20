@@ -36,7 +36,7 @@ const EnquiryForm = () => {
                     <input
                         placeholder="Lastname..."
                         className={`form-control ${errors.lastname ? 'is-invalid' : ''}`}
-                        {...register('lastname', { required: 'Lastname is required' })}
+                        {...register('lastname', {required: 'Lastname is required'})}
                     />
                     {errors.lastname && <p className="error-message">{errors.lastname.message}</p>}
                 </div>
@@ -44,7 +44,7 @@ const EnquiryForm = () => {
                     <input
                         placeholder="Firstname..."
                         className={`form-control ${errors.firstname ? 'is-invalid' : ''}`}
-                        {...register('firstname', { required: 'Firstname is required' })}
+                        {...register('firstname', {required: 'Firstname is required'})}
                     />
                     {errors.firstname && <p className="error-message">{errors.firstname.message}</p>}
                 </div>
@@ -52,7 +52,13 @@ const EnquiryForm = () => {
                     <input
                         placeholder="Phone number..."
                         className={`form-control ${errors.phoneNumber ? 'is-invalid' : ''}`}
-                        {...register('phoneNumber', { required: 'Phone number is required!' })}
+                        {...register('phoneNumber', {
+                            required: 'Phone number is required!',
+                            pattern: {
+                                value: /^\+998\d{9}$/,
+                                message: 'Phone number must start with +998 and be followed by exactly 9 digits',
+                            }
+                        })}
                     />
                     {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
                 </div>
