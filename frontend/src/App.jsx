@@ -20,7 +20,6 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/tour/:uuid" element={<TourDay />} />
                 <Route path="/batafsil/:tourId" element={<Batafsil />} />
-                <Route path={"/enquiry"} element={<Enquiry />} />
                 <Route path="/enquiry/list" element={<AdminEnquiry />} />
                 <Route path="/" element={<LandingPage />} />
                 <Route path={"/login"} element={<Login />} />
