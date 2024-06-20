@@ -3,18 +3,22 @@ import axios from 'axios';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import './styles/AdminEnquiry.css';
-import User from "./files/Account.png"
+import User from "./files/Account.png";
 import Account from "./files/Account.png";
-import {useNavigate} from "react-router-dom";
-import {fetchToursRequest} from "./redux/reducer/userReducer.js";
+import { useNavigate } from "react-router-dom";
+import { fetchToursRequest } from "./redux/reducer/userReducer.js";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AdminEnquiry() {
     const [enquiries, setEnquiries] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedEnquiry, setSelectedEnquiry] = useState(null);
     const [answerText, setAnswerText] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const username = localStorage.getItem('username');
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
     useEffect(() => {
         const token = localStorage.getItem('access_token');
         if (!token) {
@@ -33,13 +37,18 @@ function AdminEnquiry() {
         }
     }, [navigate]);
 
-
     const handleAnswerClick = (enquiry) => {
         setSelectedEnquiry(enquiry);
         setShowModal(true);
     };
 
     const handleSendAnswer = async () => {
+        if (!answerText.trim()) {
+            toast.error('Answer text cannot be empty');
+            return;
+        }
+
+        setIsLoading(true);
         try {
             await axios.post('http://localhost:8082/api/message', {
                 to: selectedEnquiry.email,
@@ -66,10 +75,12 @@ function AdminEnquiry() {
             setShowModal(false);
             setSelectedEnquiry(null);
             setAnswerText('');
-            alert('Answer sent and saved successfully!');
+            toast.success('Answer sent and saved successfully!');
         } catch (error) {
             console.error('Error sending answer:', error);
-            alert('Failed to send and save answer');
+            toast.error('Failed to send and save answer');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -80,24 +91,21 @@ function AdminEnquiry() {
         navigate('/login');
     };
 
-    function handleNavigate(){
+    function handleNavigate() {
         navigate('/enquiry/list');
     }
 
-    function handleNavigate1(){
-        navigate('/?scrollTo=groupTours');
-    }
-
-    function handleNavigate2(){
+    function handleNavigate2() {
         navigate('/admincomment');
     }
 
-    function handleNavigate3(){
-        navigate("/admin")
+    function handleNavigate3() {
+        navigate("/admin");
     }
 
     return (
         <div className="container">
+            <ToastContainer />
             <div style={{
                 display: "flex",
                 justifyContent: "center",
@@ -106,16 +114,16 @@ function AdminEnquiry() {
                 marginTop: "50px",
                 padding: "0px 50px 0px 50px"
             }}>
-                <div style={{display: "flex", alignItems: "center", gap: "20px", marginTop: "-10px"}}>
-                    <img src={Account} alt=""/>
+                <div style={{ display: "flex", alignItems: "center", gap: "20px", marginTop: "-10px" }}>
+                    <img src={Account} alt="" />
                     <div>
                         <h1 className={"h0"}> {username} </h1>
                     </div>
                 </div>
-                <div style={{display: "flex", alignItems: "center", gap: " 40px", marginLeft: "-100px"}}>
+                <div style={{ display: "flex", alignItems: "center", gap: "40px", marginLeft: "-100px" }}>
                     <p className={"asd"} onClick={handleNavigate3}>Add Tour</p>
                     <p onClick={handleNavigate} className={"asd"}>Enquiry</p>
-                    <p onClick={handleNavigate1} className={"asd"}>Available Tours</p>
+                    <p className={"asd"}>Available Tours</p>
                     <p onClick={handleNavigate2} className={"asd"}>Comments</p>
                 </div>
                 <div>
@@ -178,7 +186,9 @@ function AdminEnquiry() {
                         placeholder="Enter your answer..."
                         rows={4}
                     />
-                    <button className="modal-button" onClick={handleSendAnswer}>Send Answer</button>
+                    <button className="modal-button" onClick={handleSendAnswer} disabled={isLoading}>
+                        {isLoading ? 'Sending...' : 'Send Answer'}
+                    </button>
                 </div>
             </Rodal>
         </div>
