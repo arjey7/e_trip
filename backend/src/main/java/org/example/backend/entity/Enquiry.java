@@ -1,6 +1,7 @@
 package org.example.backend.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ public class Enquiry {
 
     private String firstname;
     private String lastname;
+    @Pattern(regexp = "^\\+998.*$", message = "Phone number must start with +998")
     private String phoneNumber;
     private String email;
     private String text;
