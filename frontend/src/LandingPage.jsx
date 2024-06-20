@@ -162,7 +162,7 @@ const LandingPage = () => {
                 </div>
                 <div className={"div4"}>
                     <img className={"img12"} src={Location} alt=""/>
-                    <p className={"text12"}>Manzil: Toshkent shahri...</p>
+                    <p className={"text12"}>Manzil: Buxoro shahri...</p>
                 </div>
             </div>
 
