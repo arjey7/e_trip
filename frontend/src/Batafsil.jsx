@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from "axios";
@@ -37,18 +38,18 @@ function Batafsil() {
 
     useEffect(() => {
         axios.get(`http://localhost:8082/api/tourDay/${tourId}`)
-            .then(res => {
-                setBatafsil(res.data);
-                if (res.data.length > 0) {
-                    const tourDetails = res.data[0].tour;
-                    setTourTitle(tourDetails.title);
-                    setVideoSrc(`http://localhost:8082/files/video?name=${res.data[0].video}`);
-                    setImageSrc(`http://localhost:8082/files/img?name=${tourDetails.photo}`);
-                    setTotalCost(tourDetails.cost);
-                    setTourDescription(tourDetails.description);
-                    setDay(tourDetails.day);
-                }
-            })
+    .then(res => {
+            setBatafsil(res.data);
+            if (res.data.length > 0) {
+                const tourDetails = res.data[0].tour;
+                setTourTitle(tourDetails.title);
+                setVideoSrc(`http://localhost:8082/files/video?name=${res.data[0].video}`);
+                setImageSrc(`http://localhost:8082/files/img?name=${tourDetails.photo}`);
+                setTotalCost(tourDetails.cost);
+                setTourDescription(tourDetails.description);
+                setDay(tourDetails.day);
+            }
+        })
             .catch(error => {
                 console.error("Error fetching tour details:", error);
             });
@@ -95,6 +96,7 @@ function Batafsil() {
             <p className="price">Price: {totalCost}</p>
             <button onClick={toOrder} className="order-batafsil">Order</button>
 
+
             <div className="groups" ref={groupToursRef}>
                 {videoSrc && (
                     <video
@@ -110,65 +112,65 @@ function Batafsil() {
                 <div
                     key={index}
                     className="batafsil-item"
-                    style={{ top: `${initialTop + index * increment}px` }}
+                    style={{top: `${initialTop + index * increment}px`}}
                 >
                     <img src={`http://localhost:8082/files/img?name=${item.photo}`} className="image-batafsil2"
-                         alt={`Day ${item.day} Image`} />
-                    <div className="batafsil-details">
+                        alt={`Day ${item.day} Image`} />
+                        <div className="batafsil-details">
                         <p className="batafsil-title">Day: {item.day}</p>
-                        <h3 className="batafsil-subtitle">{item.title}</h3>
-                        <p className="batafsil-description">{item.description}</p>
-                        <img className={"rasmcha"} src={p} alt="" />
-                        <p className="batafsil-description2">{item.tour.description2}</p>
-                    </div>
-                </div>
-            ))}
-            <div ref={aboutUsRef}>
-                <p className="add">Additional Information</p>
-                <p className="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut
-                    commodo sagittis, sapien dui mattis dui, non pulvinar
-                    lorem felis nec erat Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar
-                    lorem felis nec eratLorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar
-                    lorem felis nec eratLorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nunc maximu </p>
-            </div>
-            <p className="comment-batafsil">Comment</p>
-            <Comment />
-            <div className="footer-container" ref={contactRef}>
-                <div className="you">You can dream, create, design, and buildsa the most <br /> wonderful place.</div>
-                <img className="footer-img" src={u} alt="Phone Icon" />
-                <p className="num2">+0123 456 987, +0123 456 987</p>
-                <img className="footer-img2" src={i} alt="Email Icon" />
-                <p className="email">info@example.com</p>
-                <img className="footer-img3" src={o} alt="Web Icon" />
-                <p className="www">www.example.com</p>
-            </div>
-            <div ref={footerRef}>
-                <div className="footer-group">- Group Us</div>
-                <div className="footer-group2">- About Us</div>
-                <div className="footer-group3">- Connection</div>
-                <div className="footer-group4">- Comment</div>
-                <div className="support">Support:</div>
-                <img src={w} className="teleg-3" alt="" />
-                <img src={q} className="what-3" alt="" />
-                <p className="teleg-comment">t.me/barlasvoyageAdmin</p>
-                <p className="num3">+9988888888</p>
-                <div className="img-icon">
-                    <img className="teleg-4" src={q} alt="Telegram" />
-                    <img className="what-4" src={w} alt="WhatsApp" />
-                    <img src={e} alt="Facebook" />
-                    <img src={r} alt="Instagram" />
-                </div>
-            </div>
-            <Rodal visible={modalVisible} onClose={handleCloseModal} height={400} width={700}>
-                <div className="rodal-content">
-                    <EnquiryForm />
-                </div>
-            </Rodal>
+                <h3 className="batafsil-subtitle">{item.title}</h3>
+    <p className="batafsil-description">{item.description}</p>
+    <img className={"rasmcha"} src={p} alt="" />
+    <p className="batafsil-description2">{item.tour.description2}</p>
+</div>
+</div>
+))}
+    <div ref={aboutUsRef}>
+        <p className="add">Additional Information</p>
+        <p className="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut
+            commodo sagittis, sapien dui mattis dui, non pulvinar
+            lorem felis nec erat Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar
+            lorem felis nec eratLorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar
+            lorem felis nec eratLorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nunc maximu </p>
+    </div>
+    <p className="comment-batafsil">Comment</p>
+    <Comment />
+    <div className="footer-container" ref={contactRef}>
+        <div className="you">You can dream, create, design, and buildsa the most <br /> wonderful place.</div>
+        <img className="footer-img" src={u} alt="Phone Icon" />
+        <p className="num2">+0123 456 987, +0123 456 987</p>
+        <img className="footer-img2" src={i} alt="Email Icon" />
+        <p className="email">info@example.com</p>
+        <img className="footer-img3" src={o} alt="Web Icon" />
+        <p className="www">www.example.com</p>
+    </div>
+    <div ref={footerRef}>
+        <div className="footer-group">- Group Us</div>
+        <div className="footer-group2">- About Us</div>
+        <div className="footer-group3">- Connection</div>
+        <div className="footer-group4">- Comment</div>
+        <div className="support">Support:</div>
+        <img src={w} className="teleg-3" alt="" />
+        <img src={q} className="what-3" alt="" />
+        <p className="teleg-comment">t.me/barlasvoyageAdmin</p>
+        <p className="num3">+9988888888</p>
+        <div className="img-icon">
+            <img className="teleg-4" src={q} alt="Telegram" />
+            <img className="what-4" src={w} alt="WhatsApp" />
+            <img src={e} alt="Facebook" />
+            <img src={r} alt="Instagram" />
         </div>
-    );
+    </div>
+    <Rodal visible={modalVisible} onClose={handleCloseModal} height={400} width={700}>
+        <div className="rodal-content">
+            <EnquiryForm />
+        </div>
+    </Rodal>
+</div>
+);
 }
 
 export default Batafsil;

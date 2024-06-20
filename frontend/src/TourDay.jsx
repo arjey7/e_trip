@@ -199,7 +199,7 @@ function TourDay() {
                     </div>
                     <div className="mb-3">
                         <label>
-                            <img style={{width:"200px"}} src={current?`http://localhost:8082/files/tourDay?name=${current.photo}`:displayImg?displayImg:logo}/>
+                            {/*<img style={{width:"200px"}} src={current?`http://localhost:8082/files/tourDay?name=${current.photo}`:displayImg?displayImg:logo}/>*/}
                             <input style={{width: "400px"}} type="file" className="form-control" name="photo"
                                    onChange={handlePhotoChange}/>
                         </label>
