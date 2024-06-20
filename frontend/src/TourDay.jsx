@@ -153,14 +153,14 @@ function TourDay() {
                     marginTop: "50px"
                 }}>
                     <div className="mb-3">
-                        <input placeholder={"Title"} style={{ width: "400px" }} type="text" className="form-control"
+                        <input placeholder={"Title"} style={{width: "400px"}} type="text" className="form-control"
                                name="title"
-                               value={formData.title} onChange={handleChange} />
+                               value={formData.title} onChange={handleChange}/>
                     </div>
                     <div className="mb-3">
-                        <input placeholder={"Description"} style={{ width: "400px" }} type="text" className="form-control"
+                        <input placeholder={"Description"} style={{width: "400px"}} type="text" className="form-control"
                                name="description"
-                               value={formData.description} onChange={handleChange} />
+                               value={formData.description} onChange={handleChange}/>
                     </div>
                     <div className="mb-3">
                         <label>
@@ -173,33 +173,41 @@ function TourDay() {
                             className="btn btn-primary">{isEditing ? 'Update' : 'Add'} Tour Day
                     </button>
                 </div>
+                <div style={{                 display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "10px",
+                    marginTop: "50px"}}>
+                    <table style={{marginTop: "40px", width: "1370px", marginLeft: "90px"}}
+                           className="table table-striped">
+                        <thead>
+                        <tr className={"op"}>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Photo</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {tourDays.map((tourDay, index) => (
+                            <tr className={"op"} key={index}>
+                                <td>{tourDay.title}</td>
+                                <td>{tourDay.description}</td>
+                                <td><img src={`http://localhost:8082/files/tourDay?name=${tourDay.photo}`} alt="Tour"
+                                         style={{width: '100px', height: '100px'}}/></td>
+                                <td>
+                                    <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit
+                                    </button>
+                                    <button className="btn btn-danger" onClick={() => handleDelete(tourDay.id)}>Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                </div>
             </form>
-            <table style={{ marginTop: "40px", width: "1370px", marginLeft: "90px" }}
-                   className="table table-striped">
-                <thead>
-                <tr className={"op"}>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Photo</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {tourDays.map((tourDay, index) => (
-                    <tr className={"op"} key={index}>
-                        <td>{tourDay.title}</td>
-                        <td>{tourDay.description}</td>
-                        <td><img src={`http://localhost:8082/files/tourDay?name=${tourDay.photo}`} alt="Tour"
-                                 style={{ width: '100px', height: '100px' }} /></td>
-                        <td>
-                            <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>
-                            <button className="btn btn-danger" onClick={() => handleDelete(tourDay.id)}>Delete
-                            </button>
-                        </td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+
 
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
