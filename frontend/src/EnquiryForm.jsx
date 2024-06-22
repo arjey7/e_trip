@@ -19,7 +19,7 @@ const EnquiryForm = ({ selectedTourTitle }) => {
     const onSubmit = async (data) => {
         try {
             console.log(data);
-            const response = await axios.post('http://localhost:8082/api/enquiry', data);
+            const response = await axios.post('http://localhost:9090/api/enquiry', data);
             console.log(response.data);
             toast.success('Enquiry submitted successfully!');
             reset();

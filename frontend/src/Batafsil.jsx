@@ -37,14 +37,14 @@ function Batafsil() {
     const footerRef = useRef(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:8082/api/tourDay/${tourId}`)
+        axios.get(`http://localhost:9090/api/tourDay/${tourId}`)
     .then(res => {
             setBatafsil(res.data);
             if (res.data.length > 0) {
                 const tourDetails = res.data[0].tour;
                 setTourTitle(tourDetails.title);
-                setVideoSrc(`http://localhost:8082/files/video?name=${res.data[0].video}`);
-                setImageSrc(`http://localhost:8082/files/img?name=${tourDetails.photo}`);
+                setVideoSrc(`http://localhost:9090/files/video?name=${res.data[0].video}`);
+                setImageSrc(`http://localhost:9090/files/img?name=${tourDetails.photo}`);
                 setTotalCost(tourDetails.cost);
                 setTourDescription(tourDetails.description);
                 setDay(tourDetails.day);
@@ -114,7 +114,7 @@ function Batafsil() {
                         className="batafsil-item"
                         style={{top: `${initialTop + index * increment}px`}}
                     >
-                        <img src={`http://localhost:8082/files/img?name=${item.photo}`} className="image-batafsil2"
+                        <img src={`http://localhost:9090/files/img?name=${item.photo}`} className="image-batafsil2"
                              alt={`Day ${item.day} Image`}/>
                         <div className="batafsil-details">
                             <p className="batafsil-title">Day: {item.day}</p>
