@@ -69,7 +69,7 @@ function Admin() {
 
         if (formData.photo) {
             photoData.append('file', formData.photo);
-            const photoResponse = await fetch('http://localhost:8082/files/img', {
+            const photoResponse = await fetch('http://localhost:9090/files/img', {
                 method: 'POST',
                 body: photoData
             });
@@ -79,7 +79,7 @@ function Admin() {
 
         if (formData.video) {
             videoData.append('file', formData.video);
-            const videoResponse = await fetch('http://localhost:8082/files/video', {
+            const videoResponse = await fetch('http://localhost:9090/files/video', {
                 method: 'POST',
                 body: videoData
             });
@@ -249,10 +249,10 @@ function Admin() {
                             <td>{tour.description}</td>
                             <td>{tour.description2}</td>
                             <td>{tour.text}</td>
-                            <td><img src={`http://localhost:8082/files/img?name=${tour.photo}`} alt="Tour"/></td>
+                            <td><img src={`http://localhost:9090/files/img?name=${tour.photo}`} alt="Tour"/></td>
                             <td>
                                 <video width="320" height="240" controls>
-                                    <source src={`http://localhost:8082/files/video?name=${tour.video}`} type="video/mp4"/>
+                                    <source src={`http://localhost:9090/files/video?name=${tour.video}`} type="video/mp4"/>
                                     Your browser does not support the video tag.
                                 </video>
                             </td>

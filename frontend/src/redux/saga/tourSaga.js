@@ -8,7 +8,7 @@ import {
 
 function* fetchTours(action) {
     try {
-        const response = yield call(axios.get, `http://localhost:8082/api/tour/getAll`);
+        const response = yield call(axios.get, `http://localhost:9090/api/tour/getAll`);
         yield put(fetchTourSuccess(response.data));
     } catch (error) {
         console.log('Error fetching tours:', error.message);
