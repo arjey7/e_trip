@@ -17,9 +17,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/files")
 public class FileController {
-    private static final String UPLOAD_DIR = "backend/e_video/";
-    private static final String IMAGE_UPLOAD_DIR = "backend/resors/";
-    private static final String UPLOAD_DIRS = "backend/e_tour/";
+    private static final String UPLOAD_DIR = "backend/files/e_video/";
+    private static final String IMAGE_UPLOAD_DIR = "backend/files/resors/";
+    private static final String UPLOAD_DIRS = "backend/files/e_tour/";
 
     @PostMapping("/img")
     public String saveProductImg(@RequestParam MultipartFile file) throws IOException {

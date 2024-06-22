@@ -17,7 +17,7 @@ function Admin() {
     const tours = useSelector(state => state.user.tours);
     const loading = useSelector(state => state.user.loading);
     const error = useSelector(state => state.user.error);
-    const username = localStorage.getItem('username'); // Retrieve the username
+    const username = localStorage.getItem('username');
 
     const [formData, setFormData] = useState({
         id: '',
