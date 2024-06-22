@@ -128,7 +128,7 @@ function Admin() {
     };
 
     function handleNavigate(){
-        navigate('/');
+        navigate('/enquiry/list');
     }
 
     function handleNavigate1(){
