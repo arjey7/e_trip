@@ -11,7 +11,6 @@ import Batafsil from "./Batafsil.jsx";
 import Login from "./Login.jsx";
 
 function App() {
-
     return (
         <div>
             <Routes>
