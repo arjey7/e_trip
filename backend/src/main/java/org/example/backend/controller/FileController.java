@@ -15,11 +15,11 @@ import java.nio.file.Paths;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/files")
+@RequestMapping("/api/files")
 public class FileController {
-    private static final String UPLOAD_DIR = "backend/e_video/";
-    private static final String IMAGE_UPLOAD_DIR = "backend/resors/";
-    private static final String UPLOAD_DIRS = "backend/e_tour/";
+    private static final String UPLOAD_DIR = "backend/files/e_video/";
+    private static final String IMAGE_UPLOAD_DIR = "backend/files/resors/";
+    private static final String UPLOAD_DIRS = "backend/files/e_tour/";
 
     @PostMapping("/img")
     public String saveProductImg(@RequestParam MultipartFile file) throws IOException {
@@ -76,7 +76,7 @@ public class FileController {
 //    }
 @GetMapping("/video")
 public void getVideo(@RequestParam String name, HttpServletRequest request, HttpServletResponse response) throws IOException {
-    File videoFile = new File("backend/e_video/" + name);
+    File videoFile = new File("backend/files/e_video/" + name);
     if (!videoFile.exists()) {
         response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         return;

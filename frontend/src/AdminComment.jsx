@@ -18,7 +18,7 @@ function AdminComment(props) {
 
 
     function getAll() {
-        axios.get("http://localhost:9090/api/comment/adminstatus/true")
+        axios.get("http://localhost:8080/api/comment/adminstatus/true")
             .then(res => {
                 setAdminComment(res.data);
             })
@@ -28,7 +28,7 @@ function AdminComment(props) {
     }
 
     function updateStatus(id, status) {
-        axios.put(`http://localhost:9090/api/comment/${id}/status`, { status })
+        axios.put(`http://localhost:8080/api/comment/${id}/status`, { status })
             .then(() => {
                 // Update the adminstatus to false
                 updateAdminStatus(id, false);
@@ -44,7 +44,7 @@ function AdminComment(props) {
     }
 
     function updateAdminStatus(id, adminStatus) {
-        axios.put(`http://localhost:9090/api/comment/${id}/adminstatus`, { adminstatus: adminStatus })
+        axios.put(`http://localhost:8080/api/comment/${id}/adminstatus`, { adminstatus: adminStatus })
             .then(res => {
                 console.log("Admin status updated successfully:", res.data);
             })

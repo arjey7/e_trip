@@ -11,7 +11,7 @@ function Comment(props) {
     const { handleSubmit, register, reset } = useForm();
 
     function mySubmit(data) {
-        axios.post("http://localhost:9090/api/comment", data).then(res => {
+        axios.post("http://localhost:8080/api/comment", data).then(res => {
             setComment(res.data);
             toast.success("Comment added successfully!");
         }).catch(error => {
