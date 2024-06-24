@@ -104,7 +104,7 @@ const LandingPage = () => {
                 <p className={"p5"}>Group Tours</p>
                 {tours.map((tour, index) => (
                     <div key={index} className="tour-item">
-                        <img  src={`http://localhost:9090/api/files/img?name=${tour.photo}`} alt={tour.title}
+                        <img  src={`http://localhost:8080/api/files/img?name=${tour.photo}`} alt={tour.title}
                               className="tour-img"/>
                         <div className="tour-details">
                             <h2>{tour.title}</h2>
