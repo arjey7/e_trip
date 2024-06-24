@@ -85,16 +85,14 @@ function TourDay() {
         setFormData({
             title: tourDay.title,
             description: tourDay.description,
-            photo: '', // Clear the photo input for the new file
+            photo: '',
             tourId: uuid
         });
         setDisplayImg(`http://localhost:9090/files/tourDay?name=${tourDay.photo}`); // Display current photo
     };
 
     const handleDelete = (id) => {
-        if (window.confirm("Are you sure you want to delete this tour day?")) {
-            dispatch(deleteTourDayRequest(id));
-        }
+        dispatch(deleteTourDayRequest(id));
     };
 
     const handleLogout = () => {
@@ -105,15 +103,11 @@ function TourDay() {
     };
 
     const handleNavigate = () => {
-        navigate('/');
-    };
-
-    const handleNavigate1 = () => {
-        navigate('/');
+        navigate('/enquiry/list');
     };
 
     const handleNavigate2 = () => {
-        navigate('/comment');
+        navigate('/admincomment');
     };
 
     const handleNavigate3 = () => {
@@ -136,7 +130,7 @@ function TourDay() {
                 <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
                     <p className={"asd"} onClick={handleNavigate3}>Add Tour</p>
                     <p onClick={handleNavigate} className={"asd"}>Enquiry</p>
-                    <p onClick={handleNavigate1} className={"asd"}>Available Tours</p>
+                    <p  className={"asd"}>Available Tours</p>
                     <p onClick={handleNavigate2} className={"asd"}>Comments</p>
                 </div>
                 <div>
@@ -183,7 +177,7 @@ function TourDay() {
                 marginTop: "50px"
 
             }}>
-                <table style={{marginTop: "40px", width: "1370px", marginLeft: "1 px"}}
+                <table style={{marginTop: "40px", width: "1370px", marginLeft: "10px"}}
                        className="table table-striped">
                     <thead>
                     <tr className={"op"}>
@@ -202,7 +196,7 @@ function TourDay() {
                                      style={{width: '100px', height: '100px'}}/></td>
                             <td>
                                 <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>
-                                <button className="btn btn-danger" onClick={() => handleDelete(tourDay.id)}>Delete
+                                <button className="btn btn-danger m-2" onClick={() => handleDelete(tourDay.id)}>Delete
                                 </button>
                             </td>
                         </tr>

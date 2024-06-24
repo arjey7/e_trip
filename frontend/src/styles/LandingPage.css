@@ -238,9 +238,9 @@ h5 {
 }
 
 .div1 {
-    background-image: url("src/files/nature-water-sea-travel-wallpaper-preview.jpg");
+    background-image: url("../files/nature-water-sea-travel-wallpaper-preview.jpg");
     background-repeat: no-repeat;
-    background-size: cover; /* or use 'contain' based on your requirement */
+    background-size: cover;
     width: 1390px;
     height: 700px;
     margin-left: 40px;
