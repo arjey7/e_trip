@@ -43,7 +43,7 @@ function* updateTourDay(action) {
         if (action.payload.photo && typeof action.payload.photo !== 'string') {
             const formData = new FormData();
             formData.append("file", action.payload.photo);
-            const res = yield call(() => axios.post("http://localhost:9090/files/tourDay", formData));
+            const res = yield call(() => axios.post("http://localhost:9090/api/files/tourDay", formData));
             action.payload.photo = res.data;
         }
         const response = yield call(axios.put, `http://localhost:9090/api/tourDay/${action.payload.id}`, action.payload);

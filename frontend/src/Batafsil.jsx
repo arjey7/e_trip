@@ -43,8 +43,8 @@ function Batafsil() {
             if (res.data.length > 0) {
                 const tourDetails = res.data[0].tour;
                 setTourTitle(tourDetails.title);
-                setVideoSrc(`http://localhost:9090/files/video?name=${res.data[0].video}`);
-                setImageSrc(`http://localhost:9090/files/img?name=${tourDetails.photo}`);
+                setVideoSrc(`http://localhost:9090/api/files/video?name=${res.data[0].video}`);
+                setImageSrc(`http://localhost:9090/api/files/img?name=${tourDetails.photo}`);
                 setTotalCost(tourDetails.cost);
                 setTourDescription(tourDetails.description);
                 setDay(tourDetails.day);

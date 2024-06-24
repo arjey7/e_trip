@@ -27,8 +27,8 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST,"/api/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/files/img","/files/video","/files/tourDay").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/files/img","/files/video","/api/tour","/api/tourDay","/files/tourDay","/api/enquiry/{idd}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/files/img","/api/files/video","/api/files/tourDay").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/files/img","/api/files/video","/api/tour","/api/tourDay","/files/tourDay","/api/enquiry/{idd}").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/tour","/api/tourDay").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/tour/getAll").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/comment").permitAll()
