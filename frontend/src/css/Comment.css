@@ -4,6 +4,10 @@
     margin: 40px auto;
     padding: 0 20px;
 }
+.carousel-container {
+    width: 94%; /* Adjust the percentage as needed */
+    margin: 0 auto; /* Center the Carousel */
+}
 /* Styling for each comment container */
 .comment-container {
     padding: 20px;
@@ -12,8 +16,10 @@
     width: 350px;
     margin-top: 20px;
     height: 200px;
-    border: 1px solid rgb(255, 113, 91);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /*border: 1px solid rgb(255, 113, 91);*/
+    border-top: 10px solid  #00D594;
+;
+    box-shadow: 0 20px 8px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
@@ -27,7 +33,7 @@
 .comment-name {
     font-size: 22px;
     font-weight: bold;
-    margin-left: 100px;
+
     color: #333;
     text-transform: capitalize;
 }

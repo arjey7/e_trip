@@ -4,7 +4,7 @@
 .page-container {
     padding: 20px;
     margin: 0 auto;
-    max-width: 1200px;
+    width: 1400px;
 
 }
 
@@ -68,4 +68,21 @@
 
 .page-button:hover {
     background-color: #45a049;
+}
+.comment-text{
+  display: flex;
+    justify-content: center;
+}
+.comment-container{
+    width: 515.22px;
+    height: 383.05px;
+    top: 6759.85px;
+    left: 78px;
+    gap: 0px;
+    opacity: 0px;
+
+}
+.comment-name{
+    display: flex;
+    justify-content: center;
 }
