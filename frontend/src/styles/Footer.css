@@ -4,6 +4,8 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    width: 117.2%;
+    margin-left: -112px;
 }
 
 .footer-content {

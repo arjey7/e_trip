@@ -8,7 +8,7 @@ import 'leaflet/dist/leaflet.css';
 import EnquiryForm from './EnquiryForm';
 import { fetchTourRequest } from "./redux/reducer/tourReducer.js";
 import { useDispatch, useSelector } from "react-redux";
-import NavImage from "./files/barlass 2.png";
+import NavImage from "./files/barlass 2.svg";
 import Logo from './files/left side.png';
 import Ethernet from './files/ethernet.png';
 import Naushnik from './files/naushnik.png';
@@ -128,6 +128,7 @@ const LandingPage = () => {
                     </div>
                     <p className='montserrat-font'>ENG</p>
                 </div>
+                <div className={"line"}></div>
                 <div className='hero-text'>
                     <p>Travel through the land and observe how He began creation.</p>
                     <div className='hero-subtext'>
