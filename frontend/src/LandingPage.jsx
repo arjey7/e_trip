@@ -24,6 +24,7 @@ import 'react-multi-carousel/lib/styles.css';
 import ReactStars from 'react-rating-stars-component';
 import Footer from "./Footer.jsx";
 import {useForm} from "react-hook-form";
+import {toast, ToastContainer} from "react-toastify";
 
 const LandingPage = () => {
     const dispatch = useDispatch();
@@ -41,6 +42,12 @@ const LandingPage = () => {
         specificGroupArea.scrollIntoView({ behavior: 'smooth' });
     }
 
+    function scrollToFooterElement() {
+        const specificFooterArea = document.getElementById('specificFooterArea');
+        specificFooterArea.scrollIntoView({ behavior: 'smooth' });
+    }
+
+
     const { tours, loading, error } = useSelector(state => state.tour);
 
     useEffect(() => {
@@ -52,7 +59,7 @@ const LandingPage = () => {
     }, []);
 
     function getAll() {
-        axios.get('http://localhost:8080/api/comment/approved')
+        axios.get('http://localhost:8081/api/comment/approved')
             .then(res => {
                 setPage(res.data);
             })
@@ -91,18 +98,20 @@ const LandingPage = () => {
         }
     };
 
-    const { register,reset, formState: { errors },handleSubmit } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [fullName, setFullName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
 
 
     function mySubmit(params) {
             try {
-                 axios.post('http://localhost:8080/api/request', params).then(()=>{
+                 axios.post('http://localhost:8081/api/request', params).then(()=>{
                      console.log("asd")});
                  reset()
+                toast.success('Request submitted successfully, please wait for our call!');
             } catch (error) {
                 console.error('Error saving request:', error);
+                toast.error('Failed to submit request');
             }
     }
 
@@ -112,7 +121,7 @@ const LandingPage = () => {
                 <div className='navbar'>
                     <img className='img1' src={NavImage} alt=""/>
                     <div className='nav-body'>
-                        <p className='montserrat'>About us</p>
+                        <p className='montserrat' onClick={scrollToGroupElement}>About us</p>
                         <p className='montserrat'>Destinations</p>
                         <p className='montserrat'>Inspiration</p>
                         <p className='montserrat'>Contact us</p>
@@ -127,7 +136,7 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
-            <div className='div-info'>
+            <div className='div-info' id="specificGroupArea">
                 <div className='image-container'>
                     <img className='img2' src={Logo} alt=""/>
                 </div>
@@ -165,11 +174,11 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="cd" id="specificGroupArea">
+            <div className="cd" >
                 {tours.map((tour, index) => (
                     <div key={index} className="">
                         <div className={"cm"}>
-                            <img className={"cm"} src={`http://localhost:8080/api/files/img?name=${tour.photo}`}
+                            <img className={"cm"} src={`http://localhost:8081/api/files/img?name=${tour.photo}`}
                                  alt=""/>
                             <div className="ms">
                                 <h2>{tour.title}</h2>
@@ -189,6 +198,7 @@ const LandingPage = () => {
                 ))}
             </div>
             <div className='div-request'>
+                <ToastContainer />
                 <img className='girl-img' src={Apacha} alt=""/>
                 <div className='request-text'>
                     <p className='text-class'>Would you like us to organize a tour tailored to your preferences?</p>
@@ -205,15 +215,20 @@ const LandingPage = () => {
                                 required: 'Phone number is required!'
                             })}
                         />
-                        <input
-                            placeholder="phone number..."
-                            className={"input"}
-                            defaultValue={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                            {...register('phoneNumber', {
-                                required: 'Phone number is required!'
-                            })}
-                        />
+
+                            <input
+                                placeholder="Phone number..."
+                                className={`form-control ${errors.phoneNumber ? 'is-invalid' : ''}`}
+                                {...register('phoneNumber', {
+                                    required: 'Phone number is required!',
+                                    pattern: {
+                                        value: /^\+998\d{9}$/,
+                                        message: 'Phone number must start with +998 and be followed by exactly 9 digits',
+                                    }
+                                })}
+                            />
+                            {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
+
 
                         <button className='request-button' type='submit'>Call me back</button>
                     </form>
@@ -230,8 +245,8 @@ const LandingPage = () => {
                     <div className={"d"}>
                         <img className={"wit"} width={100} src={today} alt=""/>
                         <img className={"wit"} src={nul} alt=""/>
-                        <div style={{display:"flex"}}>
-                            <img className={"wit"} src={p} alt=""/>
+                        <div style={{display: "flex"}}>
+                        <img className={"wit"} src={p} alt=""/>
                             <img className={"wit"} src={m} alt=""/>
                         </div>
                     </div>
@@ -262,8 +277,8 @@ const LandingPage = () => {
                     ))}
                 </Carousel>
             </div>
-            <button className={"buttin"}>Написать отзыв</button>
-            <Footer />
+            <button className={"buttin"} >Написать отзыв</button>
+            <Footer  />
             <Rodal visible={modalVisible} onClose={handleCloseModal} height={400} width={700}>
                 <div className="rodal-content">
                     <EnquiryForm selectedTourTitle={selectedTourTitle} />

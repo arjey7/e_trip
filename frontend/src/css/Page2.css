@@ -23,7 +23,6 @@
 }
 
 .header p {
-    position: relative;
     padding-bottom: 5px;
     transition: transform 0.3s;
 }
