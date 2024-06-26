@@ -98,7 +98,7 @@ const LandingPage = () => {
 
     function mySubmit(params) {
             try {
-                 axios.post('http://localhost:8080/api/request', params).then(()=>{
+                 axios.post('http://localhost:8081/api/request', params).then(()=>{
                      console.log("asd")});
                  reset()
             } catch (error) {
@@ -169,7 +169,7 @@ const LandingPage = () => {
                 {tours.map((tour, index) => (
                     <div key={index} className="">
                         <div className={"cm"}>
-                            <img className={"cm"} src={`http://localhost:8080/api/files/img?name=${tour.photo}`}
+                            <img className={"cm"} src={`http://localhost:8081/api/files/img?name=${tour.photo}`}
                                  alt=""/>
                             <div className="ms">
                                 <h2>{tour.title}</h2>

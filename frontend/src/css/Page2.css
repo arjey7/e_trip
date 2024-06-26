@@ -110,7 +110,6 @@
     display: flex;
     align-items: center;
     margin-top: 103px;
-    margin-left: -540px;
 
 }
 
@@ -125,6 +124,7 @@
     letter-spacing: 0%;
     text-align: center;
     margin-right: 33px;
+    margin-top: -40px;
 }
 
 .desc-card {
