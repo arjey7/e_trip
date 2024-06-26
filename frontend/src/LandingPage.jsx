@@ -230,16 +230,20 @@ const LandingPage = () => {
                     <div className={"d"}>
                         <img className={"wit"} width={100} src={today} alt=""/>
                         <img className={"wit"} src={nul} alt=""/>
-                        <img className={"wit"} src={p} alt=""/>
-                        <img className={"wit"} src={m} alt=""/>
+                        <div style={{display:"flex"}}>
+                            <img className={"wit"} src={p} alt=""/>
+                            <img className={"wit"} src={m} alt=""/>
+                        </div>
                     </div>
+
+
                 </div>
+
             </div>
             <div className="carousel-container">
                 <Carousel
-
                     responsive={responsive}>
-                    {page.map((comment, index) => (
+                {page.map((comment, index) => (
                         <div key={index} className="comment-container">
                             <div className={"m"}>
                                 <div className={"op"}></div>
