@@ -37,14 +37,14 @@ function Batafsil() {
     const footerRef = useRef(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/tourDay/${tourId}`)
+        axios.get(`http://localhost:8081/api/tourDay/${tourId}`)
     .then(res => {
             setBatafsil(res.data);
             if (res.data.length > 0) {
                 const tourDetails = res.data[0].tour;
                 setTourTitle(tourDetails.title);
-                setVideoSrc(`http://localhost:8080/api/files/video?name=${res.data[0].video}`);
-                setImageSrc(`http://localhost:8080/api/files/img?name=${tourDetails.photo}`);
+                setVideoSrc(`http://localhost:8081/api/files/video?name=${res.data[0].video}`);
+                setImageSrc(`http://localhost:8081/api/files/img?name=${tourDetails.photo}`);
                 setTotalCost(tourDetails.cost);
                 setTourDescription(tourDetails.description);
                 setDay(tourDetails.day);
@@ -106,7 +106,7 @@ function Batafsil() {
                         className="video"
                     />
                 )}
-                {imageSrc && <img src={imageSrc} className="image-batafsil" alt="Tour Image"/>}
+                {imageSrc && <img src={imageSrc}  className="image-batafsil" alt="Tour Image"/>}
             </div>
             {batafsil.map((item, index) => (
                 <div key={index}>
@@ -114,7 +114,7 @@ function Batafsil() {
                         className="batafsil-item"
                         style={{top: `${initialTop + index * increment}px`}}
                     >
-                        <img src={`http://localhost:8080/files/img?name=${item.photo}`} className="image-batafsil2"
+                        <img src={`http://localhost:8081/files/img?name=${item.photo}`} className="image-batafsil2"
                              alt={`Day ${item.day} Image`}/>
                         <div className="batafsil-details">
                             <p className="batafsil-title">Day: {item.day}</p>
