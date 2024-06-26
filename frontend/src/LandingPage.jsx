@@ -98,7 +98,7 @@ const LandingPage = () => {
 
     function mySubmit(params) {
             try {
-                 axios.post('http://localhost:8081/api/request', params).then(()=>{
+                 axios.post('http://localhost:8080/api/request', params).then(()=>{
                      console.log("asd")});
                  reset()
             } catch (error) {
@@ -169,7 +169,7 @@ const LandingPage = () => {
                 {tours.map((tour, index) => (
                     <div key={index} className="">
                         <div className={"cm"}>
-                            <img className={"cm"} src={`http://localhost:8081/api/files/img?name=${tour.photo}`}
+                            <img className={"cm"} src={`http://localhost:8080/api/files/img?name=${tour.photo}`}
                                  alt=""/>
                             <div className="ms">
                                 <h2>{tour.title}</h2>
@@ -230,16 +230,20 @@ const LandingPage = () => {
                     <div className={"d"}>
                         <img className={"wit"} width={100} src={today} alt=""/>
                         <img className={"wit"} src={nul} alt=""/>
-                        <img className={"wit"} src={p} alt=""/>
-                        <img className={"wit"} src={m} alt=""/>
+                        <div style={{display:"flex"}}>
+                            <img className={"wit"} src={p} alt=""/>
+                            <img className={"wit"} src={m} alt=""/>
+                        </div>
                     </div>
+
+
                 </div>
+
             </div>
             <div className="carousel-container">
                 <Carousel
-
                     responsive={responsive}>
-                    {page.map((comment, index) => (
+                {page.map((comment, index) => (
                         <div key={index} className="comment-container">
                             <div className={"m"}>
                                 <div className={"op"}></div>
