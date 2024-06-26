@@ -32,6 +32,8 @@ public class FileController {
 
     @GetMapping("/img")
     public void getImg(HttpServletResponse response, @RequestParam String name) throws IOException {
+       System.out.println(name);
+        System.out.println("worked");
         FileInputStream fileInputStream = new FileInputStream(IMAGE_UPLOAD_DIR + name);
         ServletOutputStream outputStream = response.getOutputStream();
         fileInputStream.transferTo(outputStream);

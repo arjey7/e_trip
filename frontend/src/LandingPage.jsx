@@ -1,52 +1,45 @@
 import React, { useEffect, useState } from 'react';
+import './css/Page.css';
 import './styles/LandingPage.css';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
-import Logo from './files/tourlogo.jpg';
-import Facebook from './files/facebook2.jpg';
-import Insta from './files/free-icon-instagram-174855.png';
-import YouTube from './files/free-icon-youtube-3820291.png';
-import Uzb from './files/free-icon-map-13651062.png';
-import Phone from './files/free-icon-phone-call-5585562.png';
-import Img from "./files/mansion-house-pool-interior-wallpaper-preview.jpg";
-import Time from "./files/free-icon-sand-timer-8330912.png";
-import {useNavigate, useLocation} from "react-router-dom";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { useLocation } from "react-router-dom";
 import 'leaflet/dist/leaflet.css';
 import EnquiryForm from './EnquiryForm';
-import Email from "./files/free-icon-new-email-filled-envelope-60467.png"
-import Location from "./files/free-icon-location-pin-7302427.png"
-import {fetchTourRequest} from "./redux/reducer/tourReducer.js";
-import {useDispatch,  useSelector} from "react-redux";
+import { fetchTourRequest } from "./redux/reducer/tourReducer.js";
+import { useDispatch, useSelector } from "react-redux";
+import NavImage from "./files/barlass 2.png";
+import Logo from './files/left side.png';
+import Ethernet from './files/ethernet.png';
+import Naushnik from './files/naushnik.png';
+import Vector from './files/vector.png';
+import Apacha from './files/apacha.png';
+import today from './files/Rectangle 3.png';
+import nul from "./files/asd.png";
+import p from "./files/ppp.png";
+import m from "./files/m.png";
+import Carousel from "react-multi-carousel";
+import axios from 'axios';
+import 'react-multi-carousel/lib/styles.css';
+import ReactStars from 'react-rating-stars-component';
+import Footer from "./Footer.jsx";
+import {useForm} from "react-hook-form";
 
 const LandingPage = () => {
-    const bukharaCoordinates = [39.7748, 64.4286];
     const dispatch = useDispatch();
     const location = useLocation();
+    const [page, setPage] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedTourTitle, setSelectedTourTitle] = useState('');
 
-    function scrollToGroupElement () {
+    const ratingChanged = (newRating) => {
+        // Handle rating change if needed
+    };
+
+    function scrollToGroupElement() {
         const specificGroupArea = document.getElementById('specificGroupArea');
         specificGroupArea.scrollIntoView({ behavior: 'smooth' });
-    };
-
-    function scrollToAboutElement () {
-        const specificAboutArea = document.getElementById('specificAboutArea');
-        specificAboutArea.scrollIntoView({ behavior: 'smooth' });
-    };
-
-    function scrollToContactElement () {
-        const specificContactArea = document.getElementById('specificContactArea');
-        specificContactArea.scrollIntoView({ behavior: 'smooth' });
-    };
-
-    function scrollToEnquiryElement () {
-        const specificEnquiryArea = document.getElementById('specificEnquiryArea');
-        specificEnquiryArea.scrollIntoView({ behavior: 'smooth' });
-    };
-
-    const navigate = useNavigate()
+    }
 
     const { tours, loading, error } = useSelector(state => state.tour);
 
@@ -54,14 +47,19 @@ const LandingPage = () => {
         dispatch(fetchTourRequest());
     }, [dispatch]);
 
-    const handleDetailsClick = (tourId) => {
-        navigate(`/batafsil/${tourId}`);
-    };
+    useEffect(() => {
+        getAll();
+    }, []);
 
-    const handleOrderClick = (tourTitle) => {
-        setSelectedTourTitle(tourTitle);
-        setModalVisible(true);
-    };
+    function getAll() {
+        axios.get('http://localhost:8080/api/comment/approved')
+            .then(res => {
+                setPage(res.data);
+            })
+            .catch(error => {
+                console.error('Error fetching approved comments:', error);
+            });
+    }
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);
@@ -74,103 +72,194 @@ const LandingPage = () => {
         setModalVisible(false);
     };
 
+    const responsive = {
+        superLargeDesktop: {
+            breakpoint: { max: 4000, min: 3000 },
+            items: 5
+        },
+        desktop: {
+            breakpoint: { max: 4000, min: 1024 },
+            items: 3
+        },
+        tablet: {
+            breakpoint: { max: 2024, min: 464 },
+            items: 3
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1
+        }
+    };
+
+    const { register,reset, formState: { errors },handleSubmit } = useForm();
+    const [fullName, setFullName] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+
+
+    function mySubmit(params) {
+            try {
+                 axios.post('http://localhost:8080/api/request', params).then(()=>{
+                     console.log("asd")});
+                 reset()
+            } catch (error) {
+                console.error('Error saving request:', error);
+            }
+    }
+
     return (
         <div className="container">
-            <div className="navbar">
-                <img className="img1" src={Logo} alt="Logo" />
-                <p onClick={scrollToGroupElement} className={"p"}>Group Tours</p>
-                <p onClick={scrollToAboutElement} className={"p"}>About Us</p>
-                <p onClick={scrollToContactElement} className={"p"}>Contact Us</p>
-                <p onClick={scrollToEnquiryElement} className={"p"}>Enquiry</p>
-                <div className="navbar2">
-                    <img className="img2" src={Facebook} alt="Facebook" />
-                    <img className="img3" src={Insta} alt="Instagram" />
-                    <img className="img4" src={YouTube} alt="YouTube" />
-                    <img className="img5" src={Uzb} alt="Map" />
-                    <img className="img6" src={Phone} alt="Phone" />
-                    <h5>+998977777777</h5>
+            <div className='main-img'>
+                <div className='navbar'>
+                    <img className='img1' src={NavImage} alt=""/>
+                    <div className='nav-body'>
+                        <p className='montserrat'>About us</p>
+                        <p className='montserrat'>Destinations</p>
+                        <p className='montserrat'>Inspiration</p>
+                        <p className='montserrat'>Contact us</p>
+                    </div>
+                    <p className='montserrat-font'>ENG</p>
+                </div>
+                <div className='hero-text'>
+                    <p>Travel through the land and observe how He began creation.</p>
+                    <div className='hero-subtext'>
+                        We are BARLAS VOYAGE and we organize group trips to Central Asia.
+                        If you want to travel to learn from the past, let us be your guide.
+                    </div>
                 </div>
             </div>
-
-            <div className={"div1"}>
-                <h1 className={"text1"}>Never stop</h1>
-                <h1 className={"text2"}>Exploring</h1>
-                <p className={"text3"}>Their house is a museum where people come to see `em. They really are a scream</p>
-                <p className={"text4"}>the Addams Family. These days are all Happy and Free. These days are all share</p>
-                <p className={"text5"}>them with me oh baby.</p>
-            </div>
-
-            <div className="tour-list" id="specificGroupArea">
-                <p className={"p5"}>Group Tours</p>
-                {tours.map((tour, index) => (
-                    <div key={index} className="tour-item">
-                        <img src={`http://localhost:8081/api/files/img?name=${tour.photo}`}  alt={tour.title}
-                              className="tour-img"/>
-                        <div className="tour-details">
-                            <h2>{tour.title}</h2>
-                            <p>{tour.description}</p>
-                            <p><img className={"img8"} src={Time} alt=""/><strong>Duration:</strong> {tour.day}</p>
+            <div className='div-info'>
+                <div className='image-container'>
+                    <img className='img2' src={Logo} alt=""/>
+                </div>
+                <div className='text-container'>
+                    <h1>Small and big group trip through Central Asia</h1>
+                    <div className='info-item'>
+                        <img src={Vector} alt="" className='icon'/>
+                        <div className='text-content'>
+                            <h2>Discover Islamic Central Asia with our expert guides.</h2>
+                            <p>Experience the rich cultural heritage of Islamic Central Asia with our expert guides.
+                                Embark on a journey through ancient cities, stunning architecture, and vibrant markets.
+                                Learn about the intricate art of calligraphy, the mystical world of Sufism, and the
+                                historical significance of Silk Road trade routes. Immerse yourself in the beauty and
+                                spirituality of this fascinating region. Join us for an unforgettable adventure through
+                                Islamic Central Asia.</p>
                         </div>
-                        <div className="tour-right">
-                            <div className="tour-price">
-                                <p>{tour.cost}$ dan</p>
+                    </div>
+                    <div className='info-item'>
+                        <img src={Ethernet} alt="" className='icon'/>
+                        <div className='text-content'>
+                            <h2>Our Commitment to World-Class Service</h2>
+                            <p>Our dedicated team is here to ensure that your experience with us exceeds your
+                                expectations. Your satisfaction is our top priority.</p>
+                        </div>
+                    </div>
+                    <div className='info-item'>
+                        <img src={Naushnik} alt="" className='icon'/>
+                        <div className='text-content'>
+                            <h2>24/7 Strong Customer Support</h2>
+                            <p>Great customer support is crucial for our success. We have a dedicated team that provides
+                                prompt and effective solutions to any customer queries or concerns. Our goal is to
+                                exceed your expectations and ensure your satisfaction. We're here to support you every
+                                step of the way.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="cd" id="specificGroupArea">
+                {tours.map((tour, index) => (
+                    <div key={index} className="">
+                        <div className={"cm"}>
+                            <img className={"cm"} src={`http://localhost:8080/api/files/img?name=${tour.photo}`}
+                                 alt=""/>
+                            <div className="ms">
+                                <h2>{tour.title}</h2>
+                                <p>{tour.description}</p>
+                                <p>${tour.cost}</p>
+                            </div>
+                        </div>
+                        <div className="">
+                            <div className="">
+                                {/* Additional buttons if needed */}
                             </div>
                             <div className="tour-buttons">
-                                <button className="details-btn" onClick={() => handleDetailsClick(tour.id)}>Batafsil</button>
-                                <button onClick={() => handleOrderClick(tour.title)} className="order-btn">Order</button>
+                                {/* Buttons */}
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
+            <div className='div-request'>
+                <img className='girl-img' src={Apacha} alt=""/>
+                <div className='request-text'>
+                    <p className='text-class'>Would you like us to organize a tour tailored to your preferences?</p>
+                    <p className='same-class'>Please provide your contact information, and we will </p>
+                    <p className='same-class'>get in touch with you shortly</p>
+                    <form className='input-container' onSubmit={handleSubmit(mySubmit)}>
+                        <input
+                            className='input1'
+                            type="text"
+                            placeholder='name...'
+                            defaultValue={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                            {...register("fullName", {
+                                required: 'Phone number is required!'
+                            })}
+                        />
+                        <input
+                            placeholder="phone number..."
+                            className={"input"}
+                            defaultValue={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            {...register('phoneNumber', {
+                                required: 'Phone number is required!'
+                            })}
+                        />
 
-            <div id="specificAboutArea">
-                <p className={"p2"}>About Us</p>
-                <img className={"img9"} src={Img} alt=""/>
-                <h4 className={"h4"}>Bizning tour haqida</h4>
-                <p className={"text6"}>Biz yuqori darajadagi xizmat ko'rsatish va har bir mijozga individual</p>
-                <p className={"text7"}>yondashish bilan hamyonbop narxlarda keng doiradagi turlarni taklif qiluvchi</p>
-                <p className={"text8"}>professional sayyohlik kompaniyasimiz. Bizning kompaniyamiz sayohat</p>
-                <p className={"text9"}>hamma uchun ochiq bo'lish kerak degan g'oya asosida tashkil etilgan.</p>
-            </div>
-
-            <div id="specificContactArea">
-                <p className={"p3"}>Contact Us</p>
-                <MapContainer
-                    center={bukharaCoordinates}
-                    zoom={13}
-                    style={{ height: '550px', width: '50%', left:'690px', top:'70px'}}
-                >
-                    <TileLayer
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    />
-                    <Marker position={bukharaCoordinates}>
-                        <Popup>
-                            This is Tashkent. <br /> Easily customizable.
-                        </Popup>
-                    </Marker>
-                </MapContainer>
-
-                <div className={"div2"}>
-                    <img className={"img10"} src={Phone} alt=""/>
-                    <p className={"text10"}>Telefon: +(998) 97777-77-77</p>
-                </div>
-                <div className={"div3"}>
-                    <img className={"img11"} src={Email} alt=""/>
-                    <p className={"text11"}>E-mail: info@nimadir.uz</p>
-                </div>
-                <div className={"div4"}>
-                    <img className={"img12"} src={Location} alt=""/>
-                    <p className={"text12"}>Manzil: Buxoro shahri...</p>
+                        <button className='request-button' type='submit'>Call me back</button>
+                    </form>
                 </div>
             </div>
-
-            <div id="specificEnquiryArea">
-                <p className={"p4"}>Enquiry</p>
-                <EnquiryForm />
+            <div>
+                <p className="you1">----Where you can travel with us</p>
+                <p className="you">Immerse yourself in the beauty and spirituality of fascinating places. Join us for an
+                    unforgettable adventure through Islamic Central Asia.</p>
+                <div className={"kl"}>
+                    <div className={"me"}>
+                        <p className={"me2"}>Bu yerda video bo'ladi</p>
+                    </div>
+                    <div className={"d"}>
+                        <img className={"wit"} width={100} src={today} alt=""/>
+                        <img className={"wit"} src={nul} alt=""/>
+                        <img className={"wit"} src={p} alt=""/>
+                        <img className={"wit"} src={m} alt=""/>
+                    </div>
+                </div>
             </div>
+            <div className="carousel-container">
+                <Carousel
 
+                    responsive={responsive}>
+                    {page.map((comment, index) => (
+                        <div key={index} className="comment-container">
+                            <div className={"m"}>
+                                <div className={"op"}></div>
+                                <p className="comment-name">{comment.firstName} {comment.lastName}</p>
+                                <p className="comment-text">{comment.text}</p>
+                                <ReactStars
+                                    count={5}
+                                    value={comment.rating || 0} // Default value of 5 stars for comments
+                                    onChange={ratingChanged}
+                                    size={40}
+                                    activeColor="#ffd700"
+                                    edit={false} // Disable editing
+                                />
+                            </div>
+                        </div>
+                    ))}
+                </Carousel>
+            </div>
+            <button className={"buttin"}>Написать отзыв</button>
+            <Footer />
             <Rodal visible={modalVisible} onClose={handleCloseModal} height={400} width={700}>
                 <div className="rodal-content">
                     <EnquiryForm selectedTourTitle={selectedTourTitle} />
