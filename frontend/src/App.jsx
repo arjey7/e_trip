@@ -7,6 +7,8 @@ import AdminEnquiry from "./AdminEnquiry";
 import LandingPage from "./LandingPage";
 
 import Login from "./Login.jsx";
+import Page from "./Page.jsx";
+import Page2 from "./Page2.jsx";
 
 function App() {
     return (
@@ -19,6 +21,7 @@ function App() {
                 <Route path="/enquiry/list" element={<AdminEnquiry />} />
                 <Route path="/" element={<LandingPage />} />
                 <Route path={"/login"} element={<Login />} />
+                <Route path={"/page"} element={<Page2/>}/>
             </Routes>
         </div>
     );

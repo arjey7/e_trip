@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './css/Page.css';
 import './styles/LandingPage.css';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
@@ -19,7 +20,6 @@ import p from "./files/ppp.png";
 import m from "./files/m.png";
 import Carousel from "react-multi-carousel";
 import axios from 'axios';
-import './css/Page.css';
 import 'react-multi-carousel/lib/styles.css';
 import ReactStars from 'react-rating-stars-component';
 import Footer from "./Footer.jsx";
@@ -98,7 +98,7 @@ const LandingPage = () => {
 
     function mySubmit(params) {
             try {
-                 axios.post('http://localhost:8080/api/request', params).then(()=>{
+                 axios.post('http://localhost:8081/api/request', params).then(()=>{
                      console.log("asd")});
                  reset()
             } catch (error) {
@@ -166,11 +166,10 @@ const LandingPage = () => {
                 </div>
             </div>
             <div className="cd" id="specificGroupArea">
-
                 {tours.map((tour, index) => (
                     <div key={index} className="">
                         <div className={"cm"}>
-                            <img className={"cm"} src={`http://localhost:8080/api/files/img?name=${tour.photo}`}
+                            <img className={"cm"} src={`http://localhost:8081/api/files/img?name=${tour.photo}`}
                                  alt=""/>
                             <div className="ms">
                                 <h2>{tour.title}</h2>
@@ -236,30 +235,34 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
-            <div className=" carousel-container">
-                <Carousel responsive={responsive}>
+            <div className="carousel-container">
+                <Carousel
+
+                    responsive={responsive}>
                     {page.map((comment, index) => (
                         <div key={index} className="comment-container">
-                            <p className="comment-name">{comment.firstName} {comment.lastName}</p>
-                            <p className="comment-text">{comment.text}</p>
-                            <ReactStars
-                                count={5}
-                                value={comment.rating || 5} // Default value of 5 stars for comments
-                                onChange={ratingChanged}
-                                size={40}
-                                activeColor="#ffd700"
-                                edit={false} // Disable editing
-                            />
+                            <div className={"m"}>
+                                <div className={"op"}></div>
+                                <p className="comment-name">{comment.firstName} {comment.lastName}</p>
+                                <p className="comment-text">{comment.text}</p>
+                                <ReactStars
+                                    count={5}
+                                    value={comment.rating || 0} // Default value of 5 stars for comments
+                                    onChange={ratingChanged}
+                                    size={40}
+                                    activeColor="#ffd700"
+                                    edit={false} // Disable editing
+                                />
+                            </div>
                         </div>
                     ))}
                 </Carousel>
             </div>
-
-            <Footer/>
-
+            <button className={"buttin"}>Написать отзыв</button>
+            <Footer />
             <Rodal visible={modalVisible} onClose={handleCloseModal} height={400} width={700}>
                 <div className="rodal-content">
-                    <EnquiryForm selectedTourTitle={selectedTourTitle}/>
+                    <EnquiryForm selectedTourTitle={selectedTourTitle} />
                 </div>
             </Rodal>
         </div>
