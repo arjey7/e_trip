@@ -23,6 +23,7 @@ import './css/Page.css';
 import 'react-multi-carousel/lib/styles.css';
 import ReactStars from 'react-rating-stars-component';
 import Footer from "./Footer.jsx";
+import {useForm} from "react-hook-form";
 
 const LandingPage = () => {
     const dispatch = useDispatch();
@@ -89,6 +90,21 @@ const LandingPage = () => {
             items: 1
         }
     };
+
+    const { register,reset, formState: { errors },handleSubmit } = useForm();
+    const [fullName, setFullName] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+
+
+    function mySubmit(params) {
+            try {
+                 axios.post('http://localhost:8080/api/request', params).then(()=>{
+                     console.log("asd")});
+                 reset()
+            } catch (error) {
+                console.error('Error saving request:', error);
+            }
+    }
 
     return (
         <div className="container">
@@ -179,11 +195,29 @@ const LandingPage = () => {
                     <p className='text-class'>Would you like us to organize a tour tailored to your preferences?</p>
                     <p className='same-class'>Please provide your contact information, and we will </p>
                     <p className='same-class'>get in touch with you shortly</p>
-                    <div className='input-container'>
-                        <input className='input1' type="text" name="" id="" placeholder='name'/>
-                        <input className='input' type="number" name="" id="" placeholder='phone number'/>
-                        <button className='request-button'>Call me back</button>
-                    </div>
+                    <form className='input-container' onSubmit={handleSubmit(mySubmit)}>
+                        <input
+                            className='input1'
+                            type="text"
+                            placeholder='name...'
+                            defaultValue={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                            {...register("fullName", {
+                                required: 'Phone number is required!'
+                            })}
+                        />
+                        <input
+                            placeholder="phone number..."
+                            className={"input"}
+                            defaultValue={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            {...register('phoneNumber', {
+                                required: 'Phone number is required!'
+                            })}
+                        />
+
+                        <button className='request-button' type='submit'>Call me back</button>
+                    </form>
                 </div>
             </div>
             <div>
