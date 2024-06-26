@@ -1,0 +1,527 @@
+.all {
+    margin: 0 auto;
+    max-width: 1440px;
+    height: 3000px;
+}
+
+.header {
+    width: 727px;
+    height: 44px;
+   margin-top: 30px;
+    margin-left: 350px;
+    padding-left: 110px;
+    display: flex;
+    gap: 68px;
+    color: rgb(16, 16, 16);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0%;
+    cursor: pointer;
+    text-align: left;
+}
+
+.header p {
+    position: relative;
+    padding-bottom: 5px;
+    transition: transform 0.3s;
+}
+
+.header p::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: #00D594;
+    transition: width 0.3s;
+}
+
+.header p:hover {
+    transform: scale(1.1);
+}
+
+.header p:hover::after {
+    width: 100%;
+}
+
+
+.title {
+    color: rgb(66, 66, 66);
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 156%;
+    letter-spacing: 0%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.obshiy {
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 156%;
+    letter-spacing: 0%;
+    color: #424242;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.vide2 {
+    width: 1632px;
+    height: 918px;
+    margin-left: -100px;
+    margin-top: 20px;
+    padding: 50px;
+}
+
+@media (max-width: 1632px) {
+    .vide2 {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+        padding: 20px;
+    }
+}
+
+
+.chiziq3 {
+    width: 109.63px;
+    border: 5.04px solid rgb(71, 71, 71);
+    margin-top: 110px;
+}
+
+.programma {
+    color: rgb(0, 0, 0);
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 112.9px;
+    letter-spacing: 0%;
+    text-align: left;
+    margin-top: -60px;
+    margin-left: 160px;
+}
+
+.day-container {
+    display: flex;
+    align-items: center;
+    margin-top: 103px;
+
+}
+
+.day {
+    width: 105px;
+    height: 66px;
+    color: rgb(0, 69, 48);
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: center;
+    margin-right: 33px;
+    margin-top: -40px;
+}
+
+.desc-card {
+    width: 1180px;
+    height: 83px;
+    border-radius: 5px;
+    background: rgba(0, 213, 148, 0.1);
+    padding: 15px;
+    margin-top: -90px;
+    transition: height 0.3s ease-in-out;
+}
+
+.desc-card.expanded {
+    height: 300px;
+
+}
+
+
+
+.btn-page {
+    width: 68.26px;
+    height: 68.26px;
+    background: rgba(0, 213, 148, 0.25);
+    color: rgb(0, 0, 0);
+    border-radius: 50%;
+    font-family: Montserrat;
+    border: 1px solid rgba(0, 213, 148, 0.25);
+    font-size: 50px;
+    font-weight: 1000;
+    margin-top: -90px;
+    line-height: 61px;
+    letter-spacing: 0%;
+    margin-left: 37px;
+    text-align: center;
+}
+.chiziq4 {
+    width: 109.63px;
+    border: 5.04px solid rgb(71, 71, 71);
+    margin-top: 128px;
+}
+.dest{
+    color: rgb(0, 0, 0);
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 112.9px;
+    letter-spacing: 0%;
+    text-align: left;
+    margin-top: -60px;
+    margin-left: 160px;
+}
+.den-1{
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 156%;
+    letter-spacing: 0%;
+    text-align: left;
+    text-transform: lowercase;
+}
+.den-1s{
+     font-family: Lato;
+     font-size: 20px;
+    list-style: none;
+     font-weight: 400;
+     line-height: 156%;
+     letter-spacing: 0%;
+     text-align: left;
+    margin-left: -30px;
+     text-transform: lowercase;
+ }
+.den-com{
+    color: rgb(153, 153, 153);
+    list-style: none;
+margin-top: -200px;
+  margin-left: 30px;
+}
+.lijon{
+    margin-top: 5px;
+}
+.lijon2{
+    margin-top: 7px;
+}
+.lijon3{
+    margin-top: 7px;
+}.lijon4{
+     margin-top: 10px;
+ }
+.lijon5{
+    margin-top: 7px;
+}
+.lijon6{
+    margin-left: 152px;
+    margin-top: -25px;
+    color: rgb(223, 112, 33);
+}
+.den-2{
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 156%;
+    letter-spacing: 0%;
+    text-align: left;
+    text-transform: lowercase;
+    margin-left: 962px;
+    margin-top: -250px;
+}
+
+.desc-page {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 10px;
+}
+
+.expanded-content {
+    display: flex;
+    align-items: center;
+}
+
+.expanded-image {
+    width: 250px;
+    height: 250px;
+    margin-right: 10px;
+    border-radius: 8px;
+}
+
+.expanded-description {
+    margin-left: 10px;
+    text-align: justify;
+    flex-grow: 1;
+}
+.den-2s{
+    font-family: Lato;
+    font-size: 20px;
+    list-style: none;
+    font-weight: 400;
+    line-height: 156%;
+    letter-spacing: 0%;
+    text-align: left;
+    margin-left: 932px;
+    text-transform: lowercase;
+}
+.den2-com{
+    color: rgb(153, 153, 153);
+    list-style: none;
+    margin-top: -200px;
+    margin-left: 992px;
+}
+.zavt{
+    margin-left: 1022px;
+    color: rgb(153, 153, 153);
+    list-style: none;
+    margin-top: -230px;
+}
+.den2-li{
+    margin-top: 207px;
+}
+.lijon7{
+    margin-left: 172px;
+    margin-top: -25px;
+    color: rgb(223, 112, 33);
+}
+.den-3{
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 156%;
+    letter-spacing: 0%;
+    text-align: left;
+    text-transform: lowercase;
+}
+.den-3s{
+    font-family: Lato;
+    font-size: 20px;
+    list-style: none;
+    font-weight: 400;
+    line-height: 156%;
+    letter-spacing: 0%;
+    text-align: left;
+    margin-left: -30px;
+    text-transform: lowercase;
+}
+.den3-com{
+    color: rgb(153, 153, 153);
+    list-style: none;
+    margin-top: -500px;
+    margin-left: 30px;
+}
+.den3-li{
+    margin-top: 225px;
+}
+.lijon8{
+    margin-left: 392px;
+    margin-top: -25px;
+    color: rgb(223, 112, 33);
+}
+.den-4{
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 156%;
+    letter-spacing: 0%;
+    text-align: left;
+    text-transform: lowercase;
+    margin-left: 962px;
+    margin-top: -330px;
+}
+.den-4s{
+    font-family: Lato;
+    font-size: 20px;
+    list-style: none;
+    font-weight: 400;
+    line-height: 156%;
+    letter-spacing: 0%;
+    text-align: left;
+    margin-left: 932px;
+    text-transform: lowercase;
+}
+.den4-com{
+    color: rgb(153, 153, 153);
+    list-style: none;
+    margin-top: -297px;
+    margin-left: 992px;
+}
+.prib{
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 156%;
+    letter-spacing: 0%;
+    text-align: left;
+    text-transform: lowercase;
+    margin-top: 200px;
+}
+.chiziq5 {
+    width: 109.63px;
+    border: 5.04px solid rgb(71, 71, 71);
+    margin-top: 113px;
+}
+.cardcha {
+    width: 1226px;
+    height: 60px;
+    background: rgba(0, 213, 148, 0.1);
+    text-align: center;
+    margin-top: 8px;
+}
+
+.dess {
+    display: flex;
+    font-family: Lato, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0%;
+    text-align: left;
+    padding: 20px;
+}
+
+.ccha {
+    color: rgb(153, 153, 153);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24.38px;
+    text-align: left;
+
+    margin-right: 5px;
+}
+
+.dess span + span {
+    margin-left: 50px;
+}
+.byn{
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0%;
+    text-align: left;
+
+}
+.eur{
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0%;
+    text-align: left;
+    color: rgb(223, 112, 33);
+}
+.zab{
+    width: 182.53px;
+    height: 46.88px;
+    border-radius: 3px;
+    background: rgb(0, 69, 48);
+    margin-left: 192px;
+    margin-top: -13px;
+    color: white;
+}
+.comments{
+    list-style: none;
+    color: rgb(66, 66, 66);
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 156%;
+    letter-spacing: 0%;
+    text-align: left;
+}
+.footer-page{
+    width: 1692px;
+    height: 128px;
+    display: flex;
+    align-items: center;
+}
+.footer-img-page{
+    width: 183px;
+    height: 115px;
+    margin-left: 150px;
+}
+.content{
+    color: rgb(153, 153, 153);
+    font-family: Lato;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0%;
+    text-align: left;
+    margin-top: 90px;
+    margin-left: -650px;
+}
+.header2 {
+    width: 727px;
+    height: 44px;
+    padding-left: 110px;
+    display: flex;
+    gap: 38px;
+    color: rgb(16, 16, 16);
+    cursor: pointer;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+.header2 p {
+    position: relative;
+    padding-bottom: 5px;
+    transition: transform 0.3s;
+}
+
+.header2 p::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: #00D594;
+    transition: width 0.3s;
+}
+
+.header2 p:hover {
+    transform: scale(1.1);
+}
+
+.header2 p:hover::after {
+    width: 100%;
+}
+.number-3{
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 18.29px;
+    text-align: left;
+    margin-left: 50px;
+    color: #004530;
+
+}
+.number-4{
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 18.29px;
+    text-align: left;
+    margin-top: 50px;
+    margin-left: -105px;
+    color: #004530;
+
+}
+.footer-imgs{
+    width: 16px;
+    height: 16px;
+    display: flex;
+    gap: 4px;
+    margin-top: 80px;
+    margin-left: -110px;
+}

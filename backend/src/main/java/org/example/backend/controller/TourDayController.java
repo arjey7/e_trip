@@ -3,6 +3,7 @@ package org.example.backend.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.backend.dto.TourDayDto;
 import org.example.backend.entity.TourDay;
+import org.example.backend.repository.TourDayRepo;
 import org.example.backend.service.TourDayService;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ import java.util.UUID;
 public class TourDayController {
 
     private final TourDayService tourDayService;
-
+    final TourDayRepo tourDayRepo;
     @PostMapping
     public HttpEntity<?> addTourDay(@RequestBody TourDayDto tourDayDto) {
         TourDay addedTourDay = tourDayService.addTourDay(tourDayDto);
@@ -30,7 +31,10 @@ public class TourDayController {
         List<TourDay> tourDays = tourDayService.getTourDays(id);
         return ResponseEntity.ok(tourDays);
     }
-
+   @GetMapping("/all")
+   public HttpEntity<?> getAll(){
+        return ResponseEntity.ok(tourDayRepo.findAll());
+   }
     @PutMapping("/{id}")
     public ResponseEntity<?> updateTourDay(@PathVariable UUID id, @RequestBody TourDayDto tourDayDto) {
         TourDay updatedTourDay = tourDayService.updateTourDay(id, tourDayDto);
