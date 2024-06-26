@@ -60,25 +60,27 @@
     text-align: center;
     color: #fff;
     width: 70%;
-    margin-top: 150px;
+    margin-top: 200px;
 }
 
 .hero-text p {
-    font-family: Noto Serif;
+    font-family: "Noto Serif", serif;
     font-size: 84px;
     font-weight: 700;
     line-height: 112px;
     text-align: left;
+    margin-top: -70px;
 }
 
 .hero-subtext {
-    font-family: Montserrat;
-    font-size: 25px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 500;
-    line-height: 30.48px;
+    font-style: normal;
     text-align: left;
     margin-top: 10px;
-    width: 82%;
+    margin-left: 5px;
+    width: 57%;
 }
 
 .div-info {
@@ -134,13 +136,17 @@
 }
 
 .text-content h2 {
+    font-family: "Montserrat", sans-serif;
     font-size: 1.2em;
     font-weight: bold;
     margin: 0;
 }
 
 .text-content p {
-    font-size: 1em;
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    line-height: 21.94px;
+    font-weight: 400;
     margin: 5px 0 0 0;
 }
 .cm{
@@ -170,6 +176,7 @@
 
 }
 .you1{
+    font-family: "Noto Serif", serif;
     margin-top:200px;
     font-size: 50px;
     font-weight: 700;
@@ -179,12 +186,12 @@
 
 }
 .you{
-    font-family: Montserrat;
-    font-size: 30.01px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 29.01px;
     font-weight: 400;
     line-height: 36.58px;
     text-align: left;
-
+    margin-left: 100px;
 }
 .me{
     width:  797.84px;
