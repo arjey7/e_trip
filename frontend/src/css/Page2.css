@@ -69,14 +69,27 @@
 }
 
 .vide2 {
-    max-width: 1632px;
-    height: 918px;
-    margin-left: -100px;
-    margin-top: 20px;
-    padding: 50px;
+    max-width: 100%;
+    width: 1632px;
+    height: auto;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+@media (max-width: 1632px) {
+    .vide2 {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+        padding: 20px;
+    }
+}
 
+.parent-container {
+    overflow: hidden;
+    width: 100%;
+}
 
 
 .chiziq3 {
@@ -101,12 +114,48 @@
     display: flex;
     align-items: center;
     margin-top: 103px;
+
+}
+.day-content{
+
+}
+@media (max-width: 768px) {
+    .desc-card {
+        width: 100%;
+        max-width: none;
+        margin-top: 10px;
+    }
 }
 
 
 
+@media (max-width: 768px) {
+    .day-container {
+        display: flex;
+        align-items: center;
+    }
+    .den-2s{
+        margin-left: -200px;
+    }
 
-
+    .day-container p, .day-container ul {
+        text-align: center;
+    }
+}
+@media screen and (max-width: 768px) {
+    .den-1s li,
+    .den-2s li,
+    .den-3s li,
+    .den-4s li,
+    .den-com li,
+    .den2-com li,
+    .den3-com li,
+    .den4-com li {
+        display: block; /* Stack list items vertically */
+        margin-bottom: 10px; /* Increase space between list items */
+        word-wrap: break-word; /* Wrap long words */
+    }
+}
 
 .day {
     width: 105px;
@@ -123,8 +172,9 @@
 }
 
 .desc-card {
-    width: 1180px;
-    height: 83px;
+    width: 100%;
+    max-width: 1180px;
+    height: auto;
     border-radius: 5px;
     background: rgba(0, 213, 148, 0.1);
     padding: 15px;
@@ -132,10 +182,11 @@
     transition: height 0.3s ease-in-out;
 }
 
+
 .desc-card.expanded {
     height: 300px;
-}
 
+}
 
 
 
@@ -147,8 +198,37 @@
     border-radius: 50%;
     font-family: Montserrat;
     border: 1px solid rgba(0, 213, 148, 0.25);
+    font-family: Montserrat;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 60.95px;
+    text-align: center;
+    display: flex;
+    padding-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-top: -90px;
+    letter-spacing: 0%;
+    margin-left: 37px;
+}
+.btn-page.minus  {
+    letter-spacing: 10px; /* Adjust this value to space out the minus sign */
+    padding-left: 15px; /* Adjust this value to add space on the left */
+}
+
+.btn-page2 {
+    width: 68.26px;
+    height: 68.26px;
+    background: rgba(0, 213, 148, 0.25);
+    color: rgb(0, 0, 0);
+    border-radius: 50%;
+    font-family: Montserrat;
+    border: 1px solid rgba(0, 213, 148, 0.25);
     font-size: 50px;
     font-weight: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: -90px;
     line-height: 61px;
     letter-spacing: 0%;
@@ -171,6 +251,13 @@
     margin-top: -60px;
     margin-left: 160px;
 }
+@media (max-width: 768px) {
+    .dest {
+        font-size: 28px;
+        margin-left: 20px;
+    }
+}
+
 .den-1{
     font-family: Lato;
     font-size: 20px;
@@ -180,26 +267,23 @@
     text-align: left;
     text-transform: lowercase;
 }
-
 .den-1s{
-     font-family: Lato;
-     font-size: 20px;
+    font-family: Lato;
+    font-size: 20px;
     list-style: none;
-     font-weight: 400;
-     line-height: 156%;
-     letter-spacing: 0%;
-     text-align: left;
+    font-weight: 400;
+    line-height: 156%;
+    letter-spacing: 0%;
+    text-align: left;
     margin-left: -30px;
-     text-transform: lowercase;
- }
-
+    text-transform: lowercase;
+}
 .den-com{
     color: rgb(153, 153, 153);
     list-style: none;
-margin-top: -200px;
-  margin-left: 30px;
+    margin-top: -200px;
+    margin-left: 30px;
 }
-
 .lijon{
     margin-top: 5px;
 }
@@ -230,7 +314,6 @@ margin-top: -200px;
     margin-left: 962px;
     margin-top: -250px;
 }
-
 
 .desc-page {
     display: flex;
@@ -296,156 +379,6 @@ margin-top: -200px;
     text-align: left;
     text-transform: lowercase;
 }
-@media (max-width: 1440px) {
-    .den-2 {
-        font-size: 18px;
-        margin-left: 862px;
-        margin-top: -220px;
-    }
-
-    .den-2s {
-        font-size: 18px;
-        margin-left: 832px;
-    }
-
-    .den2-com {
-        margin-top: -180px;
-        margin-left: 892px;
-    }
-
-    .den-com {
-        margin-top: -180px;
-        margin-left: 30px;
-    }
-
-    .zavt {
-        margin-left: 1022px;
-        margin-top: -230px;
-    }
-
-    .den2-li {
-        margin-top: 207px;
-    }
-
-    .lijon6 {
-        margin-left: 152px;
-        margin-top: -25px;
-    }
-}
-
-@media (max-width: 1024px) {
-    .den-2 {
-        font-size: 16px;
-        margin-left: 662px;
-        margin-top: -180px;
-    }
-
-    .den-2s {
-        font-size: 16px;
-        margin-left: 632px;
-    }
-
-    .den2-com {
-        margin-top: -160px;
-        margin-left: 692px;
-    }
-
-    .den-com {
-        margin-top: -160px;
-        margin-left: 20px;
-    }
-
-    .zavt {
-        margin-left: 952px;
-        margin-top: -210px;
-    }
-
-    .den2-li {
-        margin-top: 187px;
-    }
-
-    .lijon6 {
-        margin-left: 132px;
-        margin-top: -20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .den-2 {
-        font-size: 14px;
-        margin-left: 462px;
-        margin-top: -140px;
-    }
-
-    .den-2s {
-        font-size: 14px;
-        margin-left: 432px;
-    }
-
-    .den2-com {
-        margin-top: -120px;
-        margin-left: 492px;
-    }
-
-    .den-com {
-        margin-top: -120px;
-        margin-left: 15px;
-    }
-
-    .zavt {
-        margin-left: 792px;
-        margin-top: -170px;
-    }
-
-    .den2-li {
-        margin-top: 167px;
-    }
-
-    .lijon6 {
-        margin-left: 112px;
-        margin-top: -15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .den-2 {
-        font-size: 12px;
-        margin-left: 262px;
-        margin-top: -100px;
-    }
-
-    .den-2s {
-        font-size: 12px;
-        margin-left: 232px;
-    }
-
-    .den2-com {
-        margin-top: -80px;
-        margin-left: 292px;
-    }
-
-    .den-com {
-        margin-top: -80px;
-        margin-left: 10px;
-    }
-
-    .zavt {
-        margin-left: 632px;
-        margin-top: -130px;
-    }
-
-    .den2-li {
-        margin-top: 147px;
-    }
-
-    .lijon6 {
-        margin-left: 92px;
-        margin-top: -10px;
-    }
-}
-
-
-
 .den-3s{
     font-family: Lato;
     font-size: 20px;
@@ -530,8 +463,9 @@ margin-top: -200px;
     line-height: 24px;
     letter-spacing: 0%;
     text-align: left;
-    padding: 20px;
+    padding: 20px; /* Adjust padding for content spacing */
 }
+
 
 .ccha {
     color: rgb(153, 153, 153);
@@ -547,9 +481,11 @@ margin-top: -200px;
 .dess span + span {
     margin-left: 50px;
 }
+
 .byn{
     font-family: Lato;
     font-size: 20px;
+
     font-weight: 700;
     line-height: 24px;
     letter-spacing: 0%;
@@ -584,9 +520,9 @@ margin-top: -200px;
     letter-spacing: 0%;
     text-align: left;
 }
-
 .footer-page{
-
+    width: 100%;
+    height: 128px;
     display: flex;
     align-items: center;
 }

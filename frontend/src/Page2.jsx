@@ -73,15 +73,18 @@ function Page2() {
                                 )}
                         </>
                     )}
+
                     </div>
 
                     <div className={"chiziq3"}></div>
             <p className={"programma"}>Itinerary </p>
             {filteredDays.map((itm, index) => (
                 <div className="day-container" key={index}>
+
                     <p className="day">Day {itm.day}</p>
                     <div className={`desc-card ${expandedDays.includes(itm.day) ? 'expanded' : ''}`}>
                         <p className="desc-page">
+
                             {!expandedDays.includes(itm.day) && (
                                 <div className="initial-description">
                                     {itm.description}
@@ -107,9 +110,16 @@ function Page2() {
                             )}
                         </p>
                     </div>
-                    <button className="btn-page" onClick={() => handleExpand(itm.day)}>
-                        {expandedDays.includes(itm.day) ? '-' : '+'}
-                    </button>
+                    {expandedDays.includes(itm.day) ? (
+                        <button className="btn-page minus" onClick={() => handleExpand(itm.day)}>
+                            -
+                        </button>
+                    ) : (
+                        <button className="btn-page2" onClick={() => handleExpand(itm.day)}>
+                            +
+                        </button>
+                    )}
+
                 </div>
             ))}
 
@@ -117,78 +127,85 @@ function Page2() {
 
             <div ref={destinationsRef} className={"chiziq4"}></div>
             <p className={"dest"}>Destinations</p>
-            <p className={"den-1"}>1 ДЕНЬ</p>
-            <ul className={"den-1s"}>
-                <li>4:00</li>
-                <li>8:00</li>
-                <li>13:00</li>
-                <li>16:00</li>
-                <li>17:30</li>
-                <li>17:30</li>
-            </ul>
-            <ul className={"den-com"}>
-                <li>ПЛОЩАДЬ КАЛИНИНА, ОТПРАВЛЕНИЕ В РИГУ</li>
-                <li className={"lijon"}>ПЕРЕСЕЧЕНИЕ ГРАНИЦЫ (БЕЛАРУСЬ-ЛИТВА)</li>
-                <li className={"lijon2"}>ПРИБЫТИЕ В РИГУ, ЭКСКУРСИЯ ПО ГОРОДУ</li>
-                <li className={"lijon3"}>ВЫЕЗД В ПОРТ, ПОГРУЗКА НА КОРАБЛЬ</li>
-                <li className={"lijon4"}>ОТПРАВЛЕНИЕ В СТОКГОЛЬМ</li>
-                <li className={"lijon5"}> УЖИН НА КОРАБЛЕ <li className={"lijon6"}>(доп оплата).</li></li>
-            </ul>
-            <p className={"den-2"}>2 ДЕНЬ</p>
-            <ul className={"den-2s"}>
-                <li>7:00</li>
-                <li>10:30</li>
-                <li>11:00</li>
-                <li>14:00</li>
-                <li>17:30</li>
-                <li>19:30</li>
-                <li>19:00</li>
-            </ul>
-            <p className={"zavt"}>ЗАВТРАК НА КОРАБЛЕ <li className={"lijon7"}>(доп оплата).</li></p>
-            <ul className={"den2-com"}>
-                <li className={"den2-li"}>ПРИБЫТИЕ В СТОКГОЛЬМ</li>
-                <li className={"lijon2"}>ОБЗОРНАЯ ЭКСКУРСИЯ ПО СТОКГОЛЬМУ</li>
-                <li className={"lijon3"}>ПРЕЕЗД НА ДЮРГОРДН — ОСТРОВ МУЗЕЕВ</li>
-                <li className={"lijon4"}>ВЫЕЗД В ПОРТ, ПОГРУЗКА НА КОРАБЛЬ</li>
-                <li className={"lijon5"}>ОТПРАВЛЕНИЕ В ТУРКУ</li>
-                <li className={"lijon2"}> УЖИН НА КОРАБЛЕ <li className={"lijon6"}>(доп оплата).</li></li>
-            </ul>
-            <p className={"den-3"}>3 ДЕНЬ</p>
-            <ul className={"den-3s"}>
-                <li>6:00</li>
-                <li>7:00</li>
-                <li>7:30</li>
-                <li>9:00</li>
-                <li>11:30</li>
-                <li>13:00</li>
-                <li>17:30</li>
-                <li>18:30</li>
-                <li>21:00</li>
-            </ul>
-            <ul className={"den3-com"}>
-                <li className={"den3-li"}>ЗАВТРАК НА КОРАБЛЕ</li>
-                <li className={"lijon2"}>ПРИБЫТИЕ В ТУРКУ</li>
-                <li className={"lijon3"}>ЭКСКУРСИЯ ПО ГОРОДУ</li>
-                <li className={"lijon4"}>ПЕРЕЕЗД В ХЕЛЬСИНКИ</li>
-                <li className={"lijon5"}>ЭКСКУРСИЯ ПО ГОРОДУ</li>
-                <li className={"lijon2"}>СВОБОДНОЕ ВРЕМЯ (ПОСЕЩЕНИЕ ПАРКОВ, МУЗЕЕВ
-                    <li className={"lijon8"}>(доп. оплата))</li>
-                </li>
-                <li className={"lijon2"}>ВЫЕЗД В ПОРТ, ПОГРУЗКА НА КОРАБЛЬ</li>
-                <li className={"lijon2"}>ОТПРАВЛЕНИЕ В ТАЛЛИНН</li>
-                <li className={"lijon2"}>УЖИН НА КОРАБЛЕ</li>
-            </ul>
-            <p className={"den-4"}>4 ДЕНЬ</p>
-            <ul className={"den-4s"}>
-                <li>7:00</li>
-                <li>8:00</li>
-                <li>11:30</li>
-            </ul>
-            <ul className={"den4-com"}>
-                <li className={"den2-li"}>ЗАВТРАК НА КОРАБЛЕ <li className={"lijon7"}>(доп. оплата)</li></li>
-                <li className={"lijon2"}>ОБЗОРНАЯ ЭКСКУРСИЯ ПО ГОРОДУ</li>
-                <li className={"lijon3"}> ОТПРАВЛЕНИЕ В МИНСК</li>
-            </ul>
+            <div className={"day-content"}>
+                <p className={"den-1"}>1 ДЕНЬ</p>
+                <ul className={"den-1s"}>
+                    <li>4:00</li>
+                    <li>8:00</li>
+                    <li>13:00</li>
+                    <li>16:00</li>
+                    <li>17:30</li>
+                    <li>17:30</li>
+                </ul>
+                <ul className={"den-com"}>
+                    <li>ПЛОЩАДЬ КАЛИНИНА, ОТПРАВЛЕНИЕ В РИГУ</li>
+                    <li className={"lijon"}>ПЕРЕСЕЧЕНИЕ ГРАНИЦЫ (БЕЛАРУСЬ-ЛИТВА)</li>
+                    <li className={"lijon2"}>ПРИБЫТИЕ В РИГУ, ЭКСКУРСИЯ ПО ГОРОДУ</li>
+                    <li className={"lijon3"}>ВЫЕЗД В ПОРТ, ПОГРУЗКА НА КОРАБЛЬ</li>
+                    <li className={"lijon4"}>ОТПРАВЛЕНИЕ В СТОКГОЛЬМ</li>
+                    <li className={"lijon5"}> УЖИН НА КОРАБЛЕ <li className={"lijon6"}>(доп оплата).</li></li>
+                </ul>
+            </div>
+
+            <div className={"day-content"}>
+                <p className={"den-2"}>2 ДЕНЬ</p>
+                <ul className={"den-2s"}>
+                    <li>7:00</li>
+                    <li>10:30</li>
+                    <li>11:00</li>
+                    <li>14:00</li>
+                    <li>17:30</li>
+                    <li>19:30</li>
+                    <li>19:00</li>
+                </ul>
+                <p className={"zavt"}>ЗАВТРАК НА КОРАБЛЕ <li className={"lijon7"}>(доп оплата).</li></p>
+                <ul className={"den2-com"}>
+                    <li className={"den2-li"}>ПРИБЫТИЕ В СТОКГОЛЬМ</li>
+                    <li className={"lijon2"}>ОБЗОРНАЯ ЭКСКУРСИЯ ПО СТОКГОЛЬМУ</li>
+                    <li className={"lijon3"}>ПРЕЕЗД НА ДЮРГОРДН — ОСТРОВ МУЗЕЕВ</li>
+                    <li className={"lijon4"}>ВЫЕЗД В ПОРТ, ПОГРУЗКА НА КОРАБЛЬ</li>
+                    <li className={"lijon5"}>ОТПРАВЛЕНИЕ В ТУРКУ</li>
+                    <li className={"lijon2"}> УЖИН НА КОРАБЛЕ <li className={"lijon6"}>(доп оплата).</li></li>
+                </ul>
+            </div>
+            <div className={"day-content"}><p className={"den-3"}>3 ДЕНЬ</p>
+                <ul className={"den-3s"}>
+                    <li>6:00</li>
+                    <li>7:00</li>
+                    <li>7:30</li>
+                    <li>9:00</li>
+                    <li>11:30</li>
+                    <li>13:00</li>
+                    <li>17:30</li>
+                    <li>18:30</li>
+                    <li>21:00</li>
+                </ul>
+                <ul className={"den3-com"}>
+                    <li className={"den3-li"}>ЗАВТРАК НА КОРАБЛЕ</li>
+                    <li className={"lijon2"}>ПРИБЫТИЕ В ТУРКУ</li>
+                    <li className={"lijon3"}>ЭКСКУРСИЯ ПО ГОРОДУ</li>
+                    <li className={"lijon4"}>ПЕРЕЕЗД В ХЕЛЬСИНКИ</li>
+                    <li className={"lijon5"}>ЭКСКУРСИЯ ПО ГОРОДУ</li>
+                    <li className={"lijon2"}>СВОБОДНОЕ ВРЕМЯ (ПОСЕЩЕНИЕ ПАРКОВ, МУЗЕЕВ
+                        <li className={"lijon8"}>(доп. оплата))</li>
+                    </li>
+                    <li className={"lijon2"}>ВЫЕЗД В ПОРТ, ПОГРУЗКА НА КОРАБЛЬ</li>
+                    <li className={"lijon2"}>ОТПРАВЛЕНИЕ В ТАЛЛИНН</li>
+                    <li className={"lijon2"}>УЖИН НА КОРАБЛЕ</li>
+                </ul>
+            </div>
+            <div className={"day-content"}><p className={"den-4"}>4 ДЕНЬ</p>
+                <ul className={"den-4s"}>
+                    <li>7:00</li>
+                    <li>8:00</li>
+                    <li>11:30</li>
+                </ul>
+                <ul className={"den4-com"}>
+                    <li className={"den2-li"}>ЗАВТРАК НА КОРАБЛЕ <li className={"lijon7"}>(доп. оплата)</li></li>
+                    <li className={"lijon2"}>ОБЗОРНАЯ ЭКСКУРСИЯ ПО ГОРОДУ</li>
+                    <li className={"lijon3"}> ОТПРАВЛЕНИЕ В МИНСК</li>
+                </ul>
+            </div>
             <p className={"prib"}>ПРИБЫТИЕ В МИНСК В 00:30-02:30м</p>
             <div ref={inspirationRef} className={"chiziq5"}></div>
             <p className={"dest"}>О туре (Ближайшие выезды)</p>
