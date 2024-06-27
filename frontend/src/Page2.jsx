@@ -80,11 +80,9 @@ function Page2() {
             <p className={"programma"}>Itinerary </p>
             {filteredDays.map((itm, index) => (
                 <div className="day-container" key={index}>
-
                     <p className="day">Day {itm.day}</p>
                     <div className={`desc-card ${expandedDays.includes(itm.day) ? 'expanded' : ''}`}>
-                        <p className="desc-page">
-
+                        <div className="desc-page">
                             {!expandedDays.includes(itm.day) && (
                                 <div className="initial-description">
                                     {itm.description}
@@ -94,34 +92,40 @@ function Page2() {
                                 <div className="expanded-content">
                                     <img
                                         className="expanded-image"
-                                        width={100}
-                                        height={100}
+                                        width={328}
+                                        height={246}
                                         src={`http://localhost:8081/api/files/img?name=${itm.photo}`}
                                         alt=""
                                         onError={(e) => e.target.style.display = 'none'}
                                     />
-                                    <span className="expanded-description">
-                            {itm.description}
-                                        <br/>
-                            Садимся на наш комфортабельный автобус и отправляемся в Таллинн.
-                            Дорога до границы занимает лишь 2 часа. Границу мы пересекаем без очередей.
-                        </span>
+                                    <div className="expanded-info">
+                                        <p className="days">Day {itm.day}</p>
+                                        <p className="tours">Tour starts in {itm.tour.title}</p>
+                                        <span className="expanded-description">
+                                {itm.description}
+                                            <br/>
+                                Садимся на наш комфортабельный автобус и отправляемся в Таллинн.
+                                Дорога до границы занимает лишь 2 часа. Границу мы пересекаем без очередей.
+                            </span>
+                                        <div className="city"></div>
+                                        <p className="citys">City Palace Hotel or similar</p>
+                                    </div>
                                 </div>
                             )}
-                        </p>
+                        </div>
                     </div>
                     {expandedDays.includes(itm.day) ? (
-                        <button className="btn-page minus" onClick={() => handleExpand(itm.day)}>
+                        <button className="btn-page-minus" onClick={() => handleExpand(itm.day)}>
                             -
                         </button>
                     ) : (
-                        <button className="btn-page2" onClick={() => handleExpand(itm.day)}>
+                        <button className="btn-page" onClick={() => handleExpand(itm.day)}>
                             +
                         </button>
                     )}
-
                 </div>
             ))}
+
 
 
 

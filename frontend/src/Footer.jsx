@@ -4,7 +4,7 @@ import GYG from "./footer/Kachel_Get_Your_Guide 1.png";
 import Evns from './footer/Kachel_Get_Your_Guide 3.png';
 import Ggl from './footer/b2ee03870807203bccfae85f973dc2a4 1.png';
 import Trdr from './footer/Kachel_Get_Your_Guide 4.png';
-import Unnamed from './footer/unnamed 1.svg';
+import Unnamed from './footer/unnamed 1.png';
 import Sbl from './footer/sabeel-travels-favicon-1-512x460 1.png';
 import Tg from './footer/tg.svg'
 import Fcbk from './footer/fcbk.svg'

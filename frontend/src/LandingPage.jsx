@@ -4,15 +4,13 @@ import './styles/LandingPage.css';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import { useLocation } from "react-router-dom";
-import 'leaflet/dist/leaflet.css';
-import EnquiryForm from './EnquiryForm';
 import { fetchTourRequest } from "./redux/reducer/tourReducer.js";
 import { useDispatch, useSelector } from "react-redux";
 import NavImage from "./files/barlass 2.png";
 import Logo from './files/left side.png';
 import Ethernet from './files/ethernet.png';
 import Naushnik from './files/naushnik.png';
-import Vector from './files/vector.svg';
+import Vector from './files/vector.png';
 import Apacha from './files/portrait-call-center-woman 1.png';
 import today from './files/Rectangle 3.png';
 import nul from "./files/asd.png";
@@ -25,7 +23,7 @@ import ReactStars from 'react-rating-stars-component';
 import Footer from "./Footer.jsx";
 import {useForm} from "react-hook-form";
 import {toast, ToastContainer} from "react-toastify";
-import tgg from "./files/Vector.png"
+import tgg from "./files/vector.png"
 import Comment from "./Comment.jsx";
 
 const LandingPage = () => {

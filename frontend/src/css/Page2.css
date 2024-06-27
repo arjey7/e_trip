@@ -204,19 +204,13 @@
     line-height: 60.95px;
     text-align: center;
     display: flex;
-    padding-bottom: 10px;
     align-items: center;
     justify-content: center;
     margin-top: -90px;
     letter-spacing: 0%;
     margin-left: 37px;
 }
-.btn-page.minus  {
-    letter-spacing: 10px; /* Adjust this value to space out the minus sign */
-    padding-left: 15px; /* Adjust this value to add space on the left */
-}
-
-.btn-page2 {
+.btn-page-minus  {
     width: 68.26px;
     height: 68.26px;
     background: rgba(0, 213, 148, 0.25);
@@ -224,17 +218,20 @@
     border-radius: 50%;
     font-family: Montserrat;
     border: 1px solid rgba(0, 213, 148, 0.25);
+    font-family: Montserrat;
     font-size: 50px;
-    font-weight: 1000;
+    font-weight: 700;
+    line-height: 60.95px;
+    text-align: center;
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin-top: -90px;
-    line-height: 61px;
+    margin-top: -290px;
     letter-spacing: 0%;
     margin-left: 37px;
-    text-align: center;
+    padding-top: -10px;
 }
+
+
 .chiziq4 {
     width: 109.63px;
     border: 5.04px solid rgb(71, 71, 71);
@@ -322,23 +319,98 @@
     padding: 10px;
 }
 
+.day-container {
+    margin-bottom: 20px;
+}
+
+.desc-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: max-height 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.desc-card.expanded {
+    max-height: 600px; /* Adjust as needed */
+}
+
+.desc-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.initial-description {
+    margin-bottom: 10px;
+}
+
 .expanded-content {
     display: flex;
     align-items: center;
 }
 
 .expanded-image {
-    width: 250px;
-    height: 250px;
-    margin-right: 10px;
-    border-radius: 8px;
+    width: 328px;
+    height: 246px;
+    margin-right: 20px; /* Adjust margin as needed */
+    margin-top: 5px;
+
+}
+
+.expanded-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.expanded-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .expanded-description {
-    margin-left: 10px;
-    text-align: justify;
-    flex-grow: 1;
+    margin-bottom: 10px;
+    margin-left: 40px;
 }
+
+.city {
+    width: 28px;
+    height: 28px;
+    background-color: #D9D9D9;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 40px;
+}
+
+.citys {
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 18.29px;
+    text-align: left;
+    margin-left: 75px;
+    margin-top: -21px;
+}
+
+.days {
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29.26px;
+    margin-left: 40px;
+}
+
+.tours {
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24.38px;
+    margin-top: -43px;
+    margin-left: 120px;
+}
+
 .den-2s{
     font-family: Lato;
     font-size: 20px;
