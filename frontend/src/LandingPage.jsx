@@ -179,7 +179,7 @@ const LandingPage = () => {
             <div className="cd">
                 {tours.map((tour, index) => (
                     <div key={index} className="we">
-                        <div className="image-container">
+                        <div className="image-containerr">
                             <img className="cm" src={`http://localhost:8081/api/files/img?name=${tour.photo}`} alt=""/>
                             <div className="ms">
                                 <h2>{tour.title}</h2>
