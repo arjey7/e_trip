@@ -34,7 +34,6 @@ function Page2() {
     };
 
     const filteredDays = page.filter(itm => itm.day >= 1 && itm.day <= 10);
-
     return (
         <div className={"all"}>
             <div className={"header"}>

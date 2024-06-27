@@ -1,51 +1,50 @@
 .all {
     margin: 0 auto;
     max-width: 1440px;
-    height: 3000px;
+    height: auto;
+    overflow-y: hidden;
 }
-
 .header {
-    width: 727px;
+    width: 100%;
     height: 44px;
-   margin-top: 30px;
-    margin-left: 350px;
-    padding-left: 110px;
     display: flex;
-    gap: 68px;
-    color: rgb(16, 16, 16);
-    font-family: Montserrat;
-    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
     font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0%;
-    cursor: pointer;
-    text-align: left;
+    position: relative;
 }
 
 .header p {
-    padding-bottom: 5px;
-    transition: transform 0.3s;
+    margin: 0 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #000000;
+    text-decoration: none;
+    position: relative;
+}
+
+.header p:hover {
+    background-color: #f2f2f2;
 }
 
 .header p::after {
     content: '';
     position: absolute;
-    width: 0;
+    width: 100%;
     height: 2px;
     left: 0;
-    bottom: 0;
-    background-color: #00D594;
-    transition: width 0.3s;
-}
-
-.header p:hover {
-    transform: scale(1.1);
+    bottom: -4px;
+    background-color: transparent;
+    transition: background-color 0.3s;
 }
 
 .header p:hover::after {
-    width: 100%;
+    background-color: #00D594;
 }
-
 
 .title {
     color: rgb(66, 66, 66);
@@ -70,21 +69,14 @@
 }
 
 .vide2 {
-    width: 1632px;
+    max-width: 1632px;
     height: 918px;
     margin-left: -100px;
     margin-top: 20px;
     padding: 50px;
 }
 
-@media (max-width: 1632px) {
-    .vide2 {
-        width: 100%;
-        height: auto;
-        margin-left: 0;
-        padding: 20px;
-    }
-}
+
 
 
 .chiziq3 {
@@ -109,8 +101,12 @@
     display: flex;
     align-items: center;
     margin-top: 103px;
-
 }
+
+
+
+
+
 
 .day {
     width: 105px;
@@ -123,7 +119,7 @@
     letter-spacing: 0%;
     text-align: center;
     margin-right: 33px;
-    margin-top: -40px;
+    margin-top: -55px;
 }
 
 .desc-card {
@@ -138,8 +134,8 @@
 
 .desc-card.expanded {
     height: 300px;
-
 }
+
 
 
 
@@ -184,6 +180,7 @@
     text-align: left;
     text-transform: lowercase;
 }
+
 .den-1s{
      font-family: Lato;
      font-size: 20px;
@@ -195,12 +192,14 @@
     margin-left: -30px;
      text-transform: lowercase;
  }
+
 .den-com{
     color: rgb(153, 153, 153);
     list-style: none;
 margin-top: -200px;
   margin-left: 30px;
 }
+
 .lijon{
     margin-top: 5px;
 }
@@ -231,6 +230,7 @@ margin-top: -200px;
     margin-left: 962px;
     margin-top: -250px;
 }
+
 
 .desc-page {
     display: flex;
@@ -296,6 +296,156 @@ margin-top: -200px;
     text-align: left;
     text-transform: lowercase;
 }
+@media (max-width: 1440px) {
+    .den-2 {
+        font-size: 18px;
+        margin-left: 862px;
+        margin-top: -220px;
+    }
+
+    .den-2s {
+        font-size: 18px;
+        margin-left: 832px;
+    }
+
+    .den2-com {
+        margin-top: -180px;
+        margin-left: 892px;
+    }
+
+    .den-com {
+        margin-top: -180px;
+        margin-left: 30px;
+    }
+
+    .zavt {
+        margin-left: 1022px;
+        margin-top: -230px;
+    }
+
+    .den2-li {
+        margin-top: 207px;
+    }
+
+    .lijon6 {
+        margin-left: 152px;
+        margin-top: -25px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .den-2 {
+        font-size: 16px;
+        margin-left: 662px;
+        margin-top: -180px;
+    }
+
+    .den-2s {
+        font-size: 16px;
+        margin-left: 632px;
+    }
+
+    .den2-com {
+        margin-top: -160px;
+        margin-left: 692px;
+    }
+
+    .den-com {
+        margin-top: -160px;
+        margin-left: 20px;
+    }
+
+    .zavt {
+        margin-left: 952px;
+        margin-top: -210px;
+    }
+
+    .den2-li {
+        margin-top: 187px;
+    }
+
+    .lijon6 {
+        margin-left: 132px;
+        margin-top: -20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .den-2 {
+        font-size: 14px;
+        margin-left: 462px;
+        margin-top: -140px;
+    }
+
+    .den-2s {
+        font-size: 14px;
+        margin-left: 432px;
+    }
+
+    .den2-com {
+        margin-top: -120px;
+        margin-left: 492px;
+    }
+
+    .den-com {
+        margin-top: -120px;
+        margin-left: 15px;
+    }
+
+    .zavt {
+        margin-left: 792px;
+        margin-top: -170px;
+    }
+
+    .den2-li {
+        margin-top: 167px;
+    }
+
+    .lijon6 {
+        margin-left: 112px;
+        margin-top: -15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .den-2 {
+        font-size: 12px;
+        margin-left: 262px;
+        margin-top: -100px;
+    }
+
+    .den-2s {
+        font-size: 12px;
+        margin-left: 232px;
+    }
+
+    .den2-com {
+        margin-top: -80px;
+        margin-left: 292px;
+    }
+
+    .den-com {
+        margin-top: -80px;
+        margin-left: 10px;
+    }
+
+    .zavt {
+        margin-left: 632px;
+        margin-top: -130px;
+    }
+
+    .den2-li {
+        margin-top: 147px;
+    }
+
+    .lijon6 {
+        margin-left: 92px;
+        margin-top: -10px;
+    }
+}
+
+
+
 .den-3s{
     font-family: Lato;
     font-size: 20px;
@@ -434,9 +584,9 @@ margin-top: -200px;
     letter-spacing: 0%;
     text-align: left;
 }
+
 .footer-page{
-    width: 1692px;
-    height: 128px;
+
     display: flex;
     align-items: center;
 }
