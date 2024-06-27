@@ -19,6 +19,11 @@ public class Comment {
     private String firstName;
     private String lastName;
     private String text;
-    private Boolean status;
+    private String Rate;
+    @Column(nullable = false)
+    private Boolean status = false;
     private Boolean adminstatus;
+
+
+
 }
