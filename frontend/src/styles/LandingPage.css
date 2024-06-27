@@ -2,7 +2,8 @@
     background-image: url("../files/4aa7439ad1c7de51f56d614d10e59584.png");
     background-repeat: no-repeat;
     background-size: cover;
-    width: 100%;
+    width: 117.2%;
+    margin-left: -112px;
     height: 800px;
     border-radius: 25px;
     display: flex;
@@ -23,11 +24,22 @@
     width: 105.46px;
     height: 66.76px;
     margin-left: 30px;
+    margin-top: -25px;
 }
 
 .nav-body {
     display: flex;
     gap: 30px;
+    margin-left: 850px;
+    margin-top: -40px;
+}
+
+.line{
+    width: 102.7%;
+    height: 3px;
+    background-color: #FFFFFF;
+    margin-top: -25%;
+    margin-left: -20px;
 }
 
 .nav-body .montserrat {
@@ -47,6 +59,7 @@
     color: #fff;
     margin-right: 30px;
     cursor: pointer;
+    margin-top: -10px;
 }
 
 .hero-text {
