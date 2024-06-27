@@ -1,4 +1,4 @@
 package org.example.backend.dto;
 
-public record CommentDto(String firstName, String lastName, String text) {
+public record CommentDto(String firstName, String lastName, String text,String rate) {
 }

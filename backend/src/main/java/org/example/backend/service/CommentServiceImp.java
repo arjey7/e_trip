@@ -20,7 +20,8 @@ public class CommentServiceImp implements CommentService {
 
     @Override
     public Comment post(CommentDto commentDto) {
-        Comment comment = new Comment(UUID.randomUUID(), commentDto.firstName(), commentDto.lastName(), commentDto.text(), false, true);
+        System.out.println(commentDto);
+        Comment comment = new Comment(UUID.randomUUID(), commentDto.firstName(), commentDto.lastName(), commentDto.text(), commentDto.rate(), false,true);
         return commentRepo.save(comment);
     }
 
@@ -40,10 +41,9 @@ public class CommentServiceImp implements CommentService {
     public List<Comment> getApprovedComments() {
         List<Comment> allComments = commentRepo.findAll();
         return allComments.stream()
-                .filter(Comment::getStatus)
+                .filter(comment -> comment != null && comment.getStatus() != null && comment.getStatus())
                 .collect(Collectors.toList());
     }
-
 
     public Comment updateAdminStatus(UUID id, boolean adminStatus) {
         Optional<Comment> optionalComment = commentRepo.findById(id);
@@ -55,7 +55,6 @@ public class CommentServiceImp implements CommentService {
             return null;
         }
     }
-
 
     public List<Comment> getAdminStatusTrueComments() {
         return commentRepo.findByAdminstatus(true);

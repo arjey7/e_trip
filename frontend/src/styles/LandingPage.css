@@ -36,9 +36,9 @@
 
 .line{
     width: 102.7%;
-    height: 3px;
+    height: 2.5px;
     background-color: #FFFFFF;
-    margin-top: -25%;
+    margin-top: -180px;
     margin-left: -20px;
 }
 
@@ -65,7 +65,7 @@
 .hero-text {
     color: #fff;
     width: 70%;
-    margin: 0 auto;
+    margin: 100px 150px;
     text-align: center;
 }
 
@@ -87,7 +87,6 @@
     margin-left: 5px;
     width: 50%;
 }
-
 .div-info {
     display: flex;
     flex-direction: row;
@@ -104,10 +103,11 @@
 }
 
 .img2 {
-    width: 752px;
+    width: 752.43px;
     height: auto;
     object-fit: cover;
     margin-left: -100px;
+    margin-top: -30%;
 }
 
 .text-container {
@@ -119,10 +119,71 @@
 }
 
 .text-container h1 {
-    font-size: 2em;
-    font-weight: bold;
+    font-family: "Noto Serif", serif;
+    font-size: 50px;
+    font-weight: 800;
+    line-height: 68.1px;
     margin-bottom: 20px;
-    margin-top: 50px;
+    margin-top: 70px;
+    width: 80%;
+    margin-left: 55px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    margin-left: 50px;
+}
+
+.icons {
+    width: 75.71px;
+    height: 75.71px;
+    margin-right: 10px;
+    margin-left: -10px;
+    margin-top: 70px;
+}
+
+.icon {
+    width: 53.71px;
+    height: 53.71px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.icones {
+    width: 53.71px;
+    height: 53.71px;
+    margin-right: 20px;
+    margin-top: 47px;
+}
+
+.text-content h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.text-content p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    line-height: 21.94px;
+    font-weight: 400;
+    margin: 5px 0 0 0;
+    width: 110%;
+}
+.we{
+    display: flex;
+}
+
+.image-container {
+    position: relative;
+    width: 650px;
+    height: 650.52px;
+    margin-top: 100px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 .button12{
     width:  206.15px;
@@ -137,45 +198,6 @@
 ;
 
 
-}
-
-.info-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 30px;
-}
-
-.icon {
-    width: 40px;
-    height: 40px;
-    margin-right: 20px;
-}
-
-.text-content h2 {
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin: 0;
-}
-
-.text-content p {
-    font-family: "Montserrat", sans-serif;
-    font-size: 17px;
-    line-height: 21.94px;
-    font-weight: 400;
-    margin: 5px 0 0 0;
-}
-.we{
-    display: flex;
-}
-
-.image-container {
-    position: relative;
-    width: 650px;
-    height: 650.52px;
-    margin-top: 100px;
-    border-radius: 10px;
-    overflow: hidden;
 }
 
 .cm {
@@ -261,6 +283,7 @@
 .girl-img{
     width: 352px;
     margin-top: 0px;
+    border-radius: 14px;
 }
 .me{
     width:  797.84px;
@@ -304,9 +327,8 @@
     font-weight: 700;
     line-height: 37.25px;
     text-align: left;
-    width: 70%;
     color: #fff;
-    margin-left: 450px;
+    margin-left: 400px;
 }
 
 .div-request{
@@ -323,7 +345,7 @@
 }
 
 .same-class{
-    margin-left: 450px;
+    margin-left: 400px;
     font-size: 31.41px;
     font-weight: 300;
     line-height: 38.28px;
@@ -335,9 +357,7 @@
     margin-top: -370px;
 }
 
-.input-container{
-    margin-left: 470px;
-}
+
 
 .input1{
     display: block;
@@ -348,43 +368,49 @@
     display: flex;
 }
 
+.input-container input{
+    width: 300px !important;
+    margin-left: -140px;
+}
+
 .input-container {
     margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: -12%;
+
 }
 
 .input, .input1 {
     width: 80%;
-    max-width: 300px;
+    max-width: 400px !important;
+    height: 45px;
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 16px;
+    margin-left: -190px;
 }
 
 .request-button {
     width: 80%;
-    max-width: 300px;
-    height: 41px;
+    max-width: 262px;
+    height: 45px;
     padding: 10px;
     border-radius: 5px;
     border: none;
-    background-color: #28a745;
+    background-color: #00D594;
     color: #fff;
     font-size: 16px;
     cursor: pointer;
-    margin-left: 650px;
-    margin-top: -70px;
+    margin-left: 450px;
+    margin-top: -64px;
 }
 
 .request-button:hover {
-    background-color: #218838;
+    background-color: #00b67f;
 }
-
 @media (max-width: 1200px) {
     .img2 {
         margin-left: 0;
