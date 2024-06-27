@@ -12,7 +12,7 @@ import NavImage from "./files/barlass 2.png";
 import Logo from './files/left side.png';
 import Ethernet from './files/ethernet.png';
 import Naushnik from './files/naushnik.png';
-import Vector from './files/vector.png';
+import Vector from './files/Vector.png';
 import Apacha from './files/portrait-call-center-woman 1.png';
 import today from './files/Rectangle 3.png';
 import nul from "./files/asd.png";
@@ -25,6 +25,7 @@ import ReactStars from 'react-rating-stars-component';
 import Footer from "./Footer.jsx";
 import {useForm} from "react-hook-form";
 import {toast, ToastContainer} from "react-toastify";
+import tgg from "./files/Vector.png"
 
 const LandingPage = () => {
     const dispatch = useDispatch();
@@ -174,17 +175,21 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="cd" >
+            <div className="cd">
                 {tours.map((tour, index) => (
-                    <div key={index} className="">
-                        <div className={"cm"}>
-                            <img className={"cm"} src={`http://localhost:8081/api/files/img?name=${tour.photo}`}
-                                 alt=""/>
+                    <div key={index} className="we">
+                        <div className="image-container">
+                            <img className="cm" src={`http://localhost:8081/api/files/img?name=${tour.photo}`} alt=""/>
                             <div className="ms">
                                 <h2>{tour.title}</h2>
                                 <p>{tour.description}</p>
                                 <p>${tour.cost}</p>
+                                <button className="button12">
+                                    <img src={tgg} alt=""/>
+                                    Show Flight
+                                </button>
                             </div>
+
                         </div>
                         <div className="">
                             <div className="">
@@ -197,8 +202,10 @@ const LandingPage = () => {
                     </div>
                 ))}
             </div>
+
+
             <div className='div-request'>
-                <ToastContainer />
+                <ToastContainer/>
                 <img className='girl-img' src={Apacha} alt=""/>
                 <div className='request-text'>
                     <p className='text-class'>Would you like us to organize a tour tailored to your preferences?</p>
@@ -216,18 +223,18 @@ const LandingPage = () => {
                             })}
                         />
 
-                            <input
-                                placeholder="Phone number..."
-                                className={`form-control ${errors.phoneNumber ? 'is-invalid' : ''}`}
-                                {...register('phoneNumber', {
-                                    required: 'Phone number is required!',
-                                    pattern: {
-                                        value: /^\+998\d{9}$/,
-                                        message: 'Phone number must start with +998 and be followed by exactly 9 digits',
-                                    }
-                                })}
-                            />
-                            {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
+                        <input
+                            placeholder="Phone number..."
+                            className={`form-control ${errors.phoneNumber ? 'is-invalid' : ''}`}
+                            {...register('phoneNumber', {
+                                required: 'Phone number is required!',
+                                pattern: {
+                                    value: /^\+998\d{9}$/,
+                                    message: 'Phone number must start with +998 and be followed by exactly 9 digits',
+                                }
+                            })}
+                        />
+                        {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
 
 
                         <button className='request-button' type='submit'>Call me back</button>
@@ -246,7 +253,7 @@ const LandingPage = () => {
                         <img className={"wit"} width={100} src={today} alt=""/>
                         <img className={"wit"} src={nul} alt=""/>
                         <div style={{display: "flex"}}>
-                        <img className={"wit"} src={p} alt=""/>
+                            <img className={"wit"} src={p} alt=""/>
                             <img className={"wit"} src={m} alt=""/>
                         </div>
                     </div>
@@ -258,7 +265,7 @@ const LandingPage = () => {
             <div className="carousel-container">
                 <Carousel
                     responsive={responsive}>
-                {page.map((comment, index) => (
+                    {page.map((comment, index) => (
                         <div key={index} className="comment-container">
                             <div className={"m"}>
                                 <div className={"op"}></div>
@@ -277,11 +284,11 @@ const LandingPage = () => {
                     ))}
                 </Carousel>
             </div>
-            <button className={"buttin"} >Написать отзыв</button>
-            <Footer  />
+            <button className={"buttin"}>Написать отзыв</button>
+            <Footer/>
             <Rodal visible={modalVisible} onClose={handleCloseModal} height={400} width={700}>
                 <div className="rodal-content">
-                    <EnquiryForm selectedTourTitle={selectedTourTitle} />
+                    <EnquiryForm selectedTourTitle={selectedTourTitle}/>
                 </div>
             </Rodal>
         </div>
