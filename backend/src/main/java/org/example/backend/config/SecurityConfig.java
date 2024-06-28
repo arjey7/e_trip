@@ -26,11 +26,11 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST,"/api/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/auth/login", "/api/about").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/files/img","/api/files/video","/api/files/tourDay").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/files/img","/api/files/video","/api/tour","/api/tourDay","/api/files/tourDay","/api/enquiry/{idd}").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/tour","/api/tourDay", "/api/request").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/api/tour/getAll").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/tour/getAll", "/api/about", "/api/about/{id{").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/comment").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/comment/all","/api/comment/approved","/api/tour/gettour").permitAll()
                         .requestMatchers(HttpMethod.PUT,"/api/comment/{id}/status","/api/comment/{id}/adminstatus","/api/tour/{id}","/api/tourDay/{id}").permitAll()
