@@ -151,9 +151,9 @@
     .den2-com li,
     .den3-com li,
     .den4-com li {
-        display: block; /* Stack list items vertically */
-        margin-bottom: 10px; /* Increase space between list items */
-        word-wrap: break-word; /* Wrap long words */
+        display: block;
+        margin-bottom: 10px;
+        word-wrap: break-word;
     }
 }
 
@@ -185,11 +185,7 @@
 
 .desc-card.expanded {
     height: 300px;
-
 }
-
-
-
 .btn-page {
     width: 68.26px;
     height: 68.26px;
@@ -333,7 +329,7 @@
 }
 
 .desc-card.expanded {
-    max-height: 600px; /* Adjust as needed */
+    max-height: 600px;
 }
 
 .desc-page {
@@ -353,7 +349,7 @@
 .expanded-image {
     width: 328px;
     height: 246px;
-    margin-right: 20px; /* Adjust margin as needed */
+    margin-right: 20px;
     margin-top: 5px;
 
 }
@@ -535,7 +531,7 @@
     line-height: 24px;
     letter-spacing: 0%;
     text-align: left;
-    padding: 20px; /* Adjust padding for content spacing */
+    padding: 20px;
 }
 
 
