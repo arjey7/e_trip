@@ -151,9 +151,9 @@
     .den2-com li,
     .den3-com li,
     .den4-com li {
-        display: block; /* Stack list items vertically */
-        margin-bottom: 10px; /* Increase space between list items */
-        word-wrap: break-word; /* Wrap long words */
+        display: block;
+        margin-bottom: 10px;
+        word-wrap: break-word;
     }
 }
 
@@ -185,11 +185,7 @@
 
 .desc-card.expanded {
     height: 300px;
-
 }
-
-
-
 .btn-page {
     width: 68.26px;
     height: 68.26px;
@@ -264,7 +260,7 @@
     text-align: left;
     text-transform: lowercase;
 }
-.den-1s{
+.den-1s {
     font-family: Lato;
     font-size: 20px;
     list-style: none;
@@ -273,14 +269,17 @@
     letter-spacing: 0%;
     text-align: left;
     margin-left: -30px;
+    margin-top: -10px;
     text-transform: lowercase;
 }
-.den-com{
+
+.den-com {
     color: rgb(153, 153, 153);
     list-style: none;
-    margin-top: -200px;
-    margin-left: 30px;
+    margin-left: 70px;
+    margin-top: -33px;
 }
+
 .lijon{
     margin-top: 5px;
 }
@@ -309,7 +308,7 @@
     text-align: left;
     text-transform: lowercase;
     margin-left: 962px;
-    margin-top: -250px;
+    margin-top: -260px;
 }
 
 .desc-page {
@@ -333,7 +332,7 @@
 }
 
 .desc-card.expanded {
-    max-height: 600px; /* Adjust as needed */
+    max-height: 600px;
 }
 
 .desc-page {
@@ -353,7 +352,7 @@
 .expanded-image {
     width: 328px;
     height: 246px;
-    margin-right: 20px; /* Adjust margin as needed */
+    margin-right: 20px;
     margin-top: 5px;
 
 }
@@ -420,13 +419,15 @@
     letter-spacing: 0%;
     text-align: left;
     margin-left: 932px;
+    margin-top: -10px;
     text-transform: lowercase;
 }
+
 .den2-com{
     color: rgb(153, 153, 153);
     list-style: none;
-    margin-top: -200px;
-    margin-left: 992px;
+    margin-left: 70px;
+    margin-top: -33px;
 }
 .zavt{
     margin-left: 1022px;
@@ -460,13 +461,14 @@
     letter-spacing: 0%;
     text-align: left;
     margin-left: -30px;
+    margin-top: -10px;
     text-transform: lowercase;
 }
 .den3-com{
     color: rgb(153, 153, 153);
     list-style: none;
-    margin-top: -500px;
-    margin-left: 30px;
+    margin-left: 70px;
+    margin-top: -33px;
 }
 .den3-li{
     margin-top: 225px;
@@ -496,13 +498,14 @@
     letter-spacing: 0%;
     text-align: left;
     margin-left: 932px;
+    margin-top: -10px;
     text-transform: lowercase;
 }
 .den4-com{
     color: rgb(153, 153, 153);
     list-style: none;
-    margin-top: -297px;
-    margin-left: 992px;
+    margin-left: 70px;
+    margin-top: -33px;
 }
 .prib{
     font-family: Lato;
@@ -535,7 +538,7 @@
     line-height: 24px;
     letter-spacing: 0%;
     text-align: left;
-    padding: 20px; /* Adjust padding for content spacing */
+    padding: 20px;
 }
 
 
