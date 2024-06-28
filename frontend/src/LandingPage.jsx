@@ -4,13 +4,15 @@ import './styles/LandingPage.css';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import { useLocation } from "react-router-dom";
-import { fetchTourRequest } from "./redux/reducer/tourReducer.js";
+import 'leaflet/dist/leaflet.css';
+import EnquiryForm from './EnquiryForm';
+import {closeModal, fetchTourRequest, openModal} from "./redux/reducer/tourReducer.js";
 import { useDispatch, useSelector } from "react-redux";
 import NavImage from "./files/barlass 2.png";
 import Logo from './files/left side.png';
 import Ethernet from './files/ethernet.png';
 import Naushnik from './files/naushnik.png';
-import Vector from './files/vector.png';
+import Vector from './files/vector.svg';
 import Apacha from './files/portrait-call-center-woman 1.png';
 import today from './files/Rectangle 3.png';
 import nul from "./files/asd.png";
@@ -20,19 +22,21 @@ import Carousel from "react-multi-carousel";
 import axios from 'axios';
 import 'react-multi-carousel/lib/styles.css';
 import ReactStars from 'react-rating-stars-component';
+import Tgg from "./files/Paper Plane.svg"
 import Footer from "./Footer.jsx";
 import {useForm} from "react-hook-form";
 import {toast, ToastContainer} from "react-toastify";
-import tgg from "./files/vector.png"
+
 import Comment from "./Comment.jsx";
 
 const LandingPage = () => {
     const dispatch = useDispatch();
     const location = useLocation();
-    const [centerIndex, setCenterIndex] = useState(null);
+    const [centerIndex, setCenterIndex] = useState(0);
     const [page, setPage] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedTourTitle, setSelectedTourTitle] = useState('');
+    const {modal}=useSelector(state => state.tour)
 
     const ratingChanged = (newRating) => {
         // Handle rating change if needed
@@ -60,7 +64,7 @@ const LandingPage = () => {
     }, []);
 
     function getAll() {
-        axios.get('http://localhost:8080/api/comment/approved')
+        axios.get('http://localhost:8081/api/comment/approved')
             .then(res => {
                 setPage(res.data);
             })
@@ -103,13 +107,18 @@ const LandingPage = () => {
     const [fullName, setFullName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
 
+    useEffect(() => {
+        const initialCenterIndex = Math.floor(page.length / 3);
+        setCenterIndex(initialCenterIndex);
+    }, [page.length]);
+
     const onSlideChanged = (previousSlide, { currentSlide, slidesToShow }) => {
         setCenterIndex(currentSlide + Math.floor(slidesToShow / 2));
     };
 
     function mySubmit(params) {
             try {
-                 axios.post('http://localhost:8080/api/request', params).then(()=>{
+                 axios.post('http://localhost:8081/api/request', params).then(()=>{
                      console.log("asd")});
                  reset()
                 toast.success('Request submitted successfully, please wait for our call!');
@@ -179,25 +188,31 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
+                <p className="you2">----    Trip ideas in Uzbekistan</p>
             <div className="cd">
                 {tours.map((tour, index) => (
                     <div key={index} className="we">
                         <div className="image-containerr">
                             <img className="cm" src={`http://localhost:8081/api/files/img?name=${tour.photo}`} alt=""/>
                             <div className="ms">
-                                <h2>{tour.title}</h2>
-                                <p>{tour.description}</p>
-                                <p>${tour.cost}</p>
-                                <button className="button12">
-                                    <img src={tgg} alt=""/>
-                                    Show Flight
-                                </button>
+                                <div className={"divcha"}>
+                                    <h2 className={"vbn"}>{tour.title}</h2>
+                                    <p className={"olo"}>{tour.description}</p>
+                                    <p className={"pepe"}>{tour.day} days from ${tour.cost}</p>
+                                </div>
+                                <div className={"mn"}>
+                                    <button className="button12">
+                                        <img src={Tgg} alt=""/>
+                                        Show Flight
+                                    </button>
+                                </div>
                             </div>
+
 
                         </div>
                         <div className="">
                             <div className="">
-                                {/* Additional buttons if needed */}
+                            {/* Additional buttons if needed */}
                             </div>
                             <div className="tour-buttons">
                                 {/* Buttons */}
@@ -209,7 +224,7 @@ const LandingPage = () => {
 
 
             <div className='div-request'>
-                <ToastContainer/>
+            <ToastContainer/>
                 <img className='girl-img' src={Apacha} alt=""/>
                 <div className='request-text'>
                     <p className='text-class'>Would you like us to organize a tour tailored to your preferences?</p>
@@ -246,7 +261,7 @@ const LandingPage = () => {
                 </div>
             </div>
             <div>
-                <p className="you1">----Where you can travel with us</p>
+                <p className="you1">----    Where you can travel with us</p>
                 <p className="you">Immerse yourself in the beauty and spirituality of fascinating places. Join us for an
                     unforgettable adventure through Islamic Central Asia.</p>
                 <div className={"kl"}>
@@ -267,20 +282,20 @@ const LandingPage = () => {
 
             </div>
             <div className="page-container">
+                <h1 className="us">What our clients say about us</h1>
                 <Carousel
                     responsive={responsive}
-                    afterChange={(previousSlide, {
-                        currentSlide,
-                        slidesToShow
-                    }) => onSlideChanged(previousSlide, {currentSlide, slidesToShow})}
+                    afterChange={(previousSlide, {currentSlide, slidesToShow}) =>
+                        onSlideChanged(previousSlide, {currentSlide, slidesToShow})
+                    }
                 >
                     {page.map((comment, index) => (
                         <div
                             key={index}
                             className={`comment-container ${index === centerIndex ? 'center-card' : ''}`}
                         >
-                            <div className={"m"}>
-                                <div className={"op"}></div>
+                            <div className="m">
+                                <div className="op"></div>
                                 <p className="comment-name">{comment.firstName} {comment.lastName}</p>
                                 <p className="comment-text">{comment.text}</p>
                                 <ReactStars
@@ -295,11 +310,12 @@ const LandingPage = () => {
                     ))}
                 </Carousel>
             </div>
-            <button className={"buttin"} onClick={()=>setModalVisible(true)}>Написать отзыв</button>
+
+            <button className={"buttin"} onClick={() => dispatch(openModal())}>Написать отзыв</button>
             <Footer/>
-            <Rodal visible={modalVisible} onClose={handleCloseModal} height={400} width={700}>
+            <Rodal visible={modal} onClose={()=>dispatch(closeModal())} height={500} width={700}>
                 <div className="rodal-content">
-                    <Comment />
+                    <Comment/>
                 </div>
             </Rodal>
         </div>

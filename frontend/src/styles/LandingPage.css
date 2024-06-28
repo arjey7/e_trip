@@ -185,20 +185,20 @@
     border-radius: 10px;
     overflow: hidden;
 }
-.button12{
-    width:  206.15px;
-    height: 68.44px;
-    padding: 11.41px 22.81px 11.41px 22.81px;
-    gap: 5.7px;
-    border-radius: 5.7px 0px 0px 0px;
-    opacity: 0px;
-    color: white;
-    background: #00D594;
-    border: 1px solid  #00D594;
-;
+/*.button12{*/
+/*    width:  206.15px;*/
+/*    height: 68.44px;*/
+/*    padding: 11.41px 22.81px 11.41px 22.81px;*/
+/*    gap: 5.7px;*/
+/*    border-radius: 5.7px 0px 0px 0px;*/
+/*    opacity: 0px;*/
+/*    color: white;*/
+/*    background: #00D594;*/
+/*    border: 1px solid  #00D594;*/
+/*;*/
 
 
-}
+/*}*/
 
 .cm {
     width: 100%;
@@ -211,9 +211,10 @@
 .image-containerr {
     position: relative;
     width: 650px;
-    height: 650.52px;
+    height: 550.52px;
     margin-top: 100px;
     border-radius: 10px;
+
     overflow: hidden;
 }
 .image-containerr::after {
@@ -223,7 +224,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(241, 237, 237, 0) 0%, rgba(18, 18, 18, 0.75) 80.67%);
+    background: linear-gradient(180deg, rgba(241, 237, 237, 0) 40%, rgba(9, 8, 8, 0.96) 90.67%);
     border-radius: 10px;
 }
 .cd {
@@ -231,18 +232,20 @@
     width: 1396px;
     flex-wrap: wrap;
     gap: 86px;
+    margin-left: -35px;
+
 }
+
 
 .ms {
     position: absolute;
-    bottom: 200px;
+    bottom: 50px;
     left: 100px;
-    color: white;
+    color: #FFFFFF;
     z-index: 1;
 }
 
 .ms h2, .ms p {
-    margin: 0;
     padding: 0;
 }
 
@@ -252,8 +255,6 @@
     padding: 10px 20px;
     color: white;
     cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
 
 }
 
@@ -270,8 +271,18 @@
     line-height: 112.02px;
     text-align: left;
     margin-left: 50px;
-
 }
+
+.you2{
+    font-family: "Noto Serif", serif;
+    margin-top: 50px;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 112.02px;
+    text-align: left;
+    margin-left: 50px;
+}
+
 .you{
     font-family: "Montserrat", sans-serif;
     font-size: 29.01px;
@@ -319,7 +330,7 @@
 .kl{
     display: flex;
     gap: 10px;
-    margin-left: 40px;
+    margin-left: 10px;
 }
 .text-class{
     font-family: "Montserrat", sans-serif;
@@ -556,4 +567,28 @@
         font-size: 12px;
         width: 100%;
     }
+}
+.us{
+    font-family: Noto Serif;
+    font-size: 50px;
+    font-weight: 800;
+    line-height: 68.1px;
+    text-align: center;
+
+}
+.buttin{
+    width: 254px;
+    height: 66px;
+    top: 7304.44px;
+    left: 833px;
+    gap: 0px;
+    opacity: 0px;
+    background: #00D594;
+border:1px solid #00D594 ;
+    color: #FFFFFF;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }

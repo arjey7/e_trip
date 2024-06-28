@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     tours: [],
     loading: false,
-    error: null
+    error: null,
+    modal:false
 };
 
 const slice = createSlice({
@@ -21,14 +22,22 @@ const slice = createSlice({
         fetchTourFailure: (state, action) => {
             state.loading = false;
             state.error = action.payload;
+        },
+        openModal:(state,action) =>{
+            state.modal = true
+        },
+        closeModal:(state,action) =>{
+            state.modal = false
         }
-    } 
+    }
 });
 
 export const {
     fetchTourRequest,
     fetchTourSuccess,
     fetchTourFailure,
+    openModal,
+    closeModal
 } = slice.actions;
 
 export default slice.reducer;

@@ -17,7 +17,7 @@ import {
 
 function* fetchTours() {
     try {
-        const response = yield call(axios.get, 'http://localhost:8080/api/tour/getAll');
+        const response = yield call(axios.get, 'http://localhost:8081/api/tour/getAll');
         yield put(fetchToursSuccess(response.data));
 
     } catch (error) {
@@ -27,7 +27,7 @@ function* fetchTours() {
 
 function* addTour(action) {
     try {
-        const response = yield call(axios.post, 'http://localhost:8080/api/tour', action.payload);
+        const response = yield call(axios.post, 'http://localhost:8081/api/tour', action.payload);
         yield put(addTourSuccess(response.data));
     } catch (error) {
         yield put(addTourFailure(error.message));
@@ -36,7 +36,7 @@ function* addTour(action) {
 
 function* updateTour(action) {
     try {
-        const response = yield call(axios.put, `http://localhost:8080/api/tour/${action.payload.id}`, action.payload);
+        const response = yield call(axios.put, `http://localhost:8081/api/tour/${action.payload.id}`, action.payload);
         yield put(updateTourSuccess(response.data));
     } catch (error) {
         yield put(updateTourFailure(error.message));
@@ -45,7 +45,7 @@ function* updateTour(action) {
 
 function* deleteTour(action) {
     try {
-        yield call(axios.delete, `http://localhost:8080/api/tour/${action.payload}`);
+        yield call(axios.delete, `http://localhost:8081/api/tour/${action.payload}`);
         yield put(deleteTourSuccess(action.payload));
     } catch (error) {
         yield put(deleteTourFailure(error.message));
