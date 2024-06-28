@@ -1,6 +1,7 @@
 package org.example.backend.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.backend.dto.TextDto;
 import org.example.backend.dto.TourDayDto;
 import org.example.backend.entity.Tour;
 import org.example.backend.entity.TourDay;
@@ -23,6 +24,7 @@ public class TourDayServiceImp implements TourDayService {
         TourDay tourDay = new TourDay();
         tourDay.setTitle(tourDayDto.title());
         tourDay.setDescription(tourDayDto.description());
+        tourDay.setText(tourDayDto.text());
         tourDay.setPhoto(tourDayDto.photo());
         tourDay.setTour(tour);
         return tourDayRepo.save(tourDay);
@@ -35,9 +37,11 @@ public class TourDayServiceImp implements TourDayService {
 
     @Override
     public TourDay updateTourDay(UUID id, TourDayDto tourDayDto) {
+        System.out.println(tourDayDto);
         Tour tour = tourRepo.findById(tourDayDto.tourId()).orElseThrow();
         TourDay existingTourDay = tourDayRepo.findById(id).orElseThrow(() -> new RuntimeException("TourDay not found"));
         existingTourDay.setTitle(tourDayDto.title());
+        existingTourDay.setText(tourDayDto.text());
         existingTourDay.setDescription(tourDayDto.description());
         if (tourDayDto.photo() == null || tourDayDto.photo().isEmpty()) {
             existingTourDay.setPhoto(existingTourDay.getPhoto());
@@ -64,5 +68,17 @@ public class TourDayServiceImp implements TourDayService {
     @Override
     public List<TourDay> getByIdd(UUID idd) {
         return tourDayRepo.getAllById(UUID.fromString(idd.toString()));
+    }
+
+    @Override
+    public TourDay addText(TextDto textDto) {
+        Tour tour = tourRepo.findById(textDto.tourId()).orElseThrow(() -> new RuntimeException("Tour not found"));
+        TourDay tourDay = new TourDay();
+        tourDay.setTitle(tourDayDto.title());
+        tourDay.setDescription(tourDayDto.description());
+        tourDay.setText(tourDayDto.text());
+        tourDay.setPhoto(tourDayDto.photo());
+        tourDay.setTour(tour);
+        return tourDayRepo.save(tourDay);
     }
 }
