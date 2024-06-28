@@ -18,6 +18,8 @@ public class Destination {
     private Integer day;
     private String data;
     private String text;
+
     @ManyToOne
+    @JoinColumn(name = "tour_id", nullable = false)
     private Tour tour;
 }
