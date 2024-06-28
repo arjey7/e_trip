@@ -17,6 +17,7 @@ function TourDay() {
     const { uuid } = useParams();
     const username = localStorage.getItem('username');
     const navigate = useNavigate();
+    const [inputValue, setInputValue] = useState('');
 
     const tourDays = useSelector(state => state.tourDay.tourDays);
     const loading = useSelector(state => state.tourDay.loading);
@@ -113,6 +114,21 @@ function TourDay() {
     const handleNavigate3 = () => {
         navigate('/admin');
     };
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent form submission if inside a form
+            if (inputValue.trim() !== '') {
+                const newTourDay = {
+                    title: inputValue,
+                    description: '',
+                    photo: '',
+                    tourId: uuid
+                };
+                dispatch(addTourDayRequest(newTourDay));
+                setInputValue('');
+            }
+        }
+    };
 
     return (
         <div className="">
@@ -123,19 +139,25 @@ function TourDay() {
                 gap: "320px",
                 marginTop: "50px"
             }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-                    <img src={Account} alt="" />
+                <div style={{display: "flex", alignItems: "center", gap: "20px"}}>
+                    <img src={Account} alt=""/>
                     <h1 className={"h0"}>{username}</h1>
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+                <div style={{display: "flex", alignItems: "center", gap: "20px"}}>
                     <p className={"asd"} onClick={handleNavigate3}>Add Tour</p>
                     <p onClick={handleNavigate} className={"asd"}>Enquiry</p>
-                    <p  className={"asd"}>Available Tours</p>
+                    <p className={"asd"}>Available Tours</p>
                     <p onClick={handleNavigate2} className={"asd"}>Comments</p>
                 </div>
                 <div>
                     <button onClick={handleLogout}
-                            style={{ backgroundColor: "red", width: "135px", height: "36px", borderRadius: "20px", borderColor: "red" }}>Log
+                            style={{
+                                backgroundColor: "red",
+                                width: "135px",
+                                height: "36px",
+                                borderRadius: "20px",
+                                borderColor: "red"
+                            }}>Log
                         out
                     </button>
                 </div>
@@ -149,14 +171,14 @@ function TourDay() {
                     marginTop: "50px"
                 }}>
                     <div className="mb-3">
-                        <input placeholder={"Title"} style={{ width: "400px" }} type="text" className="form-control"
+                        <input placeholder={"Title"} style={{width: "400px"}} type="text" className="form-control"
                                name="title"
-                               value={formData.title} onChange={handleChange} />
+                               value={formData.title} onChange={handleChange}/>
                     </div>
                     <div className="mb-3">
-                        <input placeholder={"Description"} style={{ width: "400px" }} type="text" className="form-control"
+                        <input placeholder={"Description"} style={{width: "400px"}} type="text" className="form-control"
                                name="description"
-                               value={formData.description} onChange={handleChange} />
+                               value={formData.description} onChange={handleChange}/>
                     </div>
                     <div className="mb-3">
                         <label>
@@ -168,9 +190,16 @@ function TourDay() {
                     <button style={{backgroundColor: "red", borderColor: "red", marginTop: "-15px"}} type="submit"
                             className="btn btn-primary">{isEditing ? 'Update' : 'Add'} Tour Day
                     </button>
+
                 </div>
             </form>
-            <div style={{      display: "flex",
+            <input value={inputValue}
+                   onChange={(e) => setInputValue(e.target.value)}
+                   onKeyDown={handleKeyDown} placeholder={"О туре (В стоимость тура входит:)"}
+                   style={{marginLeft: "86px", width: "1360px"}} className={"form-control"} type="text"/>
+
+            <div style={{
+                display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 gap: "10px",

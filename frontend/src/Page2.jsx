@@ -9,19 +9,24 @@ import e from "./pageimg/Group 10.svg"
 import r from "./pageimg/Group 9.svg"
 import t from "./pageimg/Group 2.svg"
 import y from "./pageimg/Group 8.svg"
+import {useParams} from "react-router-dom";
 
 function Page2() {
+
     const dispatch = useDispatch();
     const page = useSelector((state) => state.tourDays.data);
+    const tourDays = useSelector(state => state.tourDay.tourDays);
     const [expandedDays, setExpandedDays] = useState([]);
     const aboutUsRef = useRef(null);
     const destinationsRef = useRef(null);
     const inspirationRef = useRef(null);
     const contactUsRef = useRef(null);
+    const {uuid} = useParams()
 
     useEffect(() => {
         dispatch(fetchTourDaysRequest());
-    }, [dispatch]);
+        dispatch(fetchTourDaysRequest(uuid));
+    }, [dispatch,uuid]);
 
     const scrollToSection = (ref) => {
         ref.current.scrollIntoView({ behavior: 'smooth' });
@@ -271,12 +276,17 @@ function Page2() {
             <div className={"chiziq5"}></div>
             <p className={"dest"}>О туре (В стоимость тура входит:)</p>
             <ul className={"comments"}>
-                <li>- проезд на комфортабельном автобусе компании VRLines</li>
-                <li>- обзорные экскурсии по всем городам</li>
-                <li>- ночевка на круизном лайнере</li>
-                <li>- завтрак на круизном найнере</li>
-                <li>- массаж головы при проезде в автобусе</li>
-                <li>- гарнитура на время проведения экскурсий</li>
+                {
+                    tourDays.map((item)=>{
+                        <li>{item.text}</li>
+                    })
+                }
+                {/*<li>- проезд на комфортабельном автобусе компании VRLines</li>*/}
+                {/*<li>- обзорные экскурсии по всем городам</li>*/}
+                {/*<li>- ночевка на круизном лайнере</li>*/}
+                {/*<li>- завтрак на круизном найнере</li>*/}
+                {/*<li>- массаж головы при проезде в автобусе</li>*/}
+                {/*<li>- гарнитура на время проведения экскурсий</li>*/}
             </ul>
             <div className={"chiziq5"}></div>
 
