@@ -9,20 +9,36 @@ import e from "./pageimg/Group 10.svg"
 import r from "./pageimg/Group 9.svg"
 import t from "./pageimg/Group 2.svg"
 import y from "./pageimg/Group 8.svg"
+import {useParams} from "react-router-dom";
+import axios from "axios";
 
 function Page2() {
     const dispatch = useDispatch();
-    const page = useSelector((state) => state.tourDays.data);
+    const [page,setPage] = useState([])
     const [expandedDays, setExpandedDays] = useState([]);
     const aboutUsRef = useRef(null);
     const destinationsRef = useRef(null);
     const inspirationRef = useRef(null);
     const contactUsRef = useRef(null);
-
+    const { tourId } = useParams();
+    const [destination,setDestination] = useState([])
     useEffect(() => {
-        dispatch(fetchTourDaysRequest());
-    }, [dispatch]);
 
+    }, [ tourId]);
+    useEffect(() => {
+getAll()
+        getTour(tourId)
+    }, [dispatch]);
+    function getTour(){
+        axios.get(`http://localhost:8081/api/destination/${tourId}`).then(res=>{
+            setDestination(res.data)
+        })
+    }
+    function getAll(){
+        axios.get("http://localhost:8081/api/tourDay/"+tourId).then(res=>{
+            setPage(res.data)
+        })
+    }
     const scrollToSection = (ref) => {
         ref.current.scrollIntoView({ behavior: 'smooth' });
     };
@@ -43,42 +59,47 @@ function Page2() {
                 <p onClick={() => scrollToSection(contactUsRef)}>Contact us</p>
             </div>
             <div ref={aboutUsRef}>
-                {page.length > 0 && (
+                {page && page.length > 0 && (
                     <>
-                    <p className={"title"}>Uzbekistan : food tour</p>
-                    <p className={"obshiy"}>Общее описание тура, буквально несколько абзацев про то как все круто,
-                        красиво и еще
-                        много всякой полезной информации, которую пользователи прочитают в первую очередь. Seamlessly
-                        drive
-                        extensible platforms without cooperative vortals. Conveniently drive professional results with
-                        multimedia based bandwidth. Completely expedite enterprise leadership and transparent
-                        meta-services.
-                        Continually synthesize state of the art e-services before client-based technology. Conveniently
-                        plagiarize accurate ideas without bleeding-edge channels.
-                        <br/>
-                        <br/>
-                        Distinctively syndicate excellent intellectual capital whereas professional partnerships.
-                        Interactively
-                        syndicate best-of-breed niche markets after an expanded array of collaboration and idea-sharing.
-                        Competently conceptualize multifunctional processes after strategic quality vectors.
-                        Authoritatively
-                        evisculate interactive partnerships whereas unique value. Dynamically reconceptualize leveraged
-                        outsourcing after inexpensive best practices.</p>
-                    {page[0].video && (
-                        <video
-                            src={`http://localhost:8081/api/files/video?name=${page[0].video}`}
+                        <p className={"title"}>Uzbekistan : food tour</p>
+                        <p className={"obshiy"}>Общее описание тура, буквально несколько абзацев про то как все круто,
+                            красиво и еще
+                            много всякой полезной информации, которую пользователи прочитают в первую очередь.
+                            Seamlessly
+                            drive
+                            extensible platforms without cooperative vortals. Conveniently drive professional results
+                            with
+                            multimedia based bandwidth. Completely expedite enterprise leadership and transparent
+                            meta-services.
+                            Continually synthesize state of the art e-services before client-based technology.
+                            Conveniently
+                            plagiarize accurate ideas without bleeding-edge channels.
+                            <br/>
+                            <br/>
+                            Distinctively syndicate excellent intellectual capital whereas professional partnerships.
+                            Interactively
+                            syndicate best-of-breed niche markets after an expanded array of collaboration and
+                            idea-sharing.
+                            Competently conceptualize multifunctional processes after strategic quality vectors.
+                            Authoritatively
+                            evisculate interactive partnerships whereas unique value. Dynamically reconceptualize
+                            leveraged
+                            outsourcing after inexpensive best practices.</p>
+                        {page[0].video && (
+                            <video
+                                src={`http://localhost:8081/api/files/video?name=${page[0].video}`}
                                 controls
                                 className="vide2"
-                                />
-                                )}
-                        </>
-                    )}
+                            />
+                        )}
+                    </>
+                )}
 
-                    </div>
+            </div>
 
-                    <div className={"chiziq3"}></div>
+            <div className={"chiziq3"}></div>
             <p className={"programma"}>Itinerary </p>
-            {filteredDays.map((itm, index) => (
+            {page.map((itm, index) => (
                 <div className="day-container" key={index}>
                     <p className="day">Day {itm.day}</p>
                     <div className={`desc-card ${expandedDays.includes(itm.day) ? 'expanded' : ''}`}>
@@ -127,89 +148,118 @@ function Page2() {
             ))}
 
 
-
-
             <div ref={destinationsRef} className={"chiziq4"}></div>
             <p className={"dest"}>Destinations</p>
             <div className={"day-content"}>
-                <p className={"den-1"}>1 ДЕНЬ</p>
-                <ul className={"den-1s"}>
-                    <li>4:00</li>
-                    <li>8:00</li>
-                    <li>13:00</li>
-                    <li>16:00</li>
-                    <li>17:30</li>
-                    <li>17:30</li>
-                </ul>
-                <ul className={"den-com"}>
-                    <li>ПЛОЩАДЬ КАЛИНИНА, ОТПРАВЛЕНИЕ В РИГУ</li>
-                    <li className={"lijon"}>ПЕРЕСЕЧЕНИЕ ГРАНИЦЫ (БЕЛАРУСЬ-ЛИТВА)</li>
-                    <li className={"lijon2"}>ПРИБЫТИЕ В РИГУ, ЭКСКУРСИЯ ПО ГОРОДУ</li>
-                    <li className={"lijon3"}>ВЫЕЗД В ПОРТ, ПОГРУЗКА НА КОРАБЛЬ</li>
-                    <li className={"lijon4"}>ОТПРАВЛЕНИЕ В СТОКГОЛЬМ</li>
-                    <li className={"lijon5"}> УЖИН НА КОРАБЛЕ <li className={"lijon6"}>(доп оплата).</li></li>
-                </ul>
+                {destination && destination.length > 0 && (
+                    <div key={destination[0].id}>
+                        <p className="den-1">{destination[0].day} день</p>
+                    </div>
+                )}
+                <div>
+                    {destination.slice(0, 6).map((itm, index) => (
+                        <ul key={index + 6} className="den-1s">
+                            <li>
+                                {itm.data}
+                                <li className="den-com">
+                                    {itm.text.split('(доп оплата)').map((part, idx, arr) =>
+                                        idx < arr.length - 1 ? (
+                                            <>
+                                                {part}
+                                                <span style={{color: 'rgb(223, 112, 33)'}}>(доп оплата)</span>
+                                            </>
+                                        ) : (
+                                            part
+                                        )
+                                    )}
+                                </li>
+                            </li>
+                        </ul>
+                    ))}
+                </div>
+
+
             </div>
 
-            <div className={"day-content"}>
-                <p className={"den-2"}>2 ДЕНЬ</p>
-                <ul className={"den-2s"}>
-                    <li>7:00</li>
-                    <li>10:30</li>
-                    <li>11:00</li>
-                    <li>14:00</li>
-                    <li>17:30</li>
-                    <li>19:30</li>
-                    <li>19:00</li>
-                </ul>
-                <p className={"zavt"}>ЗАВТРАК НА КОРАБЛЕ <li className={"lijon7"}>(доп оплата).</li></p>
-                <ul className={"den2-com"}>
-                    <li className={"den2-li"}>ПРИБЫТИЕ В СТОКГОЛЬМ</li>
-                    <li className={"lijon2"}>ОБЗОРНАЯ ЭКСКУРСИЯ ПО СТОКГОЛЬМУ</li>
-                    <li className={"lijon3"}>ПРЕЕЗД НА ДЮРГОРДН — ОСТРОВ МУЗЕЕВ</li>
-                    <li className={"lijon4"}>ВЫЕЗД В ПОРТ, ПОГРУЗКА НА КОРАБЛЬ</li>
-                    <li className={"lijon5"}>ОТПРАВЛЕНИЕ В ТУРКУ</li>
-                    <li className={"lijon2"}> УЖИН НА КОРАБЛЕ <li className={"lijon6"}>(доп оплата).</li></li>
-                </ul>
+            <div className="day-content">
+                {destination.slice(0, 7).length > 6 && (
+                    <div key={destination[6].id}>
+                        <p className="den-2">{destination[6].day} день</p>
+                    </div>
+                )}
+                {destination.slice(6, 13).map((itm, index) => (
+                    <ul key={index + 6} className="den-2s">
+                        <li>
+                            {itm.data}
+                            <li className="den2-com">
+                                {itm.text.split('(доп оплата)').map((part, idx, arr) =>
+                                    idx < arr.length - 1 ? (
+                                        <>
+                                            {part}
+                                            <span style={{ color: 'rgb(223, 112, 33)' }}>(доп оплата)</span>
+                                        </>
+                                    ) : (
+                                        part
+                                    )
+                                )}
+                            </li>
+                        </li>
+                    </ul>
+                ))}
             </div>
-            <div className={"day-content"}><p className={"den-3"}>3 ДЕНЬ</p>
-                <ul className={"den-3s"}>
-                    <li>6:00</li>
-                    <li>7:00</li>
-                    <li>7:30</li>
-                    <li>9:00</li>
-                    <li>11:30</li>
-                    <li>13:00</li>
-                    <li>17:30</li>
-                    <li>18:30</li>
-                    <li>21:00</li>
-                </ul>
-                <ul className={"den3-com"}>
-                    <li className={"den3-li"}>ЗАВТРАК НА КОРАБЛЕ</li>
-                    <li className={"lijon2"}>ПРИБЫТИЕ В ТУРКУ</li>
-                    <li className={"lijon3"}>ЭКСКУРСИЯ ПО ГОРОДУ</li>
-                    <li className={"lijon4"}>ПЕРЕЕЗД В ХЕЛЬСИНКИ</li>
-                    <li className={"lijon5"}>ЭКСКУРСИЯ ПО ГОРОДУ</li>
-                    <li className={"lijon2"}>СВОБОДНОЕ ВРЕМЯ (ПОСЕЩЕНИЕ ПАРКОВ, МУЗЕЕВ
-                        <li className={"lijon8"}>(доп. оплата))</li>
+
+            <div className="day-content">
+                {destination.slice(0, 8).length > 6 && (
+                    <div key={destination[14].id}>
+                        <p className="den-3">{destination[14].day} день</p>
+                    </div>
+                )}
+                {destination.slice(13, 22).map((itm, index) => (
+                    <ul key={index + 14} className="den-3s">
+                        <li>
+                            {itm.data}
+                            <li className="den3-com">
+                                {itm.text.split('(доп оплата)').map((part, idx, arr) =>
+                                    idx < arr.length - 1 ? (
+                                        <>
+                                            {part}
+                                            <span style={{ color: 'rgb(223, 112, 33)' }}>(доп оплата)</span>
+                                        </>
+                                    ) : (
+                                        part
+                                    )
+                                )}
+                            </li>
+                        </li>
+                    </ul>
+                ))}
+            </div>
+
+            {destination.slice(0, 22).length > 6 && (
+                <div key={destination[22].id}>
+                    <p className="den-4">{destination[22].day} день</p>
+                </div>
+            )}
+            {destination.slice(19).map((itm, index) => (
+                <ul key={index + 22} className="den-4s">
+                    <li>
+                        {itm.data}
+                        <li className="den4-com">
+                            {itm.text.split('(доп оплата)').map((part, idx, arr) =>
+                                idx < arr.length - 1 ? (
+                                    <>
+                                        {part}
+                                        <span style={{ color: 'rgb(223, 112, 33)' }}>(доп оплата)</span>
+                                    </>
+                                ) : (
+                                    part
+                                )
+                            )}
+                        </li>
                     </li>
-                    <li className={"lijon2"}>ВЫЕЗД В ПОРТ, ПОГРУЗКА НА КОРАБЛЬ</li>
-                    <li className={"lijon2"}>ОТПРАВЛЕНИЕ В ТАЛЛИНН</li>
-                    <li className={"lijon2"}>УЖИН НА КОРАБЛЕ</li>
                 </ul>
-            </div>
-            <div className={"day-content"}><p className={"den-4"}>4 ДЕНЬ</p>
-                <ul className={"den-4s"}>
-                    <li>7:00</li>
-                    <li>8:00</li>
-                    <li>11:30</li>
-                </ul>
-                <ul className={"den4-com"}>
-                    <li className={"den2-li"}>ЗАВТРАК НА КОРАБЛЕ <li className={"lijon7"}>(доп. оплата)</li></li>
-                    <li className={"lijon2"}>ОБЗОРНАЯ ЭКСКУРСИЯ ПО ГОРОДУ</li>
-                    <li className={"lijon3"}> ОТПРАВЛЕНИЕ В МИНСК</li>
-                </ul>
-            </div>
+            ))}
+
             <p className={"prib"}>ПРИБЫТИЕ В МИНСК В 00:30-02:30м</p>
             <div ref={inspirationRef} className={"chiziq5"}></div>
             <p className={"dest"}>О туре (Ближайшие выезды)</p>
@@ -315,7 +365,7 @@ function Page2() {
                 </div>
             </div>
         </div>
-);
+    );
 }
 
 export default Page2;
