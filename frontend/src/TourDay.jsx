@@ -10,14 +10,13 @@ import {
 } from './redux/reducer/tourDayReducer';
 import Account from "./files/Account.png";
 import { fetchToursRequest } from "./redux/reducer/userReducer.js";
-import logo from "./logo.svg";
+import axios from "axios";
 
 function TourDay() {
     const dispatch = useDispatch();
     const { uuid } = useParams();
     const username = localStorage.getItem('username');
     const navigate = useNavigate();
-    const [inputValue, setInputValue] = useState('');
 
     const tourDays = useSelector(state => state.tourDay.tourDays);
     const loading = useSelector(state => state.tourDay.loading);
@@ -33,6 +32,12 @@ function TourDay() {
     const [isEditing, setIsEditing] = useState(false);
     const [current, setCurrent] = useState(null);
     const [displayImg, setDisplayImg] = useState("");
+    const [destinationFormData, setDestinationFormData] = useState({
+        day: '',
+        data: '',
+        text: '',
+        tourId: uuid
+    });
 
     useEffect(() => {
         dispatch(fetchToursRequest());
@@ -42,6 +47,14 @@ function TourDay() {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
+    const handleDestinationChange = (e) => {
+        const { name, value } = e.target;
+        setDestinationFormData(prevState => ({
             ...prevState,
             [name]: value
         }));
@@ -87,6 +100,8 @@ function TourDay() {
             title: tourDay.title,
             description: tourDay.description,
             photo: '',
+            day:tourDay.day,
+            data:tourDay.data,
             tourId: uuid
         });
         setDisplayImg(`http://localhost:8081/api/files/tourDay?name=${tourDay.photo}`); // Display current photo
@@ -114,20 +129,27 @@ function TourDay() {
     const handleNavigate3 = () => {
         navigate('/admin');
     };
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault(); // Prevent form submission if inside a form
-            if (inputValue.trim() !== '') {
-                const newTourDay = {
-                    title: inputValue,
-                    description: '',
-                    photo: '',
-                    tourId: uuid
-                };
-                dispatch(addTourDayRequest(newTourDay));
-                setInputValue('');
-            }
-        }
+
+    const handleDestinationSubmit = (e) => {
+        e.preventDefault();
+        axios.post(`http://localhost:8081/api/destination/${uuid}`, destinationFormData)
+            .then(res => {
+                console.log(res.data);
+                // Qayta yuklash yoki yangilash kodlarini shu yerga qo'shing
+            })
+            .catch(err => {
+                console.error(err);
+            });
+        resetDestinationForm();
+    };
+
+    const resetDestinationForm = () => {
+        setDestinationFormData({
+            day: '',
+            data: '',
+            text: '',
+            tourId: uuid
+        });
     };
 
     return (
@@ -139,11 +161,11 @@ function TourDay() {
                 gap: "320px",
                 marginTop: "50px"
             }}>
-                <div style={{display: "flex", alignItems: "center", gap: "20px"}}>
-                    <img src={Account} alt=""/>
+                <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+                    <img src={Account} alt="" />
                     <h1 className={"h0"}>{username}</h1>
                 </div>
-                <div style={{display: "flex", alignItems: "center", gap: "20px"}}>
+                <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
                     <p className={"asd"} onClick={handleNavigate3}>Add Tour</p>
                     <p onClick={handleNavigate} className={"asd"}>Enquiry</p>
                     <p className={"asd"}>Available Tours</p>
@@ -151,13 +173,7 @@ function TourDay() {
                 </div>
                 <div>
                     <button onClick={handleLogout}
-                            style={{
-                                backgroundColor: "red",
-                                width: "135px",
-                                height: "36px",
-                                borderRadius: "20px",
-                                borderColor: "red"
-                            }}>Log
+                            style={{ backgroundColor: "red", width: "135px", height: "36px", borderRadius: "20px", borderColor: "red" }}>Log
                         out
                     </button>
                 </div>
@@ -187,24 +203,49 @@ function TourDay() {
                             {/*{displayImg && <img src={displayImg} alt="Current" style={{ width: '100px', height: '100px' }} />}*/}
                         </label>
                     </div>
+
                     <button style={{backgroundColor: "red", borderColor: "red", marginTop: "-15px"}} type="submit"
                             className="btn btn-primary">{isEditing ? 'Update' : 'Add'} Tour Day
                     </button>
-
                 </div>
             </form>
-            <input value={inputValue}
-                   onChange={(e) => setInputValue(e.target.value)}
-                   onKeyDown={handleKeyDown} placeholder={"О туре (В стоимость тура входит:)"}
-                   style={{marginLeft: "86px", width: "1360px"}} className={"form-control"} type="text"/>
+            <form onSubmit={handleDestinationSubmit}>
+                <div style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "10px",
+                    marginTop: "50px"
+                }}>
+                    <div className="mb-3">
+                        <input placeholder={"Day"} style={{width: "400px"}} type="text" className="form-control"
+                               name="day"
+                               value={destinationFormData.day} onChange={handleDestinationChange}/>
+                    </div>
+                    <div className="mb-3">
+                        <input placeholder={"Data"} style={{width: "400px"}} type="text" className="form-control"
+                               name="data"
+                               value={destinationFormData.data} onChange={handleDestinationChange}/>
+                    </div>
+                    <div className="mb-2">
+                        <label>
+                            <input placeholder={"Text"} style={{width: "500px"}} type="text" className="form-control"
+                                   name="text"
+                                   value={destinationFormData.text} onChange={handleDestinationChange}/>
+                        </label>
+                    </div>
 
+                    <button style={{backgroundColor: "blue", borderColor: "blue", marginTop: "-15px"}} type="submit"
+                            className="btn btn-primary">Add Destination
+                    </button>
+                </div>
+            </form>
             <div style={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 gap: "10px",
                 marginTop: "50px"
-
             }}>
                 <table style={{marginTop: "40px", width: "1370px", marginLeft: "10px"}}
                        className="table table-striped">
@@ -221,8 +262,10 @@ function TourDay() {
                         <tr className={"op"} key={index}>
                             <td>{tourDay.title}</td>
                             <td>{tourDay.description}</td>
-                            <td><img src={`http://localhost:8081/api/files/tourDay?name=${tourDay.photo}`} alt="Tour"
-                                     style={{width: '100px', height: '100px'}}/></td>
+                            <td>
+                                <img src={`http://localhost:8081/api/files/tourDay?name=${tourDay.photo}`} alt="Tour"
+                                     style={{width: '100px', height: '100px'}}/>
+                            </td>
                             <td>
                                 <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>
                                 <button className="btn btn-danger m-2" onClick={() => handleDelete(tourDay.id)}>Delete
@@ -232,7 +275,6 @@ function TourDay() {
                     ))}
                     </tbody>
                 </table>
-
             </div>
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
