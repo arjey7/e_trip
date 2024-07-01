@@ -147,7 +147,6 @@ getAll()
                 </div>
             ))}
 
-
             <div ref={destinationsRef} className={"chiziq4"}></div>
             <p className={"dest"}>Destinations</p>
             <div className={"day-content"}>

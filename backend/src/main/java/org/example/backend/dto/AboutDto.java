@@ -1,6 +1,6 @@
 package org.example.backend.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-public record AboutDto (LocalDateTime startTime, LocalDateTime endTime, Double price){
+public record AboutDto (LocalDate startTime, LocalDate endTime, Double price){
 }

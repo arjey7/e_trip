@@ -3,7 +3,7 @@ import './css/Page.css';
 import './styles/LandingPage.css';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
-import { useLocation } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import 'leaflet/dist/leaflet.css';
 import EnquiryForm from './EnquiryForm';
 import {closeModal, fetchTourRequest, openModal} from "./redux/reducer/tourReducer.js";
@@ -12,7 +12,7 @@ import NavImage from "./files/barlass 2.png";
 import Logo from './files/left side.png';
 import Ethernet from './files/ethernet.png';
 import Naushnik from './files/naushnik.png';
-import Vector from './files/vector.svg';
+import Vector from './files/vector2.svg';
 import Apacha from './files/portrait-call-center-woman 1.png';
 import today from './files/Rectangle 3.png';
 import nul from "./files/asd.png";
@@ -22,10 +22,11 @@ import Carousel from "react-multi-carousel";
 import axios from 'axios';
 import 'react-multi-carousel/lib/styles.css';
 import ReactStars from 'react-rating-stars-component';
-import Tgg from "./files/Paper Plane.svg"
+// import Tgg from "./files/Paper Plane.svg"
 import Footer from "./Footer.jsx";
 import {useForm} from "react-hook-form";
 import {toast, ToastContainer} from "react-toastify";
+import "./index.css"
 
 import Comment from "./Comment.jsx";
 
@@ -34,8 +35,9 @@ const LandingPage = () => {
     const location = useLocation();
     const [centerIndex, setCenterIndex] = useState(0);
     const [page, setPage] = useState([]);
-    const [modalVisible, setModalVisible] = useState(false);
-    const [selectedTourTitle, setSelectedTourTitle] = useState('');
+    const navigate = useNavigate();
+    const [ setModalVisible] = useState(false);
+    const [ setSelectedTourTitle] = useState('');
     const {modal}=useSelector(state => state.tour)
 
     const ratingChanged = (newRating) => {
@@ -128,215 +130,217 @@ const LandingPage = () => {
             }
     }
 
+    const handleShowFlightClick = (tourId) => {
+        navigate(`/page2?id=${tourId}`);
+    };
+
     return (
-        <div className="container">
-            <div className='main-img'>
-                <div className='navbar'>
-                    <img className='img1' src={NavImage} alt=""/>
-                    <div className='nav-body'>
-                        <p className='montserrat' onClick={scrollToGroupElement}>About us</p>
-                        <p className='montserrat'>Destinations</p>
-                        <p className='montserrat'>Inspiration</p>
-                        <p className='montserrat'>Contact us</p>
-                        <p className='montserrat-font'>ENG</p>
-                    </div>
-                </div>
-                <div className={"line"}></div>
-                <div className='hero-text'>
-                    <p>Travel through the land and observe how He began creation.</p>
-                    <div className='hero-subtext'>
-                        We are BARLAS VOYAGE and we organize group trips to Central Asia.
-                        If you want to travel to learn from the past, let us be your guide.
-                    </div>
-                </div>
-            </div>
-            <div className='div-info' id="specificGroupArea">
-                <div className='image-container'>
-                    <img className='img2' src={Logo} alt=""/>
-                </div>
-                <div className='text-container'>
-                    <h1>Small and big group trip through Central Asia</h1>
-                    <div className='info-item'>
-                        <img src={Vector} alt="" className='icons'/>
-                        <div className='text-content'>
-                            <h2>Discover Islamic Central Asia with our expert guides.</h2>
-                            <p>Experience the rich cultural heritage of Islamic Central Asia with our expert guides.
-                                Embark on a journey through ancient cities, stunning architecture, and vibrant markets.
-                                Learn about the intricate art of calligraphy, the mystical world of Sufism, and the
-                                historical significance of Silk Road trade routes. Immerse yourself in the beauty and
-                                spirituality of this fascinating region. Join us for an unforgettable adventure through
-                                Islamic Central Asia.</p>
+        <div>
+            <div className={"wrapper"}>
+                <div className='main-img'>
+                    <div className='navbar'>
+                        <img className='img1' src={NavImage} alt=""/>
+                        <div className='nav-body'>
+                            <p className='montserrat' onClick={scrollToGroupElement}>About us</p>
+                            <p className='montserrat'>Destinations</p>
+                            <p className='montserrat'>Inspiration</p>
+                            <p className='montserrat'>Contact us</p>
+                            <p className='montserrat-font'>ENG</p>
                         </div>
                     </div>
-                    <div className='info-item'>
-                        <img src={Ethernet} alt="" className='icon'/>
-                        <div className='text-content'>
-                            <h2>Our Commitment to World-Class Service</h2>
-                            <p>Our dedicated team is here to ensure that your experience with us exceeds your
-                                expectations. Your satisfaction is our top priority.</p>
-                        </div>
-                    </div>
-                    <div className='info-item'>
-                        <img src={Naushnik} alt="" className='icones'/>
-                        <div className='text-content'>
-                            <h2>24/7 Strong Customer Support</h2>
-                            <p>Great customer support is crucial for our success. We have a dedicated team that provides
-                                prompt and effective solutions to any customer queries or concerns. Our goal is to
-                                exceed your expectations and ensure your satisfaction. We're here to support you every
-                                step of the way.</p>
+                    <div className={"line"}></div>
+                    <div className='hero-text'>
+                        <p>Travel through the land and observe how He began creation.</p>
+                        <div className='hero-subtext'>
+                            We are BARLAS VOYAGE and we organize group trips to Central Asia.
+                            If you want to travel to learn from the past, let us be your guide.
                         </div>
                     </div>
                 </div>
-            </div>
-                <p className="you2">----    Trip ideas in Uzbekistan</p>
-            <div className="cd">
-                {tours.map((tour, index) => (
-                    <div key={index} className="we">
-                        <div className="image-containerr">
-                            <img className="cm" src={`http://localhost:8081/api/files/img?name=${tour.photo}`} alt=""/>
-                            <div className="ms">
-                                <div className={"divcha"}>
-                                    <h2 className={"vbn"}>{tour.title}</h2>
-                                    <p className={"olo"}>{tour.description}</p>
-                                    <p className={"pepe"}>{tour.day} days from ${tour.cost}</p>
-                                </div>
-                                <div className={"mn"}>
-                                    <button className="button12">
-                                        <img src={Tgg} alt=""/>
-                                        Show Flight
-                                    </button>
-                                </div>
+                <div className='div-info' id="specificGroupArea">
+                    <div className='image-container'>
+                        <img className='img2' src={Logo} alt=""/>
+                    </div>
+                    <div className='text-container'>
+                        <h1>Small and big group trip through Central Asia</h1>
+                        <div className='info-item'>
+                            <div className={"info-div-item"}>
+                                <img src={Vector} alt="" className='icons'/>
                             </div>
-
-
+                            <div className='text-content'>
+                                <h2>Discover Islamic Central Asia with our expert guides.</h2>
+                                <p>Experience the rich cultural heritage of Islamic Central Asia with our expert guides.
+                                    Embark on a journey through ancient cities, stunning architecture, and vibrant
+                                    markets.
+                                    Learn about the intricate art of calligraphy, the mystical world of Sufism, and the
+                                    historical significance of Silk Road trade routes. Immerse yourself in the beauty
+                                    and
+                                    spirituality of this fascinating region. Join us for an unforgettable adventure
+                                    through
+                                    Islamic Central Asia.</p>
+                            </div>
                         </div>
-                        <div className="">
+                        <div className='info-item2'>
+                            <div className={"info-div-item"}>
+                               <img src={Ethernet} alt="" className='icon'/>
+                            </div>
+                            <div className='text-content2'>
+                                <h2>Our Commitment to World-Class Service</h2>
+                                <p>Our dedicated team is here to ensure that your experience with us exceeds your
+                                    expectations. Your satisfaction is our top priority.</p>
+                            </div>
+                        </div>
+                        <div className='info-item3'>
+                            <div className={"info-div-item"}>
+                                <img src={Naushnik} alt="" className='icones'/>
+                            </div>
+                            <div className='text-content3'>
+                                <h2>24/7 Strong Customer Support</h2>
+                                <p>Great customer support is crucial for our success. We have a dedicated team that
+                                    provides
+                                    prompt and effective solutions to any customer queries or concerns. Our goal is to
+                                    exceed your expectations and ensure your satisfaction. We're here to support you
+                                    every
+                                    step of the way.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p className="you2">---- Trip ideas in Uzbekistan</p>
+                <div className="cd">
+                    {tours.map((tour, index) => (
+                        <div key={index} className="we">
+                            <div className="image-containerr">
+                                <img className="cm" src={`http://localhost:8081/api/files/img?name=${tour.photo}`}
+                                     alt=""/>
+                                <div className="ms">
+                                    <div className={"divcha"}>
+                                        <h2 className={"vbn"}>{tour.title}</h2>
+                                        <p className={"olo"}>{tour.description}</p>
+                                        <p className={"pepe"}>{tour.day} days from ${tour.cost}</p>
+                                    </div>
+                                    <div className={"mn"}>
+                                        <button className="button12" onClick={() => handleShowFlightClick(tour.id)}>
+                                            {/*<img src={Tgg} alt=""/>*/}
+                                            Show Flight
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                            </div>
                             <div className="">
-                            {/* Additional buttons if needed */}
-                            </div>
-                            <div className="tour-buttons">
-                                {/* Buttons */}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-
-            <div className='div-request'>
-            <ToastContainer/>
-                <img className='girl-img' src={Apacha} alt=""/>
-                <div className='request-text'>
-                    <p className='text-class'>Would you like us to organize a tour tailored to your preferences?</p>
-                    <p className='same-class'>Please provide your contact information, and we will </p>
-                    <p className='same-class'>get in touch with you shortly</p>
-                    <form className='input-container' onSubmit={handleSubmit(mySubmit)}>
-                        <input
-                            className='input1'
-                            type="text"
-                            placeholder='name'
-                            defaultValue={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
-                            {...register("fullName", {
-                                required: 'Phone number is required!'
-                            })}
-                        />
-
-                        <input
-                            placeholder="+44 7459 382384"
-                            className={"input1"}
-                            {...register('phoneNumber', {
-                                required: 'Phone number is required!',
-                                pattern: {
-                                    value: /^\+998\d{9}$/,
-                                    message: 'Phone number must start with +998 and be followed by exactly 9 digits',
-                                }
-                            })}
-                        />
-                        {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
-
-
-                        <button className='request-button' type='submit'>Call me back</button>
-                    </form>
-                </div>
-            </div>
-            <div>
-                <p className="you1">----    Where you can travel with us</p>
-                <p className="you">Immerse yourself in the beauty and spirituality of fascinating places. Join us for an
-                    unforgettable adventure through Islamic Central Asia.</p>
-                <div className={"kl"}>
-                    <div className={"me"}>
-                        <p className={"me2"}>Bu yerda video bo'ladi</p>
-                    </div>
-                    <div className={"d"}>
-                        <img className={"wit"} width={100} src={today} alt=""/>
-                        <img className={"wit"} src={nul} alt=""/>
-                        <div style={{display: "flex"}}>
-                            <img className={"wit"} src={p} alt=""/>
-                            <img className={"wit"} src={m} alt=""/>
-                        </div>
-                    </div>
-
-
-                </div>
-
-            </div>
-            <div className="page-container">
-                <h1 className="us">What our clients say about us</h1>
-                <Carousel
-                    responsive={responsive}
-                    afterChange={(previousSlide, {currentSlide, slidesToShow}) =>
-                        onSlideChanged(previousSlide, {currentSlide, slidesToShow})
-                    }
-                >
-                    {page.map((comment, index) => (
-                        <div
-                            key={index}
-                            className={`comment-container ${index === centerIndex ? 'center-card' : ''}`}
-                        >
-                            <div className="m">
-                                <div className="op"></div>
-                                <p className="comment-name">{comment.firstName} {comment.lastName}</p>
-                                <p className="comment-text">{comment.text}</p>
-                                <ReactStars
-                                    count={5}
-                                    value={comment.rate}
-                                    size={40}
-                                    activeColor="#ffd700"
-                                    edit={false}
-                                />
+                                <div className="">
+                                    {/* Additional buttons if needed */}
+                                </div>
+                                <div className="tour-buttons">
+                                    {/* Buttons */}
+                                </div>
                             </div>
                         </div>
                     ))}
-                </Carousel>
-            </div>
-
-            <button className={"buttin"} onClick={() => dispatch(openModal())}>Написать отзыв</button>
-            <Footer/>
-            <Rodal visible={modal} onClose={()=>dispatch(closeModal())} height={500} width={700}>
-                <div className="rodal-content">
-                    <Comment/>
                 </div>
-            </Rodal>
+
+
+                <div className='div-request'>
+                    <ToastContainer/>
+                    <img className='girl-img' src={Apacha} alt=""/>
+                    <div className='request-text'>
+                        <p className='text-class'>Would you like us to organize a tour tailored to your preferences?</p>
+                        <p className='same-class'>Please provide your contact information, and we will </p>
+                        <p className='same-class'>get in touch with you shortly</p>
+                        <form className='input-container' onSubmit={handleSubmit(mySubmit)}>
+                            <input
+                                className='input1'
+                                type="text"
+                                placeholder='name'
+                                defaultValue={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
+                                {...register("fullName", {
+                                    required: 'Phone number is required!'
+                                })}
+                            />
+
+                            <input
+                                placeholder="+44 7459 382384"
+                                className={"input1"}
+                                {...register('phoneNumber', {
+                                    required: 'Phone number is required!',
+                                    pattern: {
+                                        value: /^\+998\d{9}$/,
+                                        message: 'Phone number must start with +998 and be followed by exactly 9 digits',
+                                    }
+                                })}
+                            />
+                            {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
+
+
+                            <button className='request-button' type='submit'>Call me back</button>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <p className="you1">---- Where you can travel with us</p>
+                    <p className="you">Immerse yourself in the beauty and spirituality of fascinating places. Join us
+                        for an
+                        unforgettable adventure through Islamic Central Asia.</p>
+                    <div className={"kl"}>
+                        <div className={"me"}>
+                            <p className={"me2"}>Bu yerda video bo'ladi</p>
+                        </div>
+                        <div className={"d"}>
+                            <img className={"wit"} width={100} src={today} alt=""/>
+                            <img className={"wit"} src={nul} alt=""/>
+                            <div style={{display: "flex"}}>
+                                <img className={"wit"} src={p} alt=""/>
+                                <img className={"wit"} src={m} alt=""/>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div className="page-container">
+                    <h1 className="us">What our clients say about us</h1>
+                    <Carousel
+                        responsive={responsive}
+                        afterChange={(previousSlide, {currentSlide, slidesToShow}) =>
+                            onSlideChanged(previousSlide, {currentSlide, slidesToShow})
+                        }
+                    >
+                        {page.map((comment, index) => (
+                            <div
+                                key={index}
+                                className={`comment-container ${index === centerIndex ? 'center-card' : ''}`}
+                            >
+                                <div className="m">
+                                    <div className="op"></div>
+                                    <p className="comment-name">{comment.firstName} {comment.lastName}</p>
+                                    <p className="comment-text">{comment.text}</p>
+                                    <ReactStars
+                                        count={5}
+                                        value={comment.rate}
+                                        size={40}
+                                        activeColor="#ffd700"
+                                        edit={false}
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                    </Carousel>
+                </div>
+
+                <button className={"buttin"} onClick={() => dispatch(openModal())}>Написать отзыв</button>
+                <Footer/>
+                <Rodal visible={modal} onClose={() => dispatch(closeModal())} height={500} width={700}>
+                    <div className="rodal-content">
+                        <Comment/>
+                    </div>
+                </Rodal>
+            </div>
         </div>
     );
 }
 
 export default LandingPage;
-// {page.map((comment, index) => (
-//     <div key={index} className="comment-container">
-//         <div className={"m"}>
-//             <div className={"op"}></div>
-//             <p className="comment-name">{comment.firstName} {comment.lastName}</p>
-//             <p className="comment-text">{comment.text}</p>
-//             <ReactStars
-//                 count={5}
-//                 value={comment.rating || 0} // Default value of 5 stars for comments
-//                 onChange={ratingChanged}
-//                 size={40}
-//                 activeColor="#ffd700"
-//                 edit={false} // Disable editing
-//             />
-//         </div>
-//     </div>
-// ))}

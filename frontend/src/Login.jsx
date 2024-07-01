@@ -28,7 +28,7 @@ function Login() {
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-title"><span>sign in to our</span></div>
                 <div className="title-2"><span>Website</span></div>
-                <div className="input-container">
+                <div className="input-containers">
                     <input className="input-mail" type="text" placeholder="Enter username..." {...register("username", { required: true })} />
                 </div>
                 <section className="bg-stars">
@@ -37,7 +37,7 @@ function Login() {
                     <span className="star"></span>
                     <span className="star"></span>
                 </section>
-                <div className="input-container">
+                <div className="input-containers">
                     <input className="input-pwd" type="password" placeholder="Enter password..." {...register("password", { required: true })} />
                 </div>
                 <button type="submit" className="submit">
