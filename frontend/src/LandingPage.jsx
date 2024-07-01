@@ -3,7 +3,7 @@ import './css/Page.css';
 import './styles/LandingPage.css';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
-import { useLocation } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import 'leaflet/dist/leaflet.css';
 import EnquiryForm from './EnquiryForm';
 import {closeModal, fetchTourRequest, openModal} from "./redux/reducer/tourReducer.js";
@@ -51,7 +51,7 @@ const LandingPage = () => {
         const specificFooterArea = document.getElementById('specificFooterArea');
         specificFooterArea.scrollIntoView({ behavior: 'smooth' });
     }
-
+const navigate = useNavigate()
 
     const { tours, loading, error } = useSelector(state => state.tour);
 
@@ -102,7 +102,9 @@ const LandingPage = () => {
             items: 1
         }
     };
-
+    const handleShowFlightClick = (id) => {
+        navigate(`/page/${id}`);
+    };
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [fullName, setFullName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -201,7 +203,7 @@ const LandingPage = () => {
                                     <p className={"pepe"}>{tour.day} days from ${tour.cost}</p>
                                 </div>
                                 <div className={"mn"}>
-                                    <button className="button12">
+                                    <button onClick={() => handleShowFlightClick(tour.id)} className="button12">
                                         <img src={Tgg} alt=""/>
                                         Show Flight
                                     </button>
@@ -212,7 +214,7 @@ const LandingPage = () => {
                         </div>
                         <div className="">
                             <div className="">
-                            {/* Additional buttons if needed */}
+                                {/* Additional buttons if needed */}
                             </div>
                             <div className="tour-buttons">
                                 {/* Buttons */}

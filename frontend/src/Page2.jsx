@@ -63,17 +63,25 @@ function Page2() {
                         <p className={"title"}>Uzbekistan : food tour</p>
                         <p className={"obshiy"}>
                             Общее описание тура, буквально несколько абзацев про то как все круто,
-                            красиво и еще много всякой полезной информации, которую пользователи прочитают в первую очередь.
-                            Seamlessly drive extensible platforms without cooperative vortals. Conveniently drive professional results
-                            with multimedia based bandwidth. Completely expedite enterprise leadership and transparent meta-services.
-                            Continually synthesize state of the art e-services before client-based technology. Conveniently plagiarize
+                            красиво и еще много всякой полезной информации, которую пользователи прочитают в первую
+                            очередь.
+                            Seamlessly drive extensible platforms without cooperative vortals. Conveniently drive
+                            professional results
+                            with multimedia based bandwidth. Completely expedite enterprise leadership and transparent
+                            meta-services.
+                            Continually synthesize state of the art e-services before client-based technology.
+                            Conveniently plagiarize
                             accurate ideas without bleeding-edge channels.
-                            <br />
-                            <br />
-                            Distinctively syndicate excellent intellectual capital whereas professional partnerships. Interactively syndicate
-                            best-of-breed niche markets after an expanded array of collaboration and idea-sharing. Competently conceptualize
-                            multifunctional processes after strategic quality vectors. Authoritatively evisculate interactive partnerships
-                            whereas unique value. Dynamically reconceptualize leveraged outsourcing after inexpensive best practices.
+                            <br/>
+                            <br/>
+                            Distinctively syndicate excellent intellectual capital whereas professional partnerships.
+                            Interactively syndicate
+                            best-of-breed niche markets after an expanded array of collaboration and idea-sharing.
+                            Competently conceptualize
+                            multifunctional processes after strategic quality vectors. Authoritatively evisculate
+                            interactive partnerships
+                            whereas unique value. Dynamically reconceptualize leveraged outsourcing after inexpensive
+                            best practices.
                         </p>
                         {page[0].video && (
                             <video
@@ -113,7 +121,7 @@ function Page2() {
                                         <p className="tours">Tour starts in {itm.tour.title}</p>
                                         <span className="expanded-description">
                                             {itm.description}
-                                            <br />
+                                            <br/>
                                             Садимся на наш комфортабельный автобус и отправляемся в Таллинн.
                                             Дорога до границы занимает лишь 2 часа. Границу мы пересекаем без очередей.
                                         </span>
@@ -135,38 +143,35 @@ function Page2() {
                     )}
                 </div>
             ))}
-
-            <div ref={destinationsRef} className={"chiziq4"}></div>
-            <p className={"dest"}>Destinations</p>
-            <div className={"day-content"}>
+            <div className="day-content">
                 {destination.map((item, index) => (
-                    <div key={index}>
+                    <div className="har-bitta-div" key={index}>
                         {index === 0 || destination[index - 1].day !== item.day ? (
-                            <p className="den-1">{item.day} день</p>
+                            <div className="daylar">
+                                <p className="den-1">
+                                    {item.day} день
+                                    <span className="day-border"></span>
+                                </p>
+                            </div>
                         ) : null}
-                        <ul className="den-1s">
-                            <li>
-                                {item.data}
-                                <li className="den-com">
-                                    {item.text.split('(доп оплата)').map((part, idx, arr) =>
-                                        idx < arr.length - 1 ? (
-                                            <>
-                                                {part}
-                                                <span style={{color: 'rgb(223, 112, 33)'}}>(доп оплата)</span>
-                                            </>
-                                        ) : (
-                                            part
-                                        )
-                                    )}
-                                </li>
-                            </li>
-                        </ul>
+                        <div className="day-data">
+                            <p className="day-text">{item.data}</p>
+                            <p className="den-com">
+                                {item.text.split('(доп оплата)').map((part, idx, arr) =>
+                                    idx < arr.length - 1 ? (
+                                        <React.Fragment key={idx}>
+                                            {part}
+                                            <span style={{color: 'rgb(223, 112, 33)'}}>(доп оплата)</span>
+                                        </React.Fragment>
+                                    ) : (
+                                        part
+                                    )
+                                )}
+                            </p>
+                        </div>
                     </div>
                 ))}
             </div>
-
-
-
 
             <p className={"prib"}>ПРИБЫТИЕ В МИНСК В 00:30-02:30м</p>
             <div ref={inspirationRef} className={"chiziq5"}></div>
