@@ -21,20 +21,30 @@ function Page2() {
     const contactUsRef = useRef(null);
     const { tourId } = useParams();
     const [destination, setDestination] = useState([]);
-
+    const [items, setItems] = useState([]);
     useEffect(() => {
-        getAll();
-        getTour();
+        getAll(tourId);
+        getTour(tourId);
+        getText(tourId)
     }, [tourId]);
 
     function getTour() {
-        axios.get(`http://localhost:8081/api/destination/${tourId}`).then(res => {
+        console.log()
+        axios.get(`http://localhost:1111/api/destination/${tourId}`).then(res => {
             setDestination(res.data);
+
+        });
+    }
+    function getText() {
+        axios.get(`http://localhost:1111/api/texts/${tourId}`).then(res => {
+            setItems(res.data);
+            console.log(res.data)
         });
     }
 
+
     function getAll() {
-        axios.get(`http://localhost:8081/api/tourDay/${tourId}`).then(res => {
+        axios.get(`http://localhost:1111/api/tourDay/${tourId}`).then(res => {
             setPage(res.data);
         });
     }
@@ -63,21 +73,29 @@ function Page2() {
                         <p className={"title"}>Uzbekistan : food tour</p>
                         <p className={"obshiy"}>
                             Общее описание тура, буквально несколько абзацев про то как все круто,
-                            красиво и еще много всякой полезной информации, которую пользователи прочитают в первую очередь.
-                            Seamlessly drive extensible platforms without cooperative vortals. Conveniently drive professional results
-                            with multimedia based bandwidth. Completely expedite enterprise leadership and transparent meta-services.
-                            Continually synthesize state of the art e-services before client-based technology. Conveniently plagiarize
+                            красиво и еще много всякой полезной информации, которую пользователи прочитают в первую
+                            очередь.
+                            Seamlessly drive extensible platforms without cooperative vortals. Conveniently drive
+                            professional results
+                            with multimedia based bandwidth. Completely expedite enterprise leadership and transparent
+                            meta-services.
+                            Continually synthesize state of the art e-services before client-based technology.
+                            Conveniently plagiarize
                             accurate ideas without bleeding-edge channels.
-                            <br />
-                            <br />
-                            Distinctively syndicate excellent intellectual capital whereas professional partnerships. Interactively syndicate
-                            best-of-breed niche markets after an expanded array of collaboration and idea-sharing. Competently conceptualize
-                            multifunctional processes after strategic quality vectors. Authoritatively evisculate interactive partnerships
-                            whereas unique value. Dynamically reconceptualize leveraged outsourcing after inexpensive best practices.
+                            <br/>
+                            <br/>
+                            Distinctively syndicate excellent intellectual capital whereas professional partnerships.
+                            Interactively syndicate
+                            best-of-breed niche markets after an expanded array of collaboration and idea-sharing.
+                            Competently conceptualize
+                            multifunctional processes after strategic quality vectors. Authoritatively evisculate
+                            interactive partnerships
+                            whereas unique value. Dynamically reconceptualize leveraged outsourcing after inexpensive
+                            best practices.
                         </p>
                         {page[0].video && (
                             <video
-                                src={`http://localhost:8081/api/files/video?name=${page[0].video}`}
+                                src={`http://localhost:1111/api/files/video?name=${page[0].video}`}
                                 controls
                                 className="vide2"
                             />
@@ -104,7 +122,7 @@ function Page2() {
                                         className="expanded-image"
                                         width={328}
                                         height={246}
-                                        src={`http://localhost:8081/api/files/img?name=${itm.photo}`}
+                                        src={`http://localhost:8082/api/files/img?name=${itm.photo}`}
                                         alt=""
                                         onError={(e) => e.target.style.display = 'none'}
                                     />
@@ -113,7 +131,7 @@ function Page2() {
                                         <p className="tours">Tour starts in {itm.tour.title}</p>
                                         <span className="expanded-description">
                                             {itm.description}
-                                            <br />
+                                            <br/>
                                             Садимся на наш комфортабельный автобус и отправляемся в Таллинн.
                                             Дорога до границы занимает лишь 2 часа. Границу мы пересекаем без очередей.
                                         </span>
@@ -164,8 +182,6 @@ function Page2() {
                     </div>
                 ))}
             </div>
-
-
 
 
             <p className={"prib"}>ПРИБЫТИЕ В МИНСК В 00:30-02:30м</p>
@@ -230,13 +246,11 @@ function Page2() {
             <div className={"chiziq5"}></div>
             <p className={"dest"}>О туре (В стоимость тура входит:)</p>
             <ul className={"comments"}>
-                <li>- проезд на комфортабельном автобусе компании VRLines</li>
-                <li>- обзорные экскурсии по всем городам</li>
-                <li>- ночевка на круизном лайнере</li>
-                <li>- завтрак на круизном найнере</li>
-                <li>- массаж головы при проезде в автобусе</li>
-                <li>- гарнитура на время проведения экскурсий</li>
+                {items.map((ite, index) => (
+                    <li className={"ro"} key={index}>- {ite.text}</li>
+                ))}
             </ul>
+
             <div className={"chiziq5"}></div>
 
             <p className={"dest"}>О туре (Дополнительно можно приобрести:) </p>

@@ -13,7 +13,7 @@ function Page() {
     }, []);
 
     function getAll() {
-        axios.get('http://localhost:8081/api/comment/approved')
+        axios.get('http://localhost:1111/api/comment/approved')
             .then(res => {
                 setPage(res.data);
             })

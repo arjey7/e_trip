@@ -3,7 +3,7 @@ import './css/Page.css';
 import './styles/LandingPage.css';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
-import { useLocation } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import 'leaflet/dist/leaflet.css';
 import EnquiryForm from './EnquiryForm';
 import {closeModal, fetchTourRequest, openModal} from "./redux/reducer/tourReducer.js";
@@ -29,8 +29,12 @@ import {toast, ToastContainer} from "react-toastify";
 
 import Comment from "./Comment.jsx";
 
+
+
 const LandingPage = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
+
     const location = useLocation();
     const [centerIndex, setCenterIndex] = useState(0);
     const [page, setPage] = useState([]);
@@ -41,7 +45,9 @@ const LandingPage = () => {
     const ratingChanged = (newRating) => {
         // Handle rating change if needed
     };
-
+    function handleM(id) {
+        navigate(`/page/${id}`)
+    }
     function scrollToGroupElement() {
         const specificGroupArea = document.getElementById('specificGroupArea');
         specificGroupArea.scrollIntoView({ behavior: 'smooth' });
@@ -64,7 +70,7 @@ const LandingPage = () => {
     }, []);
 
     function getAll() {
-        axios.get('http://localhost:8081/api/comment/approved')
+        axios.get('http://localhost:8082/api/comment/approved')
             .then(res => {
                 setPage(res.data);
             })
@@ -118,7 +124,7 @@ const LandingPage = () => {
 
     function mySubmit(params) {
             try {
-                 axios.post('http://localhost:8081/api/request', params).then(()=>{
+                 axios.post('http://localhost:1111/api/request', params).then(()=>{
                      console.log("asd")});
                  reset()
                 toast.success('Request submitted successfully, please wait for our call!');
@@ -193,7 +199,7 @@ const LandingPage = () => {
                 {tours.map((tour, index) => (
                     <div key={index} className="we">
                         <div className="image-containerr">
-                            <img className="cm" src={`http://localhost:8081/api/files/img?name=${tour.photo}`} alt=""/>
+                            <img className="cm" src={`http://localhost:1111/api/files/img?name=${tour.photo}`} alt=""/>
                             <div className="ms">
                                 <div className={"divcha"}>
                                     <h2 className={"vbn"}>{tour.title}</h2>
@@ -201,7 +207,7 @@ const LandingPage = () => {
                                     <p className={"pepe"}>{tour.day} days from ${tour.cost}</p>
                                 </div>
                                 <div className={"mn"}>
-                                    <button className="button12">
+                                    <button onClick={()=>handleM(tour.id)} className="button12">
                                         <img src={Tgg} alt=""/>
                                         Show Flight
                                     </button>
