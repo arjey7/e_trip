@@ -140,7 +140,7 @@ public void getVideo(@RequestParam String name, HttpServletRequest request, Http
     public String saveTourDayImg(@RequestParam MultipartFile file) throws IOException {
         System.out.println(file.getOriginalFilename());
         String name = UUID.randomUUID() + file.getOriginalFilename();
-        FileOutputStream fileOutputStream = new FileOutputStream(UPLOAD_DIRS + name);
+        FileOutputStream fileOutputStream = new FileOutputStream(IMAGE_UPLOAD_DIR + name);
         fileOutputStream.write(file.getBytes());
         fileOutputStream.close();
         return name;
@@ -148,7 +148,7 @@ public void getVideo(@RequestParam String name, HttpServletRequest request, Http
 
     @GetMapping("/tourDay")
     public void getTourDayImg(HttpServletResponse response, @RequestParam String name) throws IOException {
-        FileInputStream fileInputStream = new FileInputStream(UPLOAD_DIRS + name);
+        FileInputStream fileInputStream = new FileInputStream(IMAGE_UPLOAD_DIR + name);
         ServletOutputStream outputStream = response.getOutputStream();
         fileInputStream.transferTo(outputStream);
         fileInputStream.close();

@@ -24,6 +24,7 @@ public class TourDay {
     private Tour tour;
     private Integer day;
     private String video;
+    private String text;
 
 
 
