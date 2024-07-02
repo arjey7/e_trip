@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import './styles/EnquiryForm.css';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTourRequest } from "./redux/reducer/tourReducer.js";
+import { fetchTourRequest, closeModals } from "./redux/reducer/tourReducer.js";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -23,6 +23,7 @@ const EnquiryForm = ({ selectedTourTitle }) => {
             console.log(response.data);
             toast.success('Enquiry submitted successfully!');
             reset();
+            dispatch(closeModals()); // Close the modal on successful submission
         } catch (error) {
             console.error('There was an error submitting the enquiry:', error);
             toast.error('Failed to submit enquiry');

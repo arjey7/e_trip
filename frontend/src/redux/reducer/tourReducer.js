@@ -4,31 +4,38 @@ const initialState = {
     tours: [],
     loading: false,
     error: null,
-    modal:false
+    modal: false,
+    modals: false
 };
 
 const slice = createSlice({
     name: "tour",
     initialState,
     reducers: {
-        fetchTourRequest: (state, action) => {
+        fetchTourRequest: (state) => {
             state.loading = true;
             state.error = null;
         },
         fetchTourSuccess: (state, action) => {
             state.loading = false;
-            state.tours = action.payload; // Updated to match initialState property
+            state.tours = action.payload;
         },
         fetchTourFailure: (state, action) => {
             state.loading = false;
             state.error = action.payload;
         },
-        openModal:(state,action) =>{
-            state.modal = true
+        openModal: (state) => {
+            state.modal = true;
         },
-        closeModal:(state,action) =>{
-            state.modal = false
-        }
+        closeModal: (state) => {
+            state.modal = false;
+        },
+        openModals: (state) => {
+            state.modals = true;
+        },
+        closeModals: (state) => {
+            state.modals = false;
+        },
     }
 });
 
@@ -37,7 +44,9 @@ export const {
     fetchTourSuccess,
     fetchTourFailure,
     openModal,
-    closeModal
+    closeModal,
+    openModals,
+    closeModals
 } = slice.actions;
 
 export default slice.reducer;

@@ -104,7 +104,7 @@ function AdminEnquiry() {
     }
 
     return (
-        <div className="container">
+        <div>
             <ToastContainer />
             <div style={{
                 display: "flex",
