@@ -43,13 +43,13 @@ function Page2() {
     }
     function getTour() {
         console.log()
-        axios.get(`http://localhost:1111/api/destination/${tourId}`).then(res => {
+        axios.get(`http://localhost:8081/api/destination/${tourId}`).then(res => {
             setDestination(res.data);
 
         });
     }
     function getText() {
-        axios.get(`http://localhost:1111/api/texts/${tourId}`).then(res => {
+        axios.get(`http://localhost:8081/api/texts/${tourId}`).then(res => {
             setItems(res.data);
             console.log(res.data)
         });
@@ -57,7 +57,7 @@ function Page2() {
 
 
     function getAll() {
-        axios.get(`http://localhost:1111/api/tourDay/${tourId}`).then(res => {
+        axios.get(`http://localhost:8081/api/tourDay/${tourId}`).then(res => {
             setPage(res.data);
         });
     }
@@ -108,7 +108,7 @@ function Page2() {
                         </p>
                         {page[0].video && (
                             <video
-                                src={`http://localhost:1111/api/files/video?name=${page[0].video}`}
+                                src={`http://localhost:8081/api/files/video?name=${page[0].video}`}
                                 controls
                                 className="vide2"
                             />
@@ -167,8 +167,8 @@ function Page2() {
                 </div>
             ))}
             <div className="chiziq4"></div>
-            <div className="dest">Destination</div>
-            <div className="day-content">
+            <div ref={destinationsRef} className="dest">Destination</div>
+            <div  className="day-content">
                 {destinations.map((item, dayIndex) => (
                     <div className="day-wrapper" key={dayIndex}>
                         <div className="daylar">

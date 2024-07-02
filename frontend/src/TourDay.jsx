@@ -316,7 +316,7 @@ function TourDay() {
                             <input
                                 placeholder={"Day"}
                                 style={{ width: "200px" }}
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 name="day"
                                 value={destinationFormData.day}
