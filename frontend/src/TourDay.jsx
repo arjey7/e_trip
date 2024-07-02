@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./css/TourDay.css";
+import "./styles/TourDay.css";
 import {
     fetchTourDaysRequest,
     addTourDayRequest,
@@ -12,7 +12,8 @@ import {
 import Account from "./files/Account.png";
 import { fetchToursRequest } from "./redux/reducer/userReducer.js";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function TourDay() {
     const dispatch = useDispatch();
@@ -227,21 +228,31 @@ function TourDay() {
 
     const handleAboutSubmit = async (e) => {
         e.preventDefault();
-        console.log(uuid)
-        console.log(aboutData)
+        console.log(uuid);
+        console.log(aboutData);
         try {
-            axios({
-                url:`http://localhost:8081/api/about/${uuid}`,
-                method:"POST",
-                data:aboutData
-            })
-            console.log(aboutData)
-            // const response = await axios.post(`http://localhost:8081/api/about/${uuid}`, aboutData);
-            // console.log('About created:', response.data);
+            await axios({
+                url: `http://localhost:8081/api/about/${uuid}`,
+                method: "POST",
+                data: aboutData,
+            });
+            resetAboutForm();
+            toast.success('About tour submitted successfully!');
         } catch (error) {
             console.error('Error creating about:', error);
         }
     };
+
+    const resetAboutForm = () => {
+        setAboutData({
+            startTime: '',
+            endTime: '',
+            price: '',
+            tourId: uuid
+        });
+        document.querySelector('input[name="day"]').disabled = false;
+    };
+
     const handleKeyDown = async (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
@@ -319,24 +330,24 @@ function TourDay() {
                 </div>
             </form>
 
-            <form onSubmit={handleAboutSubmit}>
-                <div className="mb-3">
+            <ToastContainer />
+            <form className="div-info" onSubmit={handleAboutSubmit}>
+                <div>
                     <label>Start Time:</label>
                     <input
                         type="date"
-                        className="form-control"
+                        className="form-control1"
                         name="startTime"
                         value={aboutData.startTime}
                         onChange={handleChange}
                         required
                     />
-
                 </div>
                 <div className="mb-3">
                     <label>End Time:</label>
                     <input
                         type="date"
-                        className="form-control"
+                        className="form-control2"
                         name="endTime"
                         value={aboutData.endTime}
                         onChange={handleChange}
@@ -347,16 +358,17 @@ function TourDay() {
                     <label>Price:</label>
                     <input
                         type="number"
-                        className="form-control"
+                        className="form-control3"
                         name="price"
+                        placeholder="price.."
                         value={aboutData.price}
                         onChange={handleChange}
                         required
                     />
                 </div>
-                {/* Assuming tourId is preset or fetched earlier */}
-                <button type="submit" className="btn btn-primary">Add About</button>
+                <button type="submit" className="btn-submit">Submit</button>
             </form>
+            <ToastContainer />
 
             <div style={{
                 display: "flex",
@@ -432,7 +444,7 @@ function TourDay() {
                             />
                         </div>
                     </div>
-+
+                    +
 
                     <button
                         style={{backgroundColor: "blue", borderColor: "blue", marginTop: "-15px"}}
@@ -445,7 +457,7 @@ function TourDay() {
                 </div>
             </form>
             <input
-                style={{width: "1380px", marginLeft: "90px",marginTop:"20px"}}
+                style={{width: "1380px", marginLeft: "90px", marginTop: "20px"}}
                 className={"form-control"}
                 type="text"
                 value={inputValue}

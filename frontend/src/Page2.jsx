@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import "./css/Page2.css";
@@ -10,7 +10,11 @@ import e from "./pageimg/Group 10.svg";
 import r from "./pageimg/Group 9.svg";
 import t from "./pageimg/Group 2.svg";
 import y from "./pageimg/Group 8.svg";
-// import moment from 'moment';
+import moment from 'moment';
+import Rodal from 'rodal';
+import 'rodal/lib/rodal.css';
+import EnquiryForm from "./EnquiryForm.jsx";
+import { closeModals, openModals } from "./redux/reducer/tourReducer.js";
 
 function Page2() {
     const dispatch = useDispatch();
@@ -25,34 +29,34 @@ function Page2() {
     const [destinations, setDestinations] = useState([]);
     const [aboutData, setAboutData] = useState([]);
     const [aboutDatas, setAboutDatas] = useState([]);
+    const { modals } = useSelector(state => state.tour);
 
     const [items, setItems] = useState([]);
     useEffect(() => {
         getAll();
         getTour();
-        getDestination()
+        getDestination();
         getAll(tourId);
         getTour(tourId);
         getAbout(tourId);
-        getText(tourId)
-        getAbouts()
+        getText(tourId);
+        getAbouts();
     }, [tourId]);
 
-        function getAbout() {
-            console.log(tourId)
-            axios.get(`http://localhost:8081/api/about/${tourId}`).then(res => {
-                setAboutData(res.data);
-                console.log(res.data);
-            });
-        }
+    function getAbout() {
+        console.log(tourId);
+        axios.get(`http://localhost:8081/api/about/${tourId}`).then(res => {
+            setAboutData(res.data);
+            console.log(res.data);
+        });
+    }
 
-        function getAbouts() {
-            axios.get("http://localhost:8081/api/about/ab").then(res => {
-                setAboutDatas(res.data);
-                console.log(res.data);
-            });
-        }
-
+    function getAbouts() {
+        axios.get("http://localhost:8081/api/about/ab").then(res => {
+            setAboutDatas(res.data);
+            console.log(res.data);
+        });
+    }
 
     function getDestination() {
         axios.get("http://localhost:8081/api/destination/dest").then(res => {
@@ -63,20 +67,20 @@ function Page2() {
             setDestinations(parsedData);
         }).catch(err => console.error("Failed to fetch destinations: ", err));
     }
+
     function getTour() {
-        console.log()
+        console.log();
         axios.get(`http://localhost:8081/api/destination/${tourId}`).then(res => {
             setDestination(res.data);
-
         });
     }
+
     function getText() {
         axios.get(`http://localhost:8081/api/texts/${tourId}`).then(res => {
             setItems(res.data);
-            console.log(res.data)
+            console.log(res.data);
         });
     }
-
 
     function getAll() {
         axios.get(`http://localhost:8081/api/tourDay/${tourId}`).then(res => {
@@ -117,8 +121,8 @@ function Page2() {
                             Continually synthesize state of the art e-services before client-based technology.
                             Conveniently plagiarize
                             accurate ideas without bleeding-edge channels.
-                            <br/>
-                            <br/>
+                            <br />
+                            <br />
                             Distinctively syndicate excellent intellectual capital whereas professional partnerships.
                             Interactively syndicate
                             best-of-breed niche markets after an expanded array of collaboration and idea-sharing.
@@ -166,7 +170,7 @@ function Page2() {
                                         <p className="tours">Tour starts in {itm.tour.title}</p>
                                         <span className="expanded-description">
                                             {itm.description}
-                                            <br/>
+                                            <br />
                                             Садимся на наш комфортабельный автобус и отправляемся в Таллинн.
                                             Дорога до границы занимает лишь 2 часа. Границу мы пересекаем без очередей.
                                         </span>
@@ -208,7 +212,7 @@ function Page2() {
                                             idx < arr.length - 1 ? (
                                                 <React.Fragment key={idx}>
                                                     {part}
-                                                    <span style={{color: '#DF7021'}}>(доп оплата)</span>
+                                                    <span style={{ color: '#DF7021' }}>(доп оплата)</span>
                                                 </React.Fragment>
                                             ) : part
                                         ))}
@@ -221,7 +225,6 @@ function Page2() {
                     </div>
                 ))}
             </div>
-
 
             <p className="prib">ПРИБЫТИЕ В МИНСК В 00:30-02:30м</p>
             <div ref={inspirationRef} className="chiziq5"></div>
@@ -242,9 +245,9 @@ function Page2() {
                                         <p className="byn">{about.price} BYN</p>
                                         <span>(~130 EUR)</span>
                                     </div>
-                                    <button className="zab">Забронировать</button>
+                                    <button onClick={() => dispatch(openModals())} className="zab">Забронировать</button>
                                 </div>
-                                <hr/>
+                                <hr />
                             </React.Fragment>
                         ))}
                     </div>
@@ -262,20 +265,20 @@ function Page2() {
             <div className={"chiziq5"}></div>
 
             <p className={"dest"}>О туре (Дополнительно можно приобрести:) </p>
-            <p style={{display: "flex"}}>- посещение музея <p className={"byn"}> 380 BYN</p><p className={"eur"}>(~153
+            <p style={{ display: "flex" }}>- посещение музея <p className={"byn"}> 380 BYN</p><p className={"eur"}>(~153
                 EUR)</p></p>
-            <p style={{display: "flex"}}>- проезд на велорикше <p className={"byn"}> 380 BYN</p><p
+            <p style={{ display: "flex" }}>- проезд на велорикше <p className={"byn"}> 380 BYN</p><p
                 className={"eur"}>(~153 EUR)</p></p>
-            <p style={{display: "flex"}}>- фото со звездой <p className={"byn"}> 380 BYN</p> <p className={"eur"}>(~153
-                EUR)</p></p>
-            <p style={{display: "flex"}}>- ужин в ресторане Buffet <p className={"byn"}> 380 BYN</p> <p
+            <p style={{ display: "flex" }}>- фото со звездой <p className={"byn"}> 380 BYN</p> <p
                 className={"eur"}>(~153 EUR)</p></p>
-            <p style={{display: "flex"}}>- посещение спа на борту лайнера <p className={"byn"}> 380 BYN</p> <p
+            <p style={{ display: "flex" }}>- ужин в ресторане Buffet <p className={"byn"}> 380 BYN</p> <p
                 className={"eur"}>(~153 EUR)</p></p>
-            <p style={{display: "flex"}}>- фотография с обезьянкой <p className={"byn"}>380 BYN</p> <p
+            <p style={{ display: "flex" }}>- посещение спа на борту лайнера <p className={"byn"}> 380 BYN</p> <p
+                className={"eur"}>(~153 EUR)</p></p>
+            <p style={{ display: "flex" }}>- фотография с обезьянкой <p className={"byn"}>380 BYN</p> <p
                 className={"eur"}>(~153 EUR)</p></p>
             <div ref={contactUsRef} className={"footer-page"}>
-                <img className={"footer-img-page"} src={a} alt=""/>
+                <img className={"footer-img-page"} src={a} alt="" />
                 <div className={"header2"}>
                     <p onClick={() => scrollToSection(aboutUsRef)}>About us</p>
                     <p onClick={() => scrollToSection(destinationsRef)}>Destinations</p>
@@ -287,14 +290,17 @@ function Page2() {
                 <p className={"number-3"}>+44 7884 610140</p>
                 <p className={"number-4"}>+44 7459 382384</p>
                 <div className={"footer-imgs"}>
-                    <img src={q} alt=""/>
-                    <img src={w} alt=""/>
-                    <img src={e} alt=""/>
-                    <img src={r} alt=""/>
-                    <img src={t} alt=""/>
-                    <img src={y} alt=""/>
+                    <img src={q} alt="" />
+                    <img src={w} alt="" />
+                    <img src={e} alt="" />
+                    <img src={r} alt="" />
+                    <img src={t} alt="" />
+                    <img src={y} alt="" />
                 </div>
             </div>
+            <Rodal height={400} width={700} visible={modals} onClose={() => dispatch(closeModals())}>
+                <EnquiryForm />
+            </Rodal>
         </div>
     );
 }
