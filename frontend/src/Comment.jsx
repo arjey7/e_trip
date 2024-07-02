@@ -16,7 +16,7 @@ function Comment(props) {
 
     function mySubmit(data) {
         data.rate = rate;
-        axios.post("http://localhost:8081/api/comment", data).then(res => {
+        axios.post("http://localhost:1111/api/comment", data).then(res => {
             toast.success("Comment added successfully!");
             dispatch(closeModal())
 

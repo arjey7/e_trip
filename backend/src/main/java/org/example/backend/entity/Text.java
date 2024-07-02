@@ -11,21 +11,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class TourDay {
+public class Text {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(columnDefinition = "uuid DEFAULT gen_random_uuid()")
     private UUID id;
-    private String title;
-    private String description;
-    @Column(columnDefinition = "TEXT")
-    private String photo;
-    @ManyToOne
-    private Tour tour;
-    private Integer day;
-    private String video;
     private String text;
 
-
-
+    @ManyToOne
+    @JoinColumn(name = "tour_id", nullable = false)
+    private Tour tour;
 }

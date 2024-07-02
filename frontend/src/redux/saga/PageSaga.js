@@ -11,7 +11,7 @@ import {
 
 function* fetchTours() {
     try {
-        const response = yield call(axios.get, 'http://localhost:8081/api/tour/getAll');
+        const response = yield call(axios.get, 'http://localhost:8082/api/tour/getAll');
         yield put({ type: FETCH_TOURS_SUCCESS, payload: response.data });
     } catch (error) {
         yield put({ type: FETCH_TOURS_FAILURE, payload: error.message });
@@ -22,7 +22,7 @@ function* fetchTourDays(action) {
     const { tourId } = action.payload;
 
     try {
-        const response = yield call(axios.get, `http://localhost:8081/api/tourDay/all/${tourId}`);
+        const response = yield call(axios.get, `http://localhost:1111/api/tourDay/all/${tourId}`);
         yield put({ type: FETCH_TOUR_DAYS_SUCCESS, payload: response.data });
     } catch (error) {
         yield put({ type: FETCH_TOUR_DAYS_FAILURE, payload: error.message });

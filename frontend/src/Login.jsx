@@ -9,7 +9,7 @@ function Login() {
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
-        axios.post('http://localhost:8081/api/auth/login', data)
+        axios.post('http://localhost:1111/api/auth/login', data)
             .then(response => {
                 localStorage.setItem('access_token', response.data.access_token);
                 localStorage.setItem('refresh_token', response.data.refresh_token);
@@ -28,7 +28,7 @@ function Login() {
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-title"><span>sign in to our</span></div>
                 <div className="title-2"><span>Website</span></div>
-                <div className="input-container">
+                <div className="input-containers">
                     <input className="input-mail" type="text" placeholder="Enter username..." {...register("username", { required: true })} />
                 </div>
                 <section className="bg-stars">
@@ -37,7 +37,7 @@ function Login() {
                     <span className="star"></span>
                     <span className="star"></span>
                 </section>
-                <div className="input-container">
+                <div className="input-containers">
                     <input className="input-pwd" type="password" placeholder="Enter password..." {...register("password", { required: true })} />
                 </div>
                 <button type="submit" className="submit">

@@ -23,10 +23,14 @@ function Page2() {
     const [destination, setDestination] = useState([]);
     const [destinations, setDestinations] = useState([]);
 
+    const [items, setItems] = useState([]);
     useEffect(() => {
         getAll();
         getTour();
         getDestination()
+        getAll(tourId);
+        getTour(tourId);
+        getText(tourId)
     }, [tourId]);
     function getDestination() {
         axios.get("http://localhost:8081/api/destination/dest").then(res => {
@@ -38,13 +42,22 @@ function Page2() {
         }).catch(err => console.error("Failed to fetch destinations: ", err));
     }
     function getTour() {
-        axios.get(`http://localhost:8081/api/destination/${tourId}`).then(res => {
+        console.log()
+        axios.get(`http://localhost:1111/api/destination/${tourId}`).then(res => {
             setDestination(res.data);
+
+        });
+    }
+    function getText() {
+        axios.get(`http://localhost:1111/api/texts/${tourId}`).then(res => {
+            setItems(res.data);
+            console.log(res.data)
         });
     }
 
+
     function getAll() {
-        axios.get(`http://localhost:8081/api/tourDay/${tourId}`).then(res => {
+        axios.get(`http://localhost:1111/api/tourDay/${tourId}`).then(res => {
             setPage(res.data);
         });
     }
@@ -95,7 +108,7 @@ function Page2() {
                         </p>
                         {page[0].video && (
                             <video
-                                src={`http://localhost:8081/api/files/video?name=${page[0].video}`}
+                                src={`http://localhost:1111/api/files/video?name=${page[0].video}`}
                                 controls
                                 className="vide2"
                             />
@@ -250,13 +263,11 @@ function Page2() {
             <div className={"chiziq5"}></div>
             <p className={"dest"}>О туре (В стоимость тура входит:)</p>
             <ul className={"comments"}>
-                <li>- проезд на комфортабельном автобусе компании VRLines</li>
-                <li>- обзорные экскурсии по всем городам</li>
-                <li>- ночевка на круизном лайнере</li>
-                <li>- завтрак на круизном найнере</li>
-                <li>- массаж головы при проезде в автобусе</li>
-                <li>- гарнитура на время проведения экскурсий</li>
+                {items.map((ite, index) => (
+                    <li className={"ro"} key={index}>- {ite.text}</li>
+                ))}
             </ul>
+
             <div className={"chiziq5"}></div>
 
             <p className={"dest"}>О туре (Дополнительно можно приобрести:) </p>

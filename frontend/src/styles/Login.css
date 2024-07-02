@@ -20,24 +20,26 @@
 
 /*------input and submit section-------*/
 
-.input-container {
-    margin-left: 150px;
+.input-containers {
+    margin-left: 40px;
+    margin-top: 20px;
 }
 
-.input-container input, .form button {
+.input-containers input, .form button {
     outline: none;
     border: 2px solid #ffffff;
 
     font-family: monospace;
 }
 
-.input-container input {
+.input-containers input {
     background-color: #fff;
     padding: 6px;
     font-size: 0.875rem;
     line-height: 1.25rem;
     width: 250px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
 }
 
 .input-mail:focus::placeholder {
