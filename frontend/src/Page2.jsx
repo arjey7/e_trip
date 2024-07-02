@@ -38,20 +38,20 @@ function Page2() {
         getAbouts()
     }, [tourId]);
 
-    function getAbout() {
-        console.log(tourId)
-        axios.get(`http://localhost:8081/api/about/${tourId}`).then(res => {
-            setAboutData(res.data);
-            console.log(res.data);
-        });
-    }
+        function getAbout() {
+            console.log(tourId)
+            axios.get(`http://localhost:8081/api/about/${tourId}`).then(res => {
+                setAboutData(res.data);
+                console.log(res.data);
+            });
+        }
 
-    function getAbouts() {
-        axios.get("http://localhost:8081/api/about/ab").then(res => {
-            setAboutDatas(res.data);
-            console.log(res.data);
-        });
-    }
+        function getAbouts() {
+            axios.get("http://localhost:8081/api/about/ab").then(res => {
+                setAboutDatas(res.data);
+                console.log(res.data);
+            });
+        }
 
 
     function getDestination() {
@@ -190,7 +190,7 @@ function Page2() {
             ))}
             <div className="chiziq4"></div>
             <div ref={destinationsRef} className="dest">Destination</div>
-            <div  className="day-content">
+            <div className="day-content">
                 {destinations.map((item, dayIndex) => (
                     <div className="day-wrapper" key={dayIndex}>
                         <div className="daylar">
@@ -223,24 +223,34 @@ function Page2() {
             </div>
 
 
-            <p className={"prib"}>ПРИБЫТИЕ В МИНСК В 00:30-02:30м</p>
-            <div ref={inspirationRef} className={"chiziq5"}></div>
-            <p className={"dest"}>О туре (Ближайшие выезды)</p>
+            <p className="prib">ПРИБЫТИЕ В МИНСК В 00:30-02:30м</p>
+            <div ref={inspirationRef} className="chiziq5"></div>
+            <p className="dest">О туре (Ближайшие выезды)</p>
             <div className="cardcha">
-                <div className="dess">
-                    {aboutDatas.map((i, index) => (
-                        <span className={"ccha"} key={index}>с {moment(aboutDatas.start_time).format('YYYY-MM-DD')}</span>
-                    ))}
-
-                    {/*<span className="ccha">с </span>*/}
-                    {/*<p className="ccha">по</p> 25.08.2018*/}
-                    {/*<span className="ccha">(+ Завтрак + Шоу-программа тигров)</span>*/}
-                    {/*<span className="ccha">от</span>*/}
-                    {/*<p className={"byn"}>380 BYN</p>*/}
-                    {/*<p className={"eur"}>(~130 EUR)</p>*/}
-                    {/*<button className={"zab"}>Забронировать</button>*/}
-                </div>
+                {aboutDatas.map((item, index) => (
+                    <div className="dess" key={index}>
+                        {JSON.parse(item.abouts).map((about, aboutIndex) => (
+                            <React.Fragment key={aboutIndex}>
+                                <div className="about-wrapper">
+                                    <div>
+                                        <span className="ccha">с</span>{moment(about.start_time).format('YYYY-MM-DD')}
+                                        <span className="cchac">по</span>{moment(about.end_time).format('YYYY-MM-DD')}
+                                        <p className="cchas">(+ Завтрак + Шоу-программа тигров)</p>
+                                    </div>
+                                    <div className={"abouts"}>
+                                        <span className="ccha">от</span>
+                                        <p className="byn">{about.price} BYN</p>
+                                        <span>(~130 EUR)</span>
+                                    </div>
+                                    <button className="zab">Забронировать</button>
+                                </div>
+                                <hr/>
+                            </React.Fragment>
+                        ))}
+                    </div>
+                ))}
             </div>
+
             <div className={"chiziq5"}></div>
             <p className={"dest"}>О туре (В стоимость тура входит:)</p>
             <ul className={"comments"}>
