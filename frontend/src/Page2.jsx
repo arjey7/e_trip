@@ -21,12 +21,22 @@ function Page2() {
     const contactUsRef = useRef(null);
     const { tourId } = useParams();
     const [destination, setDestination] = useState([]);
+    const [destinations, setDestinations] = useState([]);
 
     useEffect(() => {
         getAll();
         getTour();
+        getDestination()
     }, [tourId]);
-
+    function getDestination() {
+        axios.get("http://localhost:8081/api/destination/dest").then(res => {
+            const parsedData = res.data.map(item => ({
+                day: item.day,
+                destinations: JSON.parse(item.destinations)
+            }));
+            setDestinations(parsedData);
+        }).catch(err => console.error("Failed to fetch destinations: ", err));
+    }
     function getTour() {
         axios.get(`http://localhost:8081/api/destination/${tourId}`).then(res => {
             setDestination(res.data);
@@ -143,35 +153,40 @@ function Page2() {
                     )}
                 </div>
             ))}
+            <div className="chiziq4"></div>
+            <div className="dest">Destination</div>
             <div className="day-content">
-                {destination.map((item, index) => (
-                    <div className="har-bitta-div" key={index}>
-                        {index === 0 || destination[index - 1].day !== item.day ? (
-                            <div className="daylar">
-                                <p className="den-1">
-                                    {item.day} день
-                                    <span className="day-border"></span>
-                                </p>
-                            </div>
-                        ) : null}
-                        <div className="day-data">
-                            <p className="day-text">{item.data}</p>
-                            <p className="den-com">
-                                {item.text.split('(доп оплата)').map((part, idx, arr) =>
-                                    idx < arr.length - 1 ? (
-                                        <React.Fragment key={idx}>
-                                            {part}
-                                            <span style={{color: 'rgb(223, 112, 33)'}}>(доп оплата)</span>
-                                        </React.Fragment>
-                                    ) : (
-                                        part
-                                    )
-                                )}
+                {destinations.map((item, dayIndex) => (
+                    <div className="day-wrapper" key={dayIndex}>
+                        <div className="daylar">
+                            <p className="den-1">
+                                {item.day} день
+                                <span className="day-border"></span>
                             </p>
                         </div>
+                        {item.destinations.map((destination, destIndex) => (
+                            <div className="day-data" key={destIndex}>
+                                <p className="day-text">{destination.data}</p>
+                                <p className="den-com">{destination.text.includes('(доп оплата)') ? (
+                                    <React.Fragment>
+                                        {destination.text.split('(доп оплата)').map((part, idx, arr) => (
+                                            idx < arr.length - 1 ? (
+                                                <React.Fragment key={idx}>
+                                                    {part}
+                                                    <span style={{color: '#DF7021'}}>(доп оплата)</span>
+                                                </React.Fragment>
+                                            ) : part
+                                        ))}
+                                    </React.Fragment>
+                                ) : (
+                                    destination.text
+                                )}</p>
+                            </div>
+                        ))}
                     </div>
                 ))}
             </div>
+
 
             <p className={"prib"}>ПРИБЫТИЕ В МИНСК В 00:30-02:30м</p>
             <div ref={inspirationRef} className={"chiziq5"}></div>

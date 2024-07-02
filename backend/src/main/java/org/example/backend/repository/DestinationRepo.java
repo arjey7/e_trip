@@ -15,4 +15,7 @@ public interface DestinationRepo extends JpaRepository<Destination, UUID> {
     List<Destination> findDestinationByTourId( UUID tourId);
     @Query(value = "SELECT * FROM destination WHERE day = :day", nativeQuery = true)
     List<Destination> getAllByDay2(Integer day);
+    @Query(value = "select day,json_agg(jsonb_build_object('day',day,'data',data,'text',text))from destination\n" +
+            "group by day order by day",nativeQuery = true)
+    List<Object[]> getByDestination();
 }

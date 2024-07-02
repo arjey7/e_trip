@@ -10,7 +10,9 @@ import org.example.backend.service.DestinationService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/destination")
@@ -27,6 +29,12 @@ public class DestinationController {
     public Destination postTour(@PathVariable UUID tourId, @RequestBody DestinationDto destinationDto){
         Destination destination = destinationsService.postById(tourId, destinationDto);
         return destination;
+    }
+
+    @GetMapping("/dest")
+    public List<Map<String, Object>> getDestinationsByDay() {
+        List<Object[]> results = destinationRepo.getByDestination();
+        return results.stream().map(row -> Map.of("day", row[0], "destinations", row[1])).collect(Collectors.toList());
     }
 
 }
