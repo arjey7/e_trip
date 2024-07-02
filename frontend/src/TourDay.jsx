@@ -19,6 +19,7 @@ function TourDay() {
     const { uuid } = useParams();
     const username = localStorage.getItem('username');
     const navigate = useNavigate();
+    const [items, setItems] = useState([])
 
     const tourDays = useSelector(state => state.tourDay.tourDays);
     const loading = useSelector(state => state.tourDay.loading);
@@ -41,6 +42,7 @@ function TourDay() {
         tourId: uuid
     });
     const [lastDay, setLastDay] = useState('');
+    const [inputValue, setInputValue] = useState("")
     const [aboutData, setAboutData] = useState({
         startTime: '',
         endTime: '',
@@ -240,7 +242,20 @@ function TourDay() {
             console.error('Error creating about:', error);
         }
     };
-
+    const handleKeyDown = async (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            if (inputValue.trim() !== '') {
+                try {
+                    const response = await axios.post(`http://localhost:8081/api/texts/${uuid}`, { text: inputValue });
+                    setItems([...items, response.data]);
+                    setInputValue('');
+                } catch (error) {
+                    console.error('Error adding text:', error);
+                }
+            }
+        }
+    };
 
     return (
         <div className="">
@@ -417,6 +432,7 @@ function TourDay() {
                             />
                         </div>
                     </div>
++
 
                     <button
                         style={{backgroundColor: "blue", borderColor: "blue", marginTop: "-15px"}}
@@ -428,7 +444,15 @@ function TourDay() {
 
                 </div>
             </form>
-
+            <input
+                style={{width: "1380px", marginLeft: "90px",marginTop:"20px"}}
+                className={"form-control"}
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Add an item and press Enter"
+            />
 
             <div style={{
                 display: "flex",

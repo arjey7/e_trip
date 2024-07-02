@@ -10,7 +10,7 @@ import e from "./pageimg/Group 10.svg";
 import r from "./pageimg/Group 9.svg";
 import t from "./pageimg/Group 2.svg";
 import y from "./pageimg/Group 8.svg";
-import moment from 'moment';
+// import moment from 'moment';
 
 function Page2() {
     const dispatch = useDispatch();
