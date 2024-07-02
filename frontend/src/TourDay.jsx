@@ -41,6 +41,7 @@ function TourDay() {
         text: '',
         tourId: uuid
     });
+    const [context,setContext] = useState([])
     const [lastDay, setLastDay] = useState('');
     const [inputValue, setInputValue] = useState("")
     const [aboutData, setAboutData] = useState({
@@ -61,6 +62,7 @@ function TourDay() {
     useEffect(() => {
         dispatch(fetchToursRequest());
         dispatch(fetchTourDaysRequest(uuid));
+
     }, [dispatch, uuid]);
 
     useEffect(() => {
@@ -357,7 +359,6 @@ function TourDay() {
                 {/* Assuming tourId is preset or fetched earlier */}
                 <button type="submit" className="btn btn-primary">Add About</button>
             </form>
-
             <div style={{
                 display: "flex",
                 justifyContent: "center",
