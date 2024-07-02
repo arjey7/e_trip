@@ -1,7 +1,7 @@
 package org.example.backend.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.backend.dto.TextDto;
+
 import org.example.backend.dto.TourDayDto;
 import org.example.backend.entity.TourDay;
 import org.example.backend.repository.TourDayRepo;
@@ -27,11 +27,11 @@ public class TourDayController {
         TourDay addedTourDay = tourDayService.addTourDay(tourDayDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(addedTourDay);
     }
-        @PostMapping
-        public ResponseEntity<?>addText(@RequestBody TextDto textDto) {
-        TourDay addText = tourDayService.addText(textDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(addText);
-        }
+//        @PostMapping
+//        public ResponseEntity<?>addText(@RequestBody TourDayDto tourDayDto) {
+//        TourDay addText = tourDayService.addText(tourDayDto);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(addText);
+//        }
     @GetMapping("/all/{id}")
     public ResponseEntity<List<TourDay>> getAllTourDays(@PathVariable UUID id) {
         List<TourDay> tourDays = tourDayService.getTourDays(id);

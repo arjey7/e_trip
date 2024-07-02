@@ -70,15 +70,10 @@ public class TourDayServiceImp implements TourDayService {
         return tourDayRepo.getAllById(UUID.fromString(idd.toString()));
     }
 
-    @Override
-    public TourDay addText(TextDto textDto) {
-        Tour tour = tourRepo.findById(textDto.tourId()).orElseThrow(() -> new RuntimeException("Tour not found"));
-        TourDay tourDay = new TourDay();
-        tourDay.setTitle(tourDayDto.title());
-        tourDay.setDescription(tourDayDto.description());
-        tourDay.setText(tourDayDto.text());
-        tourDay.setPhoto(tourDayDto.photo());
-        tourDay.setTour(tour);
-        return tourDayRepo.save(tourDay);
-    }
+//    @Override
+//    public TourDay addText(TextDto textDto) {
+//
+//    }
+
+
 }

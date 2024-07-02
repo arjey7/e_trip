@@ -1,0 +1,50 @@
+.form-control1, .form-control2, .form-control3 {
+    width: 250px;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 0;
+    box-sizing: border-box;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    transition: border-color 0.3s;
+    outline: none;
+}
+
+.form-control, .form-control1, .form-control3:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.form-control, .form-control2, .form-control3.is-invalid {
+    border-color: #dc3545;
+}
+
+.div-input{
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+}
+
+
+.btn-submit {
+    background: #fbca1f;
+    font-family: inherit;
+    padding: 0.6em 1.3em;
+    font-weight: 900;
+    font-size: 18px;
+    border: 3px solid black;
+    border-radius: 0.4em;
+    box-shadow: 0.1em 0.1em;
+    cursor: pointer;
+    height: 48px;
+    margin-top: 30px;
+}
+
+.btn-submit:hover {
+    transform: translate(-0.05em, -0.05em);
+    box-shadow: 0.15em 0.15em;
+}
+
+.btn-submit:active {
+    transform: translate(0.05em, 0.05em);
+    box-shadow: 0.05em 0.05em;
+}

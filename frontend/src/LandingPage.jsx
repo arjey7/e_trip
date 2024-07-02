@@ -131,7 +131,7 @@ const LandingPage = () => {
     }
 
     const handleShowFlightClick = (tourId) => {
-        navigate(`/page2?id=${tourId}`);
+        navigate(`/page/${tourId}`);
     };
 
     return (
