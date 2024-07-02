@@ -49,8 +49,9 @@
 }
 
 .title {
+    font-family: "Montserrat", serif;
+
     color: rgb(66, 66, 66);
-    font-family: Montserrat;
     font-size: 40px;
     font-weight: 500;
     line-height: 156%;
@@ -101,8 +102,8 @@
 }
 
 .programma {
+    font-family: "Montserrat", serif;
     color: rgb(0, 0, 0);
-    font-family: Montserrat;
     font-size: 40px;
     font-weight: 700;
     line-height: 112.9px;
@@ -119,6 +120,7 @@
 
 }
 .day-content{
+flex-wrap: wrap;
 
 }
 @media (max-width: 768px) {
@@ -160,10 +162,10 @@
 }
 
 .day {
+    font-family: "Montserrat", serif;
     width: 105px;
     height: 66px;
     color: rgb(0, 69, 48);
-    font-family: Montserrat;
     font-size: 24px;
     font-weight: 700;
     line-height: 29px;
@@ -189,14 +191,16 @@
     height: 300px;
 }
 .btn-page {
+    font-family: "Montserrat", serif;
+
     width: 68.26px;
     height: 68.26px;
     background: rgba(0, 213, 148, 0.25);
     color: rgb(0, 0, 0);
     border-radius: 50%;
-    font-family: Montserrat;
+
     border: 1px solid rgba(0, 213, 148, 0.25);
-    font-family: Montserrat;
+
     font-size: 50px;
     font-weight: 700;
     line-height: 60.95px;
@@ -209,14 +213,14 @@
     margin-left: 37px;
 }
 .btn-page-minus  {
+    font-family: "Montserrat", serif;
+
     width: 68.26px;
     height: 68.26px;
     background: rgba(0, 213, 148, 0.25);
     color: rgb(0, 0, 0);
     border-radius: 50%;
-    font-family: Montserrat;
     border: 1px solid rgba(0, 213, 148, 0.25);
-    font-family: Montserrat;
     font-size: 50px;
     font-weight: 700;
     line-height: 60.95px;
@@ -237,7 +241,7 @@
 }
 .dest{
     color: rgb(0, 0, 0);
-    font-family: Montserrat;
+    font-family: "Montserrat", serif;
     font-size: 40px;
     font-weight: 700;
     line-height: 112.9px;
@@ -253,34 +257,66 @@
     }
 }
 
-.den-1{
-    font-family: Lato;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 156%;
-    letter-spacing: 0%;
-    text-align: left;
-    text-transform: lowercase;
+.day-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
 }
-.den-1s {
-    font-family: Lato;
+
+.day-wrapper {
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.daylar {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.den-1 {
+    display: flex;
+
+    align-items: center;
+}
+
+.day-border {
+    flex-grow: 1;
+    height: 1px;
+    margin-left: 0.5rem;
+}
+
+.day-data {
+    margin-bottom: 0.5rem;
+}
+
+.day-text {
+    font-family: "Montserrat", serif;
     font-size: 20px;
-    list-style: none;
     font-weight: 400;
-    line-height: 156%;
-    letter-spacing: 0%;
+    line-height: 31.2px;
     text-align: left;
-    margin-left: -30px;
-    margin-top: -10px;
-    text-transform: lowercase;
+    margin-top: 30px;
+    color: #333;
 }
 
 .den-com {
-    color: rgb(153, 153, 153);
-    list-style: none;
+    font-family: "Montserrat", serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 31.2px;
+    text-align: left;
+
+
+    color: #777;
+
     margin-left: 70px;
-    margin-top: -33px;
+    margin-top: -45px;
 }
+
+
+
+
 
 .lijon{
     margin-top: 5px;
@@ -386,7 +422,7 @@
 }
 
 .citys {
-    font-family: Montserrat;
+    font-family: "Montserrat", serif;
     font-size: 15px;
     font-weight: 300;
     line-height: 18.29px;
@@ -396,7 +432,7 @@
 }
 
 .days {
-    font-family: Montserrat;
+    font-family: "Montserrat", serif;
     font-size: 24px;
     font-weight: 700;
     line-height: 29.26px;
@@ -404,7 +440,7 @@
 }
 
 .tours {
-    font-family: Montserrat;
+    font-family: "Montserrat", serif;
     font-size: 20px;
     font-weight: 500;
     line-height: 24.38px;
@@ -546,7 +582,7 @@
 
 .ccha {
     color: rgb(153, 153, 153);
-    font-family: Montserrat;
+    font-family: "Montserrat", serif;
     font-size: 20px;
     font-weight: 400;
     line-height: 24.38px;
@@ -627,7 +663,7 @@
     gap: 38px;
     color: rgb(16, 16, 16);
     cursor: pointer;
-    font-family: Montserrat;
+    font-family: "Montserrat", serif;
     font-size: 20px;
     font-weight: 500;
     line-height: 24px;
@@ -659,7 +695,7 @@
     width: 100%;
 }
 .number-3{
-    font-family: Montserrat;
+    font-family: "Montserrat", serif;
     font-size: 15px;
     font-weight: 600;
     line-height: 18.29px;
@@ -669,7 +705,7 @@
 
 }
 .number-4{
-    font-family: Montserrat;
+    font-family: "Montserrat", serif;
     font-size: 15px;
     font-weight: 600;
     line-height: 18.29px;

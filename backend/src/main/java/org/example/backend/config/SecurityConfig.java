@@ -40,7 +40,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/api/message","/api/destination/{tourId}").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/enquiry").permitAll()
                         .requestMatchers(HttpMethod.PATCH,"/api/enquiry/{id}/answer").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/api/destination/{tourId}").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/destination/{tourId}","/api/destination/dest").permitAll()
                         .requestMatchers(HttpMethod.DELETE,"/api/tour/{id}","/api/tourDay/{id}").permitAll()
                         .anyRequest().authenticated()
                 );

@@ -21,13 +21,26 @@ function Page2() {
     const contactUsRef = useRef(null);
     const { tourId } = useParams();
     const [destination, setDestination] = useState([]);
+    const [destinations, setDestinations] = useState([]);
+
     const [items, setItems] = useState([]);
     useEffect(() => {
+        getAll();
+        getTour();
+        getDestination()
         getAll(tourId);
         getTour(tourId);
         getText(tourId)
     }, [tourId]);
-
+    function getDestination() {
+        axios.get("http://localhost:8081/api/destination/dest").then(res => {
+            const parsedData = res.data.map(item => ({
+                day: item.day,
+                destinations: JSON.parse(item.destinations)
+            }));
+            setDestinations(parsedData);
+        }).catch(err => console.error("Failed to fetch destinations: ", err));
+    }
     function getTour() {
         console.log()
         axios.get(`http://localhost:1111/api/destination/${tourId}`).then(res => {
@@ -122,7 +135,7 @@ function Page2() {
                                         className="expanded-image"
                                         width={328}
                                         height={246}
-                                        src={`http://localhost:8082/api/files/img?name=${itm.photo}`}
+                                        src={`http://localhost:8081/api/files/img?name=${itm.photo}`}
                                         alt=""
                                         onError={(e) => e.target.style.display = 'none'}
                                     />
@@ -153,32 +166,36 @@ function Page2() {
                     )}
                 </div>
             ))}
-
-            <div ref={destinationsRef} className={"chiziq4"}></div>
-            <p className={"dest"}>Destinations</p>
-            <div className={"day-content"}>
-                {destination.map((item, index) => (
-                    <div key={index}>
-                        {index === 0 || destination[index - 1].day !== item.day ? (
-                            <p className="den-1">{item.day} день</p>
-                        ) : null}
-                        <ul className="den-1s">
-                            <li>
-                                {item.data}
-                                <li className="den-com">
-                                    {item.text.split('(доп оплата)').map((part, idx, arr) =>
-                                        idx < arr.length - 1 ? (
-                                            <>
-                                                {part}
-                                                <span style={{color: 'rgb(223, 112, 33)'}}>(доп оплата)</span>
-                                            </>
-                                        ) : (
-                                            part
-                                        )
-                                    )}
-                                </li>
-                            </li>
-                        </ul>
+            <div className="chiziq4"></div>
+            <div className="dest">Destination</div>
+            <div className="day-content">
+                {destinations.map((item, dayIndex) => (
+                    <div className="day-wrapper" key={dayIndex}>
+                        <div className="daylar">
+                            <p className="den-1">
+                                {item.day} день
+                                <span className="day-border"></span>
+                            </p>
+                        </div>
+                        {item.destinations.map((destination, destIndex) => (
+                            <div className="day-data" key={destIndex}>
+                                <p className="day-text">{destination.data}</p>
+                                <p className="den-com">{destination.text.includes('(доп оплата)') ? (
+                                    <React.Fragment>
+                                        {destination.text.split('(доп оплата)').map((part, idx, arr) => (
+                                            idx < arr.length - 1 ? (
+                                                <React.Fragment key={idx}>
+                                                    {part}
+                                                    <span style={{color: '#DF7021'}}>(доп оплата)</span>
+                                                </React.Fragment>
+                                            ) : part
+                                        ))}
+                                    </React.Fragment>
+                                ) : (
+                                    destination.text
+                                )}</p>
+                            </div>
+                        ))}
                     </div>
                 ))}
             </div>

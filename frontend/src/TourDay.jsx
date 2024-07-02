@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./css/TourDay.css";
 import {
     fetchTourDaysRequest,
     addTourDayRequest,
@@ -11,6 +12,7 @@ import {
 import Account from "./files/Account.png";
 import { fetchToursRequest } from "./redux/reducer/userReducer.js";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 function TourDay() {
     const dispatch = useDispatch();
@@ -21,14 +23,14 @@ function TourDay() {
     const tourDays = useSelector(state => state.tourDay.tourDays);
     const loading = useSelector(state => state.tourDay.loading);
     const error = useSelector(state => state.tourDay.error);
-
+    const [destination, setDestination] = useState([]);
     const [formData, setFormData] = useState({
         title: '',
         description: '',
         photo: '',
         tourId: uuid
     });
-
+    const [newDestination, setNewDestination] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [current, setCurrent] = useState(null);
     const [displayImg, setDisplayImg] = useState("");
@@ -38,11 +40,24 @@ function TourDay() {
         text: '',
         tourId: uuid
     });
+    const [lastDay, setLastDay] = useState('');
 
     useEffect(() => {
         dispatch(fetchToursRequest());
         dispatch(fetchTourDaysRequest(uuid));
     }, [dispatch, uuid]);
+
+    useEffect(() => {
+        const fetchDestinations = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8081/api/destination/${uuid}`);
+                setDestination(response.data);
+            } catch (error) {
+                console.error('Error fetching destinations', error);
+            }
+        };
+        fetchDestinations();
+    }, [uuid]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -92,6 +107,7 @@ function TourDay() {
         });
         setIsEditing(false);
         setCurrent(null);
+        setDisplayImg('');
     };
 
     const handleEdit = (tourDay) => {
@@ -100,11 +116,9 @@ function TourDay() {
             title: tourDay.title,
             description: tourDay.description,
             photo: '',
-            day:tourDay.day,
-            data:tourDay.data,
             tourId: uuid
         });
-        setDisplayImg(`http://localhost:8081/api/files/tourDay?name=${tourDay.photo}`); // Display current photo
+        setDisplayImg(`http://localhost:8081/api/files/tourDay?name=${tourDay.photo}`);
     };
 
     const handleDelete = (id) => {
@@ -130,18 +144,37 @@ function TourDay() {
         navigate('/admin');
     };
 
-    const handleDestinationSubmit = (e) => {
+    const handleDestinationSubmit = async (e) => {
         e.preventDefault();
-        axios.post(`http://localhost:8081/api/destination/${uuid}`, destinationFormData)
-            .then(res => {
-                console.log(res.data);
-                // Qayta yuklash yoki yangilash kodlarini shu yerga qo'shing
-            })
-            .catch(err => {
-                console.error(err);
-            });
-        resetDestinationForm();
+
+        try {
+            await Promise.all(newDestination.map(async (dest) => {
+                const newDestinationData = {
+                    day: dest.day,
+                    data: dest.data,
+                    text: dest.text,
+                    tourId: uuid
+                };
+
+                const response = await axios.post(
+                    `http://localhost:8081/api/destination/${uuid}`,
+                    newDestinationData
+                );
+                const newDestinationItem = response.data;
+
+                toast.success(`Destination for Day ${newDestinationItem.day} added successfully!`);
+            }));
+
+            setNewDestination([]);
+
+        } catch (err) {
+            toast.error("Error adding Destination!");
+            console.error(err);
+        }
+        document.querySelector('input[name="day"]').disabled = false;
+        handleClear()
     };
+
 
     const resetDestinationForm = () => {
         setDestinationFormData({
@@ -150,7 +183,34 @@ function TourDay() {
             text: '',
             tourId: uuid
         });
+        document.querySelector('input[name="day"]').disabled = false;
     };
+
+    const handleKey = (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+
+            const dayValue = e.target.form.elements.day.disabled ? lastDay : destinationFormData.day;
+
+            setNewDestination(prevDestination => [
+                ...prevDestination,
+                {
+                    day: dayValue,
+                    data: destinationFormData.data,
+                    text: destinationFormData.text
+                }
+            ]);
+            resetDestinationForm();
+            setLastDay(dayValue);
+            e.target.form.elements.day.disabled = true;
+        }
+    };
+
+    const handleClear = () => {
+        setNewDestination([]);
+    };
+
+
 
     return (
         <div className="">
@@ -173,11 +233,17 @@ function TourDay() {
                 </div>
                 <div>
                     <button onClick={handleLogout}
-                            style={{ backgroundColor: "red", width: "135px", height: "36px", borderRadius: "20px", borderColor: "red" }}>Log
-                        out
+                            style={{
+                                backgroundColor: "red",
+                                width: "135px",
+                                height: "36px",
+                                borderRadius: "20px",
+                                borderColor: "red"
+                            }}>Log out
                     </button>
                 </div>
             </div>
+            <ToastContainer />
             <form onSubmit={handleSubmit}>
                 <div style={{
                     display: "flex",
@@ -187,56 +253,23 @@ function TourDay() {
                     marginTop: "50px"
                 }}>
                     <div className="mb-3">
-                        <input placeholder={"Title"} style={{width: "400px"}} type="text" className="form-control"
+                        <input placeholder={"Title"} style={{ width: "400px" }} type="text" className="form-control"
                                name="title"
-                               value={formData.title} onChange={handleChange}/>
+                               value={formData.title} onChange={handleChange} />
                     </div>
                     <div className="mb-3">
-                        <input placeholder={"Description"} style={{width: "400px"}} type="text" className="form-control"
+                        <input placeholder={"Description"} style={{ width: "400px" }} type="text" className="form-control"
                                name="description"
-                               value={formData.description} onChange={handleChange}/>
+                               value={formData.description} onChange={handleChange} />
                     </div>
                     <div className="mb-3">
                         <label>
-                            <input style={{width: "400px"}} type="file" className="form-control" name="photo"
-                                   onChange={handlePhotoChange}/>
-                            {/*{displayImg && <img src={displayImg} alt="Current" style={{ width: '100px', height: '100px' }} />}*/}
+                            <input style={{ width: "400px" }} type="file" className="form-control" name="photo"
+                                   onChange={handlePhotoChange} />
                         </label>
                     </div>
-
-                    <button style={{backgroundColor: "red", borderColor: "red", marginTop: "-15px"}} type="submit"
+                    <button style={{ backgroundColor: "red", borderColor: "red", marginTop: "-15px" }} type="submit"
                             className="btn btn-primary">{isEditing ? 'Update' : 'Add'} Tour Day
-                    </button>
-                </div>
-            </form>
-            <form onSubmit={handleDestinationSubmit}>
-                <div style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "10px",
-                    marginTop: "50px"
-                }}>
-                    <div className="mb-3">
-                        <input placeholder={"Day"} style={{width: "400px"}} type="text" className="form-control"
-                               name="day"
-                               value={destinationFormData.day} onChange={handleDestinationChange}/>
-                    </div>
-                    <div className="mb-3">
-                        <input placeholder={"Data"} style={{width: "400px"}} type="text" className="form-control"
-                               name="data"
-                               value={destinationFormData.data} onChange={handleDestinationChange}/>
-                    </div>
-                    <div className="mb-2">
-                        <label>
-                            <input placeholder={"Text"} style={{width: "500px"}} type="text" className="form-control"
-                                   name="text"
-                                   value={destinationFormData.text} onChange={handleDestinationChange}/>
-                        </label>
-                    </div>
-
-                    <button style={{backgroundColor: "blue", borderColor: "blue", marginTop: "-15px"}} type="submit"
-                            className="btn btn-primary">Add Destination
                     </button>
                 </div>
             </form>
@@ -247,7 +280,94 @@ function TourDay() {
                 gap: "10px",
                 marginTop: "50px"
             }}>
-                <table style={{marginTop: "40px", width: "1370px", marginLeft: "10px"}}
+                <div>
+                    <table style={{ marginTop: "40px" }} className="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Data</th>
+                            <th>Text</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {newDestination.map((dest, index) => (
+                            <tr key={index}>
+                                <td><h3>{dest.day}</h3></td>
+                                <td><h3>{dest.data}</h3></td>
+                                <td><h3>{dest.text}</h3></td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <form onSubmit={handleDestinationSubmit}>
+                <div style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    gap: "10px",
+                    marginTop: "50px"
+                }}>
+
+                    <div style={{ display: "flex", gap: "10px" }}>
+                        <div className="mb-3">
+                            <input
+                                placeholder={"Day"}
+                                style={{ width: "200px" }}
+                                type="text"
+                                className="form-control"
+                                name="day"
+                                value={destinationFormData.day}
+                                onChange={handleDestinationChange}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <input
+                                placeholder={"Data"}
+                                style={{ width: "100px" }}
+                                type="time"
+                                className="form-control"
+                                name="data"
+                                value={destinationFormData.data}
+                                onChange={handleDestinationChange}
+                            />
+                        </div>
+                        <div className="mb-3">
+
+                            <textarea
+                                placeholder={"Text"}
+                                style={{ width: "900px", height: "100px" }}
+                                className="text-area form-control"
+                                name="text"
+                                value={destinationFormData.text}
+                                onChange={handleDestinationChange}
+                                onKeyDown={handleKey}
+                            />
+                        </div>
+                    </div>
+
+                    <button
+                        style={{ backgroundColor: "blue", borderColor: "blue", marginTop: "-15px" }}
+                        type="submit"
+                        className="btn btn-primary"
+                    >
+                        Add Destination
+                    </button>
+
+                </div>
+            </form>
+
+
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "10px",
+                marginTop: "50px"
+            }}>
+                <table style={{ marginTop: "40px", width: "1370px", marginLeft: "10px" }}
                        className="table table-striped">
                     <thead>
                     <tr className={"op"}>
@@ -264,7 +384,7 @@ function TourDay() {
                             <td>{tourDay.description}</td>
                             <td>
                                 <img src={`http://localhost:8081/api/files/tourDay?name=${tourDay.photo}`} alt="Tour"
-                                     style={{width: '100px', height: '100px'}}/>
+                                     style={{ width: '100px', height: '100px' }} />
                             </td>
                             <td>
                                 <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>
