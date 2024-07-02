@@ -14,8 +14,10 @@ import { fetchToursRequest } from "./redux/reducer/userReducer.js";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
+
 function TourDay() {
     const dispatch = useDispatch();
+
     const { uuid } = useParams();
     const username = localStorage.getItem('username');
     const navigate = useNavigate();
@@ -41,6 +43,20 @@ function TourDay() {
         tourId: uuid
     });
     const [lastDay, setLastDay] = useState('');
+    const [aboutData, setAboutData] = useState({
+        startTime: '',
+        endTime: '',
+        price: '',
+        tourId: uuid  // Assuming you have a way to retrieve or set the tourId
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setAboutData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
 
     useEffect(() => {
         dispatch(fetchToursRequest());
@@ -59,7 +75,7 @@ function TourDay() {
         fetchDestinations();
     }, [uuid]);
 
-    const handleChange = (e) => {
+    const handleFormDataChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
             ...prevState,
@@ -88,17 +104,17 @@ function TourDay() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleTourDaySubmit = (e) => {
         e.preventDefault();
         if (current !== null) {
             dispatch(updateTourDayRequest({ ...formData, id: current.id }));
         } else {
             dispatch(addTourDayRequest(formData));
         }
-        resetForm();
+        resetTourDayForm();
     };
 
-    const resetForm = () => {
+    const resetTourDayForm = () => {
         setFormData({
             title: '',
             description: '',
@@ -172,9 +188,8 @@ function TourDay() {
             console.error(err);
         }
         document.querySelector('input[name="day"]').disabled = false;
-        handleClear()
+        handleClear();
     };
-
 
     const resetDestinationForm = () => {
         setDestinationFormData({
@@ -210,6 +225,23 @@ function TourDay() {
         setNewDestination([]);
     };
 
+    const handleAboutSubmit = async (e) => {
+        e.preventDefault();
+        console.log(uuid)
+        console.log(aboutData)
+        try {
+            axios({
+                url:`http://localhost:8081/api/about/${uuid}`,
+                method:"POST",
+                data:aboutData
+            })
+            console.log(aboutData)
+            // const response = await axios.post(`http://localhost:8081/api/about/${uuid}`, aboutData);
+            // console.log('About created:', response.data);
+        } catch (error) {
+            console.error('Error creating about:', error);
+        }
+    };
 
 
     return (
@@ -221,11 +253,11 @@ function TourDay() {
                 gap: "320px",
                 marginTop: "50px"
             }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-                    <img src={Account} alt="" />
+                <div style={{display: "flex", alignItems: "center", gap: "20px"}}>
+                    <img src={Account} alt=""/>
                     <h1 className={"h0"}>{username}</h1>
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+                <div style={{display: "flex", alignItems: "center", gap: "20px"}}>
                     <p className={"asd"} onClick={handleNavigate3}>Add Tour</p>
                     <p onClick={handleNavigate} className={"asd"}>Enquiry</p>
                     <p className={"asd"}>Available Tours</p>
@@ -243,8 +275,8 @@ function TourDay() {
                     </button>
                 </div>
             </div>
-            <ToastContainer />
-            <form onSubmit={handleSubmit}>
+            <ToastContainer/>
+            <form onSubmit={handleTourDaySubmit}>
                 <div style={{
                     display: "flex",
                     justifyContent: "center",
@@ -253,26 +285,66 @@ function TourDay() {
                     marginTop: "50px"
                 }}>
                     <div className="mb-3">
-                        <input placeholder={"Title"} style={{ width: "400px" }} type="text" className="form-control"
+                        <input placeholder={"Title"} style={{width: "400px"}} type="text" className="form-control"
                                name="title"
-                               value={formData.title} onChange={handleChange} />
+                               value={formData.title} onChange={handleFormDataChange}/>
                     </div>
                     <div className="mb-3">
-                        <input placeholder={"Description"} style={{ width: "400px" }} type="text" className="form-control"
+                        <input placeholder={"Description"} style={{width: "400px"}} type="text" className="form-control"
                                name="description"
-                               value={formData.description} onChange={handleChange} />
+                               value={formData.description} onChange={handleFormDataChange}/>
                     </div>
                     <div className="mb-3">
                         <label>
-                            <input style={{ width: "400px" }} type="file" className="form-control" name="photo"
-                                   onChange={handlePhotoChange} />
+                            <input style={{width: "400px"}} type="file" className="form-control" name="photo"
+                                   onChange={handlePhotoChange}/>
                         </label>
                     </div>
-                    <button style={{ backgroundColor: "red", borderColor: "red", marginTop: "-15px" }} type="submit"
+                    <button style={{backgroundColor: "red", borderColor: "red", marginTop: "-15px"}} type="submit"
                             className="btn btn-primary">{isEditing ? 'Update' : 'Add'} Tour Day
                     </button>
                 </div>
             </form>
+
+            <form onSubmit={handleAboutSubmit}>
+                <div className="mb-3">
+                    <label>Start Time:</label>
+                    <input
+                        type="date"
+                        className="form-control"
+                        name="startTime"
+                        value={aboutData.startTime}
+                        onChange={handleChange}
+                        required
+                    />
+
+                </div>
+                <div className="mb-3">
+                    <label>End Time:</label>
+                    <input
+                        type="date"
+                        className="form-control"
+                        name="endTime"
+                        value={aboutData.endTime}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="mb-3">
+                    <label>Price:</label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        name="price"
+                        value={aboutData.price}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                {/* Assuming tourId is preset or fetched earlier */}
+                <button type="submit" className="btn btn-primary">Add About</button>
+            </form>
+
             <div style={{
                 display: "flex",
                 justifyContent: "center",
@@ -281,7 +353,7 @@ function TourDay() {
                 marginTop: "50px"
             }}>
                 <div>
-                    <table style={{ marginTop: "40px" }} className="table table-striped">
+                    <table style={{marginTop: "40px"}} className="table table-striped">
                         <thead>
                         <tr>
                             <th>Day</th>
@@ -311,11 +383,11 @@ function TourDay() {
                     marginTop: "50px"
                 }}>
 
-                    <div style={{ display: "flex", gap: "10px" }}>
+                    <div style={{display: "flex", gap: "10px"}}>
                         <div className="mb-3">
                             <input
                                 placeholder={"Day"}
-                                style={{ width: "200px" }}
+                                style={{width: "200px"}}
                                 type="text"
                                 className="form-control"
                                 name="day"
@@ -326,7 +398,7 @@ function TourDay() {
                         <div className="mb-3">
                             <input
                                 placeholder={"Data"}
-                                style={{ width: "100px" }}
+                                style={{width: "100px"}}
                                 type="time"
                                 className="form-control"
                                 name="data"
@@ -338,7 +410,7 @@ function TourDay() {
 
                             <textarea
                                 placeholder={"Text"}
-                                style={{ width: "900px", height: "100px" }}
+                                style={{width: "900px", height: "100px"}}
                                 className="text-area form-control"
                                 name="text"
                                 value={destinationFormData.text}
@@ -349,7 +421,7 @@ function TourDay() {
                     </div>
 
                     <button
-                        style={{ backgroundColor: "blue", borderColor: "blue", marginTop: "-15px" }}
+                        style={{backgroundColor: "blue", borderColor: "blue", marginTop: "-15px"}}
                         type="submit"
                         className="btn btn-primary"
                     >
@@ -367,7 +439,7 @@ function TourDay() {
                 gap: "10px",
                 marginTop: "50px"
             }}>
-                <table style={{ marginTop: "40px", width: "1370px", marginLeft: "10px" }}
+                <table style={{marginTop: "40px", width: "1370px", marginLeft: "10px"}}
                        className="table table-striped">
                     <thead>
                     <tr className={"op"}>
@@ -384,7 +456,7 @@ function TourDay() {
                             <td>{tourDay.description}</td>
                             <td>
                                 <img src={`http://localhost:8081/api/files/tourDay?name=${tourDay.photo}`} alt="Tour"
-                                     style={{ width: '100px', height: '100px' }} />
+                                     style={{width: '100px', height: '100px'}}/>
                             </td>
                             <td>
                                 <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>

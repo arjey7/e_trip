@@ -22,5 +22,6 @@ public class About {
     private LocalDate endTime;
     private Double price;
     @ManyToOne
-    private Tour tourId;
+    @JoinColumn(name = "tour_id", nullable = false)
+    private Tour tour;
 }

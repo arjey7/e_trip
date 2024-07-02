@@ -9,7 +9,7 @@ function Login() {
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
-        axios.post('http://localhost:1111/api/auth/login', data)
+        axios.post('http://localhost:8081/api/auth/login', data)
             .then(response => {
                 localStorage.setItem('access_token', response.data.access_token);
                 localStorage.setItem('refresh_token', response.data.refresh_token);

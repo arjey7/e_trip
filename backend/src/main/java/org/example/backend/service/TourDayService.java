@@ -1,5 +1,6 @@
 package org.example.backend.service;
 
+import org.example.backend.dto.TextDto;
 import org.example.backend.dto.TourDayDto;
 import org.example.backend.entity.TourDay;
 
@@ -13,5 +14,5 @@ public interface TourDayService {
     void deleteTourDay(UUID id);
     List<TourDay> getById(UUID tourId);
     List<TourDay>getByIdd(UUID idd);
-    TourDay addText(TourDayDto tourDayDto);
+//    TourDay addText(TextDto textDto);
 }

@@ -10,6 +10,7 @@ import e from "./pageimg/Group 10.svg";
 import r from "./pageimg/Group 9.svg";
 import t from "./pageimg/Group 2.svg";
 import y from "./pageimg/Group 8.svg";
+import moment from 'moment';
 
 function Page2() {
     const dispatch = useDispatch();
@@ -22,6 +23,8 @@ function Page2() {
     const { tourId } = useParams();
     const [destination, setDestination] = useState([]);
     const [destinations, setDestinations] = useState([]);
+    const [aboutData, setAboutData] = useState([]);
+    const [aboutDatas, setAboutDatas] = useState([]);
 
     const [items, setItems] = useState([]);
     useEffect(() => {
@@ -30,8 +33,27 @@ function Page2() {
         getDestination()
         getAll(tourId);
         getTour(tourId);
+        getAbout(tourId);
         getText(tourId)
+        getAbouts()
     }, [tourId]);
+
+    function getAbout() {
+        console.log(tourId)
+        axios.get(`http://localhost:8081/api/about/${tourId}`).then(res => {
+            setAboutData(res.data);
+            console.log(res.data);
+        });
+    }
+
+    function getAbouts() {
+        axios.get("http://localhost:8081/api/about/ab").then(res => {
+            setAboutDatas(res.data);
+            console.log(res.data);
+        });
+    }
+
+
     function getDestination() {
         axios.get("http://localhost:8081/api/destination/dest").then(res => {
             const parsedData = res.data.map(item => ({
@@ -43,13 +65,13 @@ function Page2() {
     }
     function getTour() {
         console.log()
-        axios.get(`http://localhost:1111/api/destination/${tourId}`).then(res => {
+        axios.get(`http://localhost:8081/api/destination/${tourId}`).then(res => {
             setDestination(res.data);
 
         });
     }
     function getText() {
-        axios.get(`http://localhost:1111/api/texts/${tourId}`).then(res => {
+        axios.get(`http://localhost:8081/api/texts/${tourId}`).then(res => {
             setItems(res.data);
             console.log(res.data)
         });
@@ -57,7 +79,7 @@ function Page2() {
 
 
     function getAll() {
-        axios.get(`http://localhost:1111/api/tourDay/${tourId}`).then(res => {
+        axios.get(`http://localhost:8081/api/tourDay/${tourId}`).then(res => {
             setPage(res.data);
         });
     }
@@ -108,7 +130,7 @@ function Page2() {
                         </p>
                         {page[0].video && (
                             <video
-                                src={`http://localhost:1111/api/files/video?name=${page[0].video}`}
+                                src={`http://localhost:8081/api/files/video?name=${page[0].video}`}
                                 controls
                                 className="vide2"
                             />
@@ -206,58 +228,17 @@ function Page2() {
             <p className={"dest"}>О туре (Ближайшие выезды)</p>
             <div className="cardcha">
                 <div className="dess">
+                    {aboutDatas.map((i, index) => (
+                        <span className={"ccha"} key={index}>с {moment(aboutDatas.start_time).format('YYYY-MM-DD')}</span>
+                    ))}
 
-                    <span className="ccha">с</span> 20.08.2018
-                    <p className="ccha">по</p> 25.08.2018
-                    <span className="ccha">(+ Завтрак + Шоу-программа тигров)</span>
-                    <span className="ccha">от</span>
-                    <p className={"byn"}>380 BYN</p>
-                    <p className={"eur"}>(~130 EUR)</p>
-                    <button className={"zab"}>Забронировать</button>
-                </div>
-            </div>
-            <div className="cardcha">
-                <div className="dess">
-                    <span className="ccha">с</span> 20.08.2018
-                    <p className="ccha">по</p> 25.08.2018
-                    <span className="ccha">(+ Завтрак + Шоу-программа тигров)</span>
-                    <span className="ccha">от</span>
-                    <p className={"byn"}>380 BYN</p>
-                    <p className={"eur"}>(~130 EUR)</p>
-                    <button className={"zab"}>Забронировать</button>
-                </div>
-            </div>
-            <div className="cardcha">
-                <div className="dess">
-                    <span className="ccha">с</span> 20.08.2018
-                    <p className="ccha">по</p> 25.08.2018
-                    <span className="ccha">(+ Завтрак + Шоу-программа тигров)</span>
-                    <span className="ccha">от</span>
-                    <p className={"byn"}>380 BYN</p>
-                    <p className={"eur"}>(~130 EUR)</p>
-                    <button className={"zab"}>Забронировать</button>
-                </div>
-            </div>
-            <div className="cardcha">
-                <div className="dess">
-                    <span className="ccha">с</span> 20.08.2018
-                    <p className="ccha">по</p> 25.08.2018
-                    <span className="ccha">(+ Завтрак + Шоу-программа тигров)</span>
-                    <span className="ccha">от</span>
-                    <p className={"byn"}>380 BYN</p>
-                    <p className={"eur"}>(~130 EUR)</p>
-                    <button className={"zab"}>Забронировать</button>
-                </div>
-            </div>
-            <div className="cardcha">
-                <div className="dess">
-                    <span className="ccha">с</span> 20.08.2018
-                    <p className="ccha">по</p> 25.08.2018
-                    <span className="ccha">(+ Завтрак + Шоу-программа тигров)</span>
-                    <span className="ccha">от</span>
-                    <p className={"byn"}>380 BYN</p>
-                    <p className={"eur"}>(~130 EUR)</p>
-                    <button className={"zab"}>Забронировать</button>
+                    {/*<span className="ccha">с </span>*/}
+                    {/*<p className="ccha">по</p> 25.08.2018*/}
+                    {/*<span className="ccha">(+ Завтрак + Шоу-программа тигров)</span>*/}
+                    {/*<span className="ccha">от</span>*/}
+                    {/*<p className={"byn"}>380 BYN</p>*/}
+                    {/*<p className={"eur"}>(~130 EUR)</p>*/}
+                    {/*<button className={"zab"}>Забронировать</button>*/}
                 </div>
             </div>
             <div className={"chiziq5"}></div>
