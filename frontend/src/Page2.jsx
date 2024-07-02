@@ -189,8 +189,8 @@ function Page2() {
                 </div>
             ))}
             <div className="chiziq4"></div>
-            <div className="dest">Destination</div>
-            <div className="day-content">
+            <div ref={destinationsRef} className="dest">Destination</div>
+            <div  className="day-content">
                 {destinations.map((item, dayIndex) => (
                     <div className="day-wrapper" key={dayIndex}>
                         <div className="daylar">

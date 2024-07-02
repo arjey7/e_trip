@@ -14,10 +14,8 @@ import { fetchToursRequest } from "./redux/reducer/userReducer.js";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
-
 function TourDay() {
     const dispatch = useDispatch();
-
     const { uuid } = useParams();
     const username = localStorage.getItem('username');
     const navigate = useNavigate();

@@ -553,7 +553,6 @@ flex-wrap: wrap;
     letter-spacing: 0%;
     text-align: left;
     text-transform: lowercase;
-    margin-top: 200px;
 }
 .chiziq5 {
     width: 109.63px;
@@ -711,7 +710,7 @@ flex-wrap: wrap;
     line-height: 18.29px;
     text-align: left;
     margin-top: 50px;
-    margin-left: -105px;
+margin-left: -127px;
     color: #004530;
 
 }
@@ -721,7 +720,7 @@ flex-wrap: wrap;
     display: flex;
     gap: 4px;
     margin-top: 80px;
-    margin-left: -110px;
+    margin-left: -120px;
 }
 .ro{
     font-family: "Montserrat", sans-serif;
