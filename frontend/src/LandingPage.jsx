@@ -12,7 +12,7 @@ import NavImage from "./files/barlass 2.png";
 import Logo from './files/left side.png';
 import Ethernet from './files/ethernet.png';
 import Naushnik from './files/naushnik.png';
-import Vector from './files/vector2.svg';
+import Vector from './files/vector.png';
 import Apacha from './files/portrait-call-center-woman 1.png';
 import today from './files/Rectangle 3.png';
 import nul from "./files/asd.png";
