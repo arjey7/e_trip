@@ -23,7 +23,11 @@
     justify-content: center;
     gap: 80px;
 }
-
+.div-input2{
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+}
 
 .btn-submit {
     background: #fbca1f;
