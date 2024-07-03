@@ -14,7 +14,6 @@ import { fetchToursRequest } from "./redux/reducer/userReducer.js";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 function TourDay() {
     const dispatch = useDispatch();
     const { uuid } = useParams();
@@ -24,6 +23,9 @@ function TourDay() {
     const [editDay,setEditDay] = useState('')
     const [editData,setEditData] = useState('')
     const [editText,setEditText] = useState('')
+    const [editText2,setEditText2] = useState('')
+    const [editPriceByn,setEditPriceByn] = useState('')
+    const [editPriceEur,setEditPriceEur] = useState('')
     const tourDays = useSelector(state => state.tourDay.tourDays);
     const loading = useSelector(state => state.tourDay.loading);
     const error = useSelector(state => state.tourDay.error);
@@ -126,6 +128,26 @@ function TourDay() {
             ...prevState,
             [name]: value
         }));
+        setEditText2(e.target.value)
+
+    };
+    const handleDestinationChange5 = (e) => {
+        const { name, value } = e.target;
+        setContextFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+        setEditPriceByn(e.target.value)
+
+    };
+    const handleDestinationChange6 = (e) => {
+        const { name, value } = e.target;
+        setContextFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+        setEditPriceEur(e.target.value)
+
     };
 
     const handlePhotoChange = (e) => {
@@ -278,6 +300,11 @@ function TourDay() {
         setEditText('');
         document.querySelector('input[name="day"]').disabled = false;
     };
+    const resetDestinationForm3 = () => {
+        setEditText2('')
+        setEditPriceByn('');
+        setEditPriceEur('');
+    };
 
     const resetDestinationForm2 = () => {
         setEditDay('')
@@ -320,16 +347,25 @@ function TourDay() {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
 
-
-            setNewContextData(prevDestination => [
-                ...prevDestination,
-                {
-                    text: contextFormData.text,
-                    priceByn: contextFormData.priceByn,
-                    priceEur: contextFormData.priceEur
-                }
-            ]);
-            resetAboutForm2()
+            if (current !== null) {
+                const updatedItems = newContextData.map((item, index) =>
+                    index === current ? { text: editText2, priceByn: editPriceByn, priceEur: editPriceEur } : item
+                );
+                setNewContextData(updatedItems);
+                setCurrent(null);
+                toast.success(`Context updated successfully!`);
+            } else {
+                setNewContextData(prevDestination => [
+                    ...prevDestination,
+                    {
+                        text: contextFormData.text,
+                        priceByn: contextFormData.priceByn,
+                        priceEur: contextFormData.priceEur
+                    }
+                ]);
+            }
+            setCurrent(null);
+            resetDestinationForm3();
         }
     };
 
@@ -408,7 +444,22 @@ function TourDay() {
     };
 
 
+    function handleEdit3(index, text, priceByn, priceEur) {
+        setCurrent(index);
+        setEditText2(text);
+        setEditPriceByn(priceByn);
+        setEditPriceEur(priceEur);
+    }
 
+    function handleDelete3(id) {
+        try {
+            const updatedDestinations = [...newContextData];
+            updatedDestinations.splice(id, 1);
+            setNewContextData(updatedDestinations);
+        } catch (error) {
+            console.error('Error deleting destination:', error);
+        }
+    }
 
     return (
         <div className="">
@@ -607,15 +658,18 @@ function TourDay() {
 
                 </div>
             </form>
-            <input
-                style={{width: "1380px", marginLeft: "90px", marginTop: "20px"}}
-                className={"form-control"}
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Add an item and press Enter"
-            />
+            <div className={"div-input2"}>
+                <input
+                    style={{width: "1380px", marginLeft: "90px", marginTop: "20px"}}
+                    className={"form-control"}
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    placeholder="Add an item and press Enter"
+                />
+            </div>
+
             <div style={{
                 display: "flex",
                 justifyContent: "center",
@@ -630,6 +684,7 @@ function TourDay() {
                             <th>Text</th>
                             <th>PriceByn</th>
                             <th>PriceEur</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -638,6 +693,15 @@ function TourDay() {
                                 <td><h3>{dest.text}</h3></td>
                                 <td><h3>{dest.priceByn}</h3></td>
                                 <td><h3>{dest.priceEur}</h3></td>
+                                <td>
+                                    <button className="btn btn-warning"
+                                            onClick={() => handleEdit3(index, dest.text, dest.priceByn, dest.priceEur)}>Edit
+                                    </button>
+
+                                    <button className="btn btn-danger m-2"
+                                            onClick={() => handleDelete3(index)}>Delete
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                         </tbody>
@@ -661,8 +725,9 @@ function TourDay() {
                                 type="text"
                                 className="form-control"
                                 name="text"
-                                value={contextFormData.text}
+                                value={editText2}
                                 onChange={handleDestinationChange2}
+                                onKeyDown={handleKey2}
                             />
                         </div>
                         <div className="mb-3">
@@ -672,8 +737,9 @@ function TourDay() {
                                 type="number"
                                 className="form-control"
                                 name="priceByn"
-                                value={contextFormData.priceByn}
-                                onChange={handleDestinationChange2}
+                                value={editPriceByn}
+                                onChange={handleDestinationChange5}
+                                onKeyDown={handleKey2}
                             />
                         </div>
                         <div className="mb-3">
@@ -684,8 +750,8 @@ function TourDay() {
                                 className="text-area form-control"
                                 name="priceEur"
                                 type="number"
-                                value={contextFormData.priceEur}
-                                onChange={handleDestinationChange2}
+                                value={editPriceEur}
+                                onChange={handleDestinationChange6}
                                 onKeyDown={handleKey2}
                             />
                         </div>
