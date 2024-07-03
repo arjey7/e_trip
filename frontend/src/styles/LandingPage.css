@@ -227,6 +227,7 @@
     height: 100%;
     object-fit: cover;
     margin-top: 80px;
+    border-radius: 40px;
 }
 
 
@@ -352,6 +353,30 @@
     padding: 10px;
     max-width: 1930px;
     justify-content: center;
+}
+/*.react-multi-carousel-item{*/
+/*    background-color: black!important;*/
+/*}*/
+.react-multi-carousel-item{
+   display: flex!important;
+    justify-content: center!important;
+    width: 430px;
+    gap: 220px!important;
+}
+.be{
+    width: 113.23px;
+    height:  56.53px;
+    padding: 11.31px 22.61px 11.31px 22.61px;
+    gap: 5.65px;
+    border-radius: 5.65px;
+    opacity: 0px;
+    angle: -0.08 deg;
+    border: 1.41px solid #8DD3BB;
+    color:#8DD3BB ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 
@@ -480,6 +505,8 @@ ul.your-class li, ol.your-class li {
     margin: 0;
     padding: 0;
 }
+
+
 
 
 

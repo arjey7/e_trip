@@ -279,14 +279,18 @@ const LandingPage = () => {
                 </div>
                 <div>
                     <p className="you1">---- Where you can travel with us</p>
-                    <div style={{display:"flex",}}>
-                        <p className="you">Immerse yourself in the beauty and spirituality of fascinating places. Join
-                            us
-                            for an
-                            unforgettable adventure through Islamic Central Asia.
-                        </p>
-                        <button className={"be"}>See All</button>
+                    <div >
+                        <div style={{display:"flex",alignItems:"center",gap:"20px",}}>
+                            <p className="you">Immerse yourself in the beauty and spirituality of fascinating places.
+                                Join
+                                us
+                                for an
+                                unforgettable adventure through Islamic Central Asia.
+                            </p>
+                            <button className={"be"}>See All</button>
+                        </div>
                     </div>
+                </div>
                     <div className={"kl"}>
                         <div className={"me"}>
                             <p className={"me2"}>Bu yerda video bo'ladi</p>
@@ -296,7 +300,7 @@ const LandingPage = () => {
                             <img className={"wit"} width={100} src={today} alt=""/>
                                 <img className={"wit"} src={nul} alt=""/>
                             </div>
-                            <div style={{display: "flex", gap: "20px"}}>
+                            <div style={{display: "flex",}}>
                                 <img className={"wit"} src={p} alt=""/>
                                 <img className={"wit"} src={m} alt=""/>
                             </div>
@@ -305,7 +309,7 @@ const LandingPage = () => {
 
                     </div>
 
-                </div>
+
                 <h1 className="us">What our clients say about us</h1>
                 <div className="page-container">
                     <Carousel
