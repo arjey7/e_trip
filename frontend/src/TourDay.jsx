@@ -42,6 +42,12 @@ function TourDay() {
         text: '',
         tourId: uuid
     });
+    const [contextFormData, setContextFormData] = useState({
+        text: '',
+        priceByn: '',
+        priceEur: '',
+        tourId: uuid
+    });
     const [lastDay, setLastDay] = useState('');
     const [inputValue, setInputValue] = useState("")
     const [aboutData, setAboutData] = useState({
@@ -50,6 +56,7 @@ function TourDay() {
         price: '',
         tourId: uuid  // Assuming you have a way to retrieve or set the tourId
     });
+    const [newContextData,setNewContextData] = useState([])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -87,6 +94,13 @@ function TourDay() {
     const handleDestinationChange = (e) => {
         const { name, value } = e.target;
         setDestinationFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+    const handleDestinationChange2 = (e) => {
+        const { name, value } = e.target;
+        setContextFormData(prevState => ({
             ...prevState,
             [name]: value
         }));
@@ -191,6 +205,36 @@ function TourDay() {
         document.querySelector('input[name="day"]').disabled = false;
         handleClear();
     };
+    const handleDestinationSubmit2 = async (e) => {
+        e.preventDefault();
+
+        try {
+            await Promise.all(newContextData.map(async (dest) => {
+                const newContextData = {
+                    text: dest.text,
+                    priceByn: dest.priceByn,
+                    priceEur: dest.priceEur,
+                    tourId: uuid
+                };
+
+                const response = await axios.post(
+                    `http://localhost:8081/api/context/${uuid}`,
+                    newContextData
+                );
+                const newContextItem = response.data;
+
+                toast.success(`Context ${newContextItem.text} added successfully!`);
+            }));
+
+            setNewContextData([]);
+
+        } catch (err) {
+            toast.error("Error adding Destination!");
+            console.error(err);
+        }
+        handleClear2();
+        resetAboutForm2()
+    };
 
     const resetDestinationForm = () => {
         setDestinationFormData({
@@ -221,11 +265,29 @@ function TourDay() {
             e.target.form.elements.day.disabled = true;
         }
     };
+    const handleKey2 = (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+
+
+            setNewContextData(prevDestination => [
+                ...prevDestination,
+                {
+                    text: contextFormData.text,
+                    priceByn: contextFormData.priceByn,
+                    priceEur: contextFormData.priceEur
+                }
+            ]);
+            resetAboutForm2()
+        }
+    };
 
     const handleClear = () => {
         setNewDestination([]);
     };
-
+    const handleClear2 = () => {
+        setNewDestination([]);
+    };
     const handleAboutSubmit = async (e) => {
         e.preventDefault();
         console.log(uuid);
@@ -252,7 +314,14 @@ function TourDay() {
         });
         document.querySelector('input[name="day"]').disabled = false;
     };
-
+    const resetAboutForm2 = () => {
+        setContextFormData({
+            text: '',
+            priceByn: '',
+            priceEur: '',
+            tourId: uuid
+        });
+    };
     const handleKeyDown = async (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
@@ -413,7 +482,7 @@ function TourDay() {
                             <input
                                 placeholder={"Day"}
                                 style={{width: "200px"}}
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 name="day"
                                 value={destinationFormData.day}
@@ -444,7 +513,6 @@ function TourDay() {
                             />
                         </div>
                     </div>
-                    +
 
                     <button
                         style={{backgroundColor: "blue", borderColor: "blue", marginTop: "-15px"}}
@@ -465,7 +533,6 @@ function TourDay() {
                 onKeyDown={handleKeyDown}
                 placeholder="Add an item and press Enter"
             />
-
             <div style={{
                 display: "flex",
                 justifyContent: "center",
@@ -473,6 +540,93 @@ function TourDay() {
                 gap: "10px",
                 marginTop: "50px"
             }}>
+                <div>
+                    <table style={{marginTop: "40px"}} className="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Text</th>
+                            <th>PriceByn</th>
+                            <th>PriceEur</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {newContextData.map((dest, index) => (
+                            <tr key={index}>
+                                <td><h3>{dest.text}</h3></td>
+                                <td><h3>{dest.priceByn}</h3></td>
+                                <td><h3>{dest.priceEur}</h3></td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <form onSubmit={handleDestinationSubmit2}>
+                <div style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    gap: "10px",
+                    marginTop: "50px"
+                }}>
+                    <div style={{display: "flex",gap:"10px"}}>
+                        <div className="mb-3">
+                            <input
+                                placeholder={"Text"}
+                                style={{width: "900px"}}
+                                type="text"
+                                className="form-control"
+                                name="text"
+                                value={contextFormData.text}
+                                onChange={handleDestinationChange2}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <input
+                                placeholder={"PriceByn"}
+                                style={{width: "300px"}}
+                                type="number"
+                                className="form-control"
+                                name="priceByn"
+                                value={contextFormData.priceByn}
+                                onChange={handleDestinationChange2}
+                            />
+                        </div>
+                        <div className="mb-3">
+
+                            <input
+                                placeholder={"PriceEur"}
+                                style={{width: "300px"}}
+                                className="text-area form-control"
+                                name="priceEur"
+                                type="number"
+                                value={contextFormData.priceEur}
+                                onChange={handleDestinationChange2}
+                                onKeyDown={handleKey2}
+                            />
+                        </div>
+                    </div>
+
+
+                    <button
+                        style={{backgroundColor: "blue", borderColor: "blue", marginTop: "-15px"}}
+                        type="submit"
+                        className="btn btn-primary"
+                    >
+                        Add Context
+                    </button>
+
+                </div>
+            </form>
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "10px",
+                marginTop: "50px"
+            }}>
+
                 <table style={{marginTop: "40px", width: "1370px", marginLeft: "10px"}}
                        className="table table-striped">
                     <thead>
