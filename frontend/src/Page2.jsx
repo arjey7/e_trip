@@ -126,8 +126,8 @@ function getContext(){
                             Continually synthesize state of the art e-services before client-based technology.
                             Conveniently plagiarize
                             accurate ideas without bleeding-edge channels.
-                            <br />
-                            <br />
+                            <br/>
+                            <br/>
                             Distinctively syndicate excellent intellectual capital whereas professional partnerships.
                             Interactively syndicate
                             best-of-breed niche markets after an expanded array of collaboration and idea-sharing.
@@ -150,6 +150,7 @@ function getContext(){
 
             <div className={"chiziq3"}></div>
             <p className={"programma"}>Itinerary</p>
+            <hr width={900}/>
             {page.map((itm, index) => (
                 <div className="day-container" key={index}>
                     <p className="day">Day {itm.day}</p>
@@ -175,7 +176,7 @@ function getContext(){
                                         <p className="tours">Tour starts in {itm.tour.title}</p>
                                         <span className="expanded-description">
                                             {itm.description}
-                                            <br />
+                                            <br/>
                                             Садимся на наш комфортабельный автобус и отправляемся в Таллинн.
                                             Дорога до границы занимает лишь 2 часа. Границу мы пересекаем без очередей.
                                         </span>
@@ -198,7 +199,8 @@ function getContext(){
                 </div>
             ))}
             <div className="chiziq4"></div>
-            <div ref={destinationsRef} className="dest">Destination</div>
+            <div ref={destinationsRef} className="dest">Destinations</div>
+            <hr width={900}/>
             <div className="day-content">
                 {destinations.map((item, dayIndex) => (
                     <div className="day-wrapper" key={dayIndex}>
@@ -217,7 +219,7 @@ function getContext(){
                                             idx < arr.length - 1 ? (
                                                 <React.Fragment key={idx}>
                                                     {part}
-                                                    <span style={{ color: '#DF7021' }}>(доп оплата)</span>
+                                                    <span style={{color: '#DF7021'}}>(доп оплата)</span>
                                                 </React.Fragment>
                                             ) : part
                                         ))}
@@ -232,8 +234,10 @@ function getContext(){
             </div>
 
             <p className="prib">ПРИБЫТИЕ В МИНСК В 00:30-02:30м</p>
+
             <div ref={inspirationRef} className="chiziq5"></div>
             <p className="dest">О туре (Ближайшие выезды)</p>
+            <hr width={900}/>
             <div className="cardcha">
                 {aboutDatas.map((item, index) => (
                     <div className="dess" key={index}>
@@ -241,8 +245,8 @@ function getContext(){
                             <React.Fragment key={aboutIndex}>
                                 <div className="about-wrapper">
                                     <div>
-                                        <span className="ccha">с</span>{moment(about.start_time).format('YYYY-MM-DD')}
-                                        <span className="cchac">по</span>{moment(about.end_time).format('YYYY-MM-DD')}
+                                        <span className="ccha">с</span>{moment(about.start_time).format('YYYY.MM.DD')}
+                                        <span className="cchac">по</span>{moment(about.end_time).format('YYYY.MM.DD')}
                                         <p className="cchas">(+ Завтрак + Шоу-программа тигров)</p>
                                     </div>
                                     <div className={"abouts"}>
@@ -250,17 +254,19 @@ function getContext(){
                                         <p className="byn">{about.price} BYN</p>
                                         <span>(~130 EUR)</span>
                                     </div>
-                                    <button onClick={() => dispatch(openModals())} className="zab">Забронировать</button>
+                                    <button onClick={() => dispatch(openModals())} className="zab">Забронировать
+                                    </button>
                                 </div>
-                                <hr />
                             </React.Fragment>
                         ))}
                     </div>
                 ))}
             </div>
 
+
             <div className={"chiziq5"}></div>
             <p className={"dest"}>О туре (В стоимость тура входит:)</p>
+            <hr width={900}/>
             <ul className={"comments"}>
                 {items.map((ite, index) => (
                     <li className={"ro"} key={index}>- {ite.text}</li>
