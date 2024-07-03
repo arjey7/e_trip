@@ -280,6 +280,10 @@ function getContext(){
                 <div>
                     <p style={{display: "flex"}} className={"textcha"}>- {item.text} <p
                         className={"byna"}> {item.priceByn} BYN</p><p
+            {context.map((item,index)=>(
+
+                <div style={{marginTop:"-25px"}}>
+                    <p style={{display: "flex"}} className={"textcha"}>- {item.text} <p className={"byn"}> {item.priceByn} BYN</p><p
                         className={"eur"}>(~{item.priceEur}
                         EUR)</p></p>
                 </div>
