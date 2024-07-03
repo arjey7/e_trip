@@ -331,7 +331,7 @@ function TourDay() {
             </form>
 
             <ToastContainer />
-            <form className="div-info" onSubmit={handleAboutSubmit}>
+            <form className="div-input" onSubmit={handleAboutSubmit}>
                 <div>
                     <label>Start Time:</label>
                     <input

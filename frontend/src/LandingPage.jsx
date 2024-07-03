@@ -147,8 +147,8 @@ const LandingPage = () => {
                             <p className='montserrat'>Contact us</p>
                             <p className='montserrat-font'>ENG</p>
                         </div>
+                    <div className={"linear"}></div>
                     </div>
-                    <div className={"line"}></div>
                     <div className='hero-text'>
                         <p>Travel through the land and observe how He began creation.</p>
                         <div className='hero-subtext'>
@@ -226,8 +226,6 @@ const LandingPage = () => {
                                         </button>
                                     </div>
                                 </div>
-
-
                             </div>
                             <div className="">
                                 <div className="">
@@ -275,7 +273,7 @@ const LandingPage = () => {
                             {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
 
 
-                            <button className='request-button' type='submit'>Call me back</button>
+                            <button className='request-button' type='submit'>CALL ME BACK</button>
                         </form>
                     </div>
                 </div>
@@ -317,7 +315,7 @@ const LandingPage = () => {
                                 <div className="m">
                                     <div className="op"></div>
                                     <p className="comment-name">{comment.firstName} {comment.lastName}</p>
-                                    <p className="comment-text">{comment.text}</p>
+                                        <p className="comment-text">{comment.text}</p>
                                     <ReactStars
                                         count={5}
                                         value={comment.rate}

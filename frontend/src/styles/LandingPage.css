@@ -3,17 +3,19 @@
     background-repeat: no-repeat;
     background-size: cover;
     max-width: 1930px;
-    height: 800px;
+    height: 900px;
     border-radius: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
+    box-shadow: 0px -100px 160px 40px #171717 inset;
 }
 
 .navbar {
     display: flex;
     align-items: center;
+    max-width: 1930px;
     border-radius: 30px;
     padding: 10px 20px;
     justify-content: space-between;
@@ -30,12 +32,12 @@
     gap: 30px;
 }
 
-.line{
-    width: 102.7%;
-    height: 2.5px;
+.linear{
+    width: 1950px !important;
+    height: 3.5px;
     background-color: #FFFFFF;
-    margin-top: -160px;
-    margin-left: -20px;
+    margin-left: -39.3px;
+    margin-right: -40px;
 }
 
 .nav-body .montserrat {
@@ -56,12 +58,15 @@
     margin-right: 30px;
     cursor: pointer;
     margin-top: -10px;
+
 }
+
+
 
 .hero-text {
     color: #fff;
     width: 70%;
-    margin: 100px 150px;
+    margin: 50px 150px;
     text-align: center;
 }
 
@@ -84,12 +89,12 @@
 }
 .div-info {
     display: flex;
-    justify-content: center;
     flex-direction: row;
     max-width: 1842px;
     max-height: 854.06px;
     padding: 20px;
     gap: 50px;
+    margin-top: -70px;
 }
 
 .image-container {
@@ -233,7 +238,6 @@
     border-radius: 10px;
     background-size:100%,contain ;
     margin-top: 50px;
-
     overflow: hidden;
 }
 .image-containerr::after {
@@ -252,7 +256,6 @@
     grid-template-columns: repeat(2,1fr);
     max-width: 1930px;
     flex-wrap: wrap;
-    margin-top: 100px;
     gap: 30px;
 }
 
@@ -285,12 +288,12 @@
 
 .you1{
     font-family: "Noto Serif", serif;
-    margin-top:200px;
+    margin-top:50px;
     font-size: 50px;
     font-weight: 700;
     line-height: 112.02px;
     text-align: left;
-    margin-left: 40px;
+    padding: 10px;
 }
 
 .you2{
@@ -300,7 +303,7 @@
     font-weight: 700;
     line-height: 112.02px;
     text-align: left;
-    margin-left: 40px;
+    margin-left: 50px;
 }
 
 .you{
@@ -309,16 +312,16 @@
     font-weight: 400;
     line-height: 36.58px;
     text-align: left;
-    margin-left: 80px;
+    padding-left: 30px;
+    margin-top: -40px;
 }
 .girl-img{
     width: 352px;
-    margin-top:20px;
+    margin-top:-40px;
     border-radius: 14px;
-
 }
 .me{
-    width:  797.84px !important;
+    width:  599.27px !important;
     max-height: 586.27px;
     padding: 33.92px 0px 0px 0px;
     gap: 169.6px;
@@ -335,23 +338,24 @@
     text-align: left;
     color: #FFFFFF;
     padding-left:10px
-
-
 }
 .wit{
-    width: 320.45px;
+    width: 449.45px;
     height: 282.67px;
     border-radius: 16.96px 0px 0px 0px;
     border: 2.83px 0px 0px 0px;
     margin-bottom: 20px;
-
+    margin-left: 10px;
 }
 .kl{
     display: flex;
-    gap: 10px;
+    padding: 10px;
     max-width: 1930px;
     justify-content: center;
 }
+
+
+
 .text-class{
     font-family: "Montserrat", sans-serif;
     font-size: 30.55px;
@@ -360,20 +364,22 @@
     line-height: 37.25px;
     text-align: left;
     color: #fff;
-    margin-left: 450px;
-
+    margin-left: 300px;
+    margin-top: 70px;
 }
 
 .div-request{
     background-image: url("../files/rasmcha.png");
     background-repeat: no-repeat;
     background-size: cover;
-    max-width: 1930.16px;
-    height: 459.2px;
+    max-width: 1930px;
+    width: 1277.16px;
+    height: 400px;
     top: 5026px;
     border-radius: 15px;
     padding-top: 50px;
-    margin-top: 200px;
+    margin: 50px auto;
+    justify-content: center;
 }
 
 .same-class{
@@ -382,7 +388,7 @@
     line-height: 38.28px;
     text-align: left;
     color: #fff;
-    margin-left: 450px;
+    margin-left: 300px;
 }
 
 .request-text{
@@ -407,10 +413,10 @@
 }
 
 .input-container {
-    margin-top: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
 .input, .input1 {
@@ -418,7 +424,7 @@
     max-width: 450.15px !important;
     height: 55px;
     padding: 10px;
-    margin-left: 490px;
+    margin-left: 435px;
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -437,7 +443,7 @@
     font-size: 16px;
     cursor: pointer;
     margin-top: -64px;
-    margin-left: 620px;
+    margin-left: 570px;
 }
 
 .request-button:hover {
@@ -461,7 +467,7 @@
     gap: 0px;
     opacity: 0px;
     background: #00D594;
-border:1px solid #00D594 ;
+    border:1px solid #00D594 ;
     color: #FFFFFF;
     border-radius: 5px;
     display: flex;
