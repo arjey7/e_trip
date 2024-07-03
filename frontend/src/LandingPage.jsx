@@ -12,7 +12,7 @@ import NavImage from "./files/barlass 2.png";
 import Logo from './files/left side.png';
 import Ethernet from './files/ethernet.png';
 import Naushnik from './files/naushnik.png';
-import Vector from './files/vector.png';
+import Vector from './files/vector.svg';
 import Apacha from './files/portrait-call-center-woman 1.png';
 import today from './files/Rectangle 3.png';
 import nul from "./files/asd.png";
@@ -89,7 +89,7 @@ const LandingPage = () => {
     const responsive = {
         superLargeDesktop: {
             breakpoint: { max: 4000, min: 3000 },
-            items: 5
+            items: 3
         },
         desktop: {
             breakpoint: { max: 4000, min: 1024 },
@@ -182,7 +182,7 @@ const LandingPage = () => {
                         </div>
                         <div className='info-item2'>
                             <div className={"info-div-item"}>
-                               <img src={Ethernet} alt="" className='icon'/>
+                                <img src={Ethernet} alt="" className='icon'/>
                             </div>
                             <div className='text-content2'>
                                 <h2>Our Commitment to World-Class Service</h2>
@@ -281,17 +281,24 @@ const LandingPage = () => {
                 </div>
                 <div>
                     <p className="you1">---- Where you can travel with us</p>
-                    <p className="you">Immerse yourself in the beauty and spirituality of fascinating places. Join us
-                        for an
-                        unforgettable adventure through Islamic Central Asia.</p>
+                    <div style={{display:"flex",}}>
+                        <p className="you">Immerse yourself in the beauty and spirituality of fascinating places. Join
+                            us
+                            for an
+                            unforgettable adventure through Islamic Central Asia.
+                        </p>
+                        <button className={"be"}>See All</button>
+                    </div>
                     <div className={"kl"}>
                         <div className={"me"}>
                             <p className={"me2"}>Bu yerda video bo'ladi</p>
                         </div>
                         <div className={"d"}>
+                            <div className={"img-card"}>
                             <img className={"wit"} width={100} src={today} alt=""/>
-                            <img className={"wit"} src={nul} alt=""/>
-                            <div style={{display: "flex"}}>
+                                <img className={"wit"} src={nul} alt=""/>
+                            </div>
+                            <div style={{display: "flex", gap: "20px"}}>
                                 <img className={"wit"} src={p} alt=""/>
                                 <img className={"wit"} src={m} alt=""/>
                             </div>
@@ -301,9 +308,10 @@ const LandingPage = () => {
                     </div>
 
                 </div>
+                <h1 className="us">What our clients say about us</h1>
                 <div className="page-container">
-                    <h1 className="us">What our clients say about us</h1>
                     <Carousel
+
                         responsive={responsive}
                         afterChange={(previousSlide, {currentSlide, slidesToShow}) =>
                             onSlideChanged(previousSlide, {currentSlide, slidesToShow})
