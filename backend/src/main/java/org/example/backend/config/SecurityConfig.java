@@ -33,7 +33,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET,"/api/tour/getAll", "/api/about", "/api/about/{tourId}", "/api/about/ab").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/comment").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/comment/all","/api/comment/approved","/api/tour/gettour").permitAll()
-                        .requestMatchers(HttpMethod.PUT,"/api/comment/{id}/status","/api/comment/{id}/adminstatus","/api/tour/{id}","/api/tourDay/{id}").permitAll()
+                        .requestMatchers(HttpMethod.PUT,"/api/comment/{id}/status","/api/comment/{id}/adminstatus","/api/tour/{id}","/api/tourDay/{id}","/api/destination/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/comment/adminstatus/true").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/tourDay/{tourId}","api/tourDay/all/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/enquiry","/api/tourDay/{idd}","/api/texts/{tourId}").permitAll()
@@ -41,7 +41,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/api/enquiry","/api/context/{tourId}","/api/texts/{tourId}").permitAll()
                         .requestMatchers(HttpMethod.PATCH,"/api/enquiry/{id}/answer").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/destination/{tourId}","/api/context/{tourId}","/api/destination/dest").permitAll()
-                        .requestMatchers(HttpMethod.DELETE,"/api/tour/{id}","/api/tourDay/{id}").permitAll()
+                        .requestMatchers(HttpMethod.DELETE,"/api/tour/{id}","/api/tourDay/{id}","/api/destination/{id}").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();

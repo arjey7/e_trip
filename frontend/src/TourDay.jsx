@@ -21,7 +21,9 @@ function TourDay() {
     const username = localStorage.getItem('username');
     const navigate = useNavigate();
     const [items, setItems] = useState([])
-
+    const [editDay,setEditDay] = useState('')
+    const [editData,setEditData] = useState('')
+    const [editText,setEditText] = useState('')
     const tourDays = useSelector(state => state.tourDay.tourDays);
     const loading = useSelector(state => state.tourDay.loading);
     const error = useSelector(state => state.tourDay.error);
@@ -97,6 +99,26 @@ function TourDay() {
             ...prevState,
             [name]: value
         }));
+        setEditDay(e.target.value)
+
+    };
+    const handleDestinationChange3 = (e) => {
+        const { name, value } = e.target;
+        setDestinationFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+        setEditData(e.target.value)
+
+    };
+    const handleDestinationChange4 = (e) => {
+        const { name, value } = e.target;
+        setDestinationFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+        setEditText(e.target.value)
+
     };
     const handleDestinationChange2 = (e) => {
         const { name, value } = e.target;
@@ -179,32 +201,47 @@ function TourDay() {
         e.preventDefault();
 
         try {
-            await Promise.all(newDestination.map(async (dest) => {
-                const newDestinationData = {
-                    day: dest.day,
-                    data: dest.data,
-                    text: dest.text,
-                    tourId: uuid
-                };
-
-                const response = await axios.post(
-                    `http://localhost:8081/api/destination/${uuid}`,
-                    newDestinationData
+            if (current !== null) {
+                const updatedItems = newDestination.map((item, index) =>
+                    index === current ? { day: editDay, data: editData, text: editText } : item
                 );
-                const newDestinationItem = response.data;
+                setNewDestination(updatedItems);
+                setCurrent(null);
+                toast.success(`Destination updated successfully!`);
+            } else {
+                try {
+                    await Promise.all(newDestination.map(async (dest) => {
+                        const newDestinationData = {
+                            day: dest.day,
+                            data: dest.data,
+                            text: dest.text,
+                            tourId: uuid
+                        };
 
-                toast.success(`Destination for Day ${newDestinationItem.day} added successfully!`);
-            }));
+                        const response = await axios.post(
+                            `http://localhost:8081/api/destination/${uuid}`,
+                            newDestinationData
+                        );
+                        const newDestinationItem = response.data;
 
-            setNewDestination([]);
+                        toast.success(`Destination ${newDestinationItem.text} added successfully!`);
+                    }));
 
+                    setNewDestination([]);
+
+                } catch (err) {
+                    toast.error("Error adding Destination!");
+                    console.error(err);
+                }
+            }
+
+            resetDestinationForm2()
         } catch (err) {
-            toast.error("Error adding Destination!");
+            toast.error("Error adding or updating Destination!");
             console.error(err);
         }
-        document.querySelector('input[name="day"]').disabled = false;
-        handleClear();
     };
+
     const handleDestinationSubmit2 = async (e) => {
         e.preventDefault();
 
@@ -219,8 +256,8 @@ function TourDay() {
 
                 const response = await axios.post(
                     `http://localhost:8081/api/context/${uuid}`,
-                    newContextData
-                );
+                newContextData
+            );
                 const newContextItem = response.data;
 
                 toast.success(`Context ${newContextItem.text} added successfully!`);
@@ -237,12 +274,15 @@ function TourDay() {
     };
 
     const resetDestinationForm = () => {
-        setDestinationFormData({
-            day: '',
-            data: '',
-            text: '',
-            tourId: uuid
-        });
+        setEditData('');
+        setEditText('');
+        document.querySelector('input[name="day"]').disabled = false;
+    };
+
+    const resetDestinationForm2 = () => {
+        setEditDay('')
+        setEditData('');
+        setEditText('');
         document.querySelector('input[name="day"]').disabled = false;
     };
 
@@ -252,19 +292,30 @@ function TourDay() {
 
             const dayValue = e.target.form.elements.day.disabled ? lastDay : destinationFormData.day;
 
-            setNewDestination(prevDestination => [
-                ...prevDestination,
-                {
-                    day: dayValue,
-                    data: destinationFormData.data,
-                    text: destinationFormData.text
-                }
-            ]);
+            if (current !== null) {
+                const updatedItems = newDestination.map((item, index) =>
+                    index === current ? { day: editDay, data: editData, text: editText } : item
+                );
+                setNewDestination(updatedItems);
+                setCurrent(null);
+                toast.success(`Destination updated successfully!`);
+            } else {
+                setNewDestination(prevDestination => [
+                    ...prevDestination,
+                    {
+                        day: dayValue,
+                        data: destinationFormData.data,
+                        text: destinationFormData.text
+                    }
+                ]);
+            }
+            setCurrent(null);
             resetDestinationForm();
             setLastDay(dayValue);
             e.target.form.elements.day.disabled = true;
         }
     };
+
     const handleKey2 = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
@@ -295,9 +346,9 @@ function TourDay() {
         try {
             await axios({
                 url: `http://localhost:8081/api/about/${uuid}`,
-                method: "POST",
+            method: "POST",
                 data: aboutData,
-            });
+        });
             resetAboutForm();
             toast.success('About tour submitted successfully!');
         } catch (error) {
@@ -336,6 +387,28 @@ function TourDay() {
             }
         }
     };
+
+    const handleEdit2 = (index, day, data, text) => {
+        setCurrent(index);
+        setEditDay(day);
+        setEditData(data);
+        setEditText(text);
+    };
+
+
+
+    const handleDelete2 = (id) => {
+        try {
+            const updatedDestinations = [...newDestination];
+            updatedDestinations.splice(id, 1); // Splice at index id and remove 1 item
+            setNewDestination(updatedDestinations);
+        } catch (error) {
+            console.error('Error deleting destination:', error);
+        }
+    };
+
+
+
 
     return (
         <div className="">
@@ -453,6 +526,7 @@ function TourDay() {
                             <th>Day</th>
                             <th>Data</th>
                             <th>Text</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -461,6 +535,15 @@ function TourDay() {
                                 <td><h3>{dest.day}</h3></td>
                                 <td><h3>{dest.data}</h3></td>
                                 <td><h3>{dest.text}</h3></td>
+                                <td>
+                                    <button className="btn btn-warning"
+                                            onClick={() => handleEdit2(index, dest.day, dest.data, dest.text)}>Edit
+                                    </button>
+
+                                    <button className="btn btn-danger m-2"
+                                            onClick={() => handleDelete2(index)}>Delete
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                         </tbody>
@@ -485,7 +568,7 @@ function TourDay() {
                                 type="number"
                                 className="form-control"
                                 name="day"
-                                value={destinationFormData.day}
+                                value={editDay}
                                 onChange={handleDestinationChange}
                             />
                         </div>
@@ -496,8 +579,8 @@ function TourDay() {
                                 type="time"
                                 className="form-control"
                                 name="data"
-                                value={destinationFormData.data}
-                                onChange={handleDestinationChange}
+                                value={editData}
+                                onChange={handleDestinationChange3}
                             />
                         </div>
                         <div className="mb-3">
@@ -507,8 +590,8 @@ function TourDay() {
                                 style={{width: "900px", height: "100px"}}
                                 className="text-area form-control"
                                 name="text"
-                                value={destinationFormData.text}
-                                onChange={handleDestinationChange}
+                                value={editText}
+                                onChange={handleDestinationChange4}
                                 onKeyDown={handleKey}
                             />
                         </div>
@@ -644,10 +727,10 @@ function TourDay() {
                             <td>{tourDay.description}</td>
                             <td>
                                 <img src={`http://localhost:8081/api/files/tourDay?name=${tourDay.photo}`} alt="Tour"
-                                     style={{width: '100px', height: '100px'}}/>
-                            </td>
-                            <td>
-                                <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>
+                                    style={{width: '100px', height: '100px'}}/>
+                                    </td>
+                                    <td>
+                                    <button className="btn btn-warning" onClick={() => handleEdit(tourDay)}>Edit</button>
                                 <button className="btn btn-danger m-2" onClick={() => handleDelete(tourDay.id)}>Delete
                                 </button>
                             </td>

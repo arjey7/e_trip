@@ -18,7 +18,7 @@ import java.util.UUID;
 @RequestMapping("/api/files")
 public class FileController {
     private static final String UPLOAD_DIR = "backend/files/e_video/";
-    private static final String IMAGE_UPLOAD_DIR = "backend/resors/";
+    private static final String IMAGE_UPLOAD_DIR = "backend/files/resors/";
     private static final String UPLOAD_DIRS = "backend/e_tour/";
 
     @PostMapping("/img")
@@ -59,23 +59,6 @@ public class FileController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("File upload failed");
         }
     }
-
-//    @GetMapping("/video")
-//    public void getVideo(HttpServletResponse response, @RequestParam String name) throws IOException {
-//        Path filePath = Paths.get(UPLOAD_DIR, name);
-//        File videoFile = filePath.toFile();
-//
-//        if (!videoFile.exists()) {
-//            response.setStatus(HttpStatus.NOT_FOUND.value());
-//            return;
-//        }
-//
-//        FileInputStream fileInputStream = new FileInputStream(videoFile);
-//        ServletOutputStream outputStream = response.getOutputStream();
-//        fileInputStream.transferTo(outputStream);
-//        fileInputStream.close();
-//        outputStream.close();
-//    }
 @GetMapping("/video")
 public void getVideo(@RequestParam String name, HttpServletRequest request, HttpServletResponse response) throws IOException {
     File videoFile = new File("backend/files/e_video/" + name);
