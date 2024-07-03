@@ -31,7 +31,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/files/img","/api/files/video","/api/tour","/api/tourDay","/api/files/tourDay","/api/enquiry/{idd}").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/tour","/api/tourDay", "/api/request").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/tour/getAll", "/api/about", "/api/about/{tourId}", "/api/about/ab").permitAll()
-                        .requestMatchers(HttpMethod.POST,"/api/comment").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/comment", "api/texts/{tourId}").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/comment/all","/api/comment/approved","/api/tour/gettour").permitAll()
                         .requestMatchers(HttpMethod.PUT,"/api/comment/{id}/status","/api/comment/{id}/adminstatus","/api/tour/{id}","/api/tourDay/{id}","/api/destination/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/comment/adminstatus/true").permitAll()

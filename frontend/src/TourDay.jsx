@@ -472,8 +472,8 @@ function TourDay() {
                 </div>
             </form>
 
-            <ToastContainer/>
-            <form className="div-info" onSubmit={handleAboutSubmit}>
+            <ToastContainer />
+            <form className="div-input" onSubmit={handleAboutSubmit}>
                 <div>
                     <label>Start Time:</label>
                     <input
@@ -510,7 +510,7 @@ function TourDay() {
                 </div>
                 <button type="submit" className="btn-submit">Submit</button>
             </form>
-            <ToastContainer/>
+            <ToastContainer />
 
             <div style={{
                 display: "flex",
