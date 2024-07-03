@@ -275,21 +275,15 @@ function getContext(){
 
             <div className={"chiziq5"}></div>
             <p className={"dest"}>О туре (Дополнительно можно приобрести:) </p>
-            <hr width={900}/>
-            {context.map((item, index) => (
-                <div>
-                    <p style={{display: "flex"}} className={"textcha"}>- {item.text} <p
-                        className={"byna"}> {item.priceByn} BYN</p><p
             {context.map((item,index)=>(
-
-                <div style={{marginTop:"-25px"}}>
+                <div>
                     <p style={{display: "flex"}} className={"textcha"}>- {item.text} <p className={"byn"}> {item.priceByn} BYN</p><p
                         className={"eur"}>(~{item.priceEur}
                         EUR)</p></p>
                 </div>
             ))}
 
-            <hr/>
+
             <div ref={contactUsRef} className={"footer-page"}>
                 <img className={"footer-img-page"} src={a} alt=""/>
                 <div className={"header2"}>
@@ -303,16 +297,16 @@ function getContext(){
                 <p className={"number-3"}>+44 7884 610140</p>
                 <p className={"number-4"}>+44 7459 382384</p>
                 <div className={"footer-imgs"}>
-                    <img src={q} alt=""/>
-                    <img src={w} alt=""/>
-                    <img src={e} alt=""/>
-                    <img src={r} alt=""/>
-                    <img src={t} alt=""/>
-                    <img src={y} alt=""/>
+                <img src={q} alt="" />
+                    <img src={w} alt="" />
+                    <img src={e} alt="" />
+                    <img src={r} alt="" />
+                    <img src={t} alt="" />
+                    <img src={y} alt="" />
                 </div>
             </div>
             <Rodal height={400} width={700} visible={modals} onClose={() => dispatch(closeModals())}>
-                <EnquiryForm/>
+                <EnquiryForm />
             </Rodal>
         </div>
     );

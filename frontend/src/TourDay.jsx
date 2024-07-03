@@ -520,7 +520,7 @@ function TourDay() {
                 marginTop: "50px"
             }}>
                 <div>
-                    <table style={{marginTop: "40px"}} className="table table-striped">
+                    <table style={{marginTop: "10px", width:'1360px', marginLeft:'0px'}} className="table table-striped">
                         <thead>
                         <tr>
                             <th>Day</th>
@@ -608,7 +608,7 @@ function TourDay() {
                 </div>
             </form>
             <input
-                style={{width: "1380px", marginLeft: "90px", marginTop: "20px"}}
+                style={{width: "1340px", marginLeft: "90px", marginTop: "20px"}}
                 className={"form-control"}
                 type="text"
                 value={inputValue}
@@ -624,7 +624,7 @@ function TourDay() {
                 marginTop: "50px"
             }}>
                 <div>
-                    <table style={{marginTop: "40px"}} className="table table-striped">
+                    <table style={{marginTop: "40px", width:'1360px', marginLeft:'0px'}} className="table table-striped">
                         <thead>
                         <tr>
                             <th>Text</th>
@@ -657,7 +657,7 @@ function TourDay() {
                         <div className="mb-3">
                             <input
                                 placeholder={"Text"}
-                                style={{width: "900px"}}
+                                style={{width: "735px"}}
                                 type="text"
                                 className="form-control"
                                 name="text"
