@@ -30,7 +30,7 @@ function Page2() {
     const [aboutData, setAboutData] = useState([]);
     const [aboutDatas, setAboutDatas] = useState([]);
     const { modals } = useSelector(state => state.tour);
-
+    const [context,setContext] = useState([])
     const [items, setItems] = useState([]);
     useEffect(() => {
         getAll();
@@ -41,6 +41,7 @@ function Page2() {
         getAbout(tourId);
         getText(tourId);
         getAbouts();
+        getContext(tourId)
     }, [tourId]);
 
     function getAbout() {
@@ -50,7 +51,11 @@ function Page2() {
             console.log(res.data);
         });
     }
-
+function getContext(){
+        axios.get(`http://localhost:8081/api/context/${tourId}`).then(res=>{
+            setContext(res.data)
+        })
+}
     function getAbouts() {
         axios.get("http://localhost:8081/api/about/ab").then(res => {
             setAboutDatas(res.data);
@@ -263,22 +268,18 @@ function Page2() {
             </ul>
 
             <div className={"chiziq5"}></div>
-
             <p className={"dest"}>О туре (Дополнительно можно приобрести:) </p>
-            <p style={{ display: "flex" }}>- посещение музея <p className={"byn"}> 380 BYN</p><p className={"eur"}>(~153
-                EUR)</p></p>
-            <p style={{ display: "flex" }}>- проезд на велорикше <p className={"byn"}> 380 BYN</p><p
-                className={"eur"}>(~153 EUR)</p></p>
-            <p style={{ display: "flex" }}>- фото со звездой <p className={"byn"}> 380 BYN</p> <p
-                className={"eur"}>(~153 EUR)</p></p>
-            <p style={{ display: "flex" }}>- ужин в ресторане Buffet <p className={"byn"}> 380 BYN</p> <p
-                className={"eur"}>(~153 EUR)</p></p>
-            <p style={{ display: "flex" }}>- посещение спа на борту лайнера <p className={"byn"}> 380 BYN</p> <p
-                className={"eur"}>(~153 EUR)</p></p>
-            <p style={{ display: "flex" }}>- фотография с обезьянкой <p className={"byn"}>380 BYN</p> <p
-                className={"eur"}>(~153 EUR)</p></p>
+            {context.map((item,index)=>(
+                <div>
+                    <p style={{display: "flex"}} className={"textcha"}>- {item.text} <p className={"byn"}> {item.priceByn} BYN</p><p
+                        className={"eur"}>(~{item.priceEur}
+                        EUR)</p></p>
+                </div>
+            ))}
+
+
             <div ref={contactUsRef} className={"footer-page"}>
-                <img className={"footer-img-page"} src={a} alt="" />
+                <img className={"footer-img-page"} src={a} alt=""/>
                 <div className={"header2"}>
                     <p onClick={() => scrollToSection(aboutUsRef)}>About us</p>
                     <p onClick={() => scrollToSection(destinationsRef)}>Destinations</p>
@@ -290,7 +291,7 @@ function Page2() {
                 <p className={"number-3"}>+44 7884 610140</p>
                 <p className={"number-4"}>+44 7459 382384</p>
                 <div className={"footer-imgs"}>
-                    <img src={q} alt="" />
+                <img src={q} alt="" />
                     <img src={w} alt="" />
                     <img src={e} alt="" />
                     <img src={r} alt="" />
