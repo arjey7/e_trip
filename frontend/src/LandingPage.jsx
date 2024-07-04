@@ -350,7 +350,6 @@ const LandingPage = () => {
                 <Rodal visible={modal} onClose={() => dispatch(closeModal())} height={500} width={700}>
 
                         <Comment/>
-                    </div>
                 </Rodal>
             </div>
         </div>
