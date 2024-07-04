@@ -555,6 +555,11 @@ ul.your-class li, ol.your-class li {
         margin: 20px 250px;
     }
 
+    .comment-name{
+        margin-left: -80px;
+        margin-top: 50px;
+    }
+
     .kl{
         margin-left: 850px;
     }
