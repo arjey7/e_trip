@@ -511,6 +511,37 @@ ul.your-class li, ol.your-class li {
 }
 
 
+@media screen and (max-width: 1300px) {
+    .main-img{
+        width: 1500px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main-img{
+        width: 1768px;
+    }
+
+    .div-info{
+        width: 1768px;
+    }
+
+    .cd{
+        width: 1768px;
+    }
+
+    .div-request{
+        margin: 20px 250px;
+    }
+
+    .kl{
+        margin-left: 850px;
+    }
+
+    .page-container, .m{
+        width: 1768px;
+    }
+}
 
 
 
