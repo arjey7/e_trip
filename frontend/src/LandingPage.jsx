@@ -12,7 +12,7 @@ import NavImage from "./files/barlass 2.png";
 import Logo from './files/left side.png';
 import Ethernet from './files/ethernet.png';
 import Naushnik from './files/naushnik.png';
-import Vector from './files/vector2.svg';
+import Vector from './files/vector.svg';
 import Apacha from './files/portrait-call-center-woman 1.png';
 import today from './files/Rectangle 3.png';
 import nul from "./files/asd.png";
@@ -280,7 +280,7 @@ const LandingPage = () => {
                 <div>
                     <p className="you1">---- Where you can travel with us</p>
                     <div >
-                        <div style={{display:"flex",alignItems:"center",gap:"20px",}}>
+                        <div style={{display:"flex",alignItems:"center",gap:"20px", maxWidth:'1930px', margin:'0 auto'}}>
                             <p className="you">Immerse yourself in the beauty and spirituality of fascinating places.
                                 Join
                                 us
@@ -327,11 +327,15 @@ const LandingPage = () => {
                                 <div className="m">
                                     <div className="op"></div>
                                     <p className="comment-name">{comment.firstName} {comment.lastName}</p>
+                                    <div style={{height:"160px"}}>
                                         <p className="comment-text">{comment.text}</p>
+                                    </div>
+
                                     <ReactStars
+
                                         count={5}
                                         value={comment.rate}
-                                        size={40}
+                                        size={35}
                                         activeColor="#ffd700"
                                         edit={false}
                                     />
@@ -344,9 +348,8 @@ const LandingPage = () => {
                 <button className={"buttin"} onClick={() => dispatch(openModal())}>Написать отзыв</button>
                 <Footer/>
                 <Rodal visible={modal} onClose={() => dispatch(closeModal())} height={500} width={700}>
-                    <div className="rodal-content">
+
                         <Comment/>
-                    </div>
                 </Rodal>
             </div>
         </div>

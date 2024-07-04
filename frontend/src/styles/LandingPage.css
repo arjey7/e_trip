@@ -316,7 +316,7 @@
     padding-left: 30px;
     margin-top: -40px;
 }
-.girl-img{
+.gi rl-img{
     width: 352px;
     margin-top:-40px;
     border-radius: 14px;
@@ -376,6 +376,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #FFFFFF;
+    margin-right: 20px;
+    margin-top: -50px;
+
 
 }
 

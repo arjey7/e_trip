@@ -3,28 +3,25 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "./css/Comment.css";
 import ReactStars from "react-rating-stars-component";
-import {closeModal} from "./redux/reducer/tourReducer.js";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
+import { closeModal } from "./redux/reducer/tourReducer.js";
+import "./css/Comment.css";
 
 function Comment(props) {
-    const { handleSubmit, register, reset, formState:{errors} } = useForm();
+    const { handleSubmit, register, reset, formState: { errors } } = useForm();
     const [rate, setRate] = useState("");
-    const [modalVisible, setModalVisible] = useState(false);
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
 
     function mySubmit(data) {
         data.rate = rate;
         axios.post("http://localhost:8081/api/comment", data).then(res => {
             toast.success("Comment added successfully!");
-            dispatch(closeModal())
-
+            dispatch(closeModal());
         }).catch(error => {
             toast.error("Error adding comment!");
         }).finally(() => {
             reset();
-
         });
     }
 
@@ -35,7 +32,7 @@ function Comment(props) {
     return (
         <div className="comment-page">
             <ToastContainer />
-            <form className="comment-form" id="commentForm" onSubmit={handleSubmit(mySubmit)}>
+            <form className="comment-formm" id="commentForm" onSubmit={handleSubmit(mySubmit)}>
                 <label className="comment-label">Оставить отзыв</label>
                 <div className="star-rating">
                     <label className="comment-labels">Рейтинг:</label>
