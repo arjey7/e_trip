@@ -255,7 +255,7 @@ const LandingPage = () => {
                                 defaultValue={fullName}
                                 onChange={(e) => setFullName(e.target.value)}
                                 {...register("fullName", {
-                                    required: 'Phone number is required!'
+                                    required: 'Name is required!'
                                 })}
                             />
 
@@ -264,16 +264,12 @@ const LandingPage = () => {
                                 className={"input1"}
                                 {...register('phoneNumber', {
                                     required: 'Phone number is required!',
-                                    pattern: {
-                                        value: /^\+998\d{9}$/,
-                                        message: 'Phone number must start with +998 and be followed by exactly 9 digits',
-                                    }
                                 })}
                             />
-                            {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
 
 
                             <button className='request-button' type='submit'>CALL ME BACK</button>
+                            {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
                         </form>
                     </div>
                 </div>
