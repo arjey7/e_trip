@@ -2,12 +2,11 @@
 
 .all {
     margin: 0 auto;
-    max-width: 1930px;
+    max-width: 1440px;
     height: auto;
-    overflow-y: hidden;
 }
 .header {
-    width: 727px;
+    max-width: 727px;
     height: 44px;
     display: flex;
     align-items: center;
@@ -18,8 +17,22 @@
     font-size: 16px;
     gap: 30px;
     font-weight: 500;
-    margin-left: 400px;
+    margin: 0 auto;
 }
+
+.title {
+    font-family: "Montserrat", serif;
+    color: rgb(66, 66, 66);
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 1.56;
+    letter-spacing: 0%;
+    padding-top: 50px;
+    text-align: center;
+    margin: 0 auto;
+
+}
+
 
 .header p {
     margin: 0 20px;
@@ -49,17 +62,7 @@
     background-color: #00D594;
 }
 
-.title {
-    font-family: "Montserrat", serif;
-    color: rgb(66, 66, 66);
-    font-size: 40px;
-    font-weight: 500;
-    line-height: 156%;
-    letter-spacing: 0%;
-    padding-top: 50px;
-    text-align: center;
-    margin-left: -400px;
-}
+
 
 .obshiy {
     font-family: Montserrat sans-serif;
@@ -700,7 +703,7 @@ hr {
     margin-left: -32px;
 }
 .footer-page{
-    width: 1692px;
+    width: 100%;
     height: 128px;
     display: flex;
     align-items: center;
@@ -770,9 +773,8 @@ hr {
 
 }
 .chiziq6{
-    width: 1692px;
+    width: 1440px;
     border: 1px solid #DDDDDD;
-
 }
 .footer-number{
     display: flex;
