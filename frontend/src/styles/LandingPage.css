@@ -509,6 +509,33 @@ ul.your-class li, ol.your-class li {
     .main-img{
         width: 1500px;
     }
+
+    .div-info{
+        width: 1500px;
+    }
+
+
+    .cd{
+        width: 1768px;
+    }
+
+    .div-request{
+        margin: 20px 250px;
+    }
+
+    .kl{
+        margin-left: 850px;
+    }
+
+    .page-container, .m{
+        width: 1768px;
+    }
+}
+
+@media  screen and (max-width: 1214px) {
+    .main-img{
+        width: 1980px;
+    }
 }
 
 @media screen and (max-width: 768px) {

@@ -4,6 +4,7 @@
     margin: 0 auto;
     max-width: 1440px;
     height: auto;
+
 }
 .header {
     max-width: 727px;
@@ -578,7 +579,7 @@ flex-wrap: wrap;
 }
 
 .dess {
-    max-width: 1930px;
+    max-width: 1440px;
     height: 60px;
     display: flex;
     align-items: center;
