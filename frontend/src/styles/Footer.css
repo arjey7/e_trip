@@ -113,15 +113,8 @@
     height: 24px;
 }
 
-@media screen and (max-width: 1200px) {
-    .footer-container{
-        width: 1300px;
-    }
-}
-
 @media screen and (max-width: 768px) {
     .footer-container{
         width: 1768px;
     }
 }
-

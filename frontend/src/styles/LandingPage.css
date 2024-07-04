@@ -287,14 +287,13 @@
     margin-right: 5px;
 }
 
-.you1{
-    font-family: "Noto Serif", serif;
-    margin-top:50px;
-    font-size: 50px;
+.you1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 40px;
     font-weight: 700;
-    line-height: 112.02px;
-    text-align: left;
-    padding: 10px;
+    line-height: 60px;
+    color: #004530;
+    margin-bottom: 20px;
 }
 
 .you2{
@@ -307,14 +306,13 @@
     margin-left: 50px;
 }
 
-.you{
+.you {
     font-family: "Montserrat", sans-serif;
-    font-size: 27.01px;
+    font-size: 20px;
     font-weight: 400;
-    line-height: 36.58px;
-    text-align: left;
-    padding-left: 30px;
-    margin-top: -40px;
+    line-height: 30px;
+    color: #666;
+    margin-bottom: 20px;
 }
 .girl-img{
     width: 352px;
@@ -363,24 +361,16 @@
     width: 430px;
     gap: 220px!important;
 }
-.be{
-    width: 113.23px;
-    height:  56.53px;
-    padding: 11.31px 22.61px 11.31px 22.61px;
-    gap: 5.65px;
-    border-radius: 5.65px;
-    opacity: 0px;
-    angle: -0.08 deg;
-    border: 1.41px solid #8DD3BB;
-    color:#8DD3BB ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #FFFFFF;
-    margin-right: 20px;
-    margin-top: -50px;
-
-
+.be {
+    background-color: #004530;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 
@@ -509,6 +499,10 @@ ul.your-class li, ol.your-class li {
     margin: 0;
     padding: 0;
 }
+.div-travel {
+    padding: 50px 0;
+    text-align: center;
+}
 
 
 @media screen and (max-width: 1300px) {
@@ -540,6 +534,33 @@ ul.your-class li, ol.your-class li {
 
     .page-container, .m{
         width: 1768px;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .div-travel {
+        padding: 40px 20px;
+    }
+
+    .you1 {
+        font-size: 35px;
+        line-height: 50px;
+    }
+
+    .you {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .be {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+
+    .div-travel > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
     }
 }
 
