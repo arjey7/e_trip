@@ -12,7 +12,7 @@ import NavImage from "./files/barlass 2.png";
 import Logo from './files/left side.png';
 import Ethernet from './files/ethernet.png';
 import Naushnik from './files/naushnik.png';
-import Vector from './files/vector.svg';
+import Vector from './files/vector2.svg';
 import Apacha from './files/portrait-call-center-woman 1.png';
 import today from './files/Rectangle 3.png';
 import nul from "./files/asd.png";
@@ -22,7 +22,7 @@ import Carousel from "react-multi-carousel";
 import axios from 'axios';
 import 'react-multi-carousel/lib/styles.css';
 import ReactStars from 'react-rating-stars-component';
-// import Tgg from "./files/Paper Plane.svg"
+import Tgg from "./files/Paper Plane.svg"
 import Footer from "./Footer.jsx";
 import {useForm} from "react-hook-form";
 import {toast, ToastContainer} from "react-toastify";
@@ -220,8 +220,8 @@ const LandingPage = () => {
                                         <p className={"pepe"}>{tour.day} days from ${tour.cost}</p>
                                     </div>
                                     <div className={"mn"}>
-                                        <button className="button12" onClick={() => handleShowFlightClick(tour.id)}>
-                                            {/*<img src={Tgg} alt=""/>*/}
+                                        <button style={{borderRadius:'5px'}} className="button12" onClick={() => handleShowFlightClick(tour.id)}>
+                                            <img src={Tgg} alt=""/>
                                             Show Flight
                                         </button>
                                     </div>
@@ -335,7 +335,7 @@ const LandingPage = () => {
 
                                         count={5}
                                         value={comment.rate}
-                                        size={35}
+                                        size={40}
                                         activeColor="#ffd700"
                                         edit={false}
                                     />
@@ -350,6 +350,7 @@ const LandingPage = () => {
                 <Rodal visible={modal} onClose={() => dispatch(closeModal())} height={500} width={700}>
 
                         <Comment/>
+                    </div>
                 </Rodal>
             </div>
         </div>
