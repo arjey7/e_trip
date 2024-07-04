@@ -660,7 +660,8 @@ function TourDay() {
             </form>
             <div className={"div-input2"}>
                 <input
-                    style={{width: "1380px", marginLeft: "90px", marginTop: "20px"}}
+                    style={{width: "1330px", marginLeft: "0px" +
+                            "", marginTop: "20px"}}
                     className={"form-control"}
                     type="text"
                     value={inputValue}

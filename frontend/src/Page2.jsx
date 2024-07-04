@@ -115,28 +115,34 @@ function getContext(){
                 {page && page.length > 0 && (
                     <>
                         <p className={"title"}>Uzbekistan : food tour</p>
-                        <p className={"obshiy"}>
-                            Общее описание тура, буквально несколько абзацев про то как все круто,
-                            красиво и еще много всякой полезной информации, которую пользователи прочитают в первую
-                            очередь.
-                            Seamlessly drive extensible platforms without cooperative vortals. Conveniently drive
-                            professional results
-                            with multimedia based bandwidth. Completely expedite enterprise leadership and transparent
-                            meta-services.
-                            Continually synthesize state of the art e-services before client-based technology.
-                            Conveniently plagiarize
-                            accurate ideas without bleeding-edge channels.
-                            <br/>
-                            <br/>
-                            Distinctively syndicate excellent intellectual capital whereas professional partnerships.
-                            Interactively syndicate
-                            best-of-breed niche markets after an expanded array of collaboration and idea-sharing.
-                            Competently conceptualize
-                            multifunctional processes after strategic quality vectors. Authoritatively evisculate
-                            interactive partnerships
-                            whereas unique value. Dynamically reconceptualize leveraged outsourcing after inexpensive
-                            best practices.
-                        </p>
+                        <div style={{width:"1558px"}}>
+                            <p className={"obshiy"}>
+                                Общее описание тура, буквально несколько абзацев про то как все круто,
+                                красиво и еще много всякой полезной информации, которую пользователи прочитают в первую
+                                очередь.
+                                Seamlessly drive extensible platforms without cooperative vortals. Conveniently drive
+                                professional results
+                                with multimedia based bandwidth. Completely expedite enterprise leadership and
+                                transparent
+                                meta-services.
+                                Continually synthesize state of the art e-services before client-based technology.
+                                Conveniently plagiarize
+                                accurate ideas without bleeding-edge channels.
+                                <br/>
+                                <br/>
+                                Distinctively syndicate excellent intellectual capital whereas professional
+                                partnerships.
+                                Interactively syndicate
+                                best-of-breed niche markets after an expanded array of collaboration and idea-sharing.
+                                Competently conceptualize
+                                multifunctional processes after strategic quality vectors. Authoritatively evisculate
+                                interactive partnerships
+                                whereas unique value. Dynamically reconceptualize leveraged outsourcing after
+                                inexpensive
+                                best practices.
+                            </p>
+                        </div>
+
                         {page[0].video && (
                             <video
                                 src={`http://localhost:8081/api/files/video?name=${page[0].video}`}
@@ -207,7 +213,6 @@ function getContext(){
                         <div className="daylar">
                             <p className="den-1">
                                 {item.day} день
-                                <span className="day-border"></span>
                             </p>
                         </div>
                         {item.destinations.map((destination, destIndex) => (
@@ -265,7 +270,7 @@ function getContext(){
 
 
             <div className={"chiziq5"}></div>
-            <p className={"dest"}>О туре (В стоимость тура входит:)</p>
+            <p className={"dest"}>О туре (<span className={"v"}>В стоимость тура входит:</span>)</p>
             <hr width={900}/>
             <ul className={"comments"}>
                 {items.map((ite, index) => (
@@ -274,39 +279,43 @@ function getContext(){
             </ul>
 
             <div className={"chiziq5"}></div>
-            <p className={"dest"}>О туре (Дополнительно можно приобрести:) </p>
+            <p className={"dest"}>О туре (<span className={"v"}>Дополнительно можно приобрести:</span>) </p>
+            <hr width={900}/>
             {context.map((item,index)=>(
-                <div>
-                    <p style={{display: "flex"}} className={"textcha"}>- {item.text} <p className={"byn"}> {item.priceByn} BYN</p><p
+                <div style={{marginTop:'-25px'}}>
+                    <p style={{display: "flex"}} className={"textcha"}>- {item.text} <p className={"byna"}> {item.priceByn} BYN</p><p
                         className={"eur"}>(~{item.priceEur}
                         EUR)</p></p>
                 </div>
             ))}
 
-
+            <div className={"chiziq6"}></div>
             <div ref={contactUsRef} className={"footer-page"}>
                 <img className={"footer-img-page"} src={a} alt=""/>
                 <div className={"header2"}>
-                    <p onClick={() => scrollToSection(aboutUsRef)}>About us</p>
+                    <p onClick={() => scrollToSection(aboutUsRef)}>Aboutus</p>
                     <p onClick={() => scrollToSection(destinationsRef)}>Destinations</p>
                     <p onClick={() => scrollToSection(inspirationRef)}>Inspiration</p>
-                    <p onClick={() => scrollToSection(contactUsRef)}>Contact us</p>
+                    <p onClick={() => scrollToSection(contactUsRef)}>Contactus</p>
                 </div>
                 <p className={"content"}>© 2018, All rights reserved. VR Lines - Авиабилеты, Туры, Круизы, Автобусы,
                     Паромы, Визы</p>
-                <p className={"number-3"}>+44 7884 610140</p>
-                <p className={"number-4"}>+44 7459 382384</p>
-                <div className={"footer-imgs"}>
-                <img src={q} alt="" />
-                    <img src={w} alt="" />
-                    <img src={e} alt="" />
-                    <img src={r} alt="" />
-                    <img src={t} alt="" />
-                    <img src={y} alt="" />
+                <div className={"footer-number"}>
+                    <p className={"number-3"}>+44 7884 610140</p>
+                    <p className={"number-4"}>+44 7459 382384</p>
+                    <div className={"footer-imgs"}>
+                        <img src={q} alt=""/>
+                        <img src={w} alt=""/>
+                        <img src={e} alt=""/>
+                        <img src={r} alt=""/>
+                        <img src={t} alt=""/>
+                        <img src={y} alt=""/>
+                    </div>
                 </div>
+
             </div>
             <Rodal height={400} width={700} visible={modals} onClose={() => dispatch(closeModals())}>
-                <EnquiryForm />
+                <EnquiryForm/>
             </Rodal>
         </div>
     );

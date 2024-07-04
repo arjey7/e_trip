@@ -7,7 +7,7 @@
     overflow-y: hidden;
 }
 .header {
-    width: 100%;
+    width: 727px;
     height: 44px;
     display: flex;
     align-items: center;
@@ -16,8 +16,9 @@
     transition: transform 0.3s ease-in-out;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
+    gap: 30px;
     font-weight: 500;
-    position: relative;
+    margin-left: 400px;
 }
 
 .header p {
@@ -55,18 +56,17 @@
     font-weight: 500;
     line-height: 156%;
     letter-spacing: 0%;
+    padding-top: 50px;
     text-align: center;
-    margin: 0 auto;
+    margin-left: -400px;
 }
 
 .obshiy {
-    font-family: Lato;
+    font-family: Montserrat sans-serif;
     font-size: 20px;
     font-weight: 400;
-    line-height: 156%;
-    letter-spacing: 0%;
+    line-height: 31.2px;
     color: #424242;
-    text-align: left;
     padding: 40px;
     margin-top: 20px;
 }
@@ -75,8 +75,8 @@
     max-width: 100%;
     width: 1632px;
     height: auto;
-    margin: 20px auto;
     padding: 20px;
+    margin: 0 auto;
     box-sizing: border-box;
 }
 
@@ -261,23 +261,34 @@ flex-wrap: wrap;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
+
+}
+.v{
+    font-family: Montserrat sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 112.9px;
+    text-align: left;
+
 }
 
 .day-wrapper {
     padding: 1rem;
     border-radius: 5px;
+
 }
 
 .daylar {
     font-weight: bold;
     font-size: 1.2rem;
     margin-bottom: 1rem;
+
 }
 
 .den-1 {
     display: flex;
-
     align-items: center;
+
 }
 
 .day-border {
@@ -287,7 +298,9 @@ flex-wrap: wrap;
 }
 
 .day-data {
-    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center; /* Align items to the center vertically */
+    gap: 25px; /* Remove any gap between items */
 }
 
 .day-text {
@@ -296,8 +309,8 @@ flex-wrap: wrap;
     font-weight: 400;
     line-height: 31.2px;
     text-align: left;
-    margin-top: 30px;
     color: #333;
+    margin: 0; /* Remove any margin */
 }
 
 .den-com {
@@ -306,13 +319,10 @@ flex-wrap: wrap;
     font-weight: 400;
     line-height: 31.2px;
     text-align: left;
-
-
     color: #777;
-
-    margin-left: 70px;
-    margin-top: -45px;
+    margin: 0; /* Remove any margin */
 }
+
 
 
 
@@ -444,8 +454,8 @@ flex-wrap: wrap;
     font-size: 20px;
     font-weight: 500;
     line-height: 24.38px;
-    margin-top: -43px;
-    margin-left: 120px;
+    margin-top: -40px;
+    margin-left: 150px;
 }
 
 .den-2s{
@@ -690,7 +700,7 @@ hr {
     margin-left: -32px;
 }
 .footer-page{
-    width: 100%;
+    width: 1692px;
     height: 128px;
     display: flex;
     align-items: center;
@@ -701,13 +711,13 @@ hr {
     margin-left: 150px;
 }
 .content{
-    color: rgb(153, 153, 153);
-    font-family: Lato;
-    font-size: 15px;
+    font-family: Montserrat sans-serif;
+    font-size: 18px;
     font-weight: 400;
-    line-height: 18px;
-    letter-spacing: 0%;
-    text-align: left;
+    line-height: 18.29px;
+    text-align: center;
+
+    color: rgb(153, 153, 153);
     margin-top: 90px;
     margin-left: -650px;
 }
@@ -716,7 +726,7 @@ hr {
     height: 44px;
     padding-left: 110px;
     display: flex;
-    gap: 38px;
+    gap: 66px;
     color: rgb(16, 16, 16);
     cursor: pointer;
     font-family: "Montserrat", serif;
@@ -756,8 +766,18 @@ hr {
     font-weight: 600;
     line-height: 18.29px;
     text-align: left;
-    margin-left: 50px;
     color: #004530;
+
+}
+.chiziq6{
+    width: 1692px;
+    border: 1px solid #DDDDDD;
+
+}
+.footer-number{
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
 
 }
 .number-4{
@@ -766,8 +786,7 @@ hr {
     font-weight: 600;
     line-height: 18.29px;
     text-align: left;
-    margin-top: 50px;
-margin-left: -127px;
+
     color: #004530;
 
 }
@@ -776,8 +795,7 @@ margin-left: -127px;
     height: 16px;
     display: flex;
     gap: 4px;
-    margin-top: 80px;
-    margin-left: -120px;
+
 }
 .ro{
     font-family: "Montserrat", sans-serif;

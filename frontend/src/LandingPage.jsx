@@ -22,7 +22,7 @@ import Carousel from "react-multi-carousel";
 import axios from 'axios';
 import 'react-multi-carousel/lib/styles.css';
 import ReactStars from 'react-rating-stars-component';
-// import Tgg from "./files/Paper Plane.svg"
+import Tgg from "./files/Paper Plane.svg"
 import Footer from "./Footer.jsx";
 import {useForm} from "react-hook-form";
 import {toast, ToastContainer} from "react-toastify";
@@ -220,8 +220,8 @@ const LandingPage = () => {
                                         <p className={"pepe"}>{tour.day} days from ${tour.cost}</p>
                                     </div>
                                     <div className={"mn"}>
-                                        <button className="button12" onClick={() => handleShowFlightClick(tour.id)}>
-                                            {/*<img src={Tgg} alt=""/>*/}
+                                        <button style={{borderRadius:'5px'}} className="button12" onClick={() => handleShowFlightClick(tour.id)}>
+                                            <img src={Tgg} alt=""/>
                                             Show Flight
                                         </button>
                                     </div>
@@ -275,14 +275,18 @@ const LandingPage = () => {
                 </div>
                 <div>
                     <p className="you1">---- Where you can travel with us</p>
-                    <div style={{display:"flex",}}>
-                        <p className="you">Immerse yourself in the beauty and spirituality of fascinating places. Join
-                            us
-                            for an
-                            unforgettable adventure through Islamic Central Asia.
-                        </p>
-                        <button className={"be"}>See All</button>
+                    <div >
+                        <div style={{display:"flex",alignItems:"center",gap:"20px", maxWidth:'1930px', margin:'0 auto'}}>
+                            <p className="you">Immerse yourself in the beauty and spirituality of fascinating places.
+                                Join
+                                us
+                                for an
+                                unforgettable adventure through Islamic Central Asia.
+                            </p>
+                            <button className={"be"}>See All</button>
+                        </div>
                     </div>
+                </div>
                     <div className={"kl"}>
                         <div className={"me"}>
                             <p className={"me2"}>Bu yerda video bo'ladi</p>
@@ -292,7 +296,7 @@ const LandingPage = () => {
                             <img className={"wit"} width={100} src={today} alt=""/>
                                 <img className={"wit"} src={nul} alt=""/>
                             </div>
-                            <div style={{display: "flex", gap: "20px"}}>
+                            <div style={{display: "flex",}}>
                                 <img className={"wit"} src={p} alt=""/>
                                 <img className={"wit"} src={m} alt=""/>
                             </div>
@@ -301,7 +305,7 @@ const LandingPage = () => {
 
                     </div>
 
-                </div>
+
                 <h1 className="us">What our clients say about us</h1>
                 <div className="page-container">
                     <Carousel
@@ -319,8 +323,12 @@ const LandingPage = () => {
                                 <div className="m">
                                     <div className="op"></div>
                                     <p className="comment-name">{comment.firstName} {comment.lastName}</p>
+                                    <div style={{height:"160px"}}>
                                         <p className="comment-text">{comment.text}</p>
+                                    </div>
+
                                     <ReactStars
+
                                         count={5}
                                         value={comment.rate}
                                         size={40}
@@ -336,9 +344,8 @@ const LandingPage = () => {
                 <button className={"buttin"} onClick={() => dispatch(openModal())}>Написать отзыв</button>
                 <Footer/>
                 <Rodal visible={modal} onClose={() => dispatch(closeModal())} height={500} width={700}>
-                    <div className="rodal-content">
+
                         <Comment/>
-                    </div>
                 </Rodal>
             </div>
         </div>

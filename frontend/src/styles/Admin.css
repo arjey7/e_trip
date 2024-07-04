@@ -1,15 +1,15 @@
 /* Admin.css */
 .table-container {
-    margin-top: 40px;
     width: 100%;
+    margin: 0 auto;
     max-width: 1930px;
-    margin-right: auto;
     border-collapse: collapse;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .table {
     width: 100%;
+
     border-collapse: collapse;
     font-family: 'Arial', sans-serif;
 }
@@ -85,7 +85,6 @@
     background-color: #c82333;
 }
 
-/* General styles */
 .asd:hover {
     color: red;
 }
