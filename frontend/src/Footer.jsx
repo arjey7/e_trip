@@ -4,7 +4,7 @@ import GYG from "./footer/Kachel_Get_Your_Guide 1.png";
 import Evns from './footer/Kachel_Get_Your_Guide 3.png';
 import Ggl from './footer/b2ee03870807203bccfae85f973dc2a4 1.png';
 import Trdr from './footer/Kachel_Get_Your_Guide 4.png';
-// import Unnamed from './footer/unnamed 1.png';
+import Unnamed from './footer/unnamed 1.png';
 import Sbl from './footer/sabeel-travels-favicon-1-512x460 1.png';
 import Tg from './footer/tg.svg'
 import Fcbk from './footer/fcbk.svg'
@@ -21,12 +21,12 @@ function Footer() {
                 <div className="footer-section">
                     <img className='footer-logo' src={MainImg} alt="BARLAS VOYAGE" />
                 </div>
-                <div className="footer-section">
+                <div className="footer-section1">
                     <h4>ABOUT US</h4>
                     <img className='footer-icon' src={GYG} alt="Get Your Guide" />
                     <img className='footer-icon' src={Evns} alt="Evaneos" />
                 </div>
-                <div className="footer-section">
+                <div className="footer-section3">
                     <h4>DESTINATION</h4>
                     <img className='footer-icon-ggl' src={Ggl} alt="Google My Business" />
                     <img className='footer-icon' src={Trdr} alt="Tour Radar" />
@@ -34,11 +34,12 @@ function Footer() {
                 <div className="footer-section2">
                     <h4>INSPIRATION</h4>
                     <img className='footer-icon' src={Sbl} alt="Sabeel Travels" />
-                    {/*<img className='footer-icon2' src={Unnamed} alt="Ayman Tour" />*/}
+                    <img className='footer-icon2' src={Unnamed} alt="Ayman Tour" />
                 </div>
-                <div className="footer-section">
+                <div className="footer-section4">
                     <h4>CONTACT US</h4>
                     <p>+44 7884 610140</p>
+                    <p>+44 7459 382384</p>
                     <p>yourmailaddress@gmail.com</p>
                     <p>www.yourwebsitename.com</p>
                     <h4>LET'S BE SOCIAL</h4>
@@ -51,6 +52,7 @@ function Footer() {
                         <img src={Google} alt="" />
                     </div>
                 </div>
+                <div className={"footer-section5"}></div>
             </div>
         </footer>
     );
