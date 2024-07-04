@@ -369,9 +369,7 @@ function TourDay() {
         }
     };
 
-    const handleClear = () => {
-        setNewDestination([]);
-    };
+
     const handleClear2 = () => {
         setNewDestination([]);
     };
