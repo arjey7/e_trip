@@ -276,7 +276,7 @@ const LandingPage = () => {
                 <div>
                     <p className="you1">---- Where you can travel with us</p>
                     <div >
-                        <div style={{display:"flex",alignItems:"center",gap:"20px", maxWidth:'1930px', margin:'0 auto'}}>
+                        <div style={{display:"flex",alignItems:"center",gap:"20px", maxWidth:'1930px', margin:'0 auto', justifyContent:'space-between'}}>
                             <p className="you">Immerse yourself in the beauty and spirituality of fascinating places.
                                 Join
                                 us
