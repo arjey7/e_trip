@@ -115,7 +115,7 @@ function getContext(){
                 {page && page.length > 0 && (
                     <>
                         <p className={"title"}>Uzbekistan : food tour</p>
-                        <div style={{width:"1440px"}}>
+                        <div className={"div-obshiy"}>
                             <p className={"obshiy"}>
                                 Общее описание тура, буквально несколько абзацев про то как все круто,
                                 красиво и еще много всякой полезной информации, которую пользователи прочитают в первую

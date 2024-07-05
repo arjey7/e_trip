@@ -2,10 +2,10 @@
 
 .all {
     margin: 0 auto;
-    max-width: 1440px;
+    max-width: 1930px;
     height: auto;
-
 }
+
 .header {
     max-width: 727px;
     height: 44px;
@@ -33,8 +33,16 @@
     margin: 0 auto;
 
 }
-
-
+@media (max-width: 1200px) {
+    .header {
+        margin-left: 330px;
+    }
+}
+@media (max-width: 1200px) {
+    .title {
+        margin-left: 200px;
+    }
+}
 .header p {
     margin: 0 20px;
     padding: 10px 15px;
@@ -64,7 +72,40 @@
 }
 
 
+.div-obshiy{
+    width: 1632px;
+}
+@media (max-width: 1920px) {
+    .div-obshiy {
+        width: 1440px;
+    }
 
+}
+@media (max-width: 6144px) {
+    .div-obshiy {
+        width: 1930px;
+    }
+
+}
+@media (max-width: 1630px) {
+    .div-obshiy {
+        width: 1440px;
+    }
+
+}
+@media (max-width: 1400px) {
+    .div-obshiy {
+        width: 1300px; /* Full width */
+        padding: 20px;
+        margin-left: 40px;
+
+    }
+}
+@media (max-width: 1229px) {
+    .div-obshiy {
+        width: 1228px;
+    }
+}
 .obshiy {
     font-family: Montserrat sans-serif;
     font-size: 20px;
@@ -75,21 +116,116 @@
     margin-top: 20px;
 }
 
+@media (max-width: 1931px) {
+    .obshiy {
+        font-size: 18px;
+        padding: 35px;
+        margin-top: 18px;
+    }
+}
+@media (max-width: 1440px) {
+    .obshiy {
+        font-size: 18px;
+        padding: 35px;
+        margin-top: 18px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .obshiy {
+        font-size: 16px;
+        padding: 30px;
+        margin-top: 16px;
+    }
+}
+
+@media (max-width: 992px) {
+    .obshiy {
+        font-size: 14px;
+        padding: 25px;
+        margin-top: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .obshiy {
+        font-size: 12px;
+        padding: 20px;
+        margin-top: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .obshiy {
+        font-size: 10px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+}
+
 .vide2 {
-    max-width: 100%;
-    width: 1632px;
+    width: 100%;
     height: auto;
-    padding: 20px;
     margin: 0 auto;
     box-sizing: border-box;
+    padding: 20px;
 }
+
+
 
 @media (max-width: 1632px) {
     .vide2 {
-        width: 100%;
-        height: auto;
-        margin-left: 0;
+        width: 1440px;
         padding: 20px;
+    }
+}
+@media (max-width: 1440px) {
+    .vide2 {
+        max-width: 1440px;
+        padding: 20px;
+    }
+}
+@media (max-width: 1400px) {
+    .vide2 {
+        width: 1300px; /* Full width */
+        padding: 20px;
+        margin-left: 40px;
+
+    }
+}
+@media (max-width: 1229px) {
+    .vide2 {
+        width: 1190px; /* Full width */
+        padding: 20px;
+        margin-left: 40px;
+
+    }
+}
+
+@media (max-width: 992px) {
+    .vide2 {
+        width: 1220px; /* Full width */
+        padding: 20px;
+        margin-left: 40px;
+
+    }
+}
+
+@media (max-width: 768px) {
+    .vide2 {
+        width: 100%; /* Full width */
+        padding: 15px; /* Adjust padding if needed */
+        margin-left: 40px;
+
+    }
+}
+
+@media (max-width: 480px) {
+    .vide2 {
+        width: 100%; /* Full width */
+        padding: 10px; /* Adjust padding if needed */
+        margin-left: 40px;
+
     }
 }
 
@@ -121,11 +257,11 @@
     display: flex;
     align-items: center;
     margin-top: 103px;
-
+ width: 1422px;
 }
 .day-content{
 flex-wrap: wrap;
-
+    width: 1440px;
 }
 @media (max-width: 768px) {
     .desc-card {
@@ -137,32 +273,29 @@ flex-wrap: wrap;
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 1931px) {
     .day-container {
         display: flex;
         align-items: center;
-    }
-    .den-2s{
-        margin-left: -200px;
+        width: 1440px;
     }
 
-    .day-container p, .day-container ul {
-        text-align: center;
-    }
 }
-@media screen and (max-width: 768px) {
-    .den-1s li,
-    .den-2s li,
-    .den-3s li,
-    .den-4s li,
-    .den-com li,
-    .den2-com li,
-    .den3-com li,
-    .den4-com li {
-        display: block;
-        margin-bottom: 10px;
-        word-wrap: break-word;
+@media (max-width: 1632px) {
+    .day-container {
+        display: flex;
+        align-items: center;
+        width: 1440px;
     }
+
+}
+@media (max-width: 1440px) {
+    .day-container {
+        display: flex;
+        align-items: center;
+        width: 1200px;
+    }
+
 }
 
 .day {
@@ -195,7 +328,7 @@ flex-wrap: wrap;
     height: 300px;
 }
 .btn-page {
-    font-family: "Montserrat", serif;
+    font-family: "Montserrat", sans-serif;
 
     width: 68.26px;
     height: 68.26px;
@@ -266,6 +399,16 @@ flex-wrap: wrap;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
 
+}
+@media (max-width: 1440px) {
+    .day-content{
+        width: 1100px;
+    }
+}
+@media (max-width: 1200px) {
+  .day-content{
+      width: 1100px;
+  }
 }
 .v{
     font-family: Montserrat sans-serif;
@@ -370,9 +513,6 @@ flex-wrap: wrap;
     padding: 10px;
 }
 
-.day-container {
-    margin-bottom: 20px;
-}
 
 .desc-card {
     border: 1px solid #ddd;
@@ -452,7 +592,6 @@ flex-wrap: wrap;
     line-height: 29.26px;
     margin-left: 40px;
 }
-
 .tours {
     font-family: "Montserrat", serif;
     font-size: 20px;
@@ -461,6 +600,94 @@ flex-wrap: wrap;
     margin-top: -40px;
     margin-left: 150px;
 }
+@media (max-width: 1930px) {
+    .days {
+        margin-left: 40px;
+    }
+    .tours {
+        margin-left: 150px;
+    }
+    .citys{
+        margin-left: 80px;
+    }
+}
+@media (max-width: 1630px) {
+    .days {
+        margin-left: 40px;
+    }
+    .tours {
+        margin-left: 150px;
+    }
+    .citys{
+        margin-left: 80px;
+    }
+}
+
+/* Media query for screens up to 1400px */
+@media (max-width: 1400px) {
+    .days {
+        margin-left: 40px;
+    }
+    .tours {
+        margin-left: 150px;
+    }
+    .citys{
+        margin-left: 80px;
+    }
+}
+
+/* Media query for screens up to 1200px */
+@media (max-width: 1200px) {
+    .days {
+        margin-left: 40px;
+    }
+    .tours {
+        margin-left: 150px;
+    }
+    .citys{
+        margin-left: 80px;
+    }
+}
+
+/* Media query for screens up to 992px */
+@media (max-width: 992px) {
+    .days {
+        margin-left: 40px;
+    }
+    .tours {
+        margin-left: 150px;
+    }
+    .citys{
+        margin-left: 80px;
+    }
+}
+
+/* Media query for screens up to 768px */
+@media (max-width: 768px) {
+    .days {
+        margin-left: -450px;
+    }
+    .tours {
+        margin-left: -140px;
+    }
+    .citys{
+        margin-left: -240px;
+    }
+}
+
+/* Media query for screens up to 480px */
+@media (max-width: 480px) {
+    .days {
+        margin-left: -450px;
+    }
+    .tours {
+        margin-left: -140px;
+    }
+    .citys{
+        margin-left: -240px;
+    }
+}
+
 
 .den-2s{
     font-family: Lato;
@@ -577,7 +804,11 @@ flex-wrap: wrap;
 .cardcha {
     padding: 20px;
 }
-
+@media (max-width: 1229px) {
+    .cardcha {
+        width: 1228px;
+    }
+}
 .dess {
     max-width: 1440px;
     height: 60px;
@@ -590,6 +821,11 @@ flex-wrap: wrap;
     margin-bottom: 10px;
     margin-left: -20px;
     margin-right: 450px;
+}
+@media (max-width: 1200px) {
+    .dess{
+      width: 957px;
+    }
 }
 
 .about-wrapper {
@@ -703,11 +939,45 @@ hr {
     text-align: left;
     margin-left: -32px;
 }
+@media (max-width: 1229px) {
+    .comments {
+        width: 1228px;
+    }
+}
 .footer-page{
     width: 100%;
     height: 128px;
     display: flex;
     align-items: center;
+}
+@media (max-width: 1930px) {
+    .footer-page {
+        width: 1430px;
+    }
+}
+
+@media (max-width: 1440px) {
+    .footer-page {
+        width: 1440px;
+    }
+}
+@media (max-width: 1400px) {
+    .footer-page {
+        width: 1300px; /* Full width */
+        padding: 20px;
+        margin-left: 40px;
+
+    }
+}
+@media (max-width: 1229px) {
+    .footer-page {
+        width: 1228px;
+    }
+}
+@media (max-width: 1200px) {
+    .footer-page {
+        width: 1200px;
+    }
 }
 .footer-img-page{
     width: 183px;
@@ -739,6 +1009,26 @@ hr {
     line-height: 24px;
     letter-spacing: 0%;
     text-align: left;
+}
+@media (max-width: 1229px) {
+    .footer-img-page{
+        width: 183px;
+        height: 115px;
+        margin-left: 10px;
+    }
+    .header2 {
+        width: 627px;
+    }
+    .content{
+        font-family: Montserrat sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 14.29px;
+        text-align: center;
+        color: rgb(153, 153, 153);
+        margin-top: 90px;
+        margin-left: -490px;
+    }
 }
 .header2 p {
     position: relative;
@@ -777,6 +1067,7 @@ hr {
     width: 1440px;
     border: 1px solid #DDDDDD;
 }
+
 .footer-number{
     display: flex;
     flex-direction: column;
