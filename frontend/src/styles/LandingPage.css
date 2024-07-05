@@ -36,8 +36,8 @@
     width: 1950px !important;
     height: 3.5px;
     background-color: #FFFFFF;
-    margin-left: -39.3px;
-    margin-right: -40px;
+    margin-left: -59.3px;
+    margin-right: -59.3px;
 }
 
 .nav-body .montserrat {
@@ -277,9 +277,11 @@
     background: #00D594;
     border: none;
     padding: 10px 20px;
+    width: 206px;
+    height: 68px;
     color: white;
     cursor: pointer;
-
+    margin-left: 120px;
 }
 
 .button12 img {
@@ -392,7 +394,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     max-width: 1930px;
-    width: 1277.16px;
+    width: 1577.16px;
     height: 400px;
     top: 5026px;
     border-radius: 15px;
@@ -507,6 +509,15 @@ ul.your-class li, ol.your-class li {
     text-align: center;
 }
 
+@media screen and (max-width: 1930px){
+    .button12{
+        margin-left: 0px;
+    }
+
+    .div-request{
+        width: 1277px;
+    }
+}
 
 @media screen and (max-width: 1300px) {
     .main-img{
@@ -633,7 +644,7 @@ ul.your-class li, ol.your-class li {
         height:  56.53px;
         gap: 14.13px;
         margin-right: -460px  ;
-        margin-left: 460px;
+        margin-left: 470px;
     }
 
     .buttin{
@@ -715,3 +726,5 @@ ul.your-class li, ol.your-class li {
     }
 
 }
+
+
