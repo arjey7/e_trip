@@ -268,7 +268,7 @@ function TourDay() {
         e.preventDefault();
 
         try {
-            await Promise.all(newContextData.map(async (dest) => {
+            await  Promise.all(newContextData.map(async (dest) => {
                 const newContextData = {
                     text: dest.text,
                     priceByn: dest.priceByn,
@@ -426,7 +426,7 @@ function TourDay() {
         setCurrent(index);
         setEditDay(day);
         setEditData(data);
-        setEditText(text);
+        setEdi+tText(text);
     };
 
 
