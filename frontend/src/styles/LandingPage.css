@@ -517,7 +517,7 @@ ul.your-class li, ol.your-class li {
     text-align: center;
 }
 
-@media screen and (max-width: 1930px){
+@media  (max-width: 1930px){
     .button12{
         margin-left: 0px;
     }
@@ -542,7 +542,7 @@ ul.your-class li, ol.your-class li {
     }
 }
 
-@media screen and (max-width: 1300px) {
+@media (max-width: 1300px) {
     .main-img{
         width: 1500px;
     }
@@ -569,14 +569,14 @@ ul.your-class li, ol.your-class li {
     }
 }
 
-@media  screen and (max-width: 1213px) {
+@media  (max-width: 1213px) {
     .main-img{
         width: 1980px;
     }
 
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
     .main-img{
         width: 1768px;
     }
@@ -607,7 +607,7 @@ ul.your-class li, ol.your-class li {
     }
 
 }
-@media screen and (max-width: 1200px) {
+@media (max-width: 1200px) {
     .div-travel {
         padding: 40px 20px;
     }
@@ -750,7 +750,7 @@ ul.your-class li, ol.your-class li {
 
 }
 
-@media screen and (max-width: 1300px){
+@media (max-width: 1300px){
     .main-img{
         width: 1768px;
     }
@@ -833,7 +833,7 @@ ul.your-class li, ol.your-class li {
     justify-content: space-between;
 }
 
-@media screen and (max-width: 1280px) {
+@media (max-width: 1280px) {
     .main-img{
         width: 1768px;
     }
@@ -881,7 +881,7 @@ ul.your-class li, ol.your-class li {
     }
 }
 
-@media screen and (max-width: 1455px){
+@media (max-width: 1455px){
     .main-img{
         width: 1900px;
     }
