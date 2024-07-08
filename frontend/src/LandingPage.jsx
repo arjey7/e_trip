@@ -244,9 +244,9 @@ const LandingPage = () => {
                     <ToastContainer/>
                     <img className='girl-img' src={Apacha} alt=""/>
                     <div className='request-text'>
-                        <p className='text-class'>Would you like us to organize a tour tailored to your preferences?</p>
-                        <p className='same-class'>Please provide your contact information, and we will </p>
-                        <p className='same-class'>get in touch with you shortly</p>
+                        <p className='text-class'>WOULD YOU LIKE US TO ORGANIZE A TOUR TAILORED TO YOUR PREFERENCES?</p>
+                        <p className='same-class'>PLEASE PROVIDE YOUR CONTACT INFORMATION, AND WE WILL GET IN TOUCH WITH YOU SHORTLY</p>
+
                         <form className='input-container' onSubmit={handleSubmit(mySubmit)}>
                             <input
                                 className='input1'
@@ -276,9 +276,12 @@ const LandingPage = () => {
                 <div>
                     <p className="you1">---- Where you can travel with us</p>
                     <div className={"box1"} >
-                        <div style={{display:"flex",alignItems:"center",gap:"20px", maxWidth:'1930px', margin:'0 auto', justifyContent:'space-between'}}>
+                        <div className={"rem"}>
                             <p className="you">Immerse yourself in the beauty and spirituality of fascinating places.
-                                Join us for an unforgettable adventure through Islamic Central Asia.
+                                Join us for an unforgettab\
+
+
+                                le adventure through Islamic Central Asia.
                             </p>
                             <button className={"be"}>See All</button>
                         </div>
