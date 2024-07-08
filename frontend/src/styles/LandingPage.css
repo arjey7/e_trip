@@ -12,6 +12,8 @@
     box-shadow: 0px -100px 160px 40px #171717 inset;
 }
 
+
+
 .navbar {
     display: flex;
     align-items: center;
@@ -33,8 +35,9 @@
     gap: 30px;
 }
 
-.linear{
-    width: 1950px !important;
+.linear {
+    max-width: 1930px;
+    width: 1930px;
     height: 3.5px;
     background-color: #FFFFFF;
     margin-left: -59.3px;
@@ -63,7 +66,6 @@
 }
 
 
-
 .hero-text {
     color: #fff;
     width: 70%;
@@ -88,6 +90,7 @@
     margin-top: 10px;
     width: 50%;
 }
+
 .div-info {
     display: flex;
     flex-direction: row;
@@ -133,12 +136,12 @@
     align-items: flex-start;
 }
 
-.info-item2{
+.info-item2 {
     display: flex;
     align-items: flex-start;
 }
 
-.info-item3{
+.info-item3 {
     display: flex;
     align-items: flex-start;
 }
@@ -162,14 +165,14 @@
     margin-top: 47px;
 }
 
-.text-content2 h2{
+.text-content2 h2 {
     font-family: "Montserrat", sans-serif;
     font-size: 1.2em;
     font-weight: bold;
     margin: 10px 15px;
 }
 
-.text-content2 p{
+.text-content2 p {
     font-family: "Montserrat", sans-serif;
     font-size: 17px;
     line-height: 21.94px;
@@ -178,14 +181,14 @@
     margin-left: 15px;
 }
 
-.text-content3 h2{
+.text-content3 h2 {
     font-family: "Montserrat", sans-serif;
     font-size: 1.2em;
     font-weight: bold;
     margin: 10px 15px;
 }
 
-.text-content3 p{
+.text-content3 p {
     font-family: "Montserrat", sans-serif;
     font-size: 17px;
     line-height: 21.94px;
@@ -208,10 +211,11 @@
     font-weight: 400;
     max-width: 731.57px;
 }
-.we{
+
+.we {
     display: flex;
     padding: 10px;
-    margin-top:-150px ;
+    margin-top: -150px;
 }
 
 .image-container {
@@ -232,16 +236,16 @@
 }
 
 
-
 .image-containerr {
     position: relative;
     width: 100%;
     height: 795px;
     border-radius: 40px;
-    background-size:100%,contain ;
+    background-size: 100%, contain;
     margin-top: 50px;
     overflow: hidden;
 }
+
 .image-containerr::after {
     content: "";
     position: absolute;
@@ -253,9 +257,10 @@
     border-radius: 10px;
 
 }
+
 .cd {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     max-width: 1930px;
     flex-wrap: wrap;
     gap: 30px;
@@ -299,7 +304,7 @@
     margin-bottom: 20px;
 }
 
-.you2{
+.you2 {
     font-family: "Noto Serif", serif;
     margin-top: 50px;
     font-size: 50px;
@@ -319,12 +324,14 @@
     margin-left: 50px;
     margin-bottom: 20px;
 }
-.girl-img{
+
+.girl-img {
     width: 352px;
-    margin-top:-40px;
+    margin-top: -40px;
     border-radius: 14px;
 }
-.me{
+
+.me {
     max-width: 1050px !important;
     max-height: 586.27px;
     gap: 169.6px;
@@ -333,39 +340,44 @@
 
 
 }
-.me{
+
+.me {
     font-family: "Montserrat", sans-serif;
     font-size: 56.53px;
     font-weight: 700;
     line-height: 68.92px;
     text-align: left;
     color: #FFFFFF;
-    padding-left:10px;
+    padding-left: 10px;
 
 }
-.wit{
+
+.wit {
     width: 400.45px;
     height: 282.67px;
     border-radius: 16.96px 0px 0px 0px;
-    border: 2.83px ;
+    border: 2.83px;
     margin-bottom: 25px;
     margin-left: 25px;
 }
-.kl{
+
+.kl {
     display: flex;
     padding: 10px;
     max-width: 1930px;
     justify-content: center;
 }
+
 /*.react-multi-carousel-item{*/
 /*    background-color: black!important;*/
 /*}*/
-.react-multi-carousel-item{
-   display: flex!important;
-    justify-content: center!important;
+.react-multi-carousel-item {
+    display: flex !important;
+    justify-content: center !important;
     width: 430px;
-    gap: 220px!important;
+    gap: 220px !important;
 }
+
 .be {
     background-color: #ffffff;
     color: #8DD3BB;
@@ -380,8 +392,7 @@
 }
 
 
-
-.text-class{
+.text-class {
     font-family: "Montserrat", sans-serif;
     font-size: 29.55px;
     font-weight: 700;
@@ -393,7 +404,7 @@
     margin-top: 70px;
 }
 
-.div-request{
+.div-request {
     background-image: url("../files/rasmcha.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -407,7 +418,7 @@
     justify-content: center;
 }
 
-.same-class{
+.same-class {
     font-size: 30.26px;
     font-weight: 300;
     line-height: 38.28px;
@@ -416,23 +427,22 @@
     margin-left: 300px;
 }
 
-.request-text{
+.request-text {
     margin-top: -410px;
     margin-left: 50px;
 }
 
 
-
-.input1{
+.input1 {
     display: block;
     margin-bottom: 20px;
 }
 
-.input{
+.input {
     display: flex;
 }
 
-.input-container input{
+.input-container input {
     margin-right: 612px;
 
 }
@@ -455,7 +465,8 @@
     border: 1px solid #ccc;
     font-size: 16px;
 }
-.box{
+
+.box {
     display: flex;
 
 }
@@ -478,12 +489,13 @@
 .request-button:hover {
     background-color: #00b67f;
 }
-.me{
+
+.me {
     width: 1000px;
     margin-left: 20px;
 }
 
-.us{
+.us {
     font-family: "Noto", serif;
     font-size: 50px;
     font-weight: 800;
@@ -491,7 +503,8 @@
     text-align: center;
     max-width: 1930px;
 }
-.buttin{
+
+.buttin {
     width: 254px;
     height: 66px;
     top: 7304.44px;
@@ -499,7 +512,7 @@
     gap: 0px;
     opacity: 0px;
     background: #00D594;
-    border:1px solid #00D594 ;
+    border: 1px solid #00D594;
     color: #FFFFFF;
     border-radius: 5px;
     display: flex;
@@ -507,106 +520,111 @@
     align-items: center;
     margin: 0 auto;
 }
+
 ul.your-class li, ol.your-class li {
     list-style: none;
     margin: 0;
     padding: 0;
 }
+
 .div-travel {
     padding: 50px 0;
     text-align: center;
 }
 
-@media  (max-width: 1930px){
-    .button12{
+@media (max-width: 1930px) {
+    .button12 {
         margin-left: 0px;
     }
 
-    .div-request{
+    .div-request {
         width: 1277px;
     }
 
-    .me{
+    .me {
         width: 605px;
         margin-left: 0px;
     }
-    .wit{
+
+    .wit {
         margin-left: 25px;
     }
-    .be{
-        margin-right:40px ;
+
+    .be {
+        margin-right: 40px;
     }
 
-    .input-container{
+    .input-container {
         margin-left: 0px;
     }
 }
 
 @media (max-width: 1300px) {
-    .main-img{
+    .main-img {
         width: 1500px;
     }
 
-    .div-info{
+    .div-info {
         width: 1500px;
     }
 
 
-    .cd{
+    .cd {
         width: 1768px;
     }
 
-    .div-request{
+    .div-request {
         margin: 20px 250px;
     }
 
-    .kl{
+    .kl {
         margin-left: 850px;
     }
 
-    .page-container, .m{
+    .page-container, .m {
         width: 1768px;
     }
 }
 
-@media  (max-width: 1213px) {
-    .main-img{
+@media (max-width: 1213px) {
+    .main-img {
         width: 1980px;
     }
 
 }
 
 @media (max-width: 768px) {
-    .main-img{
+    .main-img {
         width: 1768px;
     }
 
-    .div-info{
+    .div-info {
         width: 1768px;
     }
 
-    .cd{
+    .cd {
         width: 1768px;
     }
 
-    .div-request{
+    .div-request {
         margin: 20px 250px;
     }
 
-    .comment-name{
+    .comment-name {
         margin-left: -80px;
         margin-top: 50px;
     }
 
-    .kl{
+    .kl {
         margin-left: 850px;
     }
 
-    .page-container, .m{
+    .page-container, .m {
         width: 1768px;
     }
 
 }
+
 @media (max-width: 1200px) {
     .div-travel {
         padding: 40px 20px;
@@ -621,7 +639,8 @@ ul.your-class li, ol.your-class li {
         font-size: 18px;
         line-height: 28px;
     }
-    .me{
+
+    .me {
         margin-left: 100px;
     }
 
@@ -644,10 +663,11 @@ ul.your-class li, ol.your-class li {
         gap: 15px;
     }
 
-    .box{
+    .box {
         margin-left: -650px;
     }
-    .rem{
+
+    .rem {
         max-width: 1930px;
         display: flex;
         align-items: center;
@@ -655,83 +675,90 @@ ul.your-class li, ol.your-class li {
         margin: 0 auto;
         justify-content: space-between;
     }
-    .me{
+
+    .me {
         width: 750px;
 
     }
 
 }
+
 /*asd*/
-@media screen and (max-width: 768px){
-    .comment-name{
-     display: flex;
+@media screen and (max-width: 768px) {
+    .comment-name {
+        display: flex;
         margin-left: 150px;
 
     }
-    .comment-text{
+
+    .comment-text {
         display: flex;
         margin-left: 190px;
     }
-    .me2{
+
+    .me2 {
         width: 900px;
 
     }
-    .box{
+
+    .box {
         display: grid;
         grid-template-columns: 1fr;
         margin-right: 30px;
 
     }
 
-    .be{
-        width:  113.23px;
-        height:  56.53px;
+    .be {
+        width: 113.23px;
+        height: 56.53px;
         gap: 14.13px;
     }
 
-    .buttin{
-        display: flex
-    ;
+    .buttin {
+        display: flex;
         justify-content: center;
         align-items: center;
         margin-left: 760px;
 
     }
-    .box1{
+
+    .box1 {
         width: 1280px;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    .me{
+    .me {
         margin-left: 450px;
     }
 
-    .us{
+    .us {
         margin-left: 710px;
         width: 700px;
     }
 
-    .uss{
+    .uss {
         margin-left: 100px;
     }
 
-    .button12{
+    .button12 {
         margin-left: 90px;
     }
 
-    .div-request{
+    .div-request {
         width: 1277px;
     }
 
-    .me{
+    .me {
         width: 880px;
     }
-    .wit{
+
+    .wit {
         margin-left: 25px;
     }
-    .rem{
+
+    .rem {
         max-width: 1930px;
         display: flex;
         align-items: center;
@@ -740,7 +767,8 @@ ul.your-class li, ol.your-class li {
         justify-content: space-between;
 
     }
-    .you1{
+
+    .you1 {
         display: grid;
         grid-template-columns: 1fr;
         justify-content: center;
@@ -750,48 +778,59 @@ ul.your-class li, ol.your-class li {
 
 }
 
-@media (max-width: 1300px){
-    .main-img{
+@media (max-width: 1300px) {
+
+    .page-container{
+        margin-left: 30px;
+    }
+
+    .main-img {
         width: 1768px;
     }
-    .comment-name{
+
+    .comment-name {
         display: flex;
         margin-left: 150px;
 
     }
-    .comment-text{
+
+    .comment-text {
         display: flex;
         margin-left: 190px;
     }
-    .me2{
+
+    .me2 {
         width: 700px;
 
     }
-    .box{
+
+    .box {
         display: flex;
         margin-left: -370px;
     }
 
-    .us{
+    .us {
         margin-left: 410px;
     }
 
-    .be{
-        width:  113.23px;
-        height:  56.53px;
+    .be {
+        width: 113.23px;
+        height: 56.53px;
         gap: 14.13px;
-        margin-right: -460px  ;
+        margin-right: -460px;
         margin-left: 460px;
 
     }
-    .buttin{
+
+    .buttin {
         display: flex;
         justify-content: center;
         align-items: center;
         margin-left: 760px;
 
     }
-    .box1{
+
+    .box1 {
         width: 1280px;
         display: flex;
         justify-content: center;
@@ -799,32 +838,40 @@ ul.your-class li, ol.your-class li {
 
     }
 
-    .div-request{
+    .div-request {
         width: 1477px;
         margin: 20px 170px;
     }
 
-    .same-class{
+    .same-class {
         width: 1050px;
         font-size: 29.15px;
     }
 
-    .input-container{
+    .input-container {
         margin-left: -200px;
     }
 
-    .text-class{
+    .text-class {
         font-size: 29.55px;
         width: 1100px;
     }
 
-    .me{
+    .me {
         width: 880px;
     }
 
+
+
+}
+@media (min-width: 1400px) {
+    .page-container{
+        width: 1470px;
+        margin-left: 30px;
+    }
 }
 
-.rem{
+.rem {
     max-width: 1930px;
     display: flex;
     align-items: center;
@@ -834,68 +881,70 @@ ul.your-class li, ol.your-class li {
 }
 
 @media (max-width: 1280px) {
-    .main-img{
+    .main-img {
         width: 1768px;
     }
 
-    .text-class{
+    .text-class {
         font-size: 29.55px;
         width: 1100px;
     }
 
-    .same-class{
+    .same-class {
         width: 1050px;
         font-size: 29.15px;
     }
 
-    .div-info{
+    .div-info {
         width: 1500px;
     }
 
 
-    .cd{
+    .cd {
         width: 1768px;
     }
 
-    .div-request{
+    .div-request {
         width: 1477px;
         margin: 20px 170px;
     }
 
-    .input-container{
+    .input-container {
         margin-left: -200px;
     }
 
-    .kl{
+    .kl {
         margin-left: 850px;
     }
 
-    .page-container, .m{
+    .page-container, .m {
         width: 1768px;
     }
-    .me{
+
+    .me {
         width: 880px;
     }
-    .box{
+
+    .box {
 
     }
 }
 
-@media (max-width: 1455px){
-    .main-img{
+@media (max-width: 1454px) {
+    .main-img {
         width: 1900px;
     }
 
-    .div-request{
+    .div-request {
         width: 1577px;
         margin-left: 200px;
     }
 
-    .same-class{
+    .same-class {
         width: 1100px;
     }
 
-    .input-container{
+    .input-container {
         margin-left: -300px;
     }
 }

@@ -138,8 +138,8 @@
     }
 }
 
-@media screen and (max-width: 1455px) {
+@media screen and (max-width: 1300px) {
     .footer-container{
-        width: 1968px;
+        width: 1900px;
     }
 }

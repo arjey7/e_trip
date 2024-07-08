@@ -18,7 +18,8 @@ import today from './files/Rectangle 3.png';
 import nul from "./files/asd.png";
 import p from "./files/ppp.png";
 import m from "./files/m.png";
-import Carousel from "react-multi-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 import axios from 'axios';
 import 'react-multi-carousel/lib/styles.css';
 import ReactStars from 'react-rating-stars-component';
@@ -114,8 +115,9 @@ const LandingPage = () => {
         setCenterIndex(initialCenterIndex);
     }, [page.length]);
 
-    const onSlideChanged = (previousSlide, { currentSlide, slidesToShow }) => {
-        setCenterIndex(currentSlide + Math.floor(slidesToShow / 2));
+
+    const onSlideChanged = (index) => {
+        setCenterIndex(index);
     };
 
     function mySubmit(params) {
@@ -147,7 +149,7 @@ const LandingPage = () => {
                             <p className='montserrat'>Contact us</p>
                             <p className='montserrat-font'>ENG</p>
                         </div>
-                    <div className={"linear"}></div>
+                        <div className={"linear"}></div>
                     </div>
                     <div className='hero-text'>
                         <p>Travel through the land and observe how He began creation.</p>
@@ -220,7 +222,8 @@ const LandingPage = () => {
                                         <p className={"pepe"}>{tour.day} days from ${tour.cost}</p>
                                     </div>
                                     <div className={"mn"}>
-                                        <button style={{borderRadius:'5px'}} className="button12" onClick={() => handleShowFlightClick(tour.id)}>
+                                        <button style={{borderRadius: '5px'}} className="button12"
+                                                onClick={() => handleShowFlightClick(tour.id)}>
                                             <img src={Tgg} alt=""/>
                                             Show Flight
                                         </button>
@@ -245,7 +248,8 @@ const LandingPage = () => {
                     <img className='girl-img' src={Apacha} alt=""/>
                     <div className='request-text'>
                         <p className='text-class'>WOULD YOU LIKE US TO ORGANIZE A TOUR TAILORED TO YOUR PREFERENCES?</p>
-                        <p className='same-class'>PLEASE PROVIDE YOUR CONTACT INFORMATION, AND WE WILL GET IN TOUCH WITH YOU SHORTLY</p>
+                        <p className='same-class'>PLEASE PROVIDE YOUR CONTACT INFORMATION, AND WE WILL GET IN TOUCH WITH
+                            YOU SHORTLY</p>
 
                         <form className='input-container' onSubmit={handleSubmit(mySubmit)}>
                             <input
@@ -275,7 +279,7 @@ const LandingPage = () => {
                 </div>
                 <div>
                     <p className="you1">---- Where you can travel with us</p>
-                    <div className={"box1"} >
+                    <div className={"box1"}>
                         <div className={"rem"}>
                             <p className="you">Immerse yourself in the beauty and spirituality of fascinating places.
                                 Join us for an unforgettab\
@@ -287,24 +291,24 @@ const LandingPage = () => {
                         </div>
                     </div>
                 </div>
-                    <div className={"kl"}>
-                        <div className={"box"}>
-                            <div className={"me"}>
-                                <p className={"me2"}>Bu yerda video bo'ladi</p>
-                            </div>
-                            <div className={"d"}>
-                                <div className={"img-card"}>
-                                    <img className={"wit"} width={100} src={today} alt=""/>
-                                    <img className={"wit"} src={nul} alt=""/>
-                                </div>
-                                <div style={{display: "flex",}}>
-                                    <img className={"wit"} src={p} alt=""/>
-                                    <img className={"wit"} src={m} alt=""/>
-                                </div>
-                            </div>
-
+                <div className={"kl"}>
+                    <div className={"box"}>
+                        <div className={"me"}>
+                            <p className={"me2"}>Bu yerda video bo'ladi</p>
                         </div>
+                        <div className={"d"}>
+                            <div className={"img-card"}>
+                                <img className={"wit"} width={100} src={today} alt=""/>
+                                <img className={"wit"} src={nul} alt=""/>
+                            </div>
+                            <div style={{display: "flex",}}>
+                                <img className={"wit"} src={p} alt=""/>
+                                <img className={"wit"} src={m} alt=""/>
+                            </div>
+                        </div>
+
                     </div>
+                </div>
 
 
                 <div className="uss">
@@ -312,11 +316,13 @@ const LandingPage = () => {
                 </div>
                 <div className="page-container">
                     <Carousel
-
-                        responsive={responsive}
-                        afterChange={(previousSlide, {currentSlide, slidesToShow}) =>
-                            onSlideChanged(previousSlide, {currentSlide, slidesToShow})
-                        }
+                        showArrows
+                        onChange={onSlideChanged}
+                        showThumbs={false}
+                        // autoPlay={true} interval={3000}
+                        infiniteLoop={true}
+                        centerMode
+                        centerSlidePercentage={33.33}
                     >
                         {page.map((comment, index) => (
                             <div
@@ -326,12 +332,10 @@ const LandingPage = () => {
                                 <div className="m">
                                     <div className="op"></div>
                                     <p className="comment-name">{comment.firstName} {comment.lastName}</p>
-                                    <div style={{height:"160px"}}>
+                                    <div style={{height: "160px"}}>
                                         <p className="comment-text">{comment.text}</p>
                                     </div>
-
                                     <ReactStars
-
                                         count={5}
                                         value={comment.rate}
                                         size={40}
@@ -348,7 +352,7 @@ const LandingPage = () => {
                 <Footer/>
                 <Rodal visible={modal} onClose={() => dispatch(closeModal())} height={500} width={700}>
 
-                        <Comment/>
+                    <Comment/>
                 </Rodal>
             </div>
         </div>

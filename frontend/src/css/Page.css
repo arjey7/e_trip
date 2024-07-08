@@ -1,9 +1,5 @@
 /* Container for the page content */
-.page-container {
-    padding: 20px;
-    margin-left: -10px;
-    max-width: 1930px;
-}
+
 
 /* Comment styles */
 .comment-container {
