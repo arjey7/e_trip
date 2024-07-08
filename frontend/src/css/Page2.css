@@ -1,9 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+
 .all {
     margin: 0 auto;
     max-width: 1930px;
     height: auto;
+}
+@media (max-width: 1931px) {
+    .all{
+        margin-left: 250px;
+    }
+}
+@media (max-width: 1920px) {
+    .all{
+        margin-left: 300px;
+    }
+}
+
+@media (max-width: 1707px) {
+    .all{
+        margin-left: 100px;
+    }
+}
+@media (max-width: 1536px) {
+    .all{
+        margin-left: 15px;
+    }
+}
+@media (max-width: 1397px) {
+    .all{
+        width: 1397px;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 1220px) {
+    .all{
+        width: 1220px;
+        margin-left: 200px;
+    }
+}
+.usus{
+    width: 100%;
+}
+@media (max-width: 1229px) {
+    .usus{
+        width: 1228px;
+    }
+
+}
+@media (max-width: 1200px) {
+    .all{
+        width: 100%;
+      margin: 0 auto;
+    }
 }
 
 .header {
@@ -33,14 +82,69 @@
     margin: 0 auto;
 
 }
-@media (max-width: 1200px) {
-    .header {
-        margin-left: 330px;
+@media (max-width: 1397px) {
+    .title{
+        width: 1396px;
     }
 }
-@media (max-width: 1200px) {
+@media (min-width: 1607px) {
+    .header{
+        margin-right: 600px;
+    }
+    .title{
+       margin-right: 280px;
+    }
+}
+@media (max-width: 1708px) {
+    .header{
+
+        margin: 0 auto;
+        padding-left: 70px;
+    }
+    .title{
+        margin-right: -100px;
+    }
+}
+@media (max-width: 1930px) {
+    .title{
+        margin-left: -200px;
+    }
+    .header{
+        margin-left: 350px;
+    }
+}
+@media (max-width: 1920px) {
+    .title{
+        margin-left: -0px;
+    }
+    .header{
+        margin-left: 350px;
+    }
+}
+@media (max-width: 1220px) {
+    .header {
+        margin-left: 170px;
+    }
+}
+@media (max-width: 1220px) {
     .title {
-        margin-left: 200px;
+        margin-left: -120px;
+    }
+}
+
+@media (max-width: 1930px) {
+    .page-body{
+        margin-left: -130px;
+    }
+}
+@media (max-width: 1707px) {
+    .page-body{
+        margin-left: 50px;
+    }
+}
+@media (max-width: 1536px) {
+    .page-body{
+        margin-left: 50px;
     }
 }
 .header p {
@@ -51,7 +155,16 @@
     text-decoration: none;
     position: relative;
 }
-
+@media (max-width: 791px) {
+    .header {
+        margin-left: -30px;
+    }
+}
+@media (max-width: 791px) {
+    .title {
+        margin-left: -130px;
+    }
+}
 .header p:hover {
     background-color: #f2f2f2;
 }
@@ -75,15 +188,25 @@
 .div-obshiy{
     width: 1632px;
 }
-@media (max-width: 1920px) {
+@media (max-width: 1932px) {
     .div-obshiy {
         width: 1440px;
     }
 
 }
-@media (max-width: 6144px) {
+@media (max-width: 1921px) {
     .div-obshiy {
-        width: 1930px;
+        width: 1632px;
+        margin-left: -150px;
+    }
+
+}
+
+
+@media (max-width: 1707px) {
+    .div-obshiy {
+        width: 1440px;
+        margin-left: 40px;
     }
 
 }
@@ -92,6 +215,14 @@
         width: 1440px;
     }
 
+}
+@media (max-width: 1440px) {
+    .div-obshiy {
+        width: 1400px; /* Full width */
+        padding: 20px;
+        margin-left: 40px;
+
+    }
 }
 @media (max-width: 1400px) {
     .div-obshiy {
@@ -103,7 +234,12 @@
 }
 @media (max-width: 1229px) {
     .div-obshiy {
-        width: 1228px;
+        width: 1100px;
+    }
+}
+@media (max-width: 791px) {
+    .div-obshiy {
+        width: 750px;
     }
 }
 .obshiy {
@@ -164,7 +300,7 @@
 }
 
 .vide2 {
-    width: 100%;
+    width: 1440px;
     height: auto;
     margin: 0 auto;
     box-sizing: border-box;
@@ -172,22 +308,34 @@
 }
 
 
-
+@media (max-width: 1707px) {
+    .vide2 {
+        width: 1440px;
+        padding-left: 200px;
+    }
+}
 @media (max-width: 1632px) {
     .vide2 {
         width: 1440px;
-        padding: 20px;
+         margin-left: -0px;
     }
 }
-@media (max-width: 1440px) {
+
+@media (max-width: 1930px) {
     .vide2 {
-        max-width: 1440px;
-        padding: 20px;
+        width: 1632px;
+        margin-left: -160px;
+    }
+}
+@media (max-width: 1441px) {
+    .vide2 {
+        max-width: 1400px;
+        margin-left: -78px;
     }
 }
 @media (max-width: 1400px) {
     .vide2 {
-        width: 1300px; /* Full width */
+        width: 1300px;
         padding: 20px;
         margin-left: 40px;
 
@@ -195,7 +343,7 @@
 }
 @media (max-width: 1229px) {
     .vide2 {
-        width: 1190px; /* Full width */
+        width: 1090px;
         padding: 20px;
         margin-left: 40px;
 
@@ -211,7 +359,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 791px) {
     .vide2 {
         width: 100%; /* Full width */
         padding: 15px; /* Adjust padding if needed */
@@ -257,7 +405,6 @@
     display: flex;
     align-items: center;
     margin-top: 103px;
- width: 1422px;
 }
 .day-content{
 flex-wrap: wrap;
@@ -279,15 +426,13 @@ flex-wrap: wrap;
         align-items: center;
         width: 1440px;
     }
-
 }
 @media (max-width: 1632px) {
     .day-container {
         display: flex;
         align-items: center;
-        width: 1440px;
+        width: 1140px;
     }
-
 }
 @media (max-width: 1440px) {
     .day-container {
@@ -295,9 +440,19 @@ flex-wrap: wrap;
         align-items: center;
         width: 1200px;
     }
-
 }
-
+@media (max-width: 1229px) {
+    .day-container {
+        display: flex;
+        align-items: center;
+        width: 1000px;
+    }
+}
+@media (max-width: 791px) {
+    .day-container {
+        width: 600px;
+    }
+}
 .day {
     font-family: "Montserrat", serif;
     width: 105px;
@@ -400,15 +555,28 @@ flex-wrap: wrap;
     gap: 2rem;
 
 }
+@media (max-width: 1557px) {
+    .day-content{
+        width: 1100px;
+
+    }
+}
 @media (max-width: 1440px) {
     .day-content{
         width: 1100px;
+
     }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1229px) {
   .day-content{
-      width: 1100px;
+      width: 900px;
   }
+}
+@media (max-width: 791px) {
+    .day-content {
+        width: 700px;
+    }
+
 }
 .v{
     font-family: Montserrat sans-serif;
@@ -470,7 +638,17 @@ flex-wrap: wrap;
     margin: 0; /* Remove any margin */
 }
 
-
+@media (max-width: 790px) {
+    .den-com{
+        font-family: "Montserrat", serif;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 31.2px;
+        text-align: left;
+        color: #777;
+        margin: 0; /* Remove any margin */
+    }
+}
 
 
 
@@ -549,6 +727,7 @@ flex-wrap: wrap;
 
 }
 
+
 .expanded-info {
     flex-grow: 1;
     display: flex;
@@ -584,7 +763,22 @@ flex-wrap: wrap;
     margin-left: 75px;
     margin-top: -21px;
 }
+@media (max-width: 791px) {
+    .expanded-image{
+        width: 178px;
+        height: 248px;
+    }
+    .expanded-info{
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    .expanded-description{
+        font-size: 8px;
+        margin-left: 10px;
+    }
 
+
+}
 .days {
     font-family: "Montserrat", serif;
     font-size: 24px;
@@ -663,15 +857,28 @@ flex-wrap: wrap;
 }
 
 /* Media query for screens up to 768px */
-@media (max-width: 768px) {
-    .days {
-        margin-left: -450px;
+@media (max-width: 790px) {
+    .days{
+        font-size: 14px;
+        line-height: 29.26px;
+        margin-left: 10px;
     }
     .tours {
-        margin-left: -140px;
+        font-size: 10px;
+        margin-left: 70px;
+    }
+    .city{
+        margin-left: 10px;
+        width: 15px;
+        height: 15px;
     }
     .citys{
-        margin-left: -240px;
+        margin-left: 30px;
+        margin-top: -15px;
+        font-size: 8px;
+    }
+    .dest{
+        margin-left: 150px;
     }
 }
 
@@ -795,6 +1002,11 @@ flex-wrap: wrap;
     text-align: left;
     text-transform: lowercase;
 }
+@media (max-width: 1397px) {
+    .prib{
+        width: 1396px;
+    }
+}
 .chiziq5 {
     width: 109.63px;
     border: 5.04px solid rgb(71, 71, 71);
@@ -809,6 +1021,12 @@ flex-wrap: wrap;
         width: 1228px;
     }
 }
+@media (max-width: 1397px) {
+    .cardcha {
+        width: 1396px;
+    }
+}
+
 .dess {
     max-width: 1440px;
     height: 60px;
@@ -822,12 +1040,16 @@ flex-wrap: wrap;
     margin-left: -20px;
     margin-right: 450px;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1229px) {
     .dess{
-      width: 957px;
+      width: 900px;
     }
 }
-
+@media (max-width: 791px) {
+    .dess {
+        width: 700px;
+    }
+}
 .about-wrapper {
     display: flex;
     align-items: center;
@@ -889,7 +1111,11 @@ flex-wrap: wrap;
     font-weight: 400;
     line-height: 31.2px;
     text-align: left;
-
+}
+@media (max-width: 1397px) {
+    .textcha{
+        width: 1396px;
+    }
 }
 .byn + span {
     color: #DF7021; /* Price in EUR */
@@ -969,6 +1195,7 @@ hr {
 
     }
 }
+
 @media (max-width: 1229px) {
     .footer-page {
         width: 1228px;
@@ -984,6 +1211,14 @@ hr {
     height: 115px;
     margin-left: 150px;
 }
+@media (max-width: 1397px) {
+    .footer-img-page{
+        width: 133px;
+        height: 115px;
+        margin-left: 50px;
+    }
+}
+
 .content{
     font-family: Montserrat sans-serif;
     font-size: 18px;
@@ -1010,18 +1245,31 @@ hr {
     letter-spacing: 0%;
     text-align: left;
 }
-@media (max-width: 1229px) {
+@media (max-width: 769px) {
     .footer-img-page{
-        width: 183px;
-        height: 115px;
-        margin-left: 10px;
+        width: 100px;
+        height: 85px;
+        margin-left: -50px;
     }
+    .header2{
+        margin-left: -50px;
+        font-size: 14px;
+        width: 147px;
+    }
+    .footer-number{
+        margin-left: 350px;
+        display: flex;
+        font-size: 8px;
+    }
+}
+@media (max-width: 1229px) {
+
     .header2 {
         width: 627px;
     }
     .content{
         font-family: Montserrat sans-serif;
-        font-size: 14px;
+        font-size: 10px;
         font-weight: 400;
         line-height: 14.29px;
         text-align: center;
@@ -1063,11 +1311,15 @@ hr {
     color: #004530;
 
 }
-.chiziq6{
-    width: 1440px;
-    border: 1px solid #DDDDDD;
-}
-
+/*.chiziq6{*/
+/*    width: 1440px;*/
+/*    border: 1px solid #DDDDDD;*/
+/*}*/
+/*@media screen and (max-width: 1229px){*/
+/*    .chiziq6{*/
+/*        width: 1228px;*/
+/*    }*/
+/*}*/
 .footer-number{
     display: flex;
     flex-direction: column;
@@ -1093,4 +1345,9 @@ hr {
 }
 .ro{
     font-family: "Montserrat", sans-serif;
+}
+@media (max-width: 1397px) {
+    .ro{
+        width: 1396px;
+    }
 }
