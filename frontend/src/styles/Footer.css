@@ -132,8 +132,14 @@
     }
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 768px) {
     .footer-container{
-        width: 1768px;
+        width: 1798px;
+    }
+}
+
+@media screen and (max-width: 1455px) {
+    .footer-container{
+        width: 1968px;
     }
 }

@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
     max-width: 1930px;
+    margin-top: -25px;
     border-radius: 30px;
     padding: 10px 20px;
     justify-content: space-between;
@@ -382,7 +383,7 @@
 
 .text-class{
     font-family: "Montserrat", sans-serif;
-    font-size: 25.55px;
+    font-size: 29.55px;
     font-weight: 700;
     max-width: 1002px;
     line-height: 37.25px;
@@ -407,7 +408,7 @@
 }
 
 .same-class{
-    font-size: 25.26px;
+    font-size: 30.26px;
     font-weight: 300;
     line-height: 38.28px;
     text-align: left;
@@ -440,7 +441,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    margin-left: -300px;
 }
 
 .input, .input1 {
@@ -536,9 +537,9 @@ ul.your-class li, ol.your-class li {
         margin-right:40px ;
     }
 
-
-
-
+    .input-container{
+        margin-left: 0px;
+    }
 }
 
 @media screen and (max-width: 1300px) {
@@ -877,5 +878,24 @@ ul.your-class li, ol.your-class li {
     }
     .box{
 
+    }
+}
+
+@media screen and (max-width: 1455px){
+    .main-img{
+        width: 1900px;
+    }
+
+    .div-request{
+        width: 1577px;
+        margin-left: 200px;
+    }
+
+    .same-class{
+        width: 1100px;
+    }
+
+    .input-container{
+        margin-left: -300px;
     }
 }
