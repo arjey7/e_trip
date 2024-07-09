@@ -282,10 +282,7 @@ const LandingPage = () => {
                     <div className={"box1"}>
                         <div className={"rem"}>
                             <p className="you">Immerse yourself in the beauty and spirituality of fascinating places.
-                                Join us for an unforgettab\
-
-
-                                le adventure through Islamic Central Asia.
+                                Join us for an unforgettable adventure through Islamic Central Asia.
                             </p>
                             <button className={"be"}>See All</button>
                         </div>

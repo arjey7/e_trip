@@ -532,7 +532,7 @@ ul.your-class li, ol.your-class li {
     text-align: center;
 }
 
-@media (max-width: 1930px) {
+@media (min-width: 768px) and (max-width: 1931px) {
     .button12 {
         margin-left: 0px;
     }
@@ -556,6 +556,11 @@ ul.your-class li, ol.your-class li {
 
     .input-container {
         margin-left: 0px;
+    }
+
+    .page-container{
+        width: 1460px !important;
+        margin: 0 auto;
     }
 }
 
@@ -947,4 +952,14 @@ ul.your-class li, ol.your-class li {
     .input-container {
         margin-left: -300px;
     }
+
+    .page-container{
+        width: 1246px !important;
+        margin: 0 auto;
+    }
+}
+
+.page-container{
+    width: 1450px !important;
+    margin: 0 auto;
 }
