@@ -42,7 +42,7 @@ function Footer() {
                     <p>+44 7459 382384</p>
                     <p>yourmailaddress@gmail.com</p>
                     <p>www.yourwebsitename.com</p>
-                    <h4>LET'S BE SOCIAL</h4>
+                    <h4 className={"social"}>LET'S BE SOCIAL</h4>
                     <div className="social-icons">
                         <img src={Tg} alt="" />
                         <img src={Fcbk} alt="" />

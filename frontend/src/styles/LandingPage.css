@@ -79,7 +79,7 @@
     font-weight: 700;
     line-height: 112px;
     text-align: left;
-    margin-top: -70px !important;
+    margin-top: -70px ;
 }
 
 .hero-subtext {
@@ -332,13 +332,11 @@
 }
 
 .me {
-    max-width: 1050px !important;
+    width: 850px ;
     max-height: 586.27px;
     gap: 169.6px;
     border-radius: 28.27px;
     background: #8DD3BB;
-
-
 }
 
 .me {
@@ -368,14 +366,12 @@
     justify-content: center;
 }
 
-/*.react-multi-carousel-item{*/
-/*    background-color: black!important;*/
-/*}*/
+
 .react-multi-carousel-item {
-    display: flex !important;
-    justify-content: center !important;
+    display: flex ;
+    justify-content: center;
     width: 430px;
-    gap: 220px !important;
+    gap: 220px ;
 }
 
 .be {
@@ -443,9 +439,10 @@
 }
 
 .input-container input {
-    margin-right: 612px;
-
+    margin-right: 550px ;
 }
+
+
 
 .input-container {
     display: flex;
@@ -456,7 +453,7 @@
 
 .input, .input1 {
     width: 80%;
-    max-width: 450.15px !important;
+    max-width: 450.15px ;
     height: 55px;
     padding: 10px;
     margin-left: 435px;
@@ -468,7 +465,86 @@
 
 .box {
     display: flex;
+    width: 1500px;
+}
 
+
+.m {
+    padding: 20px;
+}
+
+.op {
+    width: 40px ;
+    margin-left: -17px;
+    height: 1px;
+    border: 5px solid #00D594;
+}
+
+.comment-container {
+    margin-top: 20px;
+    width: 400.22px ;
+    height: 383.05px;
+    opacity: 1;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.comment-container.center-card {
+    transform: translateY(-35px);
+    box-shadow: 0px 24.91px 36.87px 0px rgba(0, 92, 0, 0.33);
+}
+
+
+.buttin {
+    margin-left: 550px;
+    width: 254px;
+    height: 66px;
+    top: 7304.44px;
+    left: 833px;
+    gap: 0px;
+    opacity: 0px;
+    color: #fff3cd;
+    border: 1px solid #00D594;
+    background: #00D594;
+}
+
+.divcha{
+    margin-bottom: 100px ;
+    margin-left: -40px;
+}
+
+.mn{
+    margin-left: 150px;
+    display: flex;
+    margin-top: -70px;
+}
+.vbn {
+    font-family: "Montserrat", sans-serif;
+    font-size: 57.04px;
+    font-weight: 700;
+    line-height: 69.54px;
+    text-align: left;
+    margin-top: 50px;
+}
+.olo {
+    font-family: "Montserrat", serif;
+    font-size: 22.18px;
+    font-weight: 400;
+    line-height: 27.03px;
+    text-align: left;
+    margin-bottom: 100px;
+}
+.pepe{
+    font-family: "Montserrat", sans-serif;
+    font-size: 35.28px;
+    font-weight: 500;
+    line-height: 43.01px;
+    text-align: left;
+    margin-top: -20px;
+}
+
+.page-container{
+    max-width: 1450px ;
+    margin: 0 auto;
 }
 
 .request-button {
@@ -483,7 +559,7 @@
     font-size: 16px;
     cursor: pointer;
     margin-top: -64px;
-    margin-left: 570px;
+    margin-left: 620px;
 }
 
 .request-button:hover {
@@ -507,22 +583,19 @@
 .buttin {
     width: 254px;
     height: 66px;
-    top: 7304.44px;
-    left: 833px;
-    gap: 0px;
-    opacity: 0px;
     background: #00D594;
     border: 1px solid #00D594;
-    color: #FFFFFF;
+    color: #FFFFFF ;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 20px auto ;
 }
 
 ul.your-class li, ol.your-class li {
     list-style: none;
+    margin: 0;
     margin: 0;
     padding: 0;
 }
@@ -532,13 +605,31 @@ ul.your-class li, ol.your-class li {
     text-align: center;
 }
 
-@media (min-width: 768px) and (max-width: 1931px) {
-    .button12 {
-        margin-left: 0px;
+@media (min-width: 1024px) and (max-width: 1920px) {
+    .div-request{
+        height: 500px;
     }
 
-    .div-request {
-        width: 1277px;
+    .girl-img{
+        margin-top: -50px;
+        width: 500px;
+        height: 500px;
+    }
+
+    .text-class{
+        margin-left: 450px;
+        margin-top: -100px;
+    }
+
+    .same-class{
+        margin-left: 450px;
+        margin-top: 20px;
+        width: 850px;
+    }
+
+    .input-container{
+        margin-left: -50px;
+        margin-top: 50px;
     }
 
     .me {
@@ -555,324 +646,230 @@ ul.your-class li, ol.your-class li {
     }
 
     .input-container {
-        margin-left: 0px;
+        margin-left: -360px;
+    }
+
+
+    .page-container{
+        max-width: 1920px ;
+        margin: 0 auto;
+    }
+
+
+    .me{
+        width: 1000px ;
+        padding:30px;
+    }
+
+    .op{
+        width: 500px;
+        margin-left: -20px;
+    }
+    .m{
+        width: 500px ;
     }
 
     .page-container{
-        width: 1460px !important;
-        margin: 0 auto;
+        margin:0 50px ;
+    }
+
+    .comment-container{
+        width: 500px ;
     }
 }
 
-@media (max-width: 1300px) {
-    .main-img {
-        width: 1500px;
+
+
+
+@media screen and (max-width: 1600px) {
+    .me{
+        width: 700px ;
     }
 
-    .div-info {
-        width: 1500px;
+    .op{
+        width: 400px;
+        margin-left: -20px;
+    }
+    .m{
+        width: 500px;
     }
 
-
-    .cd {
-        width: 1768px;
+    .page-container{
+        margin:0 50px ;
     }
 
-    .div-request {
-        margin: 20px 250px;
+    .comment-container{
+        width: 400px ;
     }
 
-    .kl {
-        margin-left: 850px;
+    .div-request{
+        width: 1400px ;
+        height: 459px;
     }
 
-    .page-container, .m {
-        width: 1768px;
+    .girl-img{
+        width: 440px;
+        height: 440px;
+        margin-top: -32px;
+    }
+
+    .text-class{
+        margin-left: 400px;
+        margin-top: 30px;
+        width: 950px;
+    }
+
+    .same-class{
+        margin-left: 400px;
+        margin-top: 20px;
+        width: 850px;
+    }
+
+    .input-container{
+        margin-left: 20px ;
+        margin-top: 50px;
     }
 }
 
-@media (max-width: 1213px) {
-    .main-img {
-        width: 1980px;
+@media screen and (max-width: 1376px) {
+    .me{
+        width: 460px;
     }
 
-}
-
-@media (max-width: 768px) {
-    .main-img {
-        width: 1768px;
+    .div-request{
+        width: 1200px ;
     }
 
-    .div-info {
-        width: 1768px;
+    .text-class{
+        margin-left: 400px;
+        margin-top: 30px;
+        width: 800px;
     }
 
-    .cd {
-        width: 1768px;
+    .same-class{
+        margin-left: 400px;
+        margin-top: 20px;
+        width: 700px;
     }
 
-    .div-request {
-        margin: 20px 250px;
-    }
-
-    .comment-name {
-        margin-left: -80px;
+    .input-container{
+        margin-left: 220px;
         margin-top: 50px;
     }
 
-    .kl {
-        margin-left: 850px;
+    .op{
+        width: 400px;
+        margin-left: -20px;
+    }
+    .m{
+        width: 400px;
     }
 
-    .page-container, .m {
-        width: 1768px;
+    .page-container{
+        margin:0 50px ;
     }
 
-}
-
-@media (max-width: 1200px) {
-    .div-travel {
-        padding: 40px 20px;
-    }
-
-    .you1 {
-        font-size: 35px;
-        line-height: 50px;
-    }
-
-    .you {
-        font-size: 18px;
-        line-height: 28px;
-    }
-
-    .me {
-        margin-left: 100px;
-    }
-
-    .be {
-        width: 113.23px;
-        height: 56.53px;
-        gap: 14.13px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /*margin-right: -460px;*/
-        /*margin-left: -460px;*/
-    }
-
-
-    .div-travel > div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .box {
-        margin-left: -650px;
-    }
-
-    .rem {
-        max-width: 1930px;
-        display: flex;
-        align-items: center;
-        gap: 125px;
-        margin: 0 auto;
-        justify-content: space-between;
-    }
-
-    .me {
-        width: 750px;
-
+    .comment-container{
+        width: 400px;
     }
 
 }
 
-/*asd*/
-@media screen and (max-width: 768px) {
-    .comment-name {
-        display: flex;
-        margin-left: 150px;
 
+@media screen and (max-width: 1367px) {
+    .me{
+        width: 500px !important;
     }
 
-    .comment-text {
-        display: flex;
-        margin-left: 190px;
+    .button12{
+        margin-left: -20px;
     }
 
-    .me2 {
-        width: 900px;
-
+    .div-request{
+        width:1200px ;
     }
 
-    .box {
-        display: grid;
-        grid-template-columns: 1fr;
-        margin-right: 30px;
-
+    .text-class{
+        margin-left: 400px;
+        margin-top: 30px;
+        width: 800px;
     }
 
-    .be {
-        width: 113.23px;
-        height: 56.53px;
-        gap: 14.13px;
-    }
-
-    .buttin {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 760px;
-
-    }
-
-    .box1 {
-        width: 1280px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .me {
-        margin-left: 450px;
-    }
-
-    .us {
-        margin-left: 710px;
+    .same-class{
+        margin-left: 400px;
+        margin-top: 20px;
         width: 700px;
     }
 
-    .uss {
-        margin-left: 100px;
+    .input-container{
+        margin-left: 220px;
+        margin-top: 50px;
     }
 
-    .button12 {
-        margin-left: 90px;
+    .op{
+        width: 400px;
+        margin-left: -20px;
     }
-
-    .div-request {
-        width: 1277px;
+    .m{
+        width: 400px;
     }
-
-    .me {
-        width: 880px;
-    }
-
-    .wit {
-        margin-left: 25px;
-    }
-
-    .rem {
-        max-width: 1930px;
-        display: flex;
-        align-items: center;
-        gap: 125px;
-        margin: 0 auto;
-        justify-content: space-between;
-
-    }
-
-    .you1 {
-        display: grid;
-        grid-template-columns: 1fr;
-        justify-content: center;
-        align-items: center;
-    }
-
-
-}
-
-@media (max-width: 1300px) {
 
     .page-container{
-        margin-left: 30px;
+        margin:0 50px ;
     }
 
-    .main-img {
-        width: 1768px;
+    .comment-container{
+        width: 400px ;
     }
-
-    .comment-name {
-        display: flex;
-        margin-left: 150px;
-
-    }
-
-    .comment-text {
-        display: flex;
-        margin-left: 190px;
-    }
-
-    .me2 {
-        width: 700px;
-
-    }
-
-    .box {
-        display: flex;
-        margin-left: -370px;
-    }
-
-    .us {
-        margin-left: 410px;
-    }
-
-    .be {
-        width: 113.23px;
-        height: 56.53px;
-        gap: 14.13px;
-        margin-right: -460px;
-        margin-left: 460px;
-
-    }
-
-    .buttin {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 760px;
-
-    }
-
-    .box1 {
-        width: 1280px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-    }
-
-    .div-request {
-        width: 1477px;
-        margin: 20px 170px;
-    }
-
-    .same-class {
-        width: 1050px;
-        font-size: 29.15px;
-    }
-
-    .input-container {
-        margin-left: -200px;
-    }
-
-    .text-class {
-        font-size: 29.55px;
-        width: 1100px;
-    }
-
-    .me {
-        width: 880px;
-    }
-
-
-
 }
-@media (min-width: 1400px) {
+
+@media screen and (max-width: 1630px) {
+    .me{
+        width: 700px ;
+    }
+
+    .op{
+        width: 420px;
+
+    }
+    .m{
+        width: 420px ;
+    }
+
     .page-container{
-        width: 1470px;
-        margin-left: 30px;
+        margin:0 50px ;
+    }
+
+    .comment-container{
+        width: 420px ;
+    }
+
+    .div-request{
+        width: 1400px ;
+        height: 459px;
+    }
+
+    .girl-img{
+        width: 440px;
+        height: 440px;
+        margin-top: -32px;
+    }
+
+    .text-class{
+        margin-left: 400px;
+        margin-top: 30px;
+        width: 950px;
+    }
+
+    .same-class{
+        margin-left: 400px;
+        margin-top: 20px;
+        width: 850px;
+    }
+
+    .input-container{
+        margin-left: 20px   ;
+        margin-top: 50px;
     }
 }
 
@@ -885,81 +882,4 @@ ul.your-class li, ol.your-class li {
     justify-content: space-between;
 }
 
-@media (max-width: 1280px) {
-    .main-img {
-        width: 1768px;
-    }
 
-    .text-class {
-        font-size: 29.55px;
-        width: 1100px;
-    }
-
-    .same-class {
-        width: 1050px;
-        font-size: 29.15px;
-    }
-
-    .div-info {
-        width: 1500px;
-    }
-
-
-    .cd {
-        width: 1768px;
-    }
-
-    .div-request {
-        width: 1477px;
-        margin: 20px 170px;
-    }
-
-    .input-container {
-        margin-left: -200px;
-    }
-
-    .kl {
-        margin-left: 850px;
-    }
-
-    .page-container, .m {
-        width: 1768px;
-    }
-
-    .me {
-        width: 880px;
-    }
-
-    .box {
-
-    }
-}
-
-@media (max-width: 1454px) {
-    .main-img {
-        width: 1900px;
-    }
-
-    .div-request {
-        width: 1577px;
-        margin-left: 200px;
-    }
-
-    .same-class {
-        width: 1100px;
-    }
-
-    .input-container {
-        margin-left: -300px;
-    }
-
-    .page-container{
-        width: 1246px !important;
-        margin: 0 auto;
-    }
-}
-
-.page-container{
-    width: 1450px !important;
-    margin: 0 auto;
-}

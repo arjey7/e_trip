@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './css/Page.css';
+// import './css/Page.css';
 import './styles/LandingPage.css';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
@@ -12,7 +12,7 @@ import NavImage from "./files/barlass 2.png";
 import Logo from './files/left side.png';
 import Ethernet from './files/ethernet.png';
 import Naushnik from './files/naushnik.png';
-import Vector from './files/vector.svg';
+import Vector from './files/vector2.svg';
 import Apacha from './files/portrait-call-center-woman 1.png';
 import today from './files/Rectangle 3.png';
 import nul from "./files/asd.png";
@@ -230,14 +230,6 @@ const LandingPage = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="">
-                                <div className="">
-                                    {/* Additional buttons if needed */}
-                                </div>
-                                <div className="tour-buttons">
-                                    {/* Buttons */}
-                                </div>
-                            </div>
                         </div>
                     ))}
                 </div>
@@ -316,7 +308,7 @@ const LandingPage = () => {
                         showArrows
                         onChange={onSlideChanged}
                         showThumbs={false}
-                        autoPlay={true} interval={3000}
+                        // autoPlay={true} interval={3000}
                         infiniteLoop={true}
                         centerMode
                         centerSlidePercentage={33.33}
@@ -328,14 +320,15 @@ const LandingPage = () => {
                             >
                                 <div className="m">
                                     <div className="op"></div>
-                                    <p className="comment-name">{comment.firstName} {comment.lastName}</p>
-                                    <div style={{height: "160px"}}>
+                                    <p className="comment-name">''{comment.firstName} {comment.lastName}''</p>
+                                    <div style={{height: "160px", width:"100px"}}>
                                         <p className="comment-text">{comment.text}</p>
                                     </div>
                                     <ReactStars
+                                        style={{marginTop:"-50px"}}
                                         count={5}
                                         value={comment.rate}
-                                        size={40}
+                                        size={30}
                                         activeColor="#ffd700"
                                         edit={false}
                                     />
